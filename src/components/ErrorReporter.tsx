@@ -11,13 +11,40 @@ type ReporterProps = {
 export default function ErrorReporter({ error, reset }: ReporterProps) {
   /* ─ instrumentation shared by every route ─ */
   const lastOverlayMsg = useRef("");
-  const pollRef = useRef<NodeJS.Timeout>();
+  const pollRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
     const inIframe = window.parent !== window;
     if (!inIframe) return;
 
-    const send = (payload: unknown) => window.parent.postMessage(payload, "*");
+    const getParentOrigin = (): string | null => {
+      try {
+        if (document.referrer) {
+          const referrerUrl = new URL(document.referrer);
+          const origin = referrerUrl.origin;
+          
+          if (
+            origin === window.location.origin ||
+            origin.endsWith('.replit.dev') ||
+            origin.endsWith('.repl.co') ||
+            origin === 'https://replit.com'
+          ) {
+            return origin;
+          }
+        }
+      } catch (e) {
+        console.warn('Unable to determine parent origin from referrer');
+      }
+      
+      return null;
+    };
+
+    const parentOrigin = getParentOrigin();
+    if (!parentOrigin) return;
+
+    const send = (payload: unknown) => {
+      window.parent.postMessage(payload, parentOrigin);
+    };
 
     const onError = (e: ErrorEvent) =>
       send({
@@ -75,20 +102,45 @@ export default function ErrorReporter({ error, reset }: ReporterProps) {
   /* ─ extra postMessage when on the global-error route ─ */
   useEffect(() => {
     if (!error) return;
-    window.parent.postMessage(
-      {
-        type: "global-error-reset",
-        error: {
-          message: error.message,
-          stack: error.stack,
-          digest: error.digest,
-          name: error.name,
-        },
-        timestamp: Date.now(),
-        userAgent: navigator.userAgent,
+    
+    const getParentOrigin = (): string | null => {
+      try {
+        if (document.referrer) {
+          const referrerUrl = new URL(document.referrer);
+          const origin = referrerUrl.origin;
+          
+          if (
+            origin === window.location.origin ||
+            origin.endsWith('.replit.dev') ||
+            origin.endsWith('.repl.co') ||
+            origin === 'https://replit.com'
+          ) {
+            return origin;
+          }
+        }
+      } catch (e) {
+        console.warn('Unable to determine parent origin from referrer');
+      }
+      
+      return null;
+    };
+
+    const parentOrigin = getParentOrigin();
+    if (!parentOrigin) return;
+
+    const payload = {
+      type: "global-error-reset",
+      error: {
+        message: error.message,
+        stack: error.stack,
+        digest: error.digest,
+        name: error.name,
       },
-      "*"
-    );
+      timestamp: Date.now(),
+      userAgent: navigator.userAgent,
+    };
+    
+    window.parent.postMessage(payload, parentOrigin);
   }, [error]);
 
   /* ─ ordinary pages render nothing ─ */
