@@ -5,7 +5,6 @@ const LOADER = path.resolve(
   __dirname,
   "src/visual-edits/component-tagger-loader.js",
 );
-
 const isDev = process.env.NODE_ENV !== "production";
 
 const nextConfig: NextConfig = {
@@ -16,16 +15,17 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  // Chemin de sortie explicite et sûr
+  distDir: ".next",
+
+  // Tolérer TS/ESLint au build si besoin
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
 
+  // N’activer le loader Orchids qu’en dev
   ...(isDev && {
     turbopack: {
-      rules: {
-        "*.{jsx,tsx}": {
-          loaders: [LOADER],
-        },
-      },
+      rules: { "*.{jsx,tsx}": { loaders: [LOADER] } },
     },
   }),
 };
