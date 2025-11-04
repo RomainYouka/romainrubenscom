@@ -1,0 +1,283 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import ProjectIOS26 from "@/components/sections/project-ios26";
+import { ProjectWaveSwitch } from "@/components/sections/project-wave-switch";
+import ProjectWaveScreens from "@/components/sections/project-wave-screens";
+import ProjectFramaspace from "@/components/sections/project-framaspace";
+import ProjectBeforeAfter from "@/components/sections/project-before-after";
+import ProjectHorizontalParallax from "@/components/sections/project-horizontal-parallax";
+import ProjectNameQuest from "@/components/sections/project-namequest";
+import ProjectMacStudio from "@/components/sections/project-macstudio";
+import ProjectCarousel from "@/components/sections/project-carousel";
+import Image from "next/image";
+import { ChevronDown } from "lucide-react";
+
+const projectsTranslations = {
+  FR: {
+    heading: "Ce qui guide mon travail.",
+    headingImage: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/ce-qui-guide-1762109969479.png",
+    text: "Je ne crois pas aux solutions toutes faites. Je crois aux processus justes. Mon approche est une rencontre entre empathie, structure, et intuition. Concevoir, c'est écouter. Designer, c'est comprendre avant de décider."
+  },
+  EN: {
+    heading: "What guides my work.",
+    headingImage: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/what-1762109824205.png",
+    text: "I don't believe in ready-made solutions. I believe in the right process. My approach is a meeting point between empathy, structure, and intuition. To design is to listen. To be a designer is to understand before deciding."
+  },
+  ՀԱՅ: {
+    heading: "Ինչն է առաջնորդում իմ աշխատանքը։",
+    headingImage: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/armenien-texte-titre-1762183912650.png",
+    text: "Ես չեմ հավատում պատրաստի լուծումներին։ Ես հավատում եմ ճիշտ գործընթացին։ Իմ մոտեցումը համակցում է կարեկցանք, կառուցվածք և ինտուիցիա։ Դիզայնը լսելն է։ Դիզայներ լինելը՝ հասկանալը որոշելուց առաջ։"
+  }
+};
+
+const footerTranslations = {
+  FR: {
+    copyright: "© 2025 Romain Rubens. Tous droits réservés.",
+    reportProblem: "Signaler un problème"
+  },
+  EN: {
+    copyright: "© 2025 Romain Rubens. All rights reserved.",
+    reportProblem: "Report a problem"
+  },
+  ՀԱՅ: {
+    copyright: "© 2025 Ռոմեն Ռուբենս. Բոլոր իրավունքները\u00A0պաշտպանված\u00A0են.",
+    reportProblem: "Տեղեկացնել խնդրի\u00A0մասին"
+  }
+};
+
+export default function ProjectsPage() {
+  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
+  const [isVisible, setIsVisible] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const firstProjectRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
+    if (saved && projectsTranslations[saved]) {
+      setSelectedLanguage(saved);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleLanguageChange = (event: CustomEvent<"FR" | "EN" | "ՀԱՅ">) => {
+      setSelectedLanguage(event.detail);
+    };
+
+    window.addEventListener("languageChange", handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener("languageChange", handleLanguageChange as EventListener);
+    };
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const currentTranslations = projectsTranslations[selectedLanguage];
+  const currentFooterTranslations = footerTranslations[selectedLanguage];
+
+  const scrollToFirstProject = () => {
+    firstProjectRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  return (
+    <main
+      className="min-h-screen bg-[#F5F5F7]"
+      style={{
+        fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+      }}>
+
+      <section className="h-screen flex flex-col items-center justify-between px-6 pt-24 md:pt-32 pb-12 bg-[#F5F5F7] relative">
+        <div className="flex-1 w-full max-w-[1200px] mx-auto flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center text-center">
+            {currentTranslations.headingImage ?
+            <div
+              className={`relative w-full max-w-[700px] transition-all duration-[360ms] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[12px]"}`
+              }
+              style={{
+                transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)",
+                transitionDelay: "60ms"
+              }}>
+
+                <Image
+                src={currentTranslations.headingImage}
+                alt={currentTranslations.heading}
+                width={700}
+                height={100}
+                className="w-full h-auto"
+                priority />
+
+              </div> :
+
+            <h1
+              className={`font-semibold text-[#515151] leading-tight max-w-[90vw] md:max-w-none transition-all duration-[360ms] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[12px]"}`
+              }
+              style={{
+                fontSize: "clamp(32px, 7vw, 56px)",
+                transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)",
+                transitionDelay: "60ms",
+                textWrap: "balance"
+              }}>
+
+                {currentTranslations.heading}
+              </h1>
+            }
+
+            <div className="max-w-[900px] mt-2">
+              <p
+                className={`text-[clamp(16px,3.5vw,24px)] font-normal text-[#515151] leading-[1.4] md:leading-[1.6] text-center transition-all duration-[360ms] px-4 md:px-8 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[12px]"}`
+                }
+                style={{
+                  transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)",
+                  transitionDelay: "120ms",
+                  textWrap: "balance"
+                }}>
+
+                {currentTranslations.text}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          onClick={scrollToFirstProject}
+          className={`w-10 h-10 rounded-full bg-[#424245] flex items-center justify-center transition-all duration-300 hover:bg-[#515151] hover:scale-110 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[12px]"}`
+          }
+          style={{
+            transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)",
+            transitionDelay: "180ms"
+          }}
+          aria-label="Scroll to projects">
+
+          <ChevronDown className="w-5 h-5 text-white" />
+        </button>
+      </section>
+
+      <div id="ios26" ref={firstProjectRef}>
+        <ProjectIOS26 language={selectedLanguage} />
+      </div>
+
+      <div id="waveswitch">
+        <ProjectWaveSwitch language={selectedLanguage} />
+      </div>
+
+      <div>
+        <ProjectWaveScreens />
+      </div>
+
+      <div id="framaspace">
+        <ProjectFramaspace language={selectedLanguage} />
+      </div>
+
+      <div>
+        <ProjectBeforeAfter />
+      </div>
+
+      <div>
+        <ProjectHorizontalParallax />
+      </div>
+
+      <div id="namequest">
+        <ProjectNameQuest language={selectedLanguage} />
+      </div>
+
+      <div>
+        <ProjectMacStudio language={selectedLanguage} />
+      </div>
+
+      <div>
+        <ProjectCarousel />
+      </div>
+
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-14 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 hover:scale-110 ${
+          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+        style={{
+          transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)"
+        }}
+        aria-label="Scroll to top">
+        <Image
+          src={
+            selectedLanguage === "FR" 
+              ? "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/image-1762252318736.png"
+              : selectedLanguage === "ՀԱՅ"
+              ? "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/image-1762252280986.png"
+              : "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/image-1762250774932.png"
+          }
+          alt="Scroll to top"
+          width={120}
+          height={40}
+          className={`w-auto cursor-pointer ${
+            selectedLanguage === "FR" ? "h-[32px]" : "h-[40px]"
+          }`}
+        />
+      </button>
+
+      <footer
+        className="bg-[#FFFFFF] border-t border-[#D3D3D4]"
+        style={{
+          fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+        }}>
+
+        <div className="mx-auto max-w-[1200px] px-6 py-6 md:py-6">
+          <div className="flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between md:min-h-[80px] md:gap-4">
+            <p className="text-[10px] md:text-xs text-[#3C3C3C] font-normal leading-relaxed">
+              {currentFooterTranslations.copyright}
+            </p>
+            <a
+              href="mailto:report@romainrubens.com?subject=Issue report — romainrubens.com&body=FR : Décrivez le problème rencontré :%0D%0A- De quel type de problème s'agit-il ? (affichage, interaction, traduction, lien, autre)%0D%0A- Détaillez ici le problème :%0D%0A%0D%0A%0D%0AEN : Describe the issue you encountered:%0D%0A- What kind of problem is it? (display, interaction, translation, link, other)%0D%0A- Please describe the issue in detail:%0D%0A%0D%0A%0D%0AՀԱՅ : Նկարագրեք հանդիպած խնդիրը․%0D%0A- Ինչ տեսակի խնդիր է դա (ցուցադրում, փոխազդեցություն, թարգմանություն, հղում, այլ)%0D%0A- Նկարագրեք խնդիրը մանրամասն․%0D%0A%0D%0A%0D%0A"
+              className="text-[10px] md:text-xs text-[#3C3C3C] font-medium hover:text-[#EA4335] transition-all duration-160 relative inline-block group active:scale-[0.98] whitespace-nowrap">
+
+              <span className="relative">
+                {currentFooterTranslations.reportProblem}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#EA4335] transition-all duration-160 group-hover:w-full" />
+              </span>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </main>);
+
+}

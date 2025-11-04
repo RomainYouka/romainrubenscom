@@ -1,0 +1,343 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+
+interface ProjectWaveSwitchProps {
+  language: "FR" | "EN" | "ՀԱՅ";
+}
+
+const translations = {
+  EN: {
+    title: "Wave Switch & App",
+    year: "Designed in 2025",
+    toolsLabel: "Tools used:",
+    paragraph1:
+    "WaveSwitch is a contactless switch activated by gesture. Designed for a speculative future in 2080, where humans live with medical and aesthetic skin fungi born from global transformations, it relies on artificial intelligence to translate movement into action. Beyond the object itself, its meaning lies in the web and mobile interface: gesture customization, real-time visual feedback, and interaction tracking.",
+    paragraph2:
+    "This project explores the boundary between tangible objects and interactive systems, where design exists not only in physical form but in the relationship between human and machine. The switch becomes a way to question our connection to gesture, technological mediation, and the evolving domestic or work environment."
+  },
+  FR: {
+    title: "Wave Switch & App",
+    year: "Conception en 2025",
+    toolsLabel: "Outils utilisés :",
+    paragraph1:
+    "WaveSwitch est un interrupteur sans contact activé par geste. Conçu pour un avenir spéculatif en 2080, où les humains vivent avec des champignons cutanés médicaux et esthétiques nés des transformations mondiales, il s'appuie sur l'intelligence artificielle pour traduire le mouvement en action. Au-delà de l'objet lui-même, son sens réside dans l'interface web et mobile : personnalisation des gestes, retour visuel en temps réel et suivi des interactions.",
+    paragraph2:
+    "Ce projet explore la frontière entre objets tangibles et systèmes interactifs, où le design existe non seulement sous forme physique mais dans la relation entre l'humain et la machine. L'interrupteur devient un moyen de questionner notre connexion au geste, à la médiation technologique et à l'évolution de l'environnement domestique ou professionnel."
+  },
+  ՀԱՅ: {
+    title: "Wave Switch & App",
+    year: "Նախագծված 2025-ին",
+    toolsLabel: "Օգտագործված գործիքներ՝",
+    paragraph1:
+    "WaveSwitch-ը շարժումներով ակտիվացվող անհպում անջատիչ է։ Նախագծված ապագայի համար՝ 2080 թվականին, երբ մարդիկ ապրում են բժշկական եւ գեղագիտական մաշկային սնկերի հետ, որոնք ծնվել են համաշխարհային փոփոխություններից, այն ապավինում է արհեստական բանականությանը՝ շարժումը գործողության վերածելու համար։ Առարկայից դուրս դրա իմաստը ընկած է վեբ եւ շարժական ինտերֆեյսում՝ ժեստերի անհատականացում, իրական ժամանակի տեսողական հետադարձ կապ եւ փոխազդեցության հետագծում։",
+    paragraph2:
+    "Այս նախագիծը ուսումնասիրում է նյութական առարկաների եւ ինտերակտիվ համակարգերի միջեւ սահմանը, որտեղ դիզայնը գոյություն ունի ոչ միայն ֆիզիկական ձեւով, այլեւ մարդու եւ մեքենայի միջեւ հարաբերություններում։ Անջատիչը դառնում է միջոց՝ հարցականի տակ դնելու մեր կապը ժեստի, տեխնոլոգիական միջնորդության եւ տնային կամ աշխատանքային միջավայրի զարգացման հետ։"
+  }
+};
+
+export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const videoRef1 = useRef<HTMLVideoElement>(null);
+  const videoRef2 = useRef<HTMLVideoElement>(null);
+  const videoContainer1 = useRef<HTMLDivElement>(null);
+  const videoContainer2 = useRef<HTMLDivElement>(null);
+
+  const t = translations[language];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const videoElement1 = videoRef1.current;
+    const videoElement2 = videoRef2.current;
+    const container1 = videoContainer1.current;
+    const container2 = videoContainer2.current;
+
+    if (!videoElement1 || !videoElement2 || !container1 || !container2) return;
+
+    // Observer pour la première vidéo
+    const observer1 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            videoElement1.play().catch(() => {});
+          } else {
+            videoElement1.pause();
+          }
+        });
+      },
+      {
+        threshold: [0, 0.3, 0.5, 0.7, 1],
+        rootMargin: "-10% 0px -10% 0px"
+      }
+    );
+
+    // Observer pour la deuxième vidéo
+    const observer2 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            videoElement2.play().catch(() => {});
+          } else {
+            videoElement2.pause();
+          }
+        });
+      },
+      {
+        threshold: [0, 0.3, 0.5, 0.7, 1],
+        rootMargin: "-10% 0px -10% 0px"
+      }
+    );
+
+    observer1.observe(container1);
+    observer2.observe(container2);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        videoElement1.pause();
+        videoElement2.pause();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      observer1.disconnect();
+      observer2.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  return (
+    <section
+      id="waveswitch"
+      className="w-full bg-white"
+      style={{
+        paddingTop: "clamp(48px, 6vw, 80px)",
+        paddingBottom: "clamp(48px, 6vw, 80px)",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+        scrollMarginTop: "80px"
+      }}>
+
+      <div className="container max-w-[1200px] mx-auto px-5 md:px-10">
+        {/* Section 1: iPhone mockup à gauche + texte à droite */}
+        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24">
+          {/* Vidéo iPhone à gauche */}
+          <div
+            ref={videoContainer1}
+            className="w-full md:w-auto md:flex-shrink-0"
+            style={{
+              maxWidth: "400px"
+            }}>
+
+            <div
+              style={{
+                width: "100%",
+                overflow: "hidden"
+              }}>
+
+              <video
+                ref={videoRef1}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/4730AC9B-6273-4BD0-A10F-373F327D9B3B-1762106663715.mp4"
+                loop
+                muted
+                playsInline
+                preload="auto"
+                aria-label="Wave Switch app interface demonstration" className="!w-full !h-full !max-w-full" />
+
+            </div>
+          </div>
+
+          {/* Contenu texte à droite */}
+          <div className="flex-1" style={{ textAlign: "left" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(12px, 1.2vw, 14px)",
+                fontWeight: 600,
+                color: "#86868b",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                marginBottom: "clamp(8px, 1vw, 12px)"
+              }}>
+
+              {t.year}
+            </div>
+
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(32px, 4.5vw, 48px)",
+                fontWeight: 600,
+                color: "#1D1D1F",
+                lineHeight: 1.1,
+                letterSpacing: "-0.015em",
+                marginBottom: "clamp(20px, 2.5vw, 32px)"
+              }}>
+
+              {t.title}
+            </h2>
+
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                marginBottom: "clamp(24px, 3vw, 32px)"
+              }}>
+
+              {t.paragraph1}
+            </div>
+
+            <div>
+              <div
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "clamp(13px, 1.3vw, 15px)",
+                  fontWeight: 500,
+                  color: "#86868b",
+                  letterSpacing: "-0.01em",
+                  marginBottom: "clamp(8px, 1vw, 10px)",
+                  paddingLeft: 0
+                }}>
+
+                {t.toolsLabel}
+              </div>
+
+              <div className="flex items-center gap-1" style={{ paddingLeft: 0, marginLeft: 0 }}>
+                <img
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-2-1762106087211.png?width=8000&height=8000&resize=contain"
+                  alt="Sketch"
+                  style={{
+                    width: "clamp(46px, 6vw, 62px)",
+                    height: "clamp(46px, 6vw, 62px)",
+                    objectFit: "contain"
+                  }} />
+
+
+                <img
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-4-1762106242663.png?width=8000&height=8000&resize=contain"
+                  alt="Figma"
+                  style={{
+                    width: "clamp(46px, 6vw, 62px)",
+                    height: "clamp(46px, 6vw, 62px)",
+                    objectFit: "contain"
+                  }} />
+
+
+                <img
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-avec-arriere-plan-supprime-1762106090306.png?width=8000&height=8000&resize=contain"
+                  alt="After Effects"
+                  style={{
+                    width: "clamp(46px, 6vw, 62px)",
+                    height: "clamp(46px, 6vw, 62px)",
+                    objectFit: "contain"
+                  }} />
+
+
+                <img
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-3-1762106164758.png?width=8000&height=8000&resize=contain"
+                  alt="InDesign"
+                  style={{
+                    width: "clamp(46px, 6vw, 62px)",
+                    height: "clamp(46px, 6vw, 62px)",
+                    objectFit: "contain"
+                  }} />
+
+
+                <img
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-5-1762108915711.png?width=8000&height=8000&resize=contain"
+                  alt="Media Encoder"
+                  style={{
+                    width: "clamp(46px, 6vw, 62px)",
+                    height: "clamp(46px, 6vw, 62px)",
+                    objectFit: "contain"
+                  }} />
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 2: Texte à gauche + mockup produit à droite */}
+        <div className="flex flex-col md:flex-row-reverse md:items-center gap-8 md:gap-16">
+          <div
+            ref={videoContainer2}
+            className="w-full md:w-auto md:flex-shrink-0"
+            style={{
+              maxWidth: "350px"
+            }}>
+
+            <div
+              style={{
+                width: "100%",
+                overflow: "hidden"
+              }}>
+
+              <video
+                ref={videoRef2}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/mockup-waveswitch_2-1762179482964.mp4"
+                loop
+                muted
+                playsInline
+                preload="auto"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block"
+                }}
+                aria-label="Wave Switch product demonstration" />
+
+            </div>
+          </div>
+
+          <div className="flex-1" style={{ textAlign: "left" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                maxWidth: "600px"
+              }}>
+
+              {t.paragraph2}
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3: Specifications image */}
+        <div
+          className="mt-16 md:mt-24 w-full"
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}>
+
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "1200px"
+            }}>
+
+            <img
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Design-saens-titre-1762177246353.png?width=8000&height=8000&resize=contain"
+              alt="Wave Switch Application Screens" className="!not-italic" />
+          </div>
+        </div>
+      </div>
+    </section>);
+
+};

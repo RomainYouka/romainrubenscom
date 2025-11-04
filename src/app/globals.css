@@ -1,0 +1,452 @@
+/* Updated: 2025-11-04T19:47:00.483Z */
+/* Updated: 2025-11-04T19:46:16.011Z */
+/* Updated: 2025-11-04T19:39:35.048Z */
+/* Updated: 2025-11-04T17:38:23.413Z */
+/* Updated: 2025-11-04T16:12:45.879Z */
+/* Updated: 2025-11-04T12:48:15.285Z */
+/* Updated: 2025-11-04T12:34:58.048Z */
+/* Updated: 2025-11-04T09:56:44.697Z */
+/* Updated: 2025-11-04T09:53:55.789Z */
+/* Updated: 2025-11-03T19:23:46.142Z */
+/* Updated: 2025-11-03T19:23:43.500Z */
+/* Updated: 2025-11-03T14:57:51.962Z */
+/* Updated: 2025-11-03T14:57:47.476Z */
+/* Updated: 2025-11-03T14:56:47.018Z */
+/* Updated: 2025-11-03T13:39:49.700Z */
+/* Updated: 2025-11-03T13:39:49.308Z */
+/* Updated: 2025-11-03T13:01:09.915Z */
+/* Updated: 2025-11-03T10:24:33.345Z */
+/* Updated: 2025-11-03T10:15:11.719Z */
+/* Updated: 2025-11-03T10:12:53.856Z */
+/* Updated: 2025-11-03T10:12:09.706Z */
+/* Updated: 2025-11-03T00:11:20.656Z */
+/* Updated: 2025-11-02T23:51:30.213Z */
+/* Updated: 2025-11-02T23:27:51.309Z */
+/* Updated: 2025-11-02T16:56:31.755Z */
+/* Updated: 2025-11-01T20:05:32.241Z */
+/* Updated: 2025-11-01T20:00:12.108Z */
+/* Updated: 2025-11-01T19:20:46.768Z */
+/* Updated: 2025-11-01T14:13:54.759Z */
+/* Updated: 2025-11-01T11:30:40.838Z */
+/* Updated: 2025-10-31T13:07:39.467Z */
+/* Updated: 2025-10-31T13:05:29.117Z */
+/* Updated: 2025-10-31T12:27:25.364Z */
+/* Updated: 2025-10-31T08:30:28.793Z */
+/* Updated: 2025-10-29T20:26:35.522Z */
+/* Updated: 2025-10-29T17:09:37.061Z */
+/* Updated: 2025-10-29T15:32:36.690Z */
+/* Updated: 2025-10-28T15:19:09.085Z */
+/* Updated: 2025-10-28T15:10:21.221Z */
+/* Updated: 2025-10-28T13:28:12.224Z */
+/* Updated: 2025-10-28T12:19:36.947Z */
+/* Updated: 2025-10-28T12:18:17.623Z */
+/* Updated: 2025-10-28T12:09:41.513Z */
+/* Updated: 2025-10-28T11:31:32.129Z */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+
+  --color-card: #000000;
+  --color-card-foreground: #ffffff;
+
+  --color-popover: #000000;
+  --color-popover-foreground: #ffffff;
+
+  --color-primary: #ffffff;
+  --color-primary-foreground: #1d1d1f;
+
+  --color-secondary: #f5f5f7;
+  --color-secondary-foreground: #1d1d1f;
+
+  --color-muted: #86868b;
+  --color-muted-foreground: #ffffff;
+
+  --color-accent: #0071e3;
+  --color-accent-foreground: #ffffff;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: #262626;
+  --color-input: #262626;
+  --color-ring: #d4d4d8;
+
+  --color-chart-1: #3b82f6;
+  --color-chart-2: #10b981;
+  --color-chart-3: #f59e0b;
+  --color-chart-4: #8b5cf6;
+  --color-chart-5: #ef4444;
+
+  --color-sidebar: #1a1a1a;
+  --color-sidebar-foreground: #f0f0f0;
+  --color-sidebar-primary: #3b82f6;
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-accent: #292929;
+  --color-sidebar-accent-foreground: #f0f0f0;
+  --color-sidebar-border: #292929;
+  --color-sidebar-ring: #3b82f6;
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  /* Apple.com specific colors */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f5f5f7;
+  --color-bg-nav: rgba(0, 0, 0, 0.8);
+  --color-text-primary-dark: #ffffff;
+  --color-text-primary-light: #1d1d1f;
+  --color-text-secondary: #86868b;
+  --color-cta-primary: #0071e3;
+  --color-cta-secondary: rgba(0, 113, 227, 0.1);
+  --color-link: #0066cc;
+  --color-accent-orange: #e87352;
+
+  /* Apple.com specific fonts */
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  
+  @keyframes linkedin-pulse {
+    0%, 100% {
+      border-width: 2px;
+    }
+    50% {
+      border-width: 1px;
+    }
+  }
+  
+  @keyframes logo-sheen {
+    from {
+      left: -120%;
+    }
+    to {
+      left: 100%;
+    }
+  }
+
+  @keyframes genieOpen {
+    0% {
+      clip-path: polygon(
+        0% 0%, 2% 0%, 2% 0%, 0% 0%
+      );
+      transform: perspective(1200px) rotateX(88deg) scale(0.08) translateY(-50%);
+      opacity: 0;
+    }
+    40% {
+      clip-path: polygon(
+        0% 0%, 50% 0%, 45% 100%, 5% 100%
+      );
+      opacity: 0.8;
+    }
+    70% {
+      clip-path: polygon(
+        0% 0%, 85% 0%, 80% 100%, 8% 100%
+      );
+      opacity: 0.95;
+    }
+    100% {
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% 100%, 0% 100%
+      );
+      transform: perspective(1200px) rotateX(0deg) scale(1) translateY(0%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes genieClose {
+    0% {
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% 100%, 0% 100%
+      );
+      transform: perspective(1200px) rotateX(0deg) scale(1) translateY(0%);
+      opacity: 1;
+    }
+    30% {
+      clip-path: polygon(
+        0% 0%, 85% 0%, 80% 100%, 8% 100%
+      );
+      opacity: 0.95;
+    }
+    60% {
+      clip-path: polygon(
+        0% 0%, 50% 0%, 45% 100%, 5% 100%
+      );
+      opacity: 0.8;
+    }
+    100% {
+      clip-path: polygon(
+        0% 0%, 2% 0%, 2% 0%, 0% 0%
+      );
+      transform: perspective(1200px) rotateX(88deg) scale(0.08) translateY(-50%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/*
+  The default border color has changed to currentColor in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-body);
+  }
+  
+  .animate-linkedin-pulse {
+    animation: linkedin-pulse 180ms ease-in-out;
+  }
+  
+  .gmail-icon path {
+    transition: fill 280ms ease-in-out;
+  }
+  
+  .group:hover .gmail-icon path {
+    fill: #EA4335;
+  }
+  
+  .scroll-animate {
+    transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  
+  .scroll-animate.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    [style*="animation"] {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--color-bg-primary);
+    --foreground: var(--color-text-primary-dark);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+    --radius: var(--radius-lg);
+    --sidebar-background: var(--color-sidebar);
+    --sidebar-foreground: var(--color-sidebar-foreground);
+    --sidebar-primary: var(--color-sidebar-primary);
+    --sidebar-primary-foreground: var(--color-sidebar-primary-foreground);
+    --sidebar-accent: var(--color-sidebar-accent);
+    --sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
+    --sidebar-border: var(--color-sidebar-border);
+    --sidebar-ring: var(--color-sidebar-ring);
+  }
+
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  html:has(:target) {
+    scroll-behavior: auto;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    background-color: #ffffff;
+    color: var(--foreground);
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--foreground);
+  }
+
+  h1 {
+    font-size: 56px;
+    line-height: 1.07143;
+  }
+
+  h2 {
+    font-size: 48px;
+    line-height: 1.08333;
+    letter-spacing: -0.003em;
+  }
+
+  h3 {
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  p {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    color: var(--foreground);
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .text-hero-subheading {
+    font-size: 28px;
+    line-height: 1.14286;
+    font-weight: 400;
+    letter-spacing: 0.007em;
+  }
+
+  .text-body-large {
+    font-size: 21px;
+    line-height: 1.381;
+    font-weight: 400;
+    letter-spacing: 0.011em;
+  }
+
+  .text-button {
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+  }
+
+  .text-nav-link {
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .text-small-print {
+    font-size: 12px;
+    line-height: 1.33333;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
+
+/* Gmail gradient definition for hover effect */
+svg defs {
+  display: none;
+}
