@@ -171,6 +171,7 @@ export default function ProjectTeasers() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-contain transition-transform duration-700 group-hover:scale-105"
                   style={{
                     transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)"

@@ -141,7 +141,8 @@ export default function ProjectsPage() {
                 alt={currentTranslations.heading}
                 width={700}
                 height={100}
-                className="w-full h-auto"
+                className="w-full"
+                style={{ height: 'auto' }}
                 priority />
 
               </div> :
