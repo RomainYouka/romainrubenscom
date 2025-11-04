@@ -40,3 +40,5 @@ Le projet est configuré pour le déploiement sur Replit avec autoscaling.
 ## Contact
 
 Romain Rubens - Designer UX/UI et Interaction
+
+dernière maj
