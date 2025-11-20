@@ -217,21 +217,6 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           </div>
         </div>
       </div>
-
-      <div className="w-full flex items-center justify-center" style={{ paddingTop: "clamp(48px, 6vw, 80px)", paddingBottom: "clamp(48px, 6vw, 80px)" }}>
-        <img
-          src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/pkujom-1762177933577.png?width=8000&height=8000&resize=contain"
-          alt="iOS 26 Update Vision screens"
-          style={{
-            width: "100%",
-            maxWidth: "1200px",
-            height: "auto",
-            display: "block",
-            paddingLeft: "clamp(20px, 4vw, 40px)",
-            paddingRight: "clamp(20px, 4vw, 40px)"
-          }}
-        />
-      </div>
     </section>);
 
 }

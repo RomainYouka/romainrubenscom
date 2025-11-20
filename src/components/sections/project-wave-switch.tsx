@@ -271,11 +271,30 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           </div>
         </div>
 
-        {/* Section 2: Texte à gauche + mockup produit à droite */}
-        <div className="flex flex-col md:flex-row-reverse md:items-center gap-8 md:gap-16">
+        {/* Section 2: paragraph2 text */}
+        <div className="mb-16 md:mb-24">
+          <div
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "clamp(15px, 1.6vw, 17px)",
+              fontWeight: 400,
+              color: "#1D1D1F",
+              lineHeight: 1.5,
+              letterSpacing: "-0.022em",
+              maxWidth: "800px",
+              margin: "0 auto",
+              textAlign: "center"
+            }}>
+
+            {t.paragraph2}
+          </div>
+        </div>
+
+        {/* Section 3: Second video mockup */}
+        <div className="flex justify-center">
           <div
             ref={videoContainer2}
-            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
+            className="w-full md:w-auto mx-auto"
             style={{
               maxWidth: "350px"
             }}>
@@ -305,7 +324,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             <div className="flex items-center justify-center gap-3 mt-4">
               <button
                 onClick={togglePlayPause2}
-                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#1A73E8] text-white font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)"
                 }}
@@ -317,7 +336,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               
               <button
                 onClick={skipForward2}
-                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#1A73E8] text-white font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)"
                 }}
@@ -327,42 +346,6 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 +5s
               </button>
             </div>
-          </div>
-
-          <div className="flex-1" style={{ textAlign: "left" }}>
-            <div
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "clamp(15px, 1.6vw, 17px)",
-                fontWeight: 400,
-                color: "#1D1D1F",
-                lineHeight: 1.5,
-                letterSpacing: "-0.022em",
-                maxWidth: "600px"
-              }}>
-
-              {t.paragraph2}
-            </div>
-          </div>
-        </div>
-
-        {/* Section 3: Specifications image */}
-        <div
-          className="mt-16 md:mt-24 w-full"
-          style={{
-            display: "flex",
-            justifyContent: "center"
-          }}>
-
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "1200px"
-            }}>
-
-            <img
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Design-saens-titre-1762177246353.png?width=8000&height=8000&resize=contain"
-              alt="Wave Switch Application Screens" className="!not-italic" />
           </div>
         </div>
       </div>
