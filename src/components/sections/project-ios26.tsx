@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Play, Pause, SkipForward } from "lucide-react";
 
 const translations = {
   EN: {
@@ -29,6 +30,7 @@ interface ProjectIOS26Props {
 
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -49,14 +51,88 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-            videoElement.play().catch(() => {
+            videoElement.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+            videoElement.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+            videoElement.play().catch(() => {});
 
+  const togglePlayPause = () => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+    if (isPlaying) {
+      videoElement.pause();
+      setIsPlaying(false);
+    } else {
+      videoElement.play();
+      setIsPlaying(true);
+    }
+  };
 
-
-
-
-              // Autoplay might be blocked
-            });} else {videoElement.pause();}});},
+  const skipForward = () => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+    videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+            videoElement.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+            videoElement.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+            videoElement.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+            videoElement.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
+            videoElement.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoElement.pause();
+            setIsPlaying(false);
+          }
+        });
+      },
       {
         threshold: [0, 0.3, 0.5, 0.7, 1],
         rootMargin: "-10% 0px -10% 0px"
