@@ -83,7 +83,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const concept02 = flashConcept02Translations[language];
 
   const initialImageCount = 4;
-  const totalImages = 46;
+  const totalImages = 44;
   const visibleImages = showAllImages ? totalImages : initialImageCount;
   
   const getFlashConcept01Images = () => {
