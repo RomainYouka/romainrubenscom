@@ -157,7 +157,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           transition: "opacity 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.2s, transform 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.2s"
         }}
       >
-        <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-12 md:py-20">
+        <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20">
           {/* Text Content */}
           <div className="mb-8 md:mb-12">
             <div
@@ -269,7 +269,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           transition: "opacity 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.4s, transform 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.4s"
         }}
       >
-        <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-12 md:py-20 border-t border-[#D3D3D4]">
+        <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20 border-t border-[#D3D3D4]">
           {/* Text Content */}
           <div className="mb-8 md:mb-12">
             <div
@@ -341,7 +341,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 }}
               >
                 <Image
-                  src={`/${num}.jpeg`}
+                  src={`/${num}.jpg`}
                   alt={`FlashConcept 02 - Screen ${num}`}
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
