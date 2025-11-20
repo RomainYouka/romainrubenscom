@@ -56,14 +56,12 @@ export default function ProjectCarousel() {
     if (!isTransitioning) return;
 
     const transitionEndTimer = setTimeout(() => {
+      setIsTransitioning(false);
+      
       if (currentIndex === 0) {
-        setIsTransitioning(false);
-        setCurrentIndex(images.length);
+        setTimeout(() => setCurrentIndex(images.length), 0);
       } else if (currentIndex === extendedImages.length - 1) {
-        setIsTransitioning(false);
-        setCurrentIndex(1);
-      } else {
-        setIsTransitioning(false);
+        setTimeout(() => setCurrentIndex(1), 0);
       }
     }, 600);
 
@@ -111,6 +109,8 @@ export default function ProjectCarousel() {
 
             {extendedImages.map((image, index) => {
               const isCenter = index === currentIndex;
+              const isLeft = index === currentIndex - 1;
+              const isRight = index === currentIndex + 1;
 
               return (
                 <div
@@ -123,18 +123,30 @@ export default function ProjectCarousel() {
                     transition: "opacity 300ms ease",
                     marginRight: index < extendedImages.length - 1 ? "30px" : "0",
                     userSelect: "none",
-                    position: "relative"
-                  }}>
+                    position: "relative",
+                    cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default"
+                  }}
+                  onClick={() => {
+                    if (isLeft && !isTransitioning) {
+                      goToPrevious();
+                    } else if (isRight && !isTransitioning) {
+                      goToNext();
+                    }
+                  }}
+                >
 
                   <Image
                     src={image}
                     alt={`Image ${index}`}
                     fill
-                    className="object-contain pointer-events-none select-none"
+                    className="object-contain select-none"
                     draggable={false}
                     priority={true}
                     loading="eager"
                     sizes="50vw"
+                    style={{
+                      pointerEvents: (isLeft || isRight) ? "none" : "none"
+                    }}
                     quality={100} />
 
                 </div>);
