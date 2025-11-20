@@ -584,93 +584,11 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
         </div>
       </header>
 
-      {/* Mobile Menu with Genie Animation */}
-      <style jsx>{`
-        @keyframes genieIn {
-          0% {
-            clip-path: polygon(
-              48% 0%, 52% 0%,
-              52% 0%, 48% 0%
-            );
-            transform: scale(0.8) translateY(-20px);
-            opacity: 0;
-          }
-          30% {
-            clip-path: polygon(
-              40% 0%, 60% 0%,
-              60% 20%, 40% 20%
-            );
-            transform: scale(0.9) translateY(-10px);
-            opacity: 0.5;
-          }
-          60% {
-            clip-path: polygon(
-              20% 0%, 80% 0%,
-              85% 60%, 15% 60%
-            );
-            transform: scale(0.95) translateY(-5px);
-            opacity: 0.8;
-          }
-          100% {
-            clip-path: polygon(
-              0% 0%, 100% 0%,
-              100% 100%, 0% 100%
-            );
-            transform: scale(1) translateY(0);
-            opacity: 1;
-          }
-        }
-        
-        @keyframes genieOut {
-          0% {
-            clip-path: polygon(
-              0% 0%, 100% 0%,
-              100% 100%, 0% 100%
-            );
-            transform: scale(1) translateY(0);
-            opacity: 1;
-          }
-          40% {
-            clip-path: polygon(
-              20% 0%, 80% 0%,
-              85% 60%, 15% 60%
-            );
-            transform: scale(0.95) translateY(-5px);
-            opacity: 0.8;
-          }
-          70% {
-            clip-path: polygon(
-              40% 0%, 60% 0%,
-              60% 20%, 40% 20%
-            );
-            transform: scale(0.9) translateY(-10px);
-            opacity: 0.5;
-          }
-          100% {
-            clip-path: polygon(
-              48% 0%, 52% 0%,
-              52% 0%, 48% 0%
-            );
-            transform: scale(0.8) translateY(-20px);
-            opacity: 0;
-          }
-        }
-        
-        .menu-genie-enter {
-          animation: genieIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        
-        .menu-genie-exit {
-          animation: genieOut 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
-        }
-      `}</style>
+      {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 top-16 z-40 bg-white md:hidden ${
-          isMenuOpen ? "menu-genie-enter" : "menu-genie-exit pointer-events-none"
+        className={`fixed inset-0 top-16 z-40 bg-white transition-all duration-300 md:hidden ${
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
-        style={{
-          transformOrigin: 'top right'
-        }}
       >
         <div className="h-full overflow-y-auto px-6 pt-8">
           <div className="flex flex-col gap-1">

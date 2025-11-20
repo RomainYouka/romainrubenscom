@@ -154,11 +154,11 @@ export default function ProjectHorizontalParallax() {
       }}>
 
       <div className="w-full max-w-[1200px] mx-auto px-6">
-        <div className="flex flex-col -space-y-2 md:-space-y-4">
+        <div className="flex flex-col -space-y-4 md:-space-y-6">
           {bands.map((band, index) =>
           <div
             key={band.id}
-            className="w-full overflow-visible relative h-[80px] md:h-[110px] lg:h-[140px]">
+            className="w-full overflow-visible relative h-[110px] md:h-[110px] lg:h-[140px]">
 
               <div
               ref={(el) => {
@@ -167,7 +167,7 @@ export default function ProjectHorizontalParallax() {
               className="absolute inset-0 h-full"
               style={{
                 width: "200%",
-                left: band.direction === "left" ? (index === 0 ? "-30%" : "0%") : "-100%",
+                left: band.direction === "left" ? (index === 0 ? "0%" : "0%") : "-100%",
                 willChange: prefersReducedMotion ? "auto" : "transform",
                 opacity: 1
               }}>
