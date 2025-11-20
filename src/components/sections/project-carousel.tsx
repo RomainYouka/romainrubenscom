@@ -19,6 +19,8 @@ export default function ProjectCarousel() {
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const extendedImages = [images[images.length - 1], ...images, images[0]];
 
@@ -108,10 +110,41 @@ export default function ProjectCarousel() {
     return currentIndex - 1;
   };
 
+  // Swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (isTransitioning) return;
+    
+    const diff = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(diff) > minSwipeDistance) {
+      if (diff > 0) {
+        // Swipe left - go next
+        goToNext();
+      } else {
+        // Swipe right - go previous
+        goToPrevious();
+      }
+    }
+  };
+
   return (
     <section className="bg-white relative overflow-hidden select-none pb-8 mb-12">
       <div className="w-full relative">
-        <div className="relative w-full overflow-hidden">
+        <div 
+          className="relative w-full overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div
             ref={containerRef}
             className="flex items-center"
@@ -171,7 +204,7 @@ export default function ProjectCarousel() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-4 relative">
+        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-2 relative">
           <div className="flex-1" />
           
           <div className="flex justify-center gap-2">
