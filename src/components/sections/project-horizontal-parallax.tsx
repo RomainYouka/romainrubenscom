@@ -98,11 +98,11 @@ export default function ProjectHorizontalParallax() {
         const imageWidth = band.width;
         const maxScroll = Math.max(0, imageWidth - viewportWidth);
         
-        // Les impairs (index 0, 2, 4, 6) vont à gauche (négatif)
-        // Les pairs (index 1, 3, 5) vont à droite (positif)
+        // Les impairs (index 0, 2, 4, 6) vont à droite (positif)
+        // Les pairs (index 1, 3, 5) vont à gauche (négatif)
         const isEven = (index + 1) % 2 === 0;
         
-        return isEven ? progress * maxScroll : -progress * maxScroll;
+        return isEven ? -progress * maxScroll : progress * maxScroll;
       });
 
       setScrollProgress(newProgress);
@@ -135,7 +135,7 @@ export default function ProjectHorizontalParallax() {
             return (
               <div
                 key={band.id}
-                className="w-full overflow-hidden relative h-[80px] md:h-[90px] lg:h-[100px]">
+                className="w-full overflow-hidden relative h-[120px] md:h-[140px] lg:h-[160px]">
                 <div
                   ref={(el) => {
                     bandRefs.current[index] = el;
