@@ -221,9 +221,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           {/* Images Grid - No spacing on desktop, centered iPhones on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
             <div 
-              className="relative w-full overflow-hidden"
+              className="relative w-full"
               style={{
-                aspectRatio: "16/9"
+                height: "clamp(400px, 50vw, 600px)"
               }}
             >
               <Image
@@ -240,9 +240,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </div>
 
             <div 
-              className="relative w-full overflow-hidden"
+              className="relative w-full"
               style={{
-                aspectRatio: "16/9"
+                height: "clamp(400px, 50vw, 600px)"
               }}
             >
               <Image
