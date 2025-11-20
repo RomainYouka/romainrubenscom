@@ -212,7 +212,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           {/* Images Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div 
-              className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px] bg-black"
+              className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
               style={{
                 aspectRatio: "16/10"
               }}
@@ -230,7 +230,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </div>
 
             <div 
-              className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px] bg-black"
+              className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
               style={{
                 aspectRatio: "16/10"
               }}
@@ -320,11 +320,11 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           </div>
 
           {/* App Journey Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {Array.from({ length: 46 }, (_, i) => i + 1).map((num) => (
               <div
                 key={num}
-                className="relative w-full overflow-hidden rounded-[8px] md:rounded-[12px] bg-[#E8E8ED] shadow-sm"
+                className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px] shadow-sm"
                 style={{
                   aspectRatio: "9/19.5"
                 }}
@@ -333,8 +333,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   src={`https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/portfolio-images/flashconcept-02/${num}.jpg`}
                   alt={`FlashConcept 02 - Screen ${num}`}
                   fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-contain"
                   style={{
                     transition: "transform 0.3s cubic-bezier(0.25,0.1,0.25,1)"
                   }}
