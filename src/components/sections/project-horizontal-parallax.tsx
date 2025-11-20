@@ -8,43 +8,43 @@ const bands = [
   id: 1,
   src: "/framaspace/A1.png",
   direction: "left" as const,
-  speed: 30
+  speed: 60
 },
 {
   id: 2,
   src: "/framaspace/A2.png",
   direction: "right" as const,
-  speed: 25
+  speed: 50
 },
 {
   id: 3,
   src: "/framaspace/A3.png",
   direction: "left" as const,
-  speed: 35
+  speed: 70
 },
 {
   id: 4,
   src: "/framaspace/A4.png",
   direction: "right" as const,
-  speed: 28
+  speed: 56
 },
 {
   id: 5,
   src: "/framaspace/A5.png",
   direction: "left" as const,
-  speed: 32
+  speed: 64
 },
 {
   id: 6,
   src: "/framaspace/A6.png",
   direction: "right" as const,
-  speed: 27
+  speed: 54
 },
 {
   id: 7,
   src: "/framaspace/A7.png",
   direction: "left" as const,
-  speed: 33
+  speed: 66
 }];
 
 
@@ -167,7 +167,7 @@ export default function ProjectHorizontalParallax() {
           {bands.map((band, index) =>
           <div
             key={band.id}
-            className="w-full overflow-hidden relative h-[50px] md:h-[55px] lg:h-[60px]">
+            className="w-full overflow-hidden relative h-[80px] md:h-[90px] lg:h-[100px]">
 
               <div
               className={`flex absolute inset-0 h-full ${prefersReducedMotion ? '' : band.direction === 'left' ? 'scroll-left' : 'scroll-right'} ${!isScrolling || !isVisible ? 'frozen' : ''}`}
