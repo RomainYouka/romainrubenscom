@@ -83,13 +83,11 @@ export default function ProjectHorizontalParallax() {
       // Calculer la progression du scroll dans la section
       const sectionTop = sectionRect.top;
       const sectionHeight = sectionRect.height;
-      const scrollStart = -sectionHeight;
-      const scrollEnd = viewportHeight;
-      const scrollRange = scrollEnd - scrollStart;
-      const scrollPosition = -sectionTop;
       
       // Progression de 0 à 1
-      const progress = Math.max(0, Math.min(1, (scrollPosition - scrollStart) / scrollRange));
+      // progress = 0 quand section entre par le bas (sectionTop = viewportHeight)
+      // progress = 1 quand section sort par le haut (sectionTop = -sectionHeight)
+      const progress = Math.max(0, Math.min(1, (viewportHeight - sectionTop) / (viewportHeight + sectionHeight)));
 
       // Calculer le déplacement pour chaque bande
       const newProgress = bands.map((band, index) => {
@@ -100,11 +98,11 @@ export default function ProjectHorizontalParallax() {
         const imageWidth = band.width;
         const maxScroll = Math.max(0, imageWidth - viewportWidth);
         
-        // Les pairs (index 1, 3, 5) vont à gauche (négatif)
-        // Les impairs (index 0, 2, 4, 6) vont à droite (positif)
+        // Les impairs (index 0, 2, 4, 6) vont à gauche (négatif)
+        // Les pairs (index 1, 3, 5) vont à droite (positif)
         const isEven = (index + 1) % 2 === 0;
         
-        return isEven ? -progress * maxScroll : progress * maxScroll;
+        return isEven ? progress * maxScroll : -progress * maxScroll;
       });
 
       setScrollProgress(newProgress);
@@ -147,7 +145,7 @@ export default function ProjectHorizontalParallax() {
                     transform: prefersReducedMotion ? 'none' : `translateX(${translateX}px)`,
                     transition: prefersReducedMotion ? 'none' : 'transform 0.1s linear',
                     willChange: prefersReducedMotion ? 'auto' : 'transform',
-                    [isEven ? 'left' : 'right']: 0
+                    [isEven ? 'right' : 'left']: 0
                   }}>
                   <Image
                     src={band.src}
