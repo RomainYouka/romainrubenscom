@@ -52,6 +52,7 @@ export default function ProjectHorizontalParallax() {
   const sectionRef = useRef<HTMLElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -64,6 +65,28 @@ export default function ProjectHorizontalParallax() {
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -133,8 +156,8 @@ export default function ProjectHorizontalParallax() {
           animation: scrollRight var(--duration) linear infinite;
         }
         
-        .scroll-left.paused,
-        .scroll-right.paused {
+        .scroll-left.frozen,
+        .scroll-right.frozen {
           animation-play-state: paused;
         }
       `}</style>
@@ -147,7 +170,7 @@ export default function ProjectHorizontalParallax() {
             className="w-full overflow-hidden relative h-[50px] md:h-[55px] lg:h-[60px]">
 
               <div
-              className={`flex absolute inset-0 h-full ${prefersReducedMotion ? '' : band.direction === 'left' ? 'scroll-left' : 'scroll-right'} ${isScrolling ? 'paused' : ''}`}
+              className={`flex absolute inset-0 h-full ${prefersReducedMotion ? '' : band.direction === 'left' ? 'scroll-left' : 'scroll-right'} ${!isScrolling || !isVisible ? 'frozen' : ''}`}
               style={{
                 width: "max-content",
                 willChange: prefersReducedMotion ? "auto" : "transform",
@@ -161,7 +184,7 @@ export default function ProjectHorizontalParallax() {
                     alt={`Group ${band.id}`}
                     width={2400}
                     height={140}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                     style={{ display: 'block' }}
                     quality={100}
                     priority={index < 3 && dupIndex === 0}
