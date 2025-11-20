@@ -10,6 +10,7 @@ import ProjectHorizontalParallax from "@/components/sections/project-horizontal-
 import ProjectNameQuest from "@/components/sections/project-namequest";
 import ProjectMacStudio from "@/components/sections/project-macstudio";
 import ProjectCarousel from "@/components/sections/project-carousel";
+import ProjectFlashConcept from "@/components/sections/project-flashconcept";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
@@ -228,6 +229,10 @@ export default function ProjectsPage() {
 
       <div>
         <ProjectCarousel />
+      </div>
+
+      <div id="flashconcept">
+        <ProjectFlashConcept language={selectedLanguage} />
       </div>
 
       <button
