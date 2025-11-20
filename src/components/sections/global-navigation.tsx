@@ -435,6 +435,9 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    
+    // Dispatch event to notify other components when menu state changes
+    window.dispatchEvent(new CustomEvent("menuStateChange", { detail: isMenuOpen }));
   }, [isMenuOpen]);
 
   const currentTranslations = translations[selectedLanguage];

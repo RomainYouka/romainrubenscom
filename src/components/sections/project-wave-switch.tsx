@@ -272,7 +272,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         </div>
 
         {/* Section 2: paragraph2 text (mobile only center, desktop left) */}
-        <div className="mb-16 md:mb-24 md:flex md:flex-row-reverse md:items-center md:gap-16">
+        <div className="mb-16 md:mb-24 md:flex md:flex-row-reverse md:items-center md:gap-16 mt-12 md:mt-16">
           <div
             ref={videoContainer2}
             className="hidden md:block md:w-auto md:flex-shrink-0"

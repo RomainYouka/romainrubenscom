@@ -51,6 +51,7 @@ export default function ProjectsPage() {
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
   const [isVisible, setIsVisible] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const firstProjectRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -98,6 +99,17 @@ export default function ProjectsPage() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleMenuStateChange = (event: CustomEvent<boolean>) => {
+      setIsMenuOpen(event.detail);
+    };
+
+    window.addEventListener("menuStateChange", handleMenuStateChange as EventListener);
+    return () => {
+      window.removeEventListener("menuStateChange", handleMenuStateChange as EventListener);
+    };
   }, []);
 
   const currentTranslations = projectsTranslations[selectedLanguage];
@@ -238,7 +250,7 @@ export default function ProjectsPage() {
       <button
         onClick={scrollToTop}
         className={`fixed bottom-6 right-6 md:bottom-14 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 transition-all duration-300 hover:scale-110 md:hover:scale-110 ${
-          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+          showScrollTop && !isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         }`}
         style={{
           transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)"

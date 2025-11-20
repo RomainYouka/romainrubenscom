@@ -103,11 +103,11 @@ export default function ProjectHorizontalParallax() {
       `}</style>
 
       <div className="w-full">
-        <div className="flex flex-col -space-y-4 md:-space-y-6">
+        <div className="flex flex-col gap-3 md:gap-4">
           {bands.map((band, index) =>
           <div
             key={band.id}
-            className="w-full overflow-hidden relative h-[110px] md:h-[110px] lg:h-[140px]">
+            className="w-full overflow-hidden relative h-[70px] md:h-[80px] lg:h-[90px]">
 
               <div
               className={`flex absolute inset-0 h-full ${prefersReducedMotion ? '' : band.direction === 'left' ? 'scroll-left' : 'scroll-right'}`}
