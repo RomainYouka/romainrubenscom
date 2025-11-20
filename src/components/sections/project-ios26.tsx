@@ -102,7 +102,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
     <section
       id="ios26"
       ref={sectionRef}
-      className="bg-black !w-full !h-full"
+      className="bg-white !w-full !h-full"
       style={{
         paddingTop: 0,
         paddingBottom: 0,
@@ -191,7 +191,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(32px, 4.5vw, 48px)",
                 fontWeight: 600,
-                color: "#ffffff",
+                color: "#1D1D1F",
                 lineHeight: 1.1,
                 letterSpacing: "-0.015em",
                 marginBottom: "clamp(20px, 2.5vw, 32px)"
@@ -205,7 +205,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 fontFamily: "var(--font-body)",
                 fontSize: "clamp(15px, 1.6vw, 17px)",
                 fontWeight: 400,
-                color: "#f5f5f7",
+                color: "#1D1D1F",
                 lineHeight: 1.5,
                 letterSpacing: "-0.022em",
                 marginBottom: "clamp(20px, 2.5vw, 32px)",
