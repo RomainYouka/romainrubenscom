@@ -93,6 +93,13 @@ export default function ProjectHorizontalParallax() {
           }
         }
         
+        @media (prefers-reduced-motion: reduce) {
+          .scroll-left,
+          .scroll-right {
+            animation: none;
+          }
+        }
+        
         .scroll-left {
           animation: scrollLeft var(--duration) linear infinite;
         }
@@ -117,14 +124,14 @@ export default function ProjectHorizontalParallax() {
                 '--duration': `${band.speed}s`
               } as React.CSSProperties}>
 
-                {[...Array(4)].map((_, dupIndex) => (
-                  <div key={dupIndex} className="flex h-full shrink-0">
+                {[...Array(6)].map((_, dupIndex) => (
+                  <div key={dupIndex} className="flex h-full shrink-0" style={{ minWidth: "100vw" }}>
                     <Image
                     src={band.src}
                     alt={`Group ${band.id}`}
                     width={2400}
                     height={140}
-                    className="h-full w-auto object-contain"
+                    className="h-full w-full object-cover"
                     style={{ display: 'block' }}
                     quality={100}
                     priority={index < 3 && dupIndex === 0}

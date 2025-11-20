@@ -39,9 +39,11 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   const [isPlaying1, setIsPlaying1] = useState(false);
   const [isPlaying2, setIsPlaying2] = useState(false);
   const videoRef1 = useRef<HTMLVideoElement>(null);
-  const videoRef2 = useRef<HTMLVideoElement>(null);
+  const videoRef2Desktop = useRef<HTMLVideoElement>(null);
+  const videoRef2Mobile = useRef<HTMLVideoElement>(null);
   const videoContainer1 = useRef<HTMLDivElement>(null);
-  const videoContainer2 = useRef<HTMLDivElement>(null);
+  const videoContainer2Desktop = useRef<HTMLDivElement>(null);
+  const videoContainer2Mobile = useRef<HTMLDivElement>(null);
 
   const t = translations[language];
 
@@ -54,11 +56,13 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
   useEffect(() => {
     const videoElement1 = videoRef1.current;
-    const videoElement2 = videoRef2.current;
+    const videoElement2Desktop = videoRef2Desktop.current;
+    const videoElement2Mobile = videoRef2Mobile.current;
     const container1 = videoContainer1.current;
-    const container2 = videoContainer2.current;
+    const container2Desktop = videoContainer2Desktop.current;
+    const container2Mobile = videoContainer2Mobile.current;
 
-    if (!videoElement1 || !videoElement2 || !container1 || !container2) return;
+    if (!videoElement1 || !container1) return;
 
     // Observer pour la première vidéo
     const observer1 = new IntersectionObserver(
@@ -79,32 +83,67 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
       }
     );
 
-    // Observer pour la deuxième vidéo
-    const observer2 = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-            videoElement2.play().catch(() => {});
-            setIsPlaying2(true);
-          } else {
-            videoElement2.pause();
-            setIsPlaying2(false);
-          }
-        });
-      },
-      {
-        threshold: [0, 0.3, 0.5, 0.7, 1],
-        rootMargin: "-10% 0px -10% 0px"
-      }
-    );
-
     observer1.observe(container1);
-    observer2.observe(container2);
+
+    // Observer pour la deuxième vidéo desktop
+    let observer2Desktop: IntersectionObserver | null = null;
+    if (videoElement2Desktop && container2Desktop) {
+      observer2Desktop = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Only update state if we're in desktop mode
+            const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+            if (!isDesktop) return;
+            
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+              videoElement2Desktop.play().catch(() => {});
+              setIsPlaying2(true);
+            } else {
+              videoElement2Desktop.pause();
+              setIsPlaying2(false);
+            }
+          });
+        },
+        {
+          threshold: [0, 0.3, 0.5, 0.7, 1],
+          rootMargin: "-10% 0px -10% 0px"
+        }
+      );
+      observer2Desktop.observe(container2Desktop);
+    }
+
+    // Observer pour la deuxième vidéo mobile
+    let observer2Mobile: IntersectionObserver | null = null;
+    if (videoElement2Mobile && container2Mobile) {
+      observer2Mobile = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Only update state if we're in mobile mode
+            const isMobile = !window.matchMedia("(min-width: 768px)").matches;
+            if (!isMobile) return;
+            
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+              videoElement2Mobile.play().catch(() => {});
+              setIsPlaying2(true);
+            } else {
+              videoElement2Mobile.pause();
+              setIsPlaying2(false);
+            }
+          });
+        },
+        {
+          threshold: [0, 0.3, 0.5, 0.7, 1],
+          rootMargin: "-10% 0px -10% 0px"
+        }
+      );
+      observer2Mobile.observe(container2Mobile);
+    }
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
         videoElement1.pause();
-        videoElement2.pause();
+        if (videoElement2Desktop) videoElement2Desktop.pause();
+        if (videoElement2Mobile) videoElement2Mobile.pause();
         setIsPlaying1(false);
         setIsPlaying2(false);
       }
@@ -114,7 +153,8 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
     return () => {
       observer1.disconnect();
-      observer2.disconnect();
+      if (observer2Desktop) observer2Desktop.disconnect();
+      if (observer2Mobile) observer2Mobile.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
@@ -139,7 +179,9 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   };
 
   const togglePlayPause2 = () => {
-    const videoElement = videoRef2.current;
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const videoElement = isDesktop ? videoRef2Desktop.current : videoRef2Mobile.current;
+    
     if (!videoElement) return;
     
     if (isPlaying2) {
@@ -152,9 +194,12 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   };
 
   const skipForward2 = () => {
-    const videoElement = videoRef2.current;
-    if (!videoElement) return;
-    videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const videoElement = isDesktop ? videoRef2Desktop.current : videoRef2Mobile.current;
+    
+    if (videoElement) {
+      videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+    }
   };
 
   return (
@@ -274,7 +319,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         {/* Section 2: paragraph2 text (mobile only center, desktop left) */}
         <div className="mb-16 md:mb-24 md:flex md:flex-row-reverse md:items-center md:gap-16 mt-12 md:mt-16">
           <div
-            ref={videoContainer2}
+            ref={videoContainer2Desktop}
             className="hidden md:block md:w-auto md:flex-shrink-0"
             style={{
               maxWidth: "350px"
@@ -287,7 +332,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               }}>
 
               <video
-                ref={videoRef2}
+                ref={videoRef2Desktop}
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/mockup-waveswitch_2-1762179482964.mp4"
                 loop
                 muted
@@ -302,7 +347,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
             </div>
 
-            <div className="flex items-center justify-center gap-3 mt-5">
+            <div className="flex items-center justify-center gap-3 mt-8">
               <button
                 onClick={togglePlayPause2}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
@@ -349,7 +394,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         {/* Section 3: Second video mockup (mobile only) */}
         <div className="flex justify-center md:hidden mb-16">
           <div
-            ref={videoContainer2}
+            ref={videoContainer2Mobile}
             className="w-full md:w-auto mx-auto"
             style={{
               maxWidth: "min(85vw, 350px)"
@@ -362,7 +407,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               }}>
 
               <video
-                ref={videoRef2}
+                ref={videoRef2Mobile}
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/mockup-waveswitch_2-1762179482964.mp4"
                 loop
                 muted
@@ -377,7 +422,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
             </div>
 
-            <div className="flex items-center justify-center gap-3 mt-4 md:hidden">
+            <div className="flex items-center justify-center gap-3 mt-8 md:hidden">
               <button
                 onClick={togglePlayPause2}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
