@@ -47,6 +47,12 @@
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
 
+/* Scroll-triggered animations */
+.animate-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 @theme {
   --color-background: #000000;
   --color-foreground: #ffffff;

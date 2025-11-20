@@ -28,19 +28,25 @@ const flashConcept01Translations = {
     title: "FlashConcept_01",
     year: "Conception : 2025",
     collaboration: "Collaboration : Eubin Bark & Erwan Hodonou",
-    description: "Le concept est un site accessible depuis un QR code présent sur l'étiquette du vêtement. Il rassemble les principales données liées à la fabrication : consommation d'eau, électricité, émissions de CO₂, matières utilisées, conditions de travail et potentiel de recyclabilité. Le site permet également de consulter une carte retraçant le parcours complet du produit, depuis l'origine des fibres jusqu'à l'assemblage final, avec des indications sur les lieux et les conditions de production. L'objectif est d'apporter davantage de transparence sur ce que représente réellement la fabrication d'un vêtement."
+    description: "Le concept est un site accessible depuis un QR code présent sur l'étiquette du vêtement. Il rassemble les principales données liées à la fabrication : consommation d'eau, électricité, émissions de CO₂, matières utilisées, conditions de travail et potentiel de recyclabilité. Le site permet également de consulter une carte retraçant le parcours complet du produit, depuis l'origine des fibres jusqu'à l'assemblage final, avec des indications sur les lieux et les conditions de production. L'objectif est d'apporter davantage de transparence sur ce que représente réellement la fabrication d'un vêtement.",
+    showMoreButton: "Voir tous les écrans",
+    showLessButton: "Réduire"
   },
   EN: {
     title: "FlashConcept_01",
     year: "Designed in 2025",
     collaboration: "Collaboration: Eubin Bark & Erwan Hodonou",
-    description: "This concept is a website accessible via a QR code on the garment's label. It gathers key manufacturing data: water consumption, electricity usage, CO₂ emissions, materials used, working conditions, and recyclability potential. The site also features an interactive map tracing the product's complete journey, from fiber origin to final assembly, with details about production locations and conditions. The goal is to bring greater transparency to what garment manufacturing truly represents."
+    description: "This concept is a website accessible via a QR code on the garment's label. It gathers key manufacturing data: water consumption, electricity usage, CO₂ emissions, materials used, working conditions, and recyclability potential. The site also features an interactive map tracing the product's complete journey, from fiber origin to final assembly, with details about production locations and conditions. The goal is to bring greater transparency to what garment manufacturing truly represents.",
+    showMoreButton: "View all screens",
+    showLessButton: "Show less"
   },
   ՀԱՅ: {
     title: "FlashConcept_01",
     year: "Նախագծված 2025-ին",
     collaboration: "Համագործակցություն՝ Eubin Bark & Erwan Hodonou",
-    description: "Այս հայեցակարգը կայք է, որին կարելի է մուտք գործել հագուստի պիտակի վրա գտնվող QR կոդի միջոցով։ Այն հավաքում է արտադրության հիմնական տվյալները՝ ջրի սպառում, էլեկտրաէներգիայի օգտագործում, CO₂ արտանետումներ, օգտագործված նյութեր, աշխատանքային պայմաններ և վերամշակման հնարավորություն։ Կայքը նաև ներառում է ինտերակտիվ քարտեզ, որը ցույց է տալիս ապրանքի ամբողջ ճանապարհորդությունը՝ մանրաթելերի սկզբից մինչև վերջնական հավաքում՝ արտադրության վայրերի և պայմանների մանրամասներով։ Նպատակն է ավելի մեծ թափանցիկություն բերել հագուստի արտադրության իրական նշանակության հարցում։"
+    description: "Այս հայեցակարգը կայք է, որին կարելի է մուտք գործել հագուստի պիտակի վրա գտնվող QR կոդի միջոցով։ Այն հավաքում է արտադրության հիմնական տվյալները՝ ջրի սպառում, էլեկտրաէներգիայի օգտագործում, CO₂ արտանետումներ, օգտագործված նյութեր, աշխատանքային պայմաններ և վերամշակման հնարավորություն։ Կայքը նաև ներառում է ինտերակտիվ քարտեզ, որը ցույց է տալիս ապրանքի ամբողջ ճանապարհորդությունը՝ մանրաթելերի սկզբից մինչև վերջնական հավաքում՝ արտադրության վայրերի և պայմանների մանրամասներով։ Նպատակն է ավելի մեծ թափանցիկություն բերել հագուստի արտադրության իրական նշանակության հարցում։",
+    showMoreButton: "Տեսնել բոլոր էկրանները",
+    showLessButton: "Թաքցնել"
   }
 };
 
@@ -69,29 +75,34 @@ const flashConcept02Translations = {
 };
 
 export default function ProjectFlashConcept({ language }: ProjectFlashConceptProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isConceptVisible, setIsConceptVisible] = useState(false);
-  const [isConcept02Visible, setIsConcept02Visible] = useState(false);
   const [showAllConcept01, setShowAllConcept01] = useState(false);
   const [showAllImages, setShowAllImages] = useState(false);
   
   const concept01ButtonRef = useRef<HTMLDivElement>(null);
   const concept02ButtonRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const concept01Ref = useRef<HTMLDivElement>(null);
+  const concept02Ref = useRef<HTMLDivElement>(null);
 
   const sectionContent = sectionTranslations[language];
   const concept01 = flashConcept01Translations[language];
   const concept02 = flashConcept02Translations[language];
 
-  const initialImageCount = 4;
-  const totalImages = 44;
-  const visibleImages = showAllImages ? totalImages : initialImageCount;
+  // FlashConcept_02: Explicit image manifest (skips 9 and 26)
+  const concept02Images = [
+    1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+    39, 40, 41, 42, 43, 44, 45, 46
+  ];
   
-  const getFlashConcept01Images = () => {
-    if (!showAllConcept01) {
-      return [1, 2, 3];
-    }
-    return [1, 2, 3, 1, 4, 5, 1, 6, 7];
-  };
+  const initialImageCount = 4;
+  const visibleConcept02Images = showAllImages 
+    ? concept02Images 
+    : concept02Images.slice(0, initialImageCount);
+  
+  const flashConcept01Images = showAllConcept01 
+    ? [1, 2, 3, 1, 4, 5, 1, 6, 7]
+    : [1, 2, 3];
   
   const handleToggleConcept01 = () => {
     if (showAllConcept01) {
@@ -122,23 +133,22 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    
-    const conceptTimer = setTimeout(() => {
-      setIsConceptVisible(true);
-    }, 400);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    const concept02Timer = setTimeout(() => {
-      setIsConcept02Visible(true);
-    }, 800);
-    
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(conceptTimer);
-      clearTimeout(concept02Timer);
-    };
+    if (headerRef.current) observer.observe(headerRef.current);
+    if (concept01Ref.current) observer.observe(concept01Ref.current);
+    if (concept02Ref.current) observer.observe(concept02Ref.current);
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -151,12 +161,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     >
       {/* Section Header */}
       <div 
-        className="w-full border-b border-[#D3D3D4]"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.6s cubic-bezier(0.25,0.1,0.25,1), transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
-        }}
+        ref={headerRef}
+        className="w-full border-b border-[#D3D3D4] opacity-0 translate-y-5 transition-all duration-700 ease-out"
       >
         <div className="max-w-[1200px] mx-auto px-5 md:px-10 py-12 md:py-16">
           <h2
@@ -190,11 +196,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
       {/* FlashConcept_01 */}
       <div
-        style={{
-          opacity: isConceptVisible ? 1 : 0,
-          transform: isConceptVisible ? "translateY(0)" : "translateY(30px)",
-          transition: "opacity 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.2s, transform 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.2s"
-        }}
+        ref={concept01Ref}
+        className="opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200"
       >
         <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20">
           {/* Text Content */}
@@ -260,21 +263,18 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           {/* Images Grid - iPhone mockups with show more */}
           <div className="flex justify-center">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full" style={{ maxWidth: "900px" }}>
-              {getFlashConcept01Images().map((num, index) => {
+              {flashConcept01Images.map((num, index) => {
                 const isInitial = index < 3;
                 return (
                   <div 
                     key={`${num}-${index}`}
-                    className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px]"
+                    className="relative w-full overflow-hidden rounded-lg md:rounded-xl transition-all duration-500 ease-out"
                     style={{
                       aspectRatio: "9/19.5",
                       opacity: isInitial ? 1 : (showAllConcept01 ? 1 : 0),
                       transform: isInitial ? 'translateY(0)' : (showAllConcept01 ? 'translateY(0)' : 'translateY(20px)'),
-                      transition: showAllConcept01 
-                        ? `opacity 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - 3) * 0.05}s, transform 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - 3) * 0.05}s`
-                        : 'opacity 0.4s cubic-bezier(0.25,0.1,0.25,1), transform 0.4s cubic-bezier(0.25,0.1,0.25,1)',
+                      transitionDelay: showAllConcept01 ? `${(index - 3) * 50}ms` : '0ms',
                       maxHeight: isInitial ? 'none' : (showAllConcept01 ? '100%' : '0'),
-                      overflow: isInitial ? 'visible' : (showAllConcept01 ? 'visible' : 'hidden')
                     }}
                   >
                     <Image
@@ -283,9 +283,6 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                       fill
                       sizes="(max-width: 768px) 50vw, 300px"
                       className="object-contain"
-                      style={{
-                        transition: "transform 0.3s ease"
-                      }}
                     />
                   </div>
                 );
@@ -306,7 +303,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   letterSpacing: "-0.01em"
                 }}
               >
-                {concept02.showMoreButton}
+                {concept01.showMoreButton}
                 <ChevronDown className="w-4 h-4 transition-none" />
               </button>
             ) : (
@@ -320,7 +317,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   letterSpacing: "-0.01em"
                 }}
               >
-                {concept02.showLessButton}
+                {concept01.showLessButton}
                 <ChevronDown className="w-4 h-4 rotate-180 transition-none" />
               </button>
             )}
@@ -330,11 +327,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
       {/* FlashConcept_02 */}
       <div
-        style={{
-          opacity: isConcept02Visible ? 1 : 0,
-          transform: isConcept02Visible ? "translateY(0)" : "translateY(30px)",
-          transition: "opacity 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.4s, transform 0.8s cubic-bezier(0.25,0.1,0.25,1) 0.4s"
-        }}
+        ref={concept02Ref}
+        className="opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300"
       >
         <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20 border-t border-[#D3D3D4]">
           {/* Text Content */}
@@ -385,45 +379,31 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
           {/* App Journey Grid - Compact with Show More */}
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 w-full" style={{ maxWidth: "1100px" }}>
-              {Array.from({ length: visibleImages }, (_, i) => i + 1)
-                .map((num) => {
-                  if (num === 9) return 10;
-                  if (num > 9 && num < 26) return num + 1;
-                  if (num === 26) return 28;
-                  if (num > 26) return num + 2;
-                  return num;
-                })
-                .map((num, index) => {
-                  const isInitial = index < initialImageCount;
-                  return (
-                    <div
-                      key={num}
-                      className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px] shadow-sm bg-[#F5F5F7]"
-                      style={{
-                        aspectRatio: "9/19.5",
-                        opacity: isInitial ? 1 : (showAllImages ? 1 : 0),
-                        transform: isInitial ? 'translateY(0)' : (showAllImages ? 'translateY(0)' : 'translateY(20px)'),
-                        transition: showAllImages 
-                          ? `opacity 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - initialImageCount) * 0.03}s, transform 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - initialImageCount) * 0.03}s`
-                          : 'opacity 0.4s cubic-bezier(0.25,0.1,0.25,1), transform 0.4s cubic-bezier(0.25,0.1,0.25,1)',
-                        maxHeight: isInitial ? 'none' : (showAllImages ? '100%' : '0'),
-                        overflow: isInitial ? 'visible' : (showAllImages ? 'visible' : 'hidden')
-                      }}
-                    >
-                      <Image
-                        src={`/${num}.jpg`}
-                        alt={`FlashConcept 02 - Screen ${num}`}
-                        fill
-                        sizes="(max-width: 768px) 50vw, 250px"
-                        className="object-contain"
-                        style={{
-                          transition: "transform 0.3s cubic-bezier(0.25,0.1,0.25,1)"
-                        }}
-                      />
-                    </div>
-                  );
-                })}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 w-full" style={{ maxWidth: "1100px" }}>
+              {visibleConcept02Images.map((num, index) => {
+                const isInitial = index < initialImageCount;
+                return (
+                  <div
+                    key={num}
+                    className="relative w-full overflow-hidden rounded-lg md:rounded-xl shadow-sm bg-[#F5F5F7] transition-all duration-500 ease-out"
+                    style={{
+                      aspectRatio: "9/19.5",
+                      opacity: isInitial ? 1 : (showAllImages ? 1 : 0),
+                      transform: isInitial ? 'translateY(0)' : (showAllImages ? 'translateY(0)' : 'translateY(20px)'),
+                      transitionDelay: showAllImages ? `${(index - initialImageCount) * 30}ms` : '0ms',
+                      maxHeight: isInitial ? 'none' : (showAllImages ? '100%' : '0'),
+                    }}
+                  >
+                    <Image
+                      src={`/${num}.jpg`}
+                      alt={`FlashConcept 02 - Screen ${num}`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 250px"
+                      className="object-contain"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
 
