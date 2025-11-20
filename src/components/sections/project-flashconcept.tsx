@@ -49,22 +49,22 @@ const flashConcept02Translations = {
     title: "FlashConcept_02",
     year: "Conception : 2025",
     description: "Une application mobile qui facilite la découverte d'événements culturels et sociaux à Lyon. L'interface propose une navigation intuitive entre les lieux à proximité, les discussions de groupe et les événements enregistrés. Le design met l'accent sur la lisibilité et la simplicité, avec un système de cartes de découverte inspiré des applications de rencontre, mais adapté aux sorties culturelles. Les fonctionnalités incluent la messagerie de groupe, la géolocalisation des lieux, et un système d'accessibilité complet avec modes clair/sombre et options pour les personnes daltoniennes.",
-    journeyLabel: "Parcours complet de l'application",
-    showMoreButton: "Voir les {count} écrans restants"
+    showMoreButton: "Voir tous les écrans",
+    showLessButton: "Réduire"
   },
   EN: {
     title: "FlashConcept_02",
     year: "Designed in 2025",
     description: "A mobile app that makes discovering cultural and social events in Lyon effortless. The interface offers intuitive navigation between nearby venues, group discussions, and saved events. The design emphasizes readability and simplicity, featuring a discovery card system inspired by dating apps but tailored for cultural outings. Features include group messaging, venue geolocation, and comprehensive accessibility settings with light/dark modes and colorblind-friendly options.",
-    journeyLabel: "Complete app journey",
-    showMoreButton: "View {count} more screens"
+    showMoreButton: "View all screens",
+    showLessButton: "Show less"
   },
   ՀԱՅ: {
     title: "FlashConcept_02",
     year: "Նախագծված 2025-ին",
     description: "Մոբայլ հավելված, որը հեշտացնում է մշակույթային և սոցիալական իրադարձությունների հայտնագործումը Լիոնում։ Ինտերֆեյսն առաջարկում է ինտուիտիվ նավարկություն մոտակա վայրերի, խմբային քննարկումների և պահպանված իրադարձությունների միջև։ Դիզայնը շեշտը դնում է ընթեռնելիության և պարզության վրա՝ ներկայացնելով հայտնագործման քարտերի համակարգ, որը ոգեշնչված է ծանոթությունների հավելվածներից, բայց հարմարեցված է մշակութային դուրսգալուստների համար։ Գործառույթները ներառում են խմբային հաղորդագրություններ, վայրերի աշխարհագրական տեղորոշում և համապարփակ մատչելիության կարգավորումներ՝ բաց/մուգ ռեժիմներով և գույնի կույրության համար հարմարեցված տարբերակներով։",
-    journeyLabel: "Հավելվածի ամբողջական ճանապարհորդություն",
-    showMoreButton: "Տեսնել ևս {count} էկրան"
+    showMoreButton: "Տեսնել բոլոր էկրանները",
+    showLessButton: "Թաքցնել"
   }
 };
 
@@ -78,7 +78,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const concept01 = flashConcept01Translations[language];
   const concept02 = flashConcept02Translations[language];
 
-  const initialImageCount = 8;
+  const initialImageCount = 4;
   const totalImages = 46;
   const visibleImages = showAllImages ? totalImages : initialImageCount;
 
@@ -314,20 +314,6 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             >
               {concept02.description}
             </p>
-
-            <div
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "clamp(13px, 1.3vw, 15px)",
-                fontWeight: 500,
-                color: "#86868b",
-                lineHeight: 1.4,
-                letterSpacing: "-0.01em",
-                marginBottom: "clamp(12px, 1.5vw, 16px)"
-              }}
-            >
-              {concept02.journeyLabel}
-            </div>
           </div>
 
           {/* App Journey Grid - Compact with Show More */}
@@ -354,12 +340,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             ))}
           </div>
 
-          {/* Show More Button */}
-          {!showAllImages && (
-            <div className="flex justify-center mt-8 md:mt-12">
+          {/* Show More/Less Buttons */}
+          <div className="flex justify-center mt-8 md:mt-12">
+            {!showAllImages ? (
               <button
                 onClick={() => setShowAllImages(true)}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#1D1D1F] text-white hover:bg-[#424245] transition-colors"
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] hover:bg-[#E8E8ED] transition-colors"
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "15px",
@@ -367,11 +353,25 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   letterSpacing: "-0.01em"
                 }}
               >
-                {concept02.showMoreButton.replace("{count}", (totalImages - initialImageCount).toString())}
+                {concept02.showMoreButton}
                 <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
               </button>
-            </div>
-          )}
+            ) : (
+              <button
+                onClick={() => setShowAllImages(false)}
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] hover:bg-[#E8E8ED] transition-colors"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  letterSpacing: "-0.01em"
+                }}
+              >
+                {concept02.showLessButton}
+                <ChevronDown className="w-4 h-4 rotate-180 group-hover:-translate-y-1 transition-transform" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>
