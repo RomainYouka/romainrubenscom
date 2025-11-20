@@ -145,7 +145,7 @@ export default function ProjectHorizontalParallax() {
                     transform: prefersReducedMotion ? 'none' : `translateX(${translateX}px)`,
                     transition: prefersReducedMotion ? 'none' : 'transform 0.1s linear',
                     willChange: prefersReducedMotion ? 'auto' : 'transform',
-                    [isEven ? 'left' : 'right']: 0
+                    [isEven ? 'right' : 'left']: 0
                   }}>
                   <Image
                     src={band.src}
