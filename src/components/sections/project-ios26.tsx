@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Play, Pause, SkipForward } from "lucide-react";
 
 const translations = {
   EN: {
@@ -29,6 +30,7 @@ interface ProjectIOS26Props {
 
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -50,8 +52,10 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
             videoElement.play().catch(() => {});
+            setIsPlaying(true);
           } else {
             videoElement.pause();
+            setIsPlaying(false);
           }
         });
       },
@@ -66,6 +70,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         videoElement.pause();
+        setIsPlaying(false);
       }
     };
 
@@ -76,6 +81,25 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
+
+  const togglePlayPause = () => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+    
+    if (isPlaying) {
+      videoElement.pause();
+      setIsPlaying(false);
+    } else {
+      videoElement.play().catch(() => {});
+      setIsPlaying(true);
+    }
+  };
+
+  const skipForward = () => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+    videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
 
   return (
     <section
@@ -121,6 +145,32 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 }}
                 aria-label="iOS 26 Update Vision interface demonstration" />
 
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <button
+                onClick={togglePlayPause}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying ? "Pause" : "Play"}
+              >
+                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
             </div>
           </div>
 

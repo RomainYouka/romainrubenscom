@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { Play, Pause, SkipForward } from "lucide-react";
 
 interface ProjectWaveSwitchProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -38,6 +39,8 @@ const translations = {
 
 export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying1, setIsPlaying1] = useState(false);
+  const [isPlaying2, setIsPlaying2] = useState(false);
   const videoRef1 = useRef<HTMLVideoElement>(null);
   const videoRef2 = useRef<HTMLVideoElement>(null);
   const videoContainer1 = useRef<HTMLDivElement>(null);
@@ -66,8 +69,10 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
             videoElement1.play().catch(() => {});
+            setIsPlaying1(true);
           } else {
             videoElement1.pause();
+            setIsPlaying1(false);
           }
         });
       },
@@ -83,8 +88,10 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
             videoElement2.play().catch(() => {});
+            setIsPlaying2(true);
           } else {
             videoElement2.pause();
+            setIsPlaying2(false);
           }
         });
       },
@@ -101,6 +108,8 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
       if (document.hidden) {
         videoElement1.pause();
         videoElement2.pause();
+        setIsPlaying1(false);
+        setIsPlaying2(false);
       }
     };
 
@@ -112,6 +121,44 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
+
+  const togglePlayPause1 = () => {
+    const videoElement = videoRef1.current;
+    if (!videoElement) return;
+    
+    if (isPlaying1) {
+      videoElement.pause();
+      setIsPlaying1(false);
+    } else {
+      videoElement.play().catch(() => {});
+      setIsPlaying1(true);
+    }
+  };
+
+  const skipForward1 = () => {
+    const videoElement = videoRef1.current;
+    if (!videoElement) return;
+    videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
+
+  const togglePlayPause2 = () => {
+    const videoElement = videoRef2.current;
+    if (!videoElement) return;
+    
+    if (isPlaying2) {
+      videoElement.pause();
+      setIsPlaying2(false);
+    } else {
+      videoElement.play().catch(() => {});
+      setIsPlaying2(true);
+    }
+  };
+
+  const skipForward2 = () => {
+    const videoElement = videoRef2.current;
+    if (!videoElement) return;
+    videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
 
   return (
     <section
@@ -152,6 +199,32 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 preload="auto"
                 aria-label="Wave Switch app interface demonstration" className="!w-full !h-full !max-w-full" />
 
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <button
+                onClick={togglePlayPause1}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying1 ? "Pause" : "Play"}
+              >
+                {isPlaying1 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying1 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward1}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
             </div>
           </div>
 
@@ -298,6 +371,32 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 }}
                 aria-label="Wave Switch product demonstration" />
 
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <button
+                onClick={togglePlayPause2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying2 ? "Pause" : "Play"}
+              >
+                {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying2 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
             </div>
           </div>
 
