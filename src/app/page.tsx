@@ -13,6 +13,8 @@ export default function Home() {
 
       {/* Personal intro section */}
       <div className="w-full bg-white">
+         <h1>Bienvenue</h1>
+        
         <PersonalIntro />
       </div>
 

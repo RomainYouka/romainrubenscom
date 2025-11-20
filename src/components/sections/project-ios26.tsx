@@ -6,7 +6,7 @@ const translations = {
   EN: {
     year: "Designed in 2025",
     title: "iOS 26 Update Vision",
-    description: "iOS 26 Update is a fictional interface built into the iOS 26 update, designed to turn waiting time into an introspective and poetic moment, accessible only during system updates. The experience is optional: users can choose to take part or skip directly to the standard update screen, discovering an unexpected space with every update.\n\nPowered by Apple Intelligence, users can write a message to their future self, either freely or through a brief guided exchange. Each text is unique and editable, with past messages available for rereading, creating a subtle link between past and present. The interface displays update progress at the bottom, kept minimal and energy-efficient, bringing a human touch to an otherwise constrained moment.",
+    description: "iOS 26 Update is a fictional interface built into the iOS 26 update, designed to turn waiting time into an introspective and poetic moment, accessible only during system updates. The experience is optional: users can choose to take part or skip directly to the standard update screen, discovering an unexpected space with every update.\n\nPowered by Apple Intelligence, users can write a message to their future self, either freely or through a brief guided exchange. Each text is unique and editable, with past messages available for re-reading, creating a subtle link between past and present. The interface displays update progress at the bottom, kept minimal and energy-efficient, bringing a human touch to an otherwise constrained moment.",
     toolsLabel: "Tools used :"
   },
   FR: {
