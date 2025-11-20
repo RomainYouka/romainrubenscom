@@ -345,7 +345,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             {!showAllImages ? (
               <button
                 onClick={() => setShowAllImages(true)}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] hover:bg-[#E8E8ED] transition-colors"
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "15px",
@@ -354,12 +354,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 }}
               >
                 {concept02.showMoreButton}
-                <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                <ChevronDown className="w-4 h-4 transition-none" />
               </button>
             ) : (
               <button
                 onClick={() => setShowAllImages(false)}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] hover:bg-[#E8E8ED] transition-colors"
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "15px",
@@ -368,7 +368,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 }}
               >
                 {concept02.showLessButton}
-                <ChevronDown className="w-4 h-4 rotate-180 group-hover:-translate-y-1 transition-transform" />
+                <ChevronDown className="w-4 h-4 rotate-180 transition-none" />
               </button>
             )}
           </div>
