@@ -343,7 +343,13 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           {/* App Journey Grid - Compact with Show More */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {Array.from({ length: visibleImages }, (_, i) => i + 1)
-              .map((num) => num === 26 ? 27 : num > 26 ? num + 1 : num)
+              .map((num) => {
+                if (num === 9) return 10;
+                if (num > 9 && num < 26) return num + 1;
+                if (num === 26) return 28;
+                if (num > 26) return num + 2;
+                return num;
+              })
               .map((num) => (
               <div
                 key={num}
