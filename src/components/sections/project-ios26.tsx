@@ -112,12 +112,12 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         scrollMarginTop: "80px"
       }}>
 
-      <div className="container max-w-[1200px] mx-auto px-5 md:px-10" style={{ paddingTop: "clamp(48px, 6vw, 80px)" }}>
-        <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16">
+      <div className="container max-w-[1200px] mx-auto px-5 md:px-10" style={{ paddingTop: "clamp(48px, 6vw, 80px)", paddingBottom: "clamp(48px, 6vw, 80px)" }}>
+        <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16 mb-12 md:mb-0">
           <div
             className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
             style={{
-              maxWidth: "400px"
+              maxWidth: "min(85vw, 400px)"
             }}>
 
             <div
@@ -144,7 +144,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
 
             </div>
 
-            <div className="flex items-center justify-center gap-3 mt-4">
+            <div className="flex items-center justify-center gap-3 mt-6">
               <button
                 onClick={togglePlayPause}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"

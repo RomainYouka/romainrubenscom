@@ -178,7 +178,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             ref={videoContainer1}
             className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
             style={{
-              maxWidth: "400px"
+              maxWidth: "min(85vw, 400px)"
             }}>
 
             <div
@@ -271,30 +271,11 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           </div>
         </div>
 
-        {/* Section 2: paragraph2 text */}
-        <div className="mb-16 md:mb-24">
-          <div
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(15px, 1.6vw, 17px)",
-              fontWeight: 400,
-              color: "#1D1D1F",
-              lineHeight: 1.5,
-              letterSpacing: "-0.022em",
-              maxWidth: "800px",
-              margin: "0 auto",
-              textAlign: "center"
-            }}>
-
-            {t.paragraph2}
-          </div>
-        </div>
-
-        {/* Section 3: Second video mockup */}
-        <div className="flex justify-center">
+        {/* Section 2: paragraph2 text (mobile only center, desktop left) */}
+        <div className="mb-16 md:mb-24 md:flex md:flex-row-reverse md:items-center md:gap-16">
           <div
             ref={videoContainer2}
-            className="w-full md:w-auto mx-auto"
+            className="hidden md:block md:w-auto md:flex-shrink-0"
             style={{
               maxWidth: "350px"
             }}>
@@ -322,6 +303,83 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             </div>
 
             <div className="flex items-center justify-center gap-3 mt-4">
+              <button
+                onClick={togglePlayPause2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying2 ? "Pause" : "Play"}
+              >
+                {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying2 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
+            </div>
+          </div>
+
+          <div className="flex-1" style={{ textAlign: "left" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                maxWidth: "800px",
+                textAlign: "center"
+              }}
+              className="md:text-left md:mx-0 md:max-w-none">
+
+              {t.paragraph2}
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3: Second video mockup (mobile only) */}
+        <div className="flex justify-center md:hidden mb-16">
+          <div
+            ref={videoContainer2}
+            className="w-full md:w-auto mx-auto"
+            style={{
+              maxWidth: "min(85vw, 350px)"
+            }}>
+
+            <div
+              style={{
+                width: "100%",
+                overflow: "hidden"
+              }}>
+
+              <video
+                ref={videoRef2}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/mockup-waveswitch_2-1762179482964.mp4"
+                loop
+                muted
+                playsInline
+                preload="auto"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block"
+                }}
+                aria-label="Wave Switch product demonstration" />
+
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-4 md:hidden">
               <button
                 onClick={togglePlayPause2}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
