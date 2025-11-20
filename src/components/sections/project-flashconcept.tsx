@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
@@ -74,6 +74,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const [isConcept02Visible, setIsConcept02Visible] = useState(false);
   const [showAllConcept01, setShowAllConcept01] = useState(false);
   const [showAllImages, setShowAllImages] = useState(false);
+  
+  const concept01ButtonRef = useRef<HTMLDivElement>(null);
+  const concept02ButtonRef = useRef<HTMLDivElement>(null);
 
   const sectionContent = sectionTranslations[language];
   const concept01 = flashConcept01Translations[language];
@@ -88,6 +91,34 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
       return [1, 2, 3];
     }
     return [1, 2, 3, 1, 4, 5, 1, 6, 7];
+  };
+  
+  const handleToggleConcept01 = () => {
+    if (showAllConcept01) {
+      setShowAllConcept01(false);
+      setTimeout(() => {
+        concept01ButtonRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 100);
+    } else {
+      setShowAllConcept01(true);
+    }
+  };
+  
+  const handleToggleConcept02 = () => {
+    if (showAllImages) {
+      setShowAllImages(false);
+      setTimeout(() => {
+        concept02ButtonRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 100);
+    } else {
+      setShowAllImages(true);
+    }
   };
 
   useEffect(() => {
@@ -228,33 +259,43 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
           {/* Images Grid - iPhone mockups with show more */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {getFlashConcept01Images().map((num, index) => (
-              <div 
-                key={`${num}-${index}`}
-                className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px]"
-                style={{
-                  aspectRatio: "9/19.5",
-                }}
-              >
-                <Image
-                  src={`/${num}.png`}
-                  alt={`FlashConcept 01 - iPhone ${num}`}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-contain"
+            {getFlashConcept01Images().map((num, index) => {
+              const isInitial = index < 3;
+              return (
+                <div 
+                  key={`${num}-${index}`}
+                  className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px]"
                   style={{
-                    transition: "transform 0.3s ease"
+                    aspectRatio: "9/19.5",
+                    opacity: isInitial ? 1 : (showAllConcept01 ? 1 : 0),
+                    transform: isInitial ? 'translateY(0)' : (showAllConcept01 ? 'translateY(0)' : 'translateY(20px)'),
+                    transition: showAllConcept01 
+                      ? `opacity 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - 3) * 0.05}s, transform 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - 3) * 0.05}s`
+                      : 'opacity 0.4s cubic-bezier(0.25,0.1,0.25,1), transform 0.4s cubic-bezier(0.25,0.1,0.25,1)',
+                    maxHeight: isInitial ? 'none' : (showAllConcept01 ? '100%' : '0'),
+                    overflow: isInitial ? 'visible' : (showAllConcept01 ? 'visible' : 'hidden')
                   }}
-                />
-              </div>
-            ))}
+                >
+                  <Image
+                    src={`/${num}.png`}
+                    alt={`FlashConcept 01 - iPhone ${num}`}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-contain"
+                    style={{
+                      transition: "transform 0.3s ease"
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           {/* Show More/Less Buttons for FlashConcept_01 */}
-          <div className="flex justify-center mt-8 md:mt-12">
+          <div ref={concept01ButtonRef} className="flex justify-center mt-8 md:mt-12">
             {!showAllConcept01 ? (
               <button
-                onClick={() => setShowAllConcept01(true)}
+                onClick={handleToggleConcept01}
                 className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
@@ -268,7 +309,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
               </button>
             ) : (
               <button
-                onClick={() => setShowAllConcept01(false)}
+                onClick={handleToggleConcept01}
                 className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
@@ -350,33 +391,43 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 if (num > 26) return num + 2;
                 return num;
               })
-              .map((num) => (
-              <div
-                key={num}
-                className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px] shadow-sm bg-[#F5F5F7]"
-                style={{
-                  aspectRatio: "9/19.5"
-                }}
-              >
-                <Image
-                  src={`/${num}.jpg`}
-                  alt={`FlashConcept 02 - Screen ${num}`}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-contain"
-                  style={{
-                    transition: "transform 0.3s cubic-bezier(0.25,0.1,0.25,1)"
-                  }}
-                />
-              </div>
-            ))}
+              .map((num, index) => {
+                const isInitial = index < initialImageCount;
+                return (
+                  <div
+                    key={num}
+                    className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px] shadow-sm bg-[#F5F5F7]"
+                    style={{
+                      aspectRatio: "9/19.5",
+                      opacity: isInitial ? 1 : (showAllImages ? 1 : 0),
+                      transform: isInitial ? 'translateY(0)' : (showAllImages ? 'translateY(0)' : 'translateY(20px)'),
+                      transition: showAllImages 
+                        ? `opacity 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - initialImageCount) * 0.03}s, transform 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - initialImageCount) * 0.03}s`
+                        : 'opacity 0.4s cubic-bezier(0.25,0.1,0.25,1), transform 0.4s cubic-bezier(0.25,0.1,0.25,1)',
+                      maxHeight: isInitial ? 'none' : (showAllImages ? '100%' : '0'),
+                      overflow: isInitial ? 'visible' : (showAllImages ? 'visible' : 'hidden')
+                    }}
+                  >
+                    <Image
+                      src={`/${num}.jpg`}
+                      alt={`FlashConcept 02 - Screen ${num}`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-contain"
+                      style={{
+                        transition: "transform 0.3s cubic-bezier(0.25,0.1,0.25,1)"
+                      }}
+                    />
+                  </div>
+                );
+              })}
           </div>
 
           {/* Show More/Less Buttons */}
-          <div className="flex justify-center mt-8 md:mt-12">
+          <div ref={concept02ButtonRef} className="flex justify-center mt-8 md:mt-12">
             {!showAllImages ? (
               <button
-                onClick={() => setShowAllImages(true)}
+                onClick={handleToggleConcept02}
                 className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
@@ -390,7 +441,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
               </button>
             ) : (
               <button
-                onClick={() => setShowAllImages(false)}
+                onClick={handleToggleConcept02}
                 className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
