@@ -259,7 +259,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
           {/* Images Grid - iPhone mockups with show more */}
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full" style={{ maxWidth: "900px" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full" style={{ maxWidth: "900px" }}>
               {getFlashConcept01Images().map((num, index) => {
                 const isInitial = index < 3;
                 return (
@@ -385,7 +385,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
           {/* App Journey Grid - Compact with Show More */}
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full" style={{ maxWidth: "1100px" }}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 w-full" style={{ maxWidth: "1100px" }}>
               {Array.from({ length: visibleImages }, (_, i) => i + 1)
                 .map((num) => {
                   if (num === 9) return 10;
