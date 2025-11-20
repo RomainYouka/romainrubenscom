@@ -218,12 +218,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </p>
           </div>
 
-          {/* Images Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Images Grid - No spacing on desktop, centered iPhones on mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
             <div 
-              className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
+              className="relative w-full overflow-hidden"
               style={{
-                aspectRatio: "16/10"
+                aspectRatio: "16/9"
               }}
             >
               <Image
@@ -233,15 +233,16 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
                 style={{
+                  objectPosition: "center",
                   transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
                 }}
               />
             </div>
 
             <div 
-              className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
+              className="relative w-full overflow-hidden"
               style={{
-                aspectRatio: "16/10"
+                aspectRatio: "16/9"
               }}
             >
               <Image
@@ -251,6 +252,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
                 style={{
+                  objectPosition: "center",
                   transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
                 }}
               />
