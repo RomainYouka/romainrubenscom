@@ -3,7 +3,36 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Globe, Download, Check } from "lucide-react";
+import { ChevronDown, Globe, Download, Check } from "lucide-react";
+
+// Animated Burger Icon Component
+const AnimatedBurgerIcon = ({ isOpen }: { isOpen: boolean }) => {
+  return (
+    <div className="relative w-6 h-5 flex flex-col justify-center items-center">
+      <span
+        className="absolute w-6 h-0.5 bg-[#3C3C3C] transition-all duration-500 ease-in-out"
+        style={{
+          transform: isOpen ? 'translateY(0) rotate(45deg)' : 'translateY(-8px) rotate(0deg)',
+          opacity: 1
+        }}
+      />
+      <span
+        className="absolute w-6 h-0.5 bg-[#3C3C3C] transition-all duration-500 ease-in-out"
+        style={{
+          transform: isOpen ? 'scaleX(0)' : 'scaleX(1)',
+          opacity: isOpen ? 0 : 1
+        }}
+      />
+      <span
+        className="absolute w-6 h-0.5 bg-[#3C3C3C] transition-all duration-500 ease-in-out"
+        style={{
+          transform: isOpen ? 'translateY(0) rotate(-45deg)' : 'translateY(8px) rotate(0deg)',
+          opacity: 1
+        }}
+      />
+    </div>
+  );
+};
 
 // Logo icon only (nf monogram) - no text
 const LogoIcon = (props: React.SVGProps<SVGSVGElement>) =>
@@ -546,11 +575,7 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
                     className="flex items-center text-[#3C3C3C] transition-opacity duration-200 hover:opacity-80"
                     aria-label="Toggle menu">
 
-                    {isMenuOpen ?
-                    <X className="h-5 w-auto" /> :
-
-                    <Menu className="h-5 w-auto" />
-                    }
+                    <AnimatedBurgerIcon isOpen={isMenuOpen} />
                   </button>
                 </div>
               </div>
@@ -559,12 +584,94 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with Genie Animation */}
+      <style jsx>{`
+        @keyframes genieIn {
+          0% {
+            clip-path: polygon(
+              48% 0%, 52% 0%,
+              52% 0%, 48% 0%
+            );
+            transform: scale(0.8) translateY(-20px);
+            opacity: 0;
+          }
+          30% {
+            clip-path: polygon(
+              40% 0%, 60% 0%,
+              60% 20%, 40% 20%
+            );
+            transform: scale(0.9) translateY(-10px);
+            opacity: 0.5;
+          }
+          60% {
+            clip-path: polygon(
+              20% 0%, 80% 0%,
+              85% 60%, 15% 60%
+            );
+            transform: scale(0.95) translateY(-5px);
+            opacity: 0.8;
+          }
+          100% {
+            clip-path: polygon(
+              0% 0%, 100% 0%,
+              100% 100%, 0% 100%
+            );
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes genieOut {
+          0% {
+            clip-path: polygon(
+              0% 0%, 100% 0%,
+              100% 100%, 0% 100%
+            );
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
+          40% {
+            clip-path: polygon(
+              20% 0%, 80% 0%,
+              85% 60%, 15% 60%
+            );
+            transform: scale(0.95) translateY(-5px);
+            opacity: 0.8;
+          }
+          70% {
+            clip-path: polygon(
+              40% 0%, 60% 0%,
+              60% 20%, 40% 20%
+            );
+            transform: scale(0.9) translateY(-10px);
+            opacity: 0.5;
+          }
+          100% {
+            clip-path: polygon(
+              48% 0%, 52% 0%,
+              52% 0%, 48% 0%
+            );
+            transform: scale(0.8) translateY(-20px);
+            opacity: 0;
+          }
+        }
+        
+        .menu-genie-enter {
+          animation: genieIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .menu-genie-exit {
+          animation: genieOut 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+        }
+      `}</style>
       <div
-        className={`fixed inset-0 top-16 z-40 bg-white transition-all duration-300 md:hidden ${
-        isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`
-        }>
-
+        className={`fixed inset-0 top-16 z-40 bg-white md:hidden ${
+          isMenuOpen ? "menu-genie-enter" : "menu-genie-exit pointer-events-none"
+        }`}
+        style={{
+          transformOrigin: 'top right'
+        }}
+      >
         <div className="h-full overflow-y-auto px-6 pt-8">
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
