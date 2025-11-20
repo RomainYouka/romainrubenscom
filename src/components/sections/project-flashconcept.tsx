@@ -258,7 +258,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           </div>
 
           {/* Images Grid - iPhone mockups with show more */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
             {getFlashConcept01Images().map((num, index) => {
               const isInitial = index < 3;
               return (
@@ -267,12 +267,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px]"
                   style={{
                     aspectRatio: "9/19.5",
+                    maxHeight: "clamp(280px, 35vw, 400px)",
                     opacity: isInitial ? 1 : (showAllConcept01 ? 1 : 0),
                     transform: isInitial ? 'translateY(0)' : (showAllConcept01 ? 'translateY(0)' : 'translateY(20px)'),
                     transition: showAllConcept01 
                       ? `opacity 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - 3) * 0.05}s, transform 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - 3) * 0.05}s`
                       : 'opacity 0.4s cubic-bezier(0.25,0.1,0.25,1), transform 0.4s cubic-bezier(0.25,0.1,0.25,1)',
-                    maxHeight: isInitial ? 'none' : (showAllConcept01 ? '100%' : '0'),
                     overflow: isInitial ? 'visible' : (showAllConcept01 ? 'visible' : 'hidden')
                   }}
                 >
@@ -280,7 +280,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                     src={`/${num}.png`}
                     alt={`FlashConcept 01 - iPhone ${num}`}
                     fill
-                    sizes="(max-width: 768px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
                     className="object-contain"
                     style={{
                       transition: "transform 0.3s ease"
@@ -382,7 +382,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           </div>
 
           {/* App Journey Grid - Compact with Show More */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-4">
             {Array.from({ length: visibleImages }, (_, i) => i + 1)
               .map((num) => {
                 if (num === 9) return 10;
@@ -399,12 +399,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                     className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px] shadow-sm bg-[#F5F5F7]"
                     style={{
                       aspectRatio: "9/19.5",
+                      maxHeight: "clamp(280px, 35vw, 400px)",
                       opacity: isInitial ? 1 : (showAllImages ? 1 : 0),
                       transform: isInitial ? 'translateY(0)' : (showAllImages ? 'translateY(0)' : 'translateY(20px)'),
                       transition: showAllImages 
                         ? `opacity 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - initialImageCount) * 0.03}s, transform 0.6s cubic-bezier(0.25,0.1,0.25,1) ${(index - initialImageCount) * 0.03}s`
                         : 'opacity 0.4s cubic-bezier(0.25,0.1,0.25,1), transform 0.4s cubic-bezier(0.25,0.1,0.25,1)',
-                      maxHeight: isInitial ? 'none' : (showAllImages ? '100%' : '0'),
                       overflow: isInitial ? 'visible' : (showAllImages ? 'visible' : 'hidden')
                     }}
                   >
@@ -412,7 +412,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                       src={`/${num}.jpg`}
                       alt={`FlashConcept 02 - Screen ${num}`}
                       fill
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      sizes="(max-width: 768px) 33vw, (max-width: 1024px) 20vw, 16vw"
                       className="object-contain"
                       style={{
                         transition: "transform 0.3s cubic-bezier(0.25,0.1,0.25,1)"
