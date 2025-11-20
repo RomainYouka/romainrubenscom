@@ -229,8 +229,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
               }}
             >
               <Image
-                src="/flashconcept-01-mockup-1.png"
-                alt="FlashConcept 01 - Interface mockup 1"
+                src="/flashconcept-01-mockup-2.png"
+                alt="FlashConcept 01 - Interface mockup 2"
                 fill
                 sizes="100vw"
                 className="object-contain"
@@ -249,8 +249,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
               }}
             >
               <Image
-                src="/flashconcept-01-mockup-2.png"
-                alt="FlashConcept 01 - Interface mockup 2"
+                src="/flashconcept-01-mockup-1.png"
+                alt="FlashConcept 01 - Interface mockup 1"
                 fill
                 sizes="100vw"
                 className="object-contain"
