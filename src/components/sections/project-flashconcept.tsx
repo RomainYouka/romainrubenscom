@@ -341,7 +341,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 }}
               >
                 <Image
-                  src={`/flashconcept-02-${num}.jpg`}
+                  src={`/${num}.jpeg`}
                   alt={`FlashConcept 02 - Screen ${num}`}
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
