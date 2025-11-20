@@ -198,7 +198,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
             </div>
 
-            <div className="flex items-center justify-center gap-3 mt-4">
+            <div className="flex items-center justify-center gap-3 mt-5">
               <button
                 onClick={togglePlayPause1}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
@@ -302,7 +302,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
             </div>
 
-            <div className="flex items-center justify-center gap-3 mt-4">
+            <div className="flex items-center justify-center gap-3 mt-5">
               <button
                 onClick={togglePlayPause2}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
@@ -337,9 +337,9 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 fontWeight: 400,
                 color: "#1D1D1F",
                 lineHeight: 1.5,
-                letterSpacing: "-0.022em"
-              }}
-              className="text-center md:text-left">
+                letterSpacing: "-0.022em",
+                textAlign: "left"
+              }}>
 
               {t.paragraph2}
             </div>

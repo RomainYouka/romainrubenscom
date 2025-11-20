@@ -173,6 +173,7 @@ export default function ProjectCarousel() {
                     marginRight: index < extendedImages.length - 1 ? (isMobile ? "20px" : "30px") : "0",
                     userSelect: "none",
                     position: "relative",
+                    backgroundColor: index === 2 || (index === 0 && currentIndex === 0) || (index === extendedImages.length - 1 && currentIndex === extendedImages.length - 1) ? "#FFFFFF" : "transparent",
                     cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default"
                   }}
                   onClick={() => {
