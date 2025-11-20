@@ -218,45 +218,28 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </p>
           </div>
 
-          {/* Images Grid - No spacing on desktop, centered iPhones on mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
-            <div 
-              className="relative w-full"
-              style={{
-                height: "clamp(400px, 50vw, 600px)"
-              }}
-            >
-              <Image
-                src="/Deuxieme.png"
-                alt="FlashConcept 01 - Interface mockup 2"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain"
+          {/* Images Grid - 7 individual iPhones with responsive spacing */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6 lg:gap-8">
+            {[1, 2, 3, 4, 5, 6, 7].map((num) => (
+              <div 
+                key={num}
+                className="relative w-full"
                 style={{
-                  objectPosition: "center",
-                  transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
+                  aspectRatio: "9/19.5",
                 }}
-              />
-            </div>
-
-            <div 
-              className="relative w-full"
-              style={{
-                height: "clamp(400px, 50vw, 600px)"
-              }}
-            >
-              <Image
-                src="/Premier.png"
-                alt="FlashConcept 01 - Interface mockup 1"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain"
-                style={{
-                  objectPosition: "center",
-                  transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
-                }}
-              />
-            </div>
+              >
+                <Image
+                  src={`/${num}.png`}
+                  alt={`FlashConcept 01 - iPhone ${num}`}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 14vw"
+                  className="object-contain"
+                  style={{
+                    transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
+                  }}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
