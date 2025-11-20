@@ -7,20 +7,17 @@ const translations = {
   EN: {
     year: "Designed in 2025",
     title: "iOS 26 Update Vision",
-    description: "iOS 26 Update is a fictional interface built into the iOS 26 update, designed to turn waiting time into an introspective and poetic moment, accessible only during system updates. The experience is optional: users can choose to take part or skip directly to the standard update screen, discovering an unexpected space with every update.\n\nPowered by Apple Intelligence, users can write a message to their future self, either freely or through a brief guided exchange. Each text is unique and editable, with past messages available for re-reading, creating a subtle link between past and present. The interface displays update progress at the bottom, kept minimal and energy-efficient, bringing a human touch to an otherwise constrained moment.",
-    toolsLabel: "Tools used :"
+    description: "iOS 26 Update is a fictional interface built into the iOS 26 update, designed to turn waiting time into an introspective and poetic moment, accessible only during system updates. The experience is optional: users can choose to take part or skip directly to the standard update screen, discovering an unexpected space with every update.\n\nPowered by Apple Intelligence, users can write a message to their future self, either freely or through a brief guided exchange. Each text is unique and editable, with past messages available for re-reading, creating a subtle link between past and present. The interface displays update progress at the bottom, kept minimal and energy-efficient, bringing a human touch to an otherwise constrained moment."
   },
   FR: {
     year: "Conception en 2025",
     title: "iOS 26 Vision de la MàJ",
-    description: "iOS 26 Update est une interface fictive intégrée à la mise à jour iOS 26, conçue pour transformer l'attente en un moment introspectif et poétique, accessible uniquement lors des mises à jour. L'expérience est facultative : l'utilisateur peut choisir d'y participer ou de passer directement à l'écran classique, découvrant ainsi un espace inattendu à chaque mise à jour.\n\nGrâce à Apple Intelligence, il peut rédiger un message à son « soi du futur », libre ou guidé par un court échange. Le texte est unique, modifiable, et le message précédent peut être relu, créant un lien entre passé et présent. L'interface affiche la progression de la mise à jour en bas, sobre et optimisée pour la batterie, humanisant un instant souvent perçu comme contraint.",
-    toolsLabel: "Outils utilisés :"
+    description: "iOS 26 Update est une interface fictive intégrée à la mise à jour iOS 26, conçue pour transformer l'attente en un moment introspectif et poétique, accessible uniquement lors des mises à jour. L'expérience est facultative : l'utilisateur peut choisir d'y participer ou de passer directement à l'écran classique, découvrant ainsi un espace inattendu à chaque mise à jour.\n\nGrâce à Apple Intelligence, il peut rédiger un message à son « soi du futur », libre ou guidé par un court échange. Le texte est unique, modifiable, et le message précédent peut être relu, créant un lien entre passé et présent. L'interface affiche la progression de la mise à jour en bas, sobre et optimisée pour la batterie, humanisant un instant souvent perçu comme contraint."
   },
   ՀԱՅ: {
     year: "Նախագծված 2025-ին",
     title: "iOS 26 Թարմացման Տեսլական",
-    description: "iOS 26 Update-ը հորինված միջերես է՝ ներառված iOS 26 թարմացման մեջ, նախագծված է սպասման ժամանակը ինտրոսպեկտիվ և բանաստեղծական պահի վերածելու համար, հասանելի միայն համակարգի թարմացումների ժամանակ։ Փորձառությունը կամընտիր է․ օգտատերերը կարող են ընտրել մասնակցել կամ անցնել ուղղակիորեն ստանդարտ թարմացման էկրան՝ յուրաքանչյուր թարմացմամբ հայտնաբերելով անսպասելի տարածություն։\n\nApple Intelligence-ի շնորհիվ օգտատերերը կարող են հաղորդագրություն գրել իրենց ապագա ինքնությանը՝ ազատ կամ կարճ առաջնորդված զրույցի միջոցով։ Յուրաքանչյուր տեքստ եզակի է և խմբագրելի, անցյալ հաղորդագրությունները հասանելի են կրկին կարդալու համար՝ ստեղծելով նուրբ կապ անցյալի և ներկայի միջև։ Միջերեսը ցույց է տալիս թարմացման առաջընթացը ներքևում՝ պահպանված նվազագույն և էներգախնայող, մարդկային հպում բերելով այլապես սահմանափակ պահին։",
-    toolsLabel: "Օգտագործված գործիքներ՝"
+    description: "iOS 26 Update-ը հորինված միջերես է՝ ներառված iOS 26 թարմացման մեջ, նախագծված է սպասման ժամանակը ինտրոսպեկտիվ և բանաստեղծական պահի վերածելու համար, հասանելի միայն համակարգի թարմացումների ժամանակ։ Փորձառությունը կամընտիր է․ օգտատերերը կարող են ընտրել մասնակցել կամ անցնել ուղղակիորեն ստանդարտ թարմացման էկրան՝ յուրաքանչյուր թարմացմամբ հայտնաբերելով անսպասելի տարածություն։\n\nApple Intelligence-ի շնորհիվ օգտատերերը կարող են հաղորդագրություն գրել իրենց ապագա ինքնությանը՝ ազատ կամ կարճ առաջնորդված զրույցի միջոցով։ Յուրաքանչյուր տեքստ եզակի է և խմբագրելի, անցյալ հաղորդագրությունները հասանելի են կրկին կարդալու համար՝ ստեղծելով նուրբ կապ անցյալի և ներկայի միջև։ Միջերեսը ցույց է տալիս թարմացման առաջընթացը ներքևում՝ պահպանված նվազագույն և էներգախնայող, մարդկային հպում բերելով այլապես սահմանափակ պահին։"
   }
 };
 
@@ -116,9 +113,9 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
       }}>
 
       <div className="container max-w-[1200px] mx-auto px-5 md:px-10" style={{ paddingTop: "clamp(48px, 6vw, 80px)" }}>
-        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16">
+        <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16">
           <div
-            className="w-full md:w-auto md:flex-shrink-0"
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
             style={{
               maxWidth: "400px"
             }}>
@@ -216,44 +213,6 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               }}>
 
               {content.description}
-            </div>
-
-            <div>
-              <div
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "clamp(13px, 1.3vw, 15px)",
-                  fontWeight: 500,
-                  color: "#86868b",
-                  letterSpacing: "-0.01em",
-                  marginBottom: "clamp(8px, 1vw, 10px)",
-                  paddingLeft: 0
-                }}>
-
-                {content.toolsLabel}
-              </div>
-
-              <div className="flex items-center gap-1" style={{ paddingLeft: 0, marginLeft: 0 }}>
-                <img
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-2-1762104496795.png?width=8000&height=8000&resize=contain"
-                  alt="Sketch"
-                  style={{
-                    width: "clamp(46px, 6vw, 62px)",
-                    height: "clamp(46px, 6vw, 62px)",
-                    objectFit: "contain"
-                  }} />
-
-
-                <img
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-avec-arriere-plan-supprime-1762104480110.png?width=8000&height=8000&resize=contain"
-                  alt="After Effects"
-                  style={{
-                    width: "clamp(46px, 6vw, 62px)",
-                    height: "clamp(46px, 6vw, 62px)",
-                    objectFit: "contain"
-                  }} />
-
-              </div>
             </div>
           </div>
         </div>

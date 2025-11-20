@@ -11,7 +11,6 @@ const translations = {
   EN: {
     title: "Wave Switch & App",
     year: "Designed in 2025",
-    toolsLabel: "Tools used:",
     paragraph1:
     "WaveSwitch is a contactless switch activated by gesture. Designed for a speculative future in 2080, where humans live with medical and aesthetic skin fungi born from global transformations, it relies on artificial intelligence to translate movement into action. Beyond the object itself, its meaning lies in the web and mobile interface: gesture customization, real-time visual feedback, and interaction tracking.",
     paragraph2:
@@ -20,7 +19,6 @@ const translations = {
   FR: {
     title: "Wave Switch & App",
     year: "Conception en 2025",
-    toolsLabel: "Outils utilisés :",
     paragraph1:
     "WaveSwitch est un interrupteur sans contact activé par geste. Conçu pour un avenir spéculatif en 2080, où les humains vivent avec des champignons cutanés médicaux et esthétiques nés des transformations mondiales, il s'appuie sur l'intelligence artificielle pour traduire le mouvement en action. Au-delà de l'objet lui-même, son sens réside dans l'interface web et mobile : personnalisation des gestes, retour visuel en temps réel et suivi des interactions.",
     paragraph2:
@@ -29,7 +27,6 @@ const translations = {
   ՀԱՅ: {
     title: "Wave Switch & App",
     year: "Նախագծված 2025-ին",
-    toolsLabel: "Օգտագործված գործիքներ՝",
     paragraph1:
     "WaveSwitch-ը շարժումներով ակտիվացվող անհպում անջատիչ է։ Նախագծված ապագայի համար՝ 2080 թվականին, երբ մարդիկ ապրում են բժշկական եւ գեղագիտական մաշկային սնկերի հետ, որոնք ծնվել են համաշխարհային փոփոխություններից, այն ապավինում է արհեստական բանականությանը՝ շարժումը գործողության վերածելու համար։ Առարկայից դուրս դրա իմաստը ընկած է վեբ եւ շարժական ինտերֆեյսում՝ ժեստերի անհատականացում, իրական ժամանակի տեսողական հետադարձ կապ եւ փոխազդեցության հետագծում։",
     paragraph2:
@@ -175,11 +172,11 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
       <div className="container max-w-[1200px] mx-auto px-5 md:px-10">
         {/* Section 1: iPhone mockup à gauche + texte à droite */}
-        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24">
+        <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24">
           {/* Vidéo iPhone à gauche */}
           <div
             ref={videoContainer1}
-            className="w-full md:w-auto md:flex-shrink-0"
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
             style={{
               maxWidth: "400px"
             }}>
@@ -270,74 +267,6 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               }}>
 
               {t.paragraph1}
-            </div>
-
-            <div>
-              <div
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "clamp(13px, 1.3vw, 15px)",
-                  fontWeight: 500,
-                  color: "#86868b",
-                  letterSpacing: "-0.01em",
-                  marginBottom: "clamp(8px, 1vw, 10px)",
-                  paddingLeft: 0
-                }}>
-
-                {t.toolsLabel}
-              </div>
-
-              <div className="flex items-center gap-1" style={{ paddingLeft: 0, marginLeft: 0 }}>
-                <img
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-2-1762106087211.png?width=8000&height=8000&resize=contain"
-                  alt="Sketch"
-                  style={{
-                    width: "clamp(46px, 6vw, 62px)",
-                    height: "clamp(46px, 6vw, 62px)",
-                    objectFit: "contain"
-                  }} />
-
-
-                <img
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-4-1762106242663.png?width=8000&height=8000&resize=contain"
-                  alt="Figma"
-                  style={{
-                    width: "clamp(46px, 6vw, 62px)",
-                    height: "clamp(46px, 6vw, 62px)",
-                    objectFit: "contain"
-                  }} />
-
-
-                <img
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-avec-arriere-plan-supprime-1762106090306.png?width=8000&height=8000&resize=contain"
-                  alt="After Effects"
-                  style={{
-                    width: "clamp(46px, 6vw, 62px)",
-                    height: "clamp(46px, 6vw, 62px)",
-                    objectFit: "contain"
-                  }} />
-
-
-                <img
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-3-1762106164758.png?width=8000&height=8000&resize=contain"
-                  alt="InDesign"
-                  style={{
-                    width: "clamp(46px, 6vw, 62px)",
-                    height: "clamp(46px, 6vw, 62px)",
-                    objectFit: "contain"
-                  }} />
-
-
-                <img
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-5-1762108915711.png?width=8000&height=8000&resize=contain"
-                  alt="Media Encoder"
-                  style={{
-                    width: "clamp(46px, 6vw, 62px)",
-                    height: "clamp(46px, 6vw, 62px)",
-                    objectFit: "contain"
-                  }} />
-
-              </div>
             </div>
           </div>
         </div>

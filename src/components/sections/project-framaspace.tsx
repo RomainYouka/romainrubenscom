@@ -12,41 +12,23 @@ const translations = {
     year: "La Conception : 2024",
     description:
       "Framaspace est un service open source de collaboration et de stockage en ligne. Nous avons revu l'esthétique de cet interface afin de le rendre plus interatif et plus compréhensible par ses utilisateurs. Objectif : moderniser l'interface tout en respectant l'éthique libre du projet.\n\nTravail mené sur la typographie, la palette de couleurs, la lisibilité, et la cohérence visuelle. Ce projet avait pour ambition de redonner à Framaspace une identité plus fluide et expressive, sans trahir l'esprit libre du projet.\n\nJ'ai travaillé une narration visuelle sobre mais marquante, où chaque phrase d'accroche guide l'utilisateur avec complicité. L'esthétique vient soutenir l'usage, dans une interface pensée pour être à la fois lisible, cohérente et engageante.",
-    collaboration: "Collaboration : Thalia Mehio",
-    appsUsed: "Outils utilisés :"
+    collaboration: "Collaboration : Thalia Mehio"
   },
   EN: {
     title: "Framaspace: Visual Redesign Focused on Essentials",
     year: "Designed in 2024",
     description:
       "Framaspace is an open-source online collaboration and storage service. We have redesigned the aesthetics of this interface to make it more interactive and understandable for its users. Objective: modernize the interface while respecting the free ethics of the project.\n\nWork carried out on typography, color palette, readability, and visual consistency. This project aimed to give Framaspace a more fluid and expressive identity, without betraying the free spirit of the project.\n\nI worked on a sober but striking visual narrative, where each tagline guides the user with complicity. Aesthetics support usage, in an interface designed to be readable, consistent and engaging.",
-    collaboration: "Collaboration: Thalia Mehio",
-    appsUsed: "Tools used:"
+    collaboration: "Collaboration: Thalia Mehio"
   },
   ՀԱՅ: {
     title: "Framaspace․ Վիզուալ վերանախագծում՝ կենտրոնացած էականի վրա",
     year: "Նախագծված 2024-ին",
     description:
       "Framaspace-ը բաց կոդով համագործակցության եւ պահպանման առցանց ծառայություն է։ Մենք վերանախագծել ենք այս ինտերֆեյսի գեղագիտությունը՝ այն ավելի ինտերակտիվ եւ հասկանալի դարձնելու համար օգտատերերի համար։ Նպատակ՝ արդիականացնել ինտերֆեյսը՝ հարգելով նախագծի ազատ էթիկան։\n\nԱշխատանք է իրականացվել տպագրության, գունային պալիտրայի, ընթեռնելիության եւ տեսողական հետեւողականության վրա։ Այս նախագիծը նպատակ ուներ Framaspace-ին տալ ավելի հեղուկ եւ արտահայտիչ ինքնություն՝ առանց նախագծի ազատ ոգուն դավաճանելու։\n\nԵս աշխատել եմ սոսկ բայց տպավորիչ տեսողական պատմության վրա, որտեղ յուրաքանչյուր կարգախոս ուղղորդում է օգտատիրոջը համակցությամբ։ Գեղագիտությունը աջակցում է օգտագործմանը՝ ինտերֆեյսում, որը նախագծված է ընթեռնելի, հետեւողական եւ գրավիչ լինելու համար։",
-    collaboration: "Համագործակցություն՝ Thalia Mehio",
-    appsUsed: "Օգտագործված գործիքներ՝"
+    collaboration: "Համագործակցություն՝ Thalia Mehio"
   }
 };
-
-const appIcons = [
-  {
-    name: "Figma",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-4-1762190296105.png?width=8000&height=8000&resize=contain"
-  },
-  {
-    name: "Photoshop",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-7-1762190299719.png?width=8000&height=8000&resize=contain"
-  },
-  {
-    name: "InDesign",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-3-1762190318022.png?width=8000&height=8000&resize=contain"
-  }
-];
 
 export default function ProjectFramaspace({ language }: ProjectFramaspaceProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -146,42 +128,10 @@ export default function ProjectFramaspace({ language }: ProjectFramaspaceProps) 
                 fontWeight: 400,
                 color: "#F5F5F7",
                 lineHeight: 1.5,
-                letterSpacing: "-0.022em",
-                marginBottom: "clamp(24px, 3vw, 32px)"
+                letterSpacing: "-0.022em"
               }}
             >
               {t.collaboration}
-            </div>
-
-            {/* Apps Used Section */}
-            <div>
-              <div
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "clamp(13px, 1.3vw, 15px)",
-                  fontWeight: 500,
-                  color: "#86868b",
-                  letterSpacing: "-0.01em",
-                  marginBottom: "clamp(8px, 1vw, 10px)",
-                  paddingLeft: 0
-                }}
-              >
-                {t.appsUsed}
-              </div>
-              <div className="flex items-center gap-1" style={{ paddingLeft: 0, marginLeft: 0 }}>
-                {appIcons.map((app) => (
-                  <img
-                    key={app.name}
-                    src={app.url}
-                    alt={app.name}
-                    style={{
-                      width: "clamp(46px, 6vw, 62px)",
-                      height: "clamp(46px, 6vw, 62px)",
-                      objectFit: "contain"
-                    }}
-                  />
-                ))}
-              </div>
             </div>
           </div>
         </div>

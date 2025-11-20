@@ -11,47 +11,21 @@ const translations = {
     title: "Name Quest - Educational Board Game on Last Names",
     year: "Designed in 2025",
     description:
-      "NameQuest is an educational and inclusive board game that addresses discrimination linked to last names through a 55-square journey across different countries. Made up of individual, collective, and trap cards, the game blends anecdotes, general knowledge questions, and real-life situations.\n\nDesigned for 2 to 6 players, it encourages reflection and dialogue in a playful, accessible setting, featuring a colorful design, laser-cut tokens, and a strong cultural dimension.",
-    appsUsed: "Tools used:"
+      "NameQuest is an educational and inclusive board game that addresses discrimination linked to last names through a 55-square journey across different countries. Made up of individual, collective, and trap cards, the game blends anecdotes, general knowledge questions, and real-life situations.\n\nDesigned for 2 to 6 players, it encourages reflection and dialogue in a playful, accessible setting, featuring a colorful design, laser-cut tokens, and a strong cultural dimension."
   },
   FR: {
     title: "Name Quest - Jeu de Société Éducatif sur les Noms de Famille",
     year: "Conception : 2025",
     description:
-      "NameQuest est un jeu de société éducatif et inclusif, abordant les discriminations liées aux noms de famille à travers un parcours de 55 cases représentant différents pays. Composé de cartes individuelles, collectives et pièges, le jeu mêle anecdotes, questions de culture générale et situations vécues.\n\nPensé pour 2 à 6 joueurs, il invite à la réflexion et au dialogue dans un cadre ludique et accessible, avec un design coloré, des pions en découpe laser, et une forte dimension culturelle.",
-    appsUsed: "Outils utilisés :"
+      "NameQuest est un jeu de société éducatif et inclusif, abordant les discriminations liées aux noms de famille à travers un parcours de 55 cases représentant différents pays. Composé de cartes individuelles, collectives et pièges, le jeu mêle anecdotes, questions de culture générale et situations vécues.\n\nPensé pour 2 à 6 joueurs, il invite à la réflexion et au dialogue dans un cadre ludique et accessible, avec un design coloré, des pions en découpe laser, et une forte dimension culturelle."
   },
   ՀԱՅ: {
     title: "Name Quest - Կրթական Սեղանի Խաղ Ազգանունների Մասին",
     year: "Նախագծված 2025-ին",
     description:
-      "NameQuest-ը կրթական և ներառական սեղանի խաղ է, որը անդրադառնում է ազգանունների հետ կապված խտրականությանը 55 վանդակից բաղկացած ուղևորության միջոցով՝ ներկայացնելով տարբեր երկրներ։ Բաղկացած է անհատական, կոլեկտիվ և թակարդային քարտերից, խաղը համատեղում է անեկդոտներ, ընդհանուր գիտելիքների հարցեր և իրական իրավիճակներ։\n\nՆախագծված 2-ից 6 խաղացողների համար, այն խրախուսում է մտորումներ և երկխոսություն խաղային, մատչելի միջավայրում՝ գունեղ դիզայնով, լազերային կտրված տոկենով և ուժեղ մշակութային չափով։",
-    appsUsed: "Օգտագործված գործիքներ՝"
+      "NameQuest-ը կրթական և ներառական սեղանի խաղ է, որը անդրադառնում է ազգանունների հետ կապված խտրականությանը 55 վանդակից բաղկացած ուղևորության միջոցով՝ ներկայացնելով տարբեր երկրներ։ Բաղկացած է անհատական, կոլեկտիվ և թակարդային քարտերից, խաղը համատեղում է անեկդոտներ, ընդհանուր գիտելիքների հարցեր և իրական իրավիճակներ։\n\nՆախագծված 2-ից 6 խաղացողների համար, այն խրախուսում է մտորումներ և երկխոսություն խաղային, մատչելի միջավայրում՝ գունեղ դիզայնով, լազերային կտրված տոկենով և ուժեղ մշակութային չափով։"
   }
 };
-
-const appIcons = [
-  {
-    name: "InDesign",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-3-1762122832215.png?width=8000&height=8000&resize=contain"
-  },
-  {
-    name: "Illustrator",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-6-1762122879710.png?width=8000&height=8000&resize=contain"
-  },
-  {
-    name: "Photoshop",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-7-1762123715008.png?width=8000&height=8000&resize=contain"
-  },
-  {
-    name: "Lightroom Classic",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-8-1762123797638.png?width=8000&height=8000&resize=contain"
-  },
-  {
-    name: "Figma",
-    url: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Sans-titre-2-1-glissees-4-1762123807785.png?width=8000&height=8000&resize=contain"
-  }
-];
 
 export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -155,37 +129,6 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
               }}
             >
               {t.description}
-            </div>
-
-            {/* Apps Used Section */}
-            <div>
-              <div
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "clamp(13px, 1.3vw, 15px)",
-                  fontWeight: 500,
-                  color: "#86868b",
-                  letterSpacing: "-0.01em",
-                  marginBottom: "clamp(8px, 1vw, 10px)",
-                  paddingLeft: 0
-                }}
-              >
-                {t.appsUsed}
-              </div>
-              <div className="flex items-center gap-1" style={{ paddingLeft: 0, marginLeft: 0 }}>
-                {appIcons.map((app) => (
-                  <img
-                    key={app.name}
-                    src={app.url}
-                    alt={app.name}
-                    style={{
-                      width: "clamp(46px, 6vw, 62px)",
-                      height: "clamp(46px, 6vw, 62px)",
-                      objectFit: "contain"
-                    }}
-                  />
-                ))}
-              </div>
             </div>
           </div>
         </div>
