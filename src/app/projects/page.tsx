@@ -12,7 +12,7 @@ import ProjectMacStudio from "@/components/sections/project-macstudio";
 import ProjectCarousel from "@/components/sections/project-carousel";
 import ProjectFlashConcept from "@/components/sections/project-flashconcept";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowUp } from "lucide-react";
 
 const projectsTranslations = {
   FR: {
@@ -237,13 +237,16 @@ export default function ProjectsPage() {
 
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-14 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 hover:scale-110 ${
+        className={`fixed bottom-6 right-6 md:bottom-14 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 transition-all duration-300 hover:scale-110 md:hover:scale-110 ${
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         }`}
         style={{
           transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)"
         }}
         aria-label="Scroll to top">
+        <div className="md:hidden w-12 h-12 rounded-full bg-[#424245] flex items-center justify-center hover:bg-[#515151]">
+          <ArrowUp className="w-5 h-5 text-white" />
+        </div>
         <Image
           src={
             selectedLanguage === "FR" 
@@ -255,7 +258,7 @@ export default function ProjectsPage() {
           alt="Scroll to top"
           width={120}
           height={40}
-          className={`w-auto cursor-pointer ${
+          className={`hidden md:block w-auto cursor-pointer ${
             selectedLanguage === "FR" ? "h-[32px]" : "h-[40px]"
           }`}
         />
