@@ -218,12 +218,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </p>
           </div>
 
-          {/* Images Grid - 7 individual iPhones with responsive spacing */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6 lg:gap-8">
+          {/* Images Grid - 7 individual iPhones matching FlashConcept_02 layout */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {[1, 2, 3, 4, 5, 6, 7].map((num) => (
               <div 
                 key={num}
-                className="relative w-full"
+                className="relative w-full overflow-hidden rounded-lg bg-white shadow-sm"
                 style={{
                   aspectRatio: "9/19.5",
                 }}
@@ -232,10 +232,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   src={`/${num}.png`}
                   alt={`FlashConcept 01 - iPhone ${num}`}
                   fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 14vw"
-                  className="object-contain"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover"
                   style={{
-                    transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
+                    transition: "transform 0.3s ease"
                   }}
                 />
               </div>
@@ -301,7 +301,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
           {/* App Journey Grid - Compact with Show More */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {Array.from({ length: visibleImages }, (_, i) => i + 1).map((num) => (
+            {Array.from({ length: visibleImages }, (_, i) => i + 1)
+              .map((num) => num === 26 ? 27 : num > 26 ? num + 1 : num)
+              .map((num) => (
               <div
                 key={num}
                 className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px] shadow-sm bg-[#F5F5F7]"
