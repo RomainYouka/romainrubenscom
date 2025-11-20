@@ -21,6 +21,9 @@ export default function ProjectCarousel() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const mouseStartX = useRef<number>(0);
+  const mouseEndX = useRef<number>(0);
+  const isDragging = useRef<boolean>(false);
 
   const extendedImages = [images[images.length - 1], ...images, images[0]];
 
@@ -110,7 +113,7 @@ export default function ProjectCarousel() {
     return currentIndex - 1;
   };
 
-  // Swipe handlers
+  // Touch handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -136,14 +139,56 @@ export default function ProjectCarousel() {
     }
   };
 
+  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    mouseStartX.current = e.clientX;
+    mouseEndX.current = e.clientX;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    mouseEndX.current = e.clientX;
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    
+    if (isTransitioning) return;
+    
+    const diff = mouseStartX.current - mouseEndX.current;
+    const minDragDistance = 50;
+
+    if (Math.abs(diff) > minDragDistance) {
+      if (diff > 0) {
+        // Drag left - go next
+        goToNext();
+      } else {
+        // Drag right - go previous
+        goToPrevious();
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging.current) {
+      isDragging.current = false;
+    }
+  };
+
   return (
     <section className="bg-white relative overflow-hidden select-none pb-8 mb-12">
       <div className="w-full relative">
         <div 
-          className="relative w-full overflow-hidden"
+          className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
         >
           <div
             ref={containerRef}
