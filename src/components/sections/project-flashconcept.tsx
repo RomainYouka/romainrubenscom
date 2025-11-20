@@ -72,6 +72,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const [isVisible, setIsVisible] = useState(false);
   const [isConceptVisible, setIsConceptVisible] = useState(false);
   const [isConcept02Visible, setIsConcept02Visible] = useState(false);
+  const [showAllConcept01, setShowAllConcept01] = useState(false);
   const [showAllImages, setShowAllImages] = useState(false);
 
   const sectionContent = sectionTranslations[language];
@@ -81,6 +82,13 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const initialImageCount = 4;
   const totalImages = 46;
   const visibleImages = showAllImages ? totalImages : initialImageCount;
+  
+  const getFlashConcept01Images = () => {
+    if (!showAllConcept01) {
+      return [1, 2, 3];
+    }
+    return [1, 2, 3, 1, 4, 5, 1, 6, 7];
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -218,12 +226,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </p>
           </div>
 
-          {/* Images Grid - 7 individual iPhones matching FlashConcept_02 layout */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {[1, 2, 3, 4, 5, 6, 7].map((num) => (
+          {/* Images Grid - iPhone mockups with show more */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {getFlashConcept01Images().map((num, index) => (
               <div 
-                key={num}
-                className="relative w-full overflow-hidden rounded-lg bg-white shadow-sm"
+                key={`${num}-${index}`}
+                className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px]"
                 style={{
                   aspectRatio: "9/19.5",
                 }}
@@ -232,14 +240,47 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   src={`/${num}.png`}
                   alt={`FlashConcept 01 - iPhone ${num}`}
                   fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-contain"
                   style={{
                     transition: "transform 0.3s ease"
                   }}
                 />
               </div>
             ))}
+          </div>
+
+          {/* Show More/Less Buttons for FlashConcept_01 */}
+          <div className="flex justify-center mt-8 md:mt-12">
+            {!showAllConcept01 ? (
+              <button
+                onClick={() => setShowAllConcept01(true)}
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  letterSpacing: "-0.01em"
+                }}
+              >
+                {concept02.showMoreButton}
+                <ChevronDown className="w-4 h-4 transition-none" />
+              </button>
+            ) : (
+              <button
+                onClick={() => setShowAllConcept01(false)}
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:bg-[#E8E8ED] hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  letterSpacing: "-0.01em"
+                }}
+              >
+                {concept02.showLessButton}
+                <ChevronDown className="w-4 h-4 rotate-180 transition-none" />
+              </button>
+            )}
           </div>
         </div>
       </div>
