@@ -177,12 +177,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             <h3
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(26px, 3.5vw, 36px)",
+                fontSize: "clamp(32px, 4.5vw, 48px)",
                 fontWeight: 600,
                 color: "#1D1D1F",
-                lineHeight: 1.15,
+                lineHeight: 1.1,
                 letterSpacing: "-0.015em",
-                marginBottom: "clamp(12px, 1.5vw, 16px)"
+                marginBottom: "clamp(16px, 2vw, 24px)"
               }}
             >
               {concept01.title}
@@ -191,9 +191,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             <div
               style={{
                 fontFamily: "var(--font-body)",
-                fontSize: "clamp(13px, 1.4vw, 15px)",
+                fontSize: "clamp(13px, 1.3vw, 15px)",
                 fontWeight: 500,
-                color: "#515151",
+                color: "#86868b",
                 lineHeight: 1.4,
                 letterSpacing: "-0.01em",
                 marginBottom: "clamp(16px, 2vw, 20px)"
@@ -211,28 +211,26 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 lineHeight: 1.5,
                 letterSpacing: "-0.022em",
                 whiteSpace: "pre-line",
-                maxWidth: "900px"
+                marginBottom: "clamp(24px, 3vw, 32px)"
               }}
             >
               {concept01.description}
             </p>
           </div>
 
-          {/* Images Grid - Full Width for Better Visibility */}
-          <div className="space-y-6 md:space-y-8">
+          {/* Images Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div 
               className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
               style={{
-                aspectRatio: "16/10",
-                maxWidth: "1000px",
-                margin: "0 auto"
+                aspectRatio: "16/10"
               }}
             >
               <Image
                 src="/flashconcept-01-mockup-2.png"
                 alt="FlashConcept 01 - Interface mockup 2"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
                 style={{
                   transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
@@ -243,16 +241,14 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             <div 
               className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
               style={{
-                aspectRatio: "16/10",
-                maxWidth: "1000px",
-                margin: "0 auto"
+                aspectRatio: "16/10"
               }}
             >
               <Image
                 src="/flashconcept-01-mockup-1.png"
                 alt="FlashConcept 01 - Interface mockup 1"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
                 style={{
                   transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
@@ -291,12 +287,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             <h3
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(26px, 3.5vw, 36px)",
+                fontSize: "clamp(32px, 4.5vw, 48px)",
                 fontWeight: 600,
                 color: "#1D1D1F",
-                lineHeight: 1.15,
+                lineHeight: 1.1,
                 letterSpacing: "-0.015em",
-                marginBottom: "clamp(16px, 2vw, 20px)"
+                marginBottom: "clamp(20px, 2.5vw, 32px)"
               }}
             >
               {concept02.title}
@@ -311,8 +307,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 lineHeight: 1.5,
                 letterSpacing: "-0.022em",
                 whiteSpace: "pre-line",
-                maxWidth: "900px",
-                marginBottom: "clamp(24px, 3vw, 32px)"
+                marginBottom: "clamp(24px, 3vw, 40px)"
               }}
             >
               {concept02.description}
@@ -321,11 +316,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             <div
               style={{
                 fontFamily: "var(--font-body)",
-                fontSize: "clamp(13px, 1.4vw, 15px)",
+                fontSize: "clamp(13px, 1.3vw, 15px)",
                 fontWeight: 500,
-                color: "#515151",
+                color: "#86868b",
                 lineHeight: 1.4,
-                letterSpacing: "-0.01em"
+                letterSpacing: "-0.01em",
+                marginBottom: "clamp(12px, 1.5vw, 16px)"
               }}
             >
               {concept02.journeyLabel}
