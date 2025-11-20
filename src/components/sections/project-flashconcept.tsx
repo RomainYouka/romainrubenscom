@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 
 interface ProjectFlashConceptProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -48,19 +49,22 @@ const flashConcept02Translations = {
     title: "FlashConcept_02",
     year: "Conception : 2025",
     description: "Une application mobile qui facilite la découverte d'événements culturels et sociaux à Lyon. L'interface propose une navigation intuitive entre les lieux à proximité, les discussions de groupe et les événements enregistrés. Le design met l'accent sur la lisibilité et la simplicité, avec un système de cartes de découverte inspiré des applications de rencontre, mais adapté aux sorties culturelles. Les fonctionnalités incluent la messagerie de groupe, la géolocalisation des lieux, et un système d'accessibilité complet avec modes clair/sombre et options pour les personnes daltoniennes.",
-    journeyLabel: "Parcours complet de l'application"
+    journeyLabel: "Parcours complet de l'application",
+    showMoreButton: "Voir les {count} écrans restants"
   },
   EN: {
     title: "FlashConcept_02",
     year: "Designed in 2025",
     description: "A mobile app that makes discovering cultural and social events in Lyon effortless. The interface offers intuitive navigation between nearby venues, group discussions, and saved events. The design emphasizes readability and simplicity, featuring a discovery card system inspired by dating apps but tailored for cultural outings. Features include group messaging, venue geolocation, and comprehensive accessibility settings with light/dark modes and colorblind-friendly options.",
-    journeyLabel: "Complete app journey"
+    journeyLabel: "Complete app journey",
+    showMoreButton: "View {count} more screens"
   },
   ՀԱՅ: {
     title: "FlashConcept_02",
     year: "Նախագծված 2025-ին",
     description: "Մոբայլ հավելված, որը հեշտացնում է մշակույթային և սոցիալական իրադարձությունների հայտնագործումը Լիոնում։ Ինտերֆեյսն առաջարկում է ինտուիտիվ նավարկություն մոտակա վայրերի, խմբային քննարկումների և պահպանված իրադարձությունների միջև։ Դիզայնը շեշտը դնում է ընթեռնելիության և պարզության վրա՝ ներկայացնելով հայտնագործման քարտերի համակարգ, որը ոգեշնչված է ծանոթությունների հավելվածներից, բայց հարմարեցված է մշակութային դուրսգալուստների համար։ Գործառույթները ներառում են խմբային հաղորդագրություններ, վայրերի աշխարհագրական տեղորոշում և համապարփակ մատչելիության կարգավորումներ՝ բաց/մուգ ռեժիմներով և գույնի կույրության համար հարմարեցված տարբերակներով։",
-    journeyLabel: "Հավելվածի ամբողջական ճանապարհորդություն"
+    journeyLabel: "Հավելվածի ամբողջական ճանապարհորդություն",
+    showMoreButton: "Տեսնել ևս {count} էկրան"
   }
 };
 
@@ -68,10 +72,15 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const [isVisible, setIsVisible] = useState(false);
   const [isConceptVisible, setIsConceptVisible] = useState(false);
   const [isConcept02Visible, setIsConcept02Visible] = useState(false);
+  const [showAllImages, setShowAllImages] = useState(false);
 
   const sectionContent = sectionTranslations[language];
   const concept01 = flashConcept01Translations[language];
   const concept02 = flashConcept02Translations[language];
+
+  const initialImageCount = 8;
+  const totalImages = 46;
+  const visibleImages = showAllImages ? totalImages : initialImageCount;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -209,19 +218,21 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </p>
           </div>
 
-          {/* Images Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Images Grid - Full Width for Better Visibility */}
+          <div className="space-y-6 md:space-y-8">
             <div 
               className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
               style={{
-                aspectRatio: "16/10"
+                aspectRatio: "16/10",
+                maxWidth: "1000px",
+                margin: "0 auto"
               }}
             >
               <Image
                 src="/flashconcept-01-mockup-1.png"
                 alt="FlashConcept 01 - Interface mockup 1"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="100vw"
                 className="object-contain"
                 style={{
                   transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
@@ -232,14 +243,16 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             <div 
               className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px]"
               style={{
-                aspectRatio: "16/10"
+                aspectRatio: "16/10",
+                maxWidth: "1000px",
+                margin: "0 auto"
               }}
             >
               <Image
                 src="/flashconcept-01-mockup-2.png"
                 alt="FlashConcept 01 - Interface mockup 2"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="100vw"
                 className="object-contain"
                 style={{
                   transition: "transform 0.6s cubic-bezier(0.25,0.1,0.25,1)"
@@ -319,12 +332,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             </div>
           </div>
 
-          {/* App Journey Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {Array.from({ length: 46 }, (_, i) => i + 1).map((num) => (
+          {/* App Journey Grid - Compact with Show More */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {Array.from({ length: visibleImages }, (_, i) => i + 1).map((num) => (
               <div
                 key={num}
-                className="relative w-full overflow-hidden rounded-[12px] md:rounded-[16px] shadow-sm"
+                className="relative w-full overflow-hidden rounded-[8px] md:rounded-[10px] shadow-sm bg-[#F5F5F7]"
                 style={{
                   aspectRatio: "9/19.5"
                 }}
@@ -333,7 +346,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   src={`https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/portfolio-images/flashconcept-02/${num}.jpg`}
                   alt={`FlashConcept 02 - Screen ${num}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 50vw, 25vw"
                   className="object-contain"
                   style={{
                     transition: "transform 0.3s cubic-bezier(0.25,0.1,0.25,1)"
@@ -342,6 +355,25 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
               </div>
             ))}
           </div>
+
+          {/* Show More Button */}
+          {!showAllImages && (
+            <div className="flex justify-center mt-8 md:mt-12">
+              <button
+                onClick={() => setShowAllImages(true)}
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-[#1D1D1F] text-white hover:bg-[#424245] transition-colors"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  letterSpacing: "-0.01em"
+                }}
+              >
+                {concept02.showMoreButton.replace("{count}", (totalImages - initialImageCount).toString())}
+                <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
