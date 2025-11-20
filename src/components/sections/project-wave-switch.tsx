@@ -275,7 +275,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         <div className="flex flex-col md:flex-row-reverse md:items-center gap-8 md:gap-16">
           <div
             ref={videoContainer2}
-            className="w-full md:w-auto md:flex-shrink-0"
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
             style={{
               maxWidth: "350px"
             }}>
@@ -305,7 +305,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             <div className="flex items-center justify-center gap-3 mt-4">
               <button
                 onClick={togglePlayPause2}
-                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#1A73E8] text-white font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)"
                 }}
@@ -317,7 +317,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               
               <button
                 onClick={skipForward2}
-                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#1A73E8] text-white font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)"
                 }}

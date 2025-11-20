@@ -16,10 +16,22 @@ export default function ProjectCarousel() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const extendedImages = [images[images.length - 1], ...images, images[0]];
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Précharger TOUTES les images
   useEffect(() => {
@@ -56,12 +68,14 @@ export default function ProjectCarousel() {
     if (!isTransitioning) return;
 
     const transitionEndTimer = setTimeout(() => {
-      setIsTransitioning(false);
-      
       if (currentIndex === 0) {
-        setTimeout(() => setCurrentIndex(images.length), 0);
+        setCurrentIndex(images.length);
+        setIsTransitioning(false);
       } else if (currentIndex === extendedImages.length - 1) {
-        setTimeout(() => setCurrentIndex(1), 0);
+        setCurrentIndex(1);
+        setIsTransitioning(false);
+      } else {
+        setIsTransitioning(false);
       }
     }, 600);
 
@@ -95,14 +109,16 @@ export default function ProjectCarousel() {
   };
 
   return (
-    <section className="bg-[#F5F5F7] relative overflow-hidden select-none pb-8 mb-12">
+    <section className="bg-white relative overflow-hidden select-none pb-8 mb-12">
       <div className="w-full relative">
         <div className="relative w-full overflow-hidden">
           <div
             ref={containerRef}
             className="flex items-center"
             style={{
-              transform: `translateX(calc(-${currentIndex * 50}vw - ${currentIndex * 30}px + 25vw))`,
+              transform: isMobile 
+                ? `translateX(calc(-${currentIndex * 70}vw - ${currentIndex * 20}px + 50vw - 35vw))`
+                : `translateX(calc(-${currentIndex * 50}vw - ${currentIndex * 30}px + 25vw))`,
               transition: isTransitioning ? "transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",
               willChange: "transform"
             }}>
@@ -117,11 +133,11 @@ export default function ProjectCarousel() {
                   key={`${image}-${index}`}
                   className="flex-shrink-0"
                   style={{
-                    width: "50vw",
-                    height: "50vw",
+                    width: isMobile ? "70vw" : "50vw",
+                    height: isMobile ? "70vw" : "50vw",
                     opacity: isCenter ? 1 : 0.4,
                     transition: "opacity 300ms ease",
-                    marginRight: index < extendedImages.length - 1 ? "30px" : "0",
+                    marginRight: index < extendedImages.length - 1 ? (isMobile ? "20px" : "30px") : "0",
                     userSelect: "none",
                     position: "relative",
                     cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default"

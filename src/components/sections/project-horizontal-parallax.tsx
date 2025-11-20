@@ -58,7 +58,7 @@ export default function ProjectHorizontalParallax() {
   const bandRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -121,7 +121,7 @@ export default function ProjectHorizontalParallax() {
         if (!bandElement) return;
 
         // Parallax movement only (no opacity or scale)
-        const maxOffset = 30;
+        const maxOffset = 50;
         let offsetPercent = easedProgress * maxOffset * band.speed;
 
         if (band.direction === "left") {
@@ -154,11 +154,11 @@ export default function ProjectHorizontalParallax() {
       }}>
 
       <div className="w-full max-w-[1200px] mx-auto px-6">
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-col -space-y-2 md:-space-y-4">
           {bands.map((band, index) =>
           <div
             key={band.id}
-            className="w-full overflow-visible relative h-[60px] md:h-[80px] lg:h-[100px]">
+            className="w-full overflow-visible relative h-[80px] md:h-[110px] lg:h-[140px]">
 
               <div
               ref={(el) => {
