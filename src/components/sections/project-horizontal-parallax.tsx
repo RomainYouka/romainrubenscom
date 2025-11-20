@@ -48,9 +48,9 @@ const bands = [
 }];
 
 
-// Easing function for smoother animation
-const easeOutCubic = (t: number): number => {
-  return 1 - Math.pow(1 - t, 3);
+// Easing function for ultra smooth animation
+const easeInOutQuart = (t: number): number => {
+  return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 };
 
 export default function ProjectHorizontalParallax() {
@@ -113,8 +113,8 @@ export default function ProjectHorizontalParallax() {
       (viewportHeight - rect.top) / (viewportHeight + sectionHeight)
       ));
 
-      // Apply easing for smoother scroll
-      const easedProgress = easeOutCubic(scrollProgress);
+      // Apply easing for ultra smooth scroll
+      const easedProgress = easeInOutQuart(scrollProgress);
 
       bands.forEach((band, index) => {
         const bandElement = bandRefs.current[index];
@@ -124,7 +124,7 @@ export default function ProjectHorizontalParallax() {
         const maxOffset = 50;
         let offsetPercent = easedProgress * maxOffset * band.speed;
 
-        if (band.direction === "left") {
+        if (band.direction === "right") {
           offsetPercent = -offsetPercent;
         }
 
@@ -167,7 +167,7 @@ export default function ProjectHorizontalParallax() {
               className="absolute inset-0 h-full"
               style={{
                 width: "200%",
-                left: band.direction === "left" ? (index === 0 ? "0%" : "0%") : "-100%",
+                left: band.direction === "right" ? (index === 0 ? "-100%" : "-100%") : "0%",
                 willChange: prefersReducedMotion ? "auto" : "transform",
                 opacity: 1
               }}>

@@ -563,16 +563,19 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
 
                   }
                 </a>
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-5" style={{ height: "36px" }}>
                   <ResumeButton selectedLanguage={selectedLanguage} />
-                  <LanguageSelector
-                    selectedLanguage={selectedLanguage}
-                    onLanguageChange={handleLanguageChange}
-                    isScrolled={isScrolled}
-                    onToggle={handleLanguageDropdownToggle} />
+                  <div className="flex items-center justify-center" style={{ height: "36px" }}>
+                    <LanguageSelector
+                      selectedLanguage={selectedLanguage}
+                      onLanguageChange={handleLanguageChange}
+                      isScrolled={isScrolled}
+                      onToggle={handleLanguageDropdownToggle} />
+                  </div>
                   <button
                     onClick={handleMenuToggle}
-                    className="flex items-center text-[#3C3C3C] transition-opacity duration-200 hover:opacity-80"
+                    className="flex items-center justify-center text-[#3C3C3C] transition-opacity duration-200 hover:opacity-80"
+                    style={{ height: "36px" }}
                     aria-label="Toggle menu">
 
                     <AnimatedBurgerIcon isOpen={isMenuOpen} />

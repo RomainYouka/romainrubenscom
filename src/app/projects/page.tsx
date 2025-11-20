@@ -244,7 +244,7 @@ export default function ProjectsPage() {
           transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)"
         }}
         aria-label="Scroll to top">
-        <div className="md:hidden w-12 h-12 rounded-full bg-[#424245] flex items-center justify-center hover:bg-[#515151]">
+        <div className="md:hidden w-10 h-10 rounded-full bg-[#424245] flex items-center justify-center hover:bg-[#515151]">
           <ArrowUp className="w-5 h-5 text-white" />
         </div>
         <Image

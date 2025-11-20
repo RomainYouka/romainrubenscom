@@ -329,7 +329,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             </div>
           </div>
 
-          <div className="flex-1" style={{ textAlign: "left" }}>
+          <div className="flex-1">
             <div
               style={{
                 fontFamily: "var(--font-body)",
@@ -337,11 +337,9 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 fontWeight: 400,
                 color: "#1D1D1F",
                 lineHeight: 1.5,
-                letterSpacing: "-0.022em",
-                maxWidth: "800px",
-                textAlign: "center"
+                letterSpacing: "-0.022em"
               }}
-              className="md:text-left md:mx-0 md:max-w-none">
+              className="text-center md:text-left">
 
               {t.paragraph2}
             </div>
