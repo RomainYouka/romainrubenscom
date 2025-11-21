@@ -310,10 +310,10 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             </div>
           </div>
 
-          {/* Vidéo à droite avec boutons - flex-1 comme texte section 1 */}
+          {/* Vidéo à droite avec boutons - alignée à droite */}
           <div
             ref={videoContainer2}
-            className="w-full md:flex-1 flex flex-col items-center"
+            className="w-full md:w-auto md:flex-shrink-0 md:ml-auto mx-auto md:mx-0 flex flex-col items-center"
             style={{
               maxWidth: "100%"
             }}>
@@ -323,7 +323,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 width: "100%",
                 maxWidth: "400px",
                 overflow: "hidden",
-                backgroundColor: "#FFFFFF"
+                backgroundColor: "transparent"
               }}>
 
               <video
