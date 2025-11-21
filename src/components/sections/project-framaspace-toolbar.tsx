@@ -58,7 +58,7 @@ export function FramaspaceToolbarSection() {
               alt={image.alt}
               className="flex-shrink-0 h-auto rounded-lg"
               style={{
-                width: 'clamp(1200px, 100vw, 1600px)',
+                width: 'clamp(600px, 90vw, 900px)',
                 display: 'block',
               }}
             />
