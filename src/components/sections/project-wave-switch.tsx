@@ -37,8 +37,11 @@ const translations = {
 export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying1, setIsPlaying1] = useState(false);
+  const [isPlaying2, setIsPlaying2] = useState(false);
   const videoRef1 = useRef<HTMLVideoElement>(null);
   const videoContainer1 = useRef<HTMLDivElement>(null);
+  const videoRef2 = useRef<HTMLVideoElement>(null);
+  const videoContainer2 = useRef<HTMLDivElement>(null);
 
   const t = translations[language];
 
@@ -106,6 +109,66 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
   const skipForward1 = () => {
     const videoElement = videoRef1.current;
+    if (!videoElement) return;
+    videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
+
+  useEffect(() => {
+    const videoElement2 = videoRef2.current;
+    const container2 = videoContainer2.current;
+
+    if (!videoElement2 || !container2) return;
+
+    const observer2 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            videoElement2.play().catch(() => {});
+            setIsPlaying2(true);
+          } else {
+            videoElement2.pause();
+            setIsPlaying2(false);
+          }
+        });
+      },
+      {
+        threshold: [0, 0.3, 0.5, 0.7, 1],
+        rootMargin: "-10% 0px -10% 0px"
+      }
+    );
+
+    observer2.observe(container2);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        videoElement2.pause();
+        setIsPlaying2(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      observer2.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  const togglePlayPause2 = () => {
+    const videoElement = videoRef2.current;
+    if (!videoElement) return;
+    
+    if (isPlaying2) {
+      videoElement.pause();
+      setIsPlaying2(false);
+    } else {
+      videoElement.play().catch(() => {});
+      setIsPlaying2(true);
+    }
+  };
+
+  const skipForward2 = () => {
+    const videoElement = videoRef2.current;
     if (!videoElement) return;
     videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
   };
@@ -222,6 +285,80 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               {t.paragraph1}
             </div>
           </div>
+        </div>
+
+        {/* Section 2: Mockup video on the right with text on the left */}
+        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12 mb-16 md:mb-24 mt-12 md:mt-16">
+          {/* Texte à gauche - petit format */}
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start">
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(13px, 1.3vw, 15px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                textAlign: "center",
+                width: "100%"
+              }}>
+              {t.paragraph2}
+            </div>
+          </div>
+
+          {/* Vidéo à droite */}
+          <div
+            ref={videoContainer2}
+            className="w-full md:w-2/3 flex justify-center"
+            style={{
+              maxWidth: "100%"
+            }}>
+
+            <div
+              style={{
+                width: "100%",
+                maxWidth: "600px",
+                overflow: "hidden"
+              }}>
+
+              <video
+                ref={videoRef2}
+                src="/waveswitch/mockup waveswitch.mp4"
+                loop
+                muted
+                playsInline
+                preload="auto"
+                aria-label="Wave Switch mockup demonstration" className="!w-full !h-full !max-w-full" />
+
+            </div>
+          </div>
+        </div>
+
+        {/* Boutons d'actions pour la deuxième vidéo */}
+        <div className="flex items-center justify-center gap-3 mt-5">
+          <button
+            onClick={togglePlayPause2}
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+            style={{
+              fontFamily: "var(--font-body)"
+            }}
+            aria-label={isPlaying2 ? "Pause" : "Play"}
+          >
+            {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            {isPlaying2 ? "Pause" : "Play"}
+          </button>
+          
+          <button
+            onClick={skipForward2}
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+            style={{
+              fontFamily: "var(--font-body)"
+            }}
+            aria-label="Skip forward 5 seconds"
+          >
+            <SkipForward className="w-4 h-4" />
+            +5s
+          </button>
         </div>
 
       </div>
