@@ -215,7 +215,7 @@ export default function ProjectCarousel() {
                     height: isMobile ? "35vw" : "25vw",
                     opacity: isCenter ? 1 : 0.4,
                     transition: "opacity 300ms ease",
-                    marginRight: index < extendedImages.length - 1 ? (isMobile ? "20px" : "30px") : "0",
+                    marginRight: index < extendedImages.length - 1 ? (isMobile ? "10px" : "15px") : "0",
                     userSelect: "none",
                     position: "relative",
                     backgroundColor: index === 2 || (index === 0 && currentIndex === 0) || (index === extendedImages.length - 1 && currentIndex === extendedImages.length - 1) ? "#F5F5F7" : "transparent",
@@ -250,7 +250,7 @@ export default function ProjectCarousel() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-0 relative">
+        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-6 relative">
           <div className="flex-1" />
           
           <div className="flex justify-center gap-2">
