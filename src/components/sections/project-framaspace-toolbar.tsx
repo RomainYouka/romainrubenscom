@@ -3,75 +3,146 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './project-framaspace-toolbar.module.css';
 
-interface ToolbarItem {
-  id: number;
-  bgColor: string;
-}
-
-const TOOLBAR_ITEMS: ToolbarItem[] = [
-  { id: 1, bgColor: '#6BA3FF' },
-  { id: 2, bgColor: '#FFD700' },
-  { id: 3, bgColor: '#FF7F33' },
-  { id: 4, bgColor: '#52B788' },
-  { id: 5, bgColor: '#5DADE2' },
-  { id: 6, bgColor: '#A9A9A9' },
-];
-
 export function FramaspaceToolbarSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentTranslateX, setCurrentTranslateX] = useState(0);
+  const targetTranslateXRef = useRef(0);
+  const animationIdRef = useRef<number | null>(null);
+
+  // LERP pour interpolation fluide
+  const lerp = (start: number, end: number, factor: number) => {
+    return start + (end - start) * factor;
+  };
+
+  // IntersectionObserver pour détecter quand la section est visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  // Wheel event listener pour synchroniser scroll vertical → horizontal
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!isVisible || !containerRef.current) return;
+
+      const containerWidth = containerRef.current.offsetWidth;
+      const scrollWidth = containerRef.current.scrollWidth;
+      const maxTranslate = scrollWidth - containerWidth;
+
+      const scrollDelta = e.deltaY * 0.5;
+      targetTranslateXRef.current = Math.max(0, Math.min(maxTranslate, targetTranslateXRef.current + scrollDelta));
+    };
+
+    if (isVisible) {
+      window.addEventListener('wheel', handleWheel, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [isVisible]);
+
+  // RequestAnimationFrame pour l'interpolation fluide
+  useEffect(() => {
+    const animate = () => {
+      const newTranslateX = lerp(currentTranslateX, targetTranslateXRef.current, 0.1);
+      setCurrentTranslateX(newTranslateX);
+
+      if (containerRef.current) {
+        containerRef.current.style.transform = `translateX(-${newTranslateX}px)`;
+      }
+
+      animationIdRef.current = requestAnimationFrame(animate);
+    };
+
+    animationIdRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+      }
+    };
+  }, [currentTranslateX]);
+
+  // Réinitialiser quand la section sort du viewport
+  useEffect(() => {
+    if (!isVisible) {
+      targetTranslateXRef.current = 0;
+      setCurrentTranslateX(0);
+      if (containerRef.current) {
+        containerRef.current.style.transform = 'translateX(0)';
+      }
+    }
+  }, [isVisible]);
+
+  const toolbarImages = [
+    { id: 1, src: '/framaspace-toolbar/blue.png', alt: 'Blue Toolbar' },
+    { id: 2, src: '/framaspace-toolbar/yellow.png', alt: 'Yellow Toolbar' },
+    { id: 3, src: '/framaspace-toolbar/orange.png', alt: 'Orange Toolbar' },
+    { id: 4, src: '/framaspace-toolbar/green.png', alt: 'Green Toolbar' },
+    { id: 5, src: '/framaspace-toolbar/cyan.png', alt: 'Cyan Toolbar' },
+    { id: 6, src: '/framaspace-toolbar/gray.png', alt: 'Gray Toolbar' },
+  ];
 
   return (
     <section
       ref={sectionRef}
       className={styles['horizontal-scroll-section']}
     >
-      <div className="flex flex-col items-center justify-center w-full">
-        {/* Container avec les items empilés verticalement */}
+      <div className="w-full overflow-hidden">
         <div
           ref={containerRef}
           className={styles['horizontal-track']}
+          style={{
+            transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            willChange: 'transform',
+          }}
         >
-          {/* Affiche les 6 barres empilées verticalement */}
-          {TOOLBAR_ITEMS.map((item) => (
-            <div
-              key={item.id}
-              className="w-full flex items-center px-4 md:px-6 py-3 md:py-4 relative group cursor-pointer transition-all hover:shadow-lg"
-              style={{
-                backgroundColor: item.bgColor,
-                height: '60px',
-                borderRadius: '8px',
-              }}
-            >
-              {/* Section gauche - Icônes */}
-              <div className="flex gap-2 items-center">
-                <div className="w-4 h-4 rounded-full bg-white/60 hover:bg-white transition" />
-                <div className="w-4 h-4 rounded-full bg-white/40 hover:bg-white transition" />
-                <div className="w-4 h-4 rounded-full bg-white/20 hover:bg-white transition" />
-              </div>
-
-              {/* Section milieu - Slider/Barre */}
-              <div className="flex-1 mx-4 md:mx-6 h-2 bg-white/30 rounded-full relative">
-                <div 
-                  className="h-full bg-white rounded-full transition-all"
-                  style={{ width: `${40 + (item.id * 8)}%` }}
+          {/* Affiche les 6 images 2 fois pour créer un carrousel fluide */}
+          {[...Array(2)].map((_, repetition) =>
+            toolbarImages.map((item) => (
+              <div
+                key={`${repetition}-${item.id}`}
+                className="flex-shrink-0"
+                style={{
+                  minWidth: 'clamp(300px, 50vw, 500px)',
+                  marginRight: 'clamp(12px, 2vw, 20px)',
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-auto rounded-lg"
+                  style={{ display: 'block' }}
                 />
               </div>
-
-              {/* Section droite - Contrôles */}
-              <div className="flex gap-2 items-center">
-                <div className="w-3 h-3 rounded-sm bg-white/60 hover:bg-white transition" />
-                <div className="w-3 h-3 rounded-sm bg-white/40 hover:bg-white transition" />
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
-
-        {/* Hint texte */}
-        <p className={styles['hint-text']}>
-          Explore the tools
-        </p>
       </div>
+
+      {/* Hint texte */}
+      <p className={styles['hint-text']}>
+        Scroll to explore
+      </p>
     </section>
   );
 }
