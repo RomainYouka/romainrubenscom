@@ -291,7 +291,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24 mt-12 md:mt-16">
           {/* Texte à gauche - flex-shrink-0 avec même largeur que mockup section 1 */}
           <div
-            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 flex flex-col items-center md:items-start justify-center"
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 flex flex-col items-center md:items-start justify-center md:mr-auto"
             style={{
               maxWidth: "min(85vw, 400px)"
             }}>
