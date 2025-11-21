@@ -3,6 +3,20 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './project-framaspace-toolbar.module.css';
 
+interface ToolbarItem {
+  id: number;
+  bgColor: string;
+}
+
+const TOOLBAR_ITEMS: ToolbarItem[] = [
+  { id: 1, bgColor: '#6BA3FF' },
+  { id: 2, bgColor: '#FFD700' },
+  { id: 3, bgColor: '#FF7F33' },
+  { id: 4, bgColor: '#52B788' },
+  { id: 5, bgColor: '#5DADE2' },
+  { id: 6, bgColor: '#A9A9A9' },
+];
+
 export function FramaspaceToolbarSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -93,15 +107,6 @@ export function FramaspaceToolbarSection() {
     }
   }, [isVisible]);
 
-  const toolbarImages = [
-    { id: 1, src: '/framaspace-toolbar/blue.png', alt: 'Blue Toolbar' },
-    { id: 2, src: '/framaspace-toolbar/yellow.png', alt: 'Yellow Toolbar' },
-    { id: 3, src: '/framaspace-toolbar/orange.png', alt: 'Orange Toolbar' },
-    { id: 4, src: '/framaspace-toolbar/green.png', alt: 'Green Toolbar' },
-    { id: 5, src: '/framaspace-toolbar/cyan.png', alt: 'Cyan Toolbar' },
-    { id: 6, src: '/framaspace-toolbar/gray.png', alt: 'Gray Toolbar' },
-  ];
-
   return (
     <section
       ref={sectionRef}
@@ -116,23 +121,45 @@ export function FramaspaceToolbarSection() {
             willChange: 'transform',
           }}
         >
-          {/* Affiche les 6 images 2 fois pour créer un carrousel fluide */}
+          {/* Affiche les 6 barres 2 fois pour créer un carrousel fluide */}
           {[...Array(2)].map((_, repetition) =>
-            toolbarImages.map((item) => (
+            TOOLBAR_ITEMS.map((item) => (
               <div
                 key={`${repetition}-${item.id}`}
-                className="flex-shrink-0"
+                className="flex-shrink-0 flex items-center px-5 md:px-8 py-4 md:py-5 rounded-lg"
                 style={{
-                  minWidth: 'clamp(300px, 50vw, 500px)',
+                  backgroundColor: item.bgColor,
+                  minWidth: 'clamp(280px, 45vw, 450px)',
+                  height: '60px',
                   marginRight: 'clamp(12px, 2vw, 20px)',
+                  gap: '12px',
                 }}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-auto rounded-lg"
-                  style={{ display: 'block' }}
-                />
+                {/* Icônes gauche - eye et dots */}
+                <div className="flex gap-2 items-center flex-shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-white/70 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-black/60" />
+                  </div>
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 rounded-full bg-white/50" />
+                    <div className="w-2 h-2 rounded-full bg-white/50" />
+                    <div className="w-2 h-2 rounded-full bg-white/50" />
+                  </div>
+                </div>
+
+                {/* Barre de contrôle centrale */}
+                <div className="flex-1 h-2 bg-white/30 rounded-full relative">
+                  <div 
+                    className="h-full bg-white rounded-full"
+                    style={{ width: `${45 + (item.id * 6)}%` }}
+                  />
+                </div>
+
+                {/* Contrôles droite */}
+                <div className="flex gap-2 items-center flex-shrink-0">
+                  <div className="w-3 h-3 rounded-sm bg-white/60" />
+                  <div className="w-3 h-3 rounded-sm bg-white/40" />
+                </div>
               </div>
             ))
           )}
