@@ -59,9 +59,10 @@ export default function ProjectFramaspace({ language }: ProjectFramaspaceProps) 
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16">
           {/* Image PNG à gauche */}
           <div
-            className="w-full md:w-auto md:flex-shrink-0"
+            className="w-full md:w-auto md:flex-shrink-0 flex justify-center md:justify-start"
             style={{
-              maxWidth: "500px"
+              maxWidth: "500px",
+              margin: "0 auto md:0"
             }}
           >
             <img
