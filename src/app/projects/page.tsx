@@ -16,17 +16,20 @@ const projectsTranslations = {
   FR: {
     heading: "Ce qui guide mon travail.",
     headingImage: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/ce-qui-guide-1762109969479.png",
-    text: "Je ne crois pas aux solutions toutes faites. Je crois aux processus justes. Mon approche est une rencontre entre empathie, structure, et intuition. Concevoir, c'est écouter. Designer, c'est comprendre avant de décider."
+    text: "Je ne crois pas aux solutions toutes faites. Je crois aux processus justes. Mon approche est une rencontre entre empathie, structure, et intuition. Concevoir, c'est écouter. Designer, c'est comprendre avant de décider.",
+    nameQuestContext: "Le projet part d'un constat simple : le nom de famille n'est jamais neutre. Il révèle une histoire, une origine et un héritage. Il peut être source de fierté mais aussi de préjugés. Certaines personnes témoignent encore aujourd'hui de discriminations liées à leur nom, que ce soit dans les démarches administratives, dans le milieu scolaire ou dans les interactions du quotidien. Face à ces constats, l'objectif est d'imaginer un support pédagogique inclusif, capable de provoquer une conversation honnête, ludique et accessible autour de l'identité."
   },
   EN: {
     heading: "What guides my work.",
     headingImage: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/what-1762109824205.png",
-    text: "I don't believe in ready-made solutions. I believe in the right process. My approach is a meeting point between empathy, structure, and intuition. To design is to listen. To be a designer is to understand before deciding."
+    text: "I don't believe in ready-made solutions. I believe in the right process. My approach is a meeting point between empathy, structure, and intuition. To design is to listen. To be a designer is to understand before deciding.",
+    nameQuestContext: "The project stems from a simple observation: a family name is never neutral. It reveals a history, an origin, and a heritage. It can be a source of pride but also of prejudice. Today, many people still experience discrimination linked to their name, whether in administrative procedures, school environments, or everyday interactions. Faced with these realities, the goal is to imagine an inclusive educational tool, capable of fostering an honest, playful, and accessible conversation around identity."
   },
   ՀԱՅ: {
     heading: "Ինչն է առաջնորդում իմ աշխատանքը։",
     headingImage: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/armenien-texte-titre-1762183912650.png",
-    text: "Ես չեմ հավատում պատրաստի լուծումներին։ Ես հավատում եմ ճիշտ գործընթացին։ Իմ մոտեցումը համակցում է կարեկցանք, կառուցվածք և ինտուիցիա։ Դիզայնը լսելն է։ Դիզայներ լինելը՝ հասկանալը որոշելուց առաջ։"
+    text: "Ես չեմ հավատում պատրաստի լուծումներին։ Ես հավատում եմ ճիշտ գործընթացին։ Իմ մոտեցումը համակցում է կարեկցանք, կառուցվածք և ինտուիցիա։ Դիզայնը լսելն է։ Դիզայներ լինելը՝ հասկանալը որոշելուց առաջ։",
+    nameQuestContext: "Նախագիծը սկսվում է պարզ դիտարկումից՝ ազգանունը երբեք չեզոք չէ։ Այն բացահայտում է պատմություն, ծագումը և ժառանգությունը։ Այն կարող է լինել հպարտության աղբյուր, բայց նաև կանխակալության։ Այսօր շատ մարդիկ շարունակում են տառապել իրենց ազգանունի հետ կապված խտրականությամբ՝ լինի դա վարչական ընթացակարգեր, դպրոցական միջավայր կամ առօրյա փոխազդեցություն։ Այս իրականությունների դեմ, նպատակն է պատկերել ներառական կրթական գործիք, որը ունակ է խթանել անկեղծ, խաղային և մատչելի զրույց ինքնության շուրջ։"
   }
 };
 
@@ -227,6 +230,24 @@ export default function ProjectsPage() {
 
       <div>
         <ProjectMacStudio language={selectedLanguage} />
+      </div>
+
+      <div className="md:hidden bg-[#F5F5F7] px-5 py-12">
+        <div className="max-w-[1200px] mx-auto">
+          <div
+            style={{
+              fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+              fontSize: "clamp(15px, 1.6vw, 17px)",
+              fontWeight: 400,
+              color: "#1D1D1F",
+              lineHeight: 1.6,
+              letterSpacing: "-0.022em",
+              textAlign: "left"
+            }}
+          >
+            {currentTranslations.nameQuestContext}
+          </div>
+        </div>
       </div>
 
       <div>
