@@ -7,52 +7,53 @@ const bands = [
 {
   id: 1,
   src: "/framaspace/A1.png",
-  width: 2400,
-  height: 140
+  direction: "left" as const,
+  speed: 60
 },
 {
   id: 2,
   src: "/framaspace/A2.png",
-  width: 2400,
-  height: 140
+  direction: "right" as const,
+  speed: 50
 },
 {
   id: 3,
   src: "/framaspace/A3.png",
-  width: 2400,
-  height: 140
+  direction: "left" as const,
+  speed: 70
 },
 {
   id: 4,
   src: "/framaspace/A4.png",
-  width: 2400,
-  height: 140
+  direction: "right" as const,
+  speed: 56
 },
 {
   id: 5,
   src: "/framaspace/A5.png",
-  width: 2400,
-  height: 140
+  direction: "left" as const,
+  speed: 64
 },
 {
   id: 6,
   src: "/framaspace/A6.png",
-  width: 2400,
-  height: 140
+  direction: "right" as const,
+  speed: 54
 },
 {
   id: 7,
   src: "/framaspace/A7.png",
-  width: 2400,
-  height: 140
+  direction: "left" as const,
+  speed: 66
 }];
 
 
 export default function ProjectHorizontalParallax() {
   const sectionRef = useRef<HTMLElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState<number[]>(new Array(bands.length).fill(0));
-  const bandRefs = useRef<(HTMLDivElement | null)[]>(new Array(bands.length).fill(null));
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -67,54 +68,49 @@ export default function ProjectHorizontalParallax() {
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    const section = sectionRef.current;
+    if (!section) return;
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const sectionRect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
+      setIsScrolling(true);
       
-      // Calculer si la section est visible
-      const isVisible = sectionRect.top < viewportHeight && sectionRect.bottom > 0;
-      if (!isVisible) return;
-
-      // Calculer la progression du scroll dans la section
-      const sectionTop = sectionRect.top;
-      const sectionHeight = sectionRect.height;
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
       
-      // Progression de 0 à 1
-      // progress = 0 quand section entre par le bas (sectionTop = viewportHeight)
-      // progress = 1 quand section sort par le haut (sectionTop = -sectionHeight)
-      const progress = Math.max(0, Math.min(1, (viewportHeight - sectionTop) / (viewportHeight + sectionHeight)));
-
-      // Calculer le déplacement pour chaque bande
-      const newProgress = bands.map((band, index) => {
-        const bandElement = bandRefs.current[index];
-        if (!bandElement) return 0;
-
-        const viewportWidth = window.innerWidth;
-        const imageWidth = band.width;
-        const maxScroll = Math.max(0, imageWidth - viewportWidth);
-        
-        // Les impairs (index 0, 2, 4, 6) vont à droite (positif)
-        // Les pairs (index 1, 3, 5) vont à gauche (négatif)
-        const isEven = (index + 1) % 2 === 0;
-        
-        return isEven ? -progress * maxScroll : progress * maxScroll;
-      });
-
-      setScrollProgress(newProgress);
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial call
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
-  }, [prefersReducedMotion]);
+  }, []);
 
 
   return (
@@ -125,42 +121,80 @@ export default function ProjectHorizontalParallax() {
       style={{
         fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
       }}>
+      
+      <style jsx>{`
+        @keyframes scrollLeft {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        @keyframes scrollRight {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+          .scroll-left,
+          .scroll-right {
+            animation: none !important;
+          }
+        }
+        
+        .scroll-left {
+          animation: scrollLeft var(--duration) linear infinite;
+        }
+        
+        .scroll-right {
+          animation: scrollRight var(--duration) linear infinite;
+        }
+        
+        .scroll-left.frozen,
+        .scroll-right.frozen {
+          animation-play-state: paused;
+        }
+      `}</style>
 
       <div className="w-full">
         <div className="flex flex-col gap-3 md:gap-4">
-          {bands.map((band, index) => {
-            const isEven = (index + 1) % 2 === 0;
-            const translateX = scrollProgress[index] || 0;
-            
-            return (
+          {bands.map((band, index) =>
+          <div
+            key={band.id}
+            className="w-full overflow-hidden relative h-[80px] md:h-[90px] lg:h-[100px]">
+
               <div
-                key={band.id}
-                className="w-full overflow-hidden relative h-[120px] md:h-[140px] lg:h-[160px]">
-                <div
-                  ref={(el) => {
-                    bandRefs.current[index] = el;
-                  }}
-                  className="absolute h-full"
-                  style={{
-                    transform: prefersReducedMotion ? 'none' : `translateX(${translateX}px)`,
-                    transition: prefersReducedMotion ? 'none' : 'transform 0.1s linear',
-                    willChange: prefersReducedMotion ? 'auto' : 'transform',
-                    [isEven ? 'right' : 'left']: 0
-                  }}>
-                  <Image
+              className={`flex absolute inset-0 h-full ${prefersReducedMotion ? '' : band.direction === 'left' ? 'scroll-left' : 'scroll-right'} ${!isScrolling || !isVisible ? 'frozen' : ''}`}
+              style={{
+                width: "max-content",
+                willChange: prefersReducedMotion ? "auto" : "transform",
+                '--duration': `${band.speed}s`
+              } as React.CSSProperties}>
+
+                {[...Array(6)].map((_, dupIndex) => (
+                  <div key={dupIndex} className="flex h-full shrink-0" style={{ minWidth: "100vw" }}>
+                    <Image
                     src={band.src}
-                    alt={`Framaspace ${band.id}`}
-                    width={band.width}
-                    height={band.height}
-                    className="h-full w-auto object-contain"
+                    alt={`Group ${band.id}`}
+                    width={2400}
+                    height={140}
+                    className="h-full w-full object-contain"
                     style={{ display: 'block' }}
                     quality={100}
-                    priority={index < 3}
+                    priority={index < 3 && dupIndex === 0}
                     unoptimized />
-                </div>
+                  </div>
+                ))}
+
               </div>
-            );
-          })}
+            </div>
+          )}
         </div>
       </div>
     </section>);

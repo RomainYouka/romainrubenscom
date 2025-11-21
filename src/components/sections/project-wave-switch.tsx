@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, SkipForward } from "lucide-react";
-import Image from "next/image";
 
 interface ProjectWaveSwitchProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -38,8 +37,13 @@ const translations = {
 export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying1, setIsPlaying1] = useState(false);
+  const [isPlaying2, setIsPlaying2] = useState(false);
   const videoRef1 = useRef<HTMLVideoElement>(null);
+  const videoRef2Desktop = useRef<HTMLVideoElement>(null);
+  const videoRef2Mobile = useRef<HTMLVideoElement>(null);
   const videoContainer1 = useRef<HTMLDivElement>(null);
+  const videoContainer2Desktop = useRef<HTMLDivElement>(null);
+  const videoContainer2Mobile = useRef<HTMLDivElement>(null);
 
   const t = translations[language];
 
@@ -52,7 +56,11 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
   useEffect(() => {
     const videoElement1 = videoRef1.current;
+    const videoElement2Desktop = videoRef2Desktop.current;
+    const videoElement2Mobile = videoRef2Mobile.current;
     const container1 = videoContainer1.current;
+    const container2Desktop = videoContainer2Desktop.current;
+    const container2Mobile = videoContainer2Mobile.current;
 
     if (!videoElement1 || !container1) return;
 
@@ -77,10 +85,67 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
     observer1.observe(container1);
 
+    // Observer pour la deuxième vidéo desktop
+    let observer2Desktop: IntersectionObserver | null = null;
+    if (videoElement2Desktop && container2Desktop) {
+      observer2Desktop = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Only update state if we're in desktop mode
+            const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+            if (!isDesktop) return;
+            
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+              videoElement2Desktop.play().catch(() => {});
+              setIsPlaying2(true);
+            } else {
+              videoElement2Desktop.pause();
+              setIsPlaying2(false);
+            }
+          });
+        },
+        {
+          threshold: [0, 0.3, 0.5, 0.7, 1],
+          rootMargin: "-10% 0px -10% 0px"
+        }
+      );
+      observer2Desktop.observe(container2Desktop);
+    }
+
+    // Observer pour la deuxième vidéo mobile
+    let observer2Mobile: IntersectionObserver | null = null;
+    if (videoElement2Mobile && container2Mobile) {
+      observer2Mobile = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Only update state if we're in mobile mode
+            const isMobile = !window.matchMedia("(min-width: 768px)").matches;
+            if (!isMobile) return;
+            
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+              videoElement2Mobile.play().catch(() => {});
+              setIsPlaying2(true);
+            } else {
+              videoElement2Mobile.pause();
+              setIsPlaying2(false);
+            }
+          });
+        },
+        {
+          threshold: [0, 0.3, 0.5, 0.7, 1],
+          rootMargin: "-10% 0px -10% 0px"
+        }
+      );
+      observer2Mobile.observe(container2Mobile);
+    }
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
         videoElement1.pause();
+        if (videoElement2Desktop) videoElement2Desktop.pause();
+        if (videoElement2Mobile) videoElement2Mobile.pause();
         setIsPlaying1(false);
+        setIsPlaying2(false);
       }
     };
 
@@ -88,6 +153,8 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
     return () => {
       observer1.disconnect();
+      if (observer2Desktop) observer2Desktop.disconnect();
+      if (observer2Mobile) observer2Mobile.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
@@ -109,6 +176,30 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
     const videoElement = videoRef1.current;
     if (!videoElement) return;
     videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
+
+  const togglePlayPause2 = () => {
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const videoElement = isDesktop ? videoRef2Desktop.current : videoRef2Mobile.current;
+    
+    if (!videoElement) return;
+    
+    if (isPlaying2) {
+      videoElement.pause();
+      setIsPlaying2(false);
+    } else {
+      videoElement.play().catch(() => {});
+      setIsPlaying2(true);
+    }
+  };
+
+  const skipForward2 = () => {
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const videoElement = isDesktop ? videoRef2Desktop.current : videoRef2Mobile.current;
+    
+    if (videoElement) {
+      videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+    }
   };
 
   return (
@@ -225,10 +316,65 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           </div>
         </div>
 
-        {/* Section 2: Feature Grid - Apple-style information bubbles */}
-        <div className="mb-16 md:mb-24 mt-12 md:mt-16">
-          {/* Introduction text for features */}
-          <div className="mb-8 md:mb-12 max-w-[800px] mx-auto">
+        {/* Section 2: paragraph2 text (mobile only center, desktop left) */}
+        <div className="mb-16 md:mb-24 md:flex md:flex-row-reverse md:items-center md:gap-16 mt-12 md:mt-16">
+          <div
+            ref={videoContainer2Desktop}
+            className="hidden md:block md:w-auto md:flex-shrink-0"
+            style={{
+              maxWidth: "350px"
+            }}>
+
+            <div
+              style={{
+                width: "100%",
+                overflow: "hidden"
+              }}>
+
+              <video
+                ref={videoRef2Desktop}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/mockup-waveswitch_2-1762179482964.mp4"
+                loop
+                muted
+                playsInline
+                preload="auto"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block"
+                }}
+                aria-label="Wave Switch product demonstration" />
+
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-8">
+              <button
+                onClick={togglePlayPause2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying2 ? "Pause" : "Play"}
+              >
+                {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying2 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
+            </div>
+          </div>
+
+          <div className="flex-1">
             <div
               style={{
                 fontFamily: "var(--font-body)",
@@ -237,40 +383,70 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 color: "#1D1D1F",
                 lineHeight: 1.5,
                 letterSpacing: "-0.022em",
-                textAlign: "center"
+                textAlign: "left"
               }}>
+
               {t.paragraph2}
             </div>
           </div>
+        </div>
 
-          <div 
-            className="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6 
-                       grid-cols-1 
-                       sm:grid-cols-2 
-                       lg:grid-cols-3 
-                       xl:grid-cols-4"
+        {/* Section 3: Second video mockup (mobile only) */}
+        <div className="flex justify-center md:hidden mb-16">
+          <div
+            ref={videoContainer2Mobile}
+            className="w-full md:w-auto mx-auto"
             style={{
-              maxWidth: "1400px",
-              margin: "0 auto"
+              maxWidth: "min(85vw, 350px)"
             }}>
-            {Array.from({ length: 17 }, (_, i) => i + 1).map((num) => (
-              <div
-                key={num}
-                className="relative w-full overflow-hidden rounded-3xl bg-[#F5F5F7] transition-transform duration-300 hover:scale-[1.02]"
+
+            <div
+              style={{
+                width: "100%",
+                overflow: "hidden"
+              }}>
+
+              <video
+                ref={videoRef2Mobile}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/mockup-waveswitch_2-1762179482964.mp4"
+                loop
+                muted
+                playsInline
+                preload="auto"
                 style={{
-                  aspectRatio: num === 5 || num === 7 || num === 10 || num === 15 ? "3/4" : "16/9"
-                }}>
-                <Image
-                  src={`/waveswitch/feature-${String(num).padStart(2, '0')}.png`}
-                  alt={`WaveSwitch Feature ${num}`}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="object-contain p-4 sm:p-6 md:p-8"
-                  quality={100}
-                  priority={num <= 6}
-                />
-              </div>
-            ))}
+                  width: "100%",
+                  height: "auto",
+                  display: "block"
+                }}
+                aria-label="Wave Switch product demonstration" />
+
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-8 md:hidden">
+              <button
+                onClick={togglePlayPause2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying2 ? "Pause" : "Play"}
+              >
+                {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying2 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
+            </div>
           </div>
         </div>
       </div>
