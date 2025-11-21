@@ -225,10 +225,30 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           </div>
         </div>
 
-        {/* Section 2: Feature Grid - Apple-style information bubbles */}
+        {/* Section 2: Mockup Image - Responsive desktop/tablet layout */}
         <div className="mb-16 md:mb-24 mt-12 md:mt-16">
-          {/* Introduction text for features */}
-          <div className="mb-8 md:mb-12 max-w-[800px] mx-auto">
+          {/* Desktop mockup - hidden on mobile */}
+          <div className="hidden md:block mb-8 md:mb-12 max-w-[1200px] mx-auto px-5 md:px-10">
+            <img 
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/ordinateur_1763720240103.png"
+              alt="WaveSwitch Desktop Mockup"
+              className="w-full h-auto rounded-2xl"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Tablet/Mobile mockup - visible on smaller screens */}
+          <div className="md:hidden mb-8 md:mb-12 max-w-[1200px] mx-auto px-5 md:px-10">
+            <img 
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/tablet_1763720240103.png"
+              alt="WaveSwitch Mobile Mockup"
+              className="w-full h-auto rounded-2xl"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Description text for features */}
+          <div className="mb-8 md:mb-12 max-w-[800px] mx-auto px-5 md:px-10">
             <div
               style={{
                 fontFamily: "var(--font-body)",
@@ -243,6 +263,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             </div>
           </div>
 
+          {/* Feature Grid */}
           <div 
             className="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6 
                        grid-cols-1 
@@ -251,7 +272,9 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                        xl:grid-cols-4"
             style={{
               maxWidth: "1400px",
-              margin: "0 auto"
+              margin: "0 auto",
+              paddingLeft: "clamp(20px, 5vw, 40px)",
+              paddingRight: "clamp(20px, 5vw, 40px)"
             }}>
             {Array.from({ length: 17 }, (_, i) => i + 1).map((num) => (
               <div

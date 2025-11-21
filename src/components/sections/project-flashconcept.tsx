@@ -178,19 +178,6 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           >
             {sectionContent.sectionTitle}
           </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(14px, 1.5vw, 16px)",
-              fontWeight: 400,
-              color: "#86868b",
-              lineHeight: 1.5,
-              letterSpacing: "-0.015em",
-              maxWidth: "800px"
-            }}
-          >
-            {sectionContent.sectionSubtitle}
-          </p>
         </div>
       </div>
 
