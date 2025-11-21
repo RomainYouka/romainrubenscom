@@ -188,7 +188,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
       <div className="container max-w-[1200px] mx-auto px-5 md:px-10">
         {/* Section 1: iPhone mockup à gauche + texte à droite */}
-        <div className="hidden md:flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24">
+        <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24">
           {/* Vidéo iPhone à gauche */}
           <div
             ref={videoContainer1}
