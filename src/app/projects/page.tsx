@@ -5,7 +5,6 @@ import ProjectIOS26 from "@/components/sections/project-ios26";
 import { ProjectWaveSwitch } from "@/components/sections/project-wave-switch";
 import ProjectFramaspace from "@/components/sections/project-framaspace";
 import ProjectBeforeAfter from "@/components/sections/project-before-after";
-import ProjectHorizontalParallax from "@/components/sections/project-horizontal-parallax";
 import ProjectNameQuest from "@/components/sections/project-namequest";
 import ProjectMacStudio from "@/components/sections/project-macstudio";
 import ProjectCarousel from "@/components/sections/project-carousel";
@@ -220,10 +219,6 @@ export default function ProjectsPage() {
 
       <div>
         <ProjectBeforeAfter />
-      </div>
-
-      <div>
-        <ProjectHorizontalParallax />
       </div>
 
       <div id="namequest">
