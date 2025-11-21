@@ -154,7 +154,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   return (
     <section
       id="flashconcept"
-      className="w-full bg-[#F5F5F7]"
+      className="w-full bg-white"
       style={{
         scrollMarginTop: "80px"
       }}
@@ -289,6 +289,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           </div>
         </div>
       </div>
+
+      {/* Divider between FlashConcept_01 and NameQuest */}
+      <div className="border-t border-[#D3D3D4]"></div>
 
       {/* FlashConcept_02 */}
       <div

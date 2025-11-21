@@ -289,11 +289,11 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
         {/* Section 2: Mockup video on the right with text on the left - aligned with Section 1 */}
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24 mt-12 md:mt-16">
-          {/* Texte à gauche - flex-shrink-0 avec même largeur que mockup section 1 */}
+          {/* Texte à gauche - agrandi avec flex-1 comme section 1 */}
           <div
-            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 flex flex-col items-center md:items-start justify-center md:mr-auto"
+            className="w-full md:flex-1 mx-auto md:mx-0 flex flex-col items-center md:items-start justify-center"
             style={{
-              maxWidth: "min(85vw, 400px)"
+              maxWidth: "100%"
             }}>
             <div
               style={{
@@ -310,10 +310,10 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             </div>
           </div>
 
-          {/* Vidéo à droite avec boutons - alignée à droite */}
+          {/* Vidéo à droite avec boutons - largeur fixe */}
           <div
             ref={videoContainer2}
-            className="w-full md:w-auto md:flex-shrink-0 md:ml-auto mx-auto md:mx-0 flex flex-col items-center"
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 flex flex-col items-center"
             style={{
               maxWidth: "100%"
             }}>
