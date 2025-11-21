@@ -323,7 +323,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 width: "100%",
                 maxWidth: "320px",
                 overflow: "hidden",
-                backgroundColor: "transparent"
+                backgroundColor: "#FFFFFF"
               }}>
 
               <video
