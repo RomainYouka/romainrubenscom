@@ -136,25 +136,6 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
           </div>
         </div>
       </div>
-
-      <div className="hidden md:block max-w-[1200px] mx-auto px-5 md:px-6 lg:px-10 py-16 md:py-20 w-full">
-        <div
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "clamp(15px, 1.6vw, 17px)",
-            fontWeight: 400,
-            color: "#1D1D1F",
-            lineHeight: 1.6,
-            letterSpacing: "-0.022em",
-            textAlign: "left",
-            maxWidth: "900px",
-            marginLeft: "auto",
-            marginRight: "auto"
-          }}
-        >
-          {t.contextText}
-        </div>
-      </div>
     </section>
   );
 }
