@@ -41,7 +41,7 @@ export function FramaspaceToolbarSection() {
   }, []);
 
   return (
-    <section className="w-full bg-black py-16 md:py-20 overflow-hidden">
+    <section className="w-full bg-black pt-32 md:pt-40 pb-16 md:pb-20 overflow-hidden">
       <div 
         ref={containerRef}
         className="flex gap-2 md:gap-3 px-4 md:px-8"
