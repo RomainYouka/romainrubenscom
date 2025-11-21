@@ -134,20 +134,6 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
               {t.description}
             </div>
 
-            <div
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "clamp(15px, 1.6vw, 17px)",
-                fontWeight: 400,
-                color: "#1D1D1F",
-                lineHeight: 1.5,
-                letterSpacing: "-0.022em",
-                whiteSpace: "pre-line",
-                marginBottom: "clamp(24px, 3vw, 40px)"
-              }}
-            >
-              {t.contextText}
-            </div>
           </div>
         </div>
       </div>
@@ -175,6 +161,23 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
             className="w-full h-auto"
             style={{ display: 'block' }}
           />
+        </div>
+      </div>
+
+      {/* Context Section */}
+      <div className="max-w-[1200px] mx-auto px-5 md:px-6 lg:px-10 py-16 md:py-20">
+        <div
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "clamp(15px, 1.6vw, 17px)",
+            fontWeight: 400,
+            color: "#1D1D1F",
+            lineHeight: 1.5,
+            letterSpacing: "-0.022em",
+            whiteSpace: "pre-line"
+          }}
+        >
+          {t.contextText}
         </div>
       </div>
     </section>
