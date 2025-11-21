@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+
 export function FramaspaceToolbarSection() {
   const toolbarImages = [
     { id: 1, src: '/framaspace-toolbar/red.png', alt: 'Red toolbar' },
@@ -10,18 +12,58 @@ export function FramaspaceToolbarSection() {
     { id: 6, src: '/framaspace-toolbar/cyan.png', alt: 'Cyan toolbar' },
   ];
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let animationFrameId: number;
+    let position = 0;
+    const speed = 0.5;
+
+    const animate = () => {
+      position += speed;
+      
+      // Reset position when scrolled too far
+      const scrollWidth = container.scrollWidth / 2;
+      if (position >= scrollWidth) {
+        position = 0;
+      }
+
+      container.style.transform = `translateX(-${position}px)`;
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
   return (
-    <section className="w-full bg-black py-6 md:py-8 px-4 md:px-8">
-      <div className="max-w-[1200px] mx-auto flex flex-col gap-3 md:gap-4">
-        {toolbarImages.map((image) => (
-          <img
-            key={image.id}
-            src={image.src}
-            alt={image.alt}
-            className="w-full h-auto rounded-lg"
-            style={{ display: 'block' }}
-          />
-        ))}
+    <section className="w-full bg-black py-8 md:py-12 overflow-hidden">
+      <div 
+        ref={containerRef}
+        className="flex gap-3 md:gap-4 px-4 md:px-8"
+        style={{
+          width: 'fit-content',
+        }}
+      >
+        {/* Affiche les images 2 fois pour créer un carrousel infini */}
+        {[...Array(2)].map((_, repetition) =>
+          toolbarImages.map((image) => (
+            <img
+              key={`${repetition}-${image.id}`}
+              src={image.src}
+              alt={image.alt}
+              className="flex-shrink-0 h-auto rounded-lg"
+              style={{
+                width: 'clamp(280px, 45vw, 500px)',
+                display: 'block',
+              }}
+            />
+          ))
+        )}
       </div>
     </section>
   );
