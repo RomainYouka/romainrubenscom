@@ -43,9 +43,11 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
   }, []);
 
   return (
-    <section
-      id="namequest"
-      className="w-full bg-[#F5F5F7] pt-32 md:pt-40"
+    <>
+      <div className="w-full bg-white h-32 md:h-48" />
+      <section
+        id="namequest"
+        className="w-full bg-[#F5F5F7]"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
@@ -163,5 +165,6 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
         </div>
       </div>
     </section>
+    </>
   );
 }
