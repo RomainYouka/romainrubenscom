@@ -288,9 +288,9 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         </div>
 
         {/* Section 2: Mockup video on the right with text on the left */}
-        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12 mb-16 md:mb-24 mt-12 md:mt-16">
-          {/* Texte à gauche - petit format */}
-          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start">
+        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24 mt-12 md:mt-16">
+          {/* Texte à gauche - aligné à gauche et centré verticalement */}
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start justify-center">
             <div
               style={{
                 fontFamily: "var(--font-body)",
@@ -299,17 +299,17 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 color: "#1D1D1F",
                 lineHeight: 1.5,
                 letterSpacing: "-0.022em",
-                textAlign: "center",
+                textAlign: "left",
                 width: "100%"
               }}>
               {t.paragraph2}
             </div>
           </div>
 
-          {/* Vidéo à droite */}
+          {/* Vidéo à droite avec boutons */}
           <div
             ref={videoContainer2}
-            className="w-full md:w-2/3 flex justify-center"
+            className="w-full md:w-2/3 flex flex-col items-center"
             style={{
               maxWidth: "100%"
             }}>
@@ -317,8 +317,9 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             <div
               style={{
                 width: "100%",
-                maxWidth: "600px",
-                overflow: "hidden"
+                maxWidth: "380px",
+                overflow: "hidden",
+                backgroundColor: "transparent"
               }}>
 
               <video
@@ -331,34 +332,34 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 aria-label="Wave Switch mockup demonstration" className="!w-full !h-full !max-w-full" />
 
             </div>
-          </div>
-        </div>
 
-        {/* Boutons d'actions pour la deuxième vidéo */}
-        <div className="flex items-center justify-center gap-3 mt-5">
-          <button
-            onClick={togglePlayPause2}
-            className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-            style={{
-              fontFamily: "var(--font-body)"
-            }}
-            aria-label={isPlaying2 ? "Pause" : "Play"}
-          >
-            {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            {isPlaying2 ? "Pause" : "Play"}
-          </button>
-          
-          <button
-            onClick={skipForward2}
-            className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-            style={{
-              fontFamily: "var(--font-body)"
-            }}
-            aria-label="Skip forward 5 seconds"
-          >
-            <SkipForward className="w-4 h-4" />
-            +5s
-          </button>
+            {/* Boutons d'actions alignés au centre du mockup */}
+            <div className="flex items-center justify-center gap-3 mt-5">
+              <button
+                onClick={togglePlayPause2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying2 ? "Pause" : "Play"}
+              >
+                {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying2 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
+            </div>
+          </div>
         </div>
 
       </div>
