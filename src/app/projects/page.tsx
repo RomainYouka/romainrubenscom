@@ -250,29 +250,6 @@ export default function ProjectsPage() {
         <ProjectCarousel />
       </div>
 
-      {/* NameQuest Responsive Mockups */}
-      <div className="bg-[#F5F5F7]">
-        {/* Desktop view - ordinateur.png */}
-        <div className="hidden md:block">
-          <img
-            src="/namequest/ordinateur.png"
-            alt="NameQuest specifications for desktop"
-            className="w-full h-auto"
-            style={{ display: 'block' }}
-          />
-        </div>
-
-        {/* Mobile/Tablet view - mobile.png */}
-        <div className="md:hidden">
-          <img
-            src="/namequest/mobile.png"
-            alt="NameQuest specifications for mobile"
-            className="w-full h-auto"
-            style={{ display: 'block' }}
-          />
-        </div>
-      </div>
-
       <div id="flashconcept">
         <ProjectFlashConcept language={selectedLanguage} />
       </div>
