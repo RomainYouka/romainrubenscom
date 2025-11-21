@@ -7,6 +7,7 @@ import { Play, Pause } from "lucide-react";
 const images = [
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/1-1762126572983.png?width=8000&height=8000&resize=contain",
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/2-1762126573033.png?width=8000&height=8000&resize=contain",
+"https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/3-1762126572971.png?width=8000&height=8000&resize=contain",
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/4-1762126573030.png?width=8000&height=8000&resize=contain",
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/5-1762126572852.png?width=8000&height=8000&resize=contain"];
 
