@@ -45,7 +45,7 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
   return (
     <section
       id="namequest"
-      className="w-full bg-[#F5F5F7]"
+      className="w-full bg-[#F5F5F7] pt-32 md:pt-40"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
