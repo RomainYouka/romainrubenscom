@@ -178,7 +178,7 @@ export default function ProjectCarousel() {
   };
 
   return (
-    <section className="bg-white relative overflow-hidden select-none pb-8 mb-12">
+    <section className="bg-[#F5F5F7] relative overflow-hidden select-none pb-8 mb-12">
       <div className="w-full relative">
         <div 
           className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing"
