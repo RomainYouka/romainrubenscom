@@ -55,6 +55,33 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
     >
       <div className="max-w-[1200px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-stretch gap-0 md:gap-0">
+          {/* Image PNG à gauche */}
+          <div
+            className="w-full md:w-[45%] lg:w-[50%] xl:flex-shrink-0 xl:!w-[650px] xl:!max-w-[650px]"
+            style={{
+              maxWidth: "100%",
+              display: "flex",
+              alignItems: "flex-start"
+            }}
+          >
+            <img
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/eeeeeeeeee-1762112535901.png?width=8000&height=8000&resize=contain"
+              alt="NameQuest Board Game"
+              className="!w-full md:!h-auto xl:!h-full"
+              style={{
+                objectFit: "contain",
+                objectPosition: "center top"
+              }}
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                if (window.innerWidth >= 1280) {
+                  img.style.objectFit = "cover";
+                  img.style.objectPosition = "center top";
+                }
+              }}
+            />
+          </div>
+
           {/* Contenu texte à droite */}
           <div
             className="flex-1 px-5 md:px-6 lg:px-10 flex flex-col justify-center"
@@ -107,6 +134,25 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
               {t.description}
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="hidden md:block max-w-[1200px] mx-auto px-5 md:px-6 lg:px-10 py-16 md:py-20 w-full">
+        <div
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "clamp(15px, 1.6vw, 17px)",
+            fontWeight: 400,
+            color: "#1D1D1F",
+            lineHeight: 1.6,
+            letterSpacing: "-0.022em",
+            textAlign: "left",
+            maxWidth: "900px",
+            marginLeft: "auto",
+            marginRight: "auto"
+          }}
+        >
+          {t.contextText}
         </div>
       </div>
     </section>
