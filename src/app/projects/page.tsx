@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import ProjectIOS26 from "@/components/sections/project-ios26";
 import { ProjectWaveSwitch } from "@/components/sections/project-wave-switch";
-import ProjectWaveScreens from "@/components/sections/project-wave-screens";
 import ProjectFramaspace from "@/components/sections/project-framaspace";
 import ProjectBeforeAfter from "@/components/sections/project-before-after";
 import ProjectHorizontalParallax from "@/components/sections/project-horizontal-parallax";
@@ -213,10 +212,6 @@ export default function ProjectsPage() {
 
       <div id="waveswitch">
         <ProjectWaveSwitch language={selectedLanguage} />
-      </div>
-
-      <div>
-        <ProjectWaveScreens />
       </div>
 
       <div id="framaspace">
