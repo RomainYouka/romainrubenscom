@@ -228,10 +228,6 @@ export default function ProjectsPage() {
         <ProjectNameQuest language={selectedLanguage} />
       </div>
 
-      <div>
-        <ProjectMacStudio language={selectedLanguage} />
-      </div>
-
       <div className="md:hidden bg-[#F5F5F7] px-5 py-12">
         <div className="max-w-[1200px] mx-auto">
           <div
