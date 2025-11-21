@@ -376,29 +376,6 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           </div>
         </div>
 
-        {/* Responsive Specifications Section */}
-        <div className="mt-16 md:mt-24 w-full">
-          {/* Desktop view - ordinateur.png */}
-          <div className="hidden md:block">
-            <img
-              src="/waveswitch/ordinateur.png"
-              alt="WaveSwitch specifications for desktop"
-              className="w-full h-auto"
-              style={{ display: 'block' }}
-            />
-          </div>
-
-          {/* Mobile/Tablet view - tablet.png */}
-          <div className="md:hidden">
-            <img
-              src="/waveswitch/tablet.png"
-              alt="WaveSwitch specifications for tablet"
-              className="w-full h-auto"
-              style={{ display: 'block' }}
-            />
-          </div>
-        </div>
-
       </div>
     </section>);
 
