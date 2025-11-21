@@ -159,28 +159,6 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
         scrollMarginTop: "80px"
       }}
     >
-      {/* Section Header */}
-      <div 
-        ref={headerRef}
-        className="w-full border-b border-[#D3D3D4] opacity-0 translate-y-5 transition-all duration-700 ease-out"
-      >
-        <div className="max-w-[1200px] mx-auto px-5 md:px-10 py-12 md:py-16">
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(28px, 4vw, 40px)",
-              fontWeight: 600,
-              color: "#1D1D1F",
-              lineHeight: 1.1,
-              letterSpacing: "-0.015em",
-              marginBottom: "clamp(8px, 1vw, 12px)"
-            }}
-          >
-            {sectionContent.sectionTitle}
-          </h2>
-        </div>
-      </div>
-
       {/* FlashConcept_01 */}
       <div
         ref={concept01Ref}
