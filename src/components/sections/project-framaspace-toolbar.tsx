@@ -4,18 +4,18 @@ import { useEffect, useRef, useState } from 'react';
 
 interface ToolbarItem {
   id: number;
-  color: string;
+  icon: string;
   label: string;
 }
 
 const TOOLBAR_ITEMS: ToolbarItem[] = [
-  { id: 1, color: '#FF4444', label: 'Tool 1' },
-  { id: 2, color: '#5DADE2', label: 'Tool 2' },
-  { id: 3, color: '#F4D03F', label: 'Tool 3' },
-  { id: 4, color: '#FF9933', label: 'Tool 4' },
-  { id: 5, color: '#52B788', label: 'Tool 5' },
-  { id: 6, color: '#5DADE2', label: 'Tool 6' },
-  { id: 7, color: '#A9A9A9', label: 'Tool 7' },
+  { id: 1, icon: '●', label: 'Tool 1' },
+  { id: 2, icon: '◆', label: 'Tool 2' },
+  { id: 3, icon: '▲', label: 'Tool 3' },
+  { id: 4, icon: '■', label: 'Tool 4' },
+  { id: 5, icon: '○', label: 'Tool 5' },
+  { id: 6, icon: '⬢', label: 'Tool 6' },
+  { id: 7, icon: '✕', label: 'Tool 7' },
 ];
 
 export function FramaspaceToolbarSection() {
@@ -116,47 +116,44 @@ export function FramaspaceToolbarSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-black py-16 md:py-24 overflow-hidden"
+      className="w-full bg-black py-12 md:py-20 overflow-hidden flex items-center justify-center min-h-32 md:min-h-40"
     >
-      <div className="px-4 md:px-8">
-        {/* Container avec overflow hidden pour afficher seulement la partie visible */}
-        <div className="w-full overflow-hidden rounded-lg">
+      <div className="w-full px-4 md:px-8 flex flex-col items-center justify-center">
+        {/* Container avec overflow hidden pour le scroll horizontal */}
+        <div className="w-full overflow-hidden">
           <div
             ref={containerRef}
-            className="flex"
+            className="flex items-center"
             style={{
-              gap: 'clamp(12px, 3vw, 20px)',
+              gap: 'clamp(12px, 2.5vw, 18px)',
               transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               willChange: 'transform',
+              paddingLeft: '2rem',
+              paddingRight: '2rem',
             }}
           >
-            {/* Affiche les items 7 fois pour créer un carrousel infini */}
+            {/* Affiche les items 2 fois pour créer un carrousel fluide */}
             {[...Array(2)].map((_, repetition) =>
               TOOLBAR_ITEMS.map((item) => (
                 <div
                   key={`${repetition}-${item.id}`}
-                  className="flex-shrink-0 flex flex-col items-center justify-center rounded-lg shadow-lg transition-transform hover:scale-105"
+                  className="flex-shrink-0 flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 md:py-3 rounded-full transition-all hover:scale-110 backdrop-blur-sm border border-white/10 hover:border-white/30 cursor-pointer group"
                   style={{
-                    backgroundColor: item.color,
-                    width: 'clamp(80px, 20vw, 140px)',
-                    height: 'clamp(100px, 25vw, 160px)',
-                    cursor: 'pointer',
+                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                    height: 'clamp(48px, 12vw, 60px)',
+                    minWidth: '80px',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
                   }}
                 >
-                  {/* Icon (cercles stylisés) */}
-                  <div className="flex gap-1.5 mb-3">
-                    {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="rounded-full bg-white/80"
-                        style={{
-                          width: '6px',
-                          height: '6px',
-                        }}
-                      />
-                    ))}
-                  </div>
-                  {/* Label invisible mais accessible */}
+                  {/* Icon */}
+                  <span className="text-base md:text-lg text-white/80 group-hover:text-white transition-colors flex-shrink-0">
+                    {item.icon}
+                  </span>
+                  {/* Label - hidden on mobile pour économiser l'espace */}
+                  <span className="hidden sm:inline text-xs md:text-sm text-white/70 group-hover:text-white transition-colors whitespace-nowrap">
+                    {item.label}
+                  </span>
+                  {/* Accessible label */}
                   <span className="sr-only">{item.label}</span>
                 </div>
               ))
@@ -165,7 +162,7 @@ export function FramaspaceToolbarSection() {
         </div>
 
         {/* Hint texte pour mobile */}
-        <p className="text-center text-white/60 text-xs md:text-sm mt-6">
+        <p className="text-center text-white/40 text-xs mt-6">
           Scroll to explore
         </p>
       </div>
