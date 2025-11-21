@@ -212,15 +212,14 @@ export default function ProjectCarousel() {
                   className="flex-shrink-0"
                   style={{
                     width: isMobile ? "70vw" : "50vw",
-                    height: isMobile ? "70vw" : "50vw",
+                    height: isMobile ? "35vw" : "25vw",
                     opacity: isCenter ? 1 : 0.4,
                     transition: "opacity 300ms ease",
                     marginRight: index < extendedImages.length - 1 ? (isMobile ? "20px" : "30px") : "0",
                     userSelect: "none",
                     position: "relative",
                     backgroundColor: index === 2 || (index === 0 && currentIndex === 0) || (index === extendedImages.length - 1 && currentIndex === extendedImages.length - 1) ? "#F5F5F7" : "transparent",
-                    cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default",
-                    overflow: "hidden"
+                    cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default"
                   }}
                   onClick={() => {
                     if (isLeft && !isTransitioning) {
@@ -235,14 +234,13 @@ export default function ProjectCarousel() {
                     src={image}
                     alt={`Image ${index}`}
                     fill
-                    className="object-cover select-none"
+                    className="object-contain select-none"
                     draggable={false}
                     priority={true}
                     loading="eager"
                     sizes="50vw"
                     style={{
-                      pointerEvents: (isLeft || isRight) ? "none" : "none",
-                      objectPosition: "center center"
+                      pointerEvents: (isLeft || isRight) ? "none" : "none"
                     }}
                     quality={100} />
 
