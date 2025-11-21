@@ -41,13 +41,10 @@ export function FramaspaceToolbarSection() {
   }, []);
 
   return (
-    <section className="w-full bg-black overflow-hidden">
-      {/* Spacing from NameQuest mockups */}
-      <div className="h-32 md:h-48 bg-black" />
-      
+    <section className="w-full bg-black py-16 md:py-20 overflow-hidden">
       <div 
         ref={containerRef}
-        className="flex gap-2 md:gap-3 px-4 md:px-8 pb-16 md:pb-20"
+        className="flex gap-2 md:gap-3 px-4 md:px-8"
         style={{
           width: 'fit-content',
         }}
