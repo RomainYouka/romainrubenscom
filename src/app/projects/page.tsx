@@ -250,6 +250,10 @@ export default function ProjectsPage() {
         </div>
       </div>
 
+      <div>
+        <ProjectCarousel />
+      </div>
+
       <div id="flashconcept">
         <ProjectFlashConcept language={selectedLanguage} />
       </div>

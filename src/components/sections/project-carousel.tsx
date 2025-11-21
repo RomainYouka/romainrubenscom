@@ -7,7 +7,6 @@ import { Play, Pause } from "lucide-react";
 const images = [
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/1-1762126572983.png?width=8000&height=8000&resize=contain",
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/2-1762126573033.png?width=8000&height=8000&resize=contain",
-"https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/3-1762126572971.png?width=8000&height=8000&resize=contain",
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/4-1762126573030.png?width=8000&height=8000&resize=contain",
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/5-1762126572852.png?width=8000&height=8000&resize=contain"];
 
@@ -218,7 +217,7 @@ export default function ProjectCarousel() {
                     marginRight: index < extendedImages.length - 1 ? (isMobile ? "5px" : "8px") : "0",
                     userSelect: "none",
                     position: "relative",
-                    backgroundColor: index === 2 || (index === 0 && currentIndex === 0) || (index === extendedImages.length - 1 && currentIndex === extendedImages.length - 1) ? "#F5F5F7" : "transparent",
+                    backgroundColor: (index === 0 && currentIndex === 0) || (index === extendedImages.length - 1 && currentIndex === extendedImages.length - 1) ? "#F5F5F7" : "transparent",
                     cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default"
                   }}
                   onClick={() => {
