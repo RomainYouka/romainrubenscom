@@ -14,7 +14,9 @@ const translations = {
     paragraph1:
     "WaveSwitch is a contactless switch activated by gesture. Designed for a speculative future in 2080, where humans live with medical and aesthetic skin fungi born from global transformations, it relies on artificial intelligence to translate movement into action. Beyond the object itself, its meaning lies in the web and mobile interface: gesture customization, real-time visual feedback, and interaction tracking.",
     paragraph2:
-    "This project explores the boundary between tangible objects and interactive systems, where design exists not only in physical form but in the relationship between human and machine. The switch becomes a way to question our connection to gesture, technological mediation, and the evolving domestic or work environment."
+    "This project explores the boundary between tangible objects and interactive systems, where design exists not only in physical form but in the relationship between human and machine. The switch becomes a way to question our connection to gesture, technological mediation, and the evolving domestic or work environment.",
+    play: "Play",
+    pause: "Pause"
   },
   FR: {
     title: "Wave Switch & App",
@@ -22,7 +24,9 @@ const translations = {
     paragraph1:
     "WaveSwitch est un interrupteur sans contact activé par geste. Conçu pour un avenir spéculatif en 2080, où les humains vivent avec des champignons cutanés médicaux et esthétiques nés des transformations mondiales, il s'appuie sur l'intelligence artificielle pour traduire le mouvement en action. Au-delà de l'objet lui-même, son sens réside dans l'interface web et mobile : personnalisation des gestes, retour visuel en temps réel et suivi des interactions.",
     paragraph2:
-    "Ce projet explore la frontière entre objets tangibles et systèmes interactifs, où le design existe non seulement sous forme physique mais dans la relation entre l'humain et la machine. L'interrupteur devient un moyen de questionner notre connexion au geste, à la médiation technologique et à l'évolution de l'environnement domestique ou professionnel."
+    "Ce projet explore la frontière entre objets tangibles et systèmes interactifs, où le design existe non seulement sous forme physique mais dans la relation entre l'humain et la machine. L'interrupteur devient un moyen de questionner notre connexion au geste, à la médiation technologique et à l'évolution de l'environnement domestique ou professionnel.",
+    play: "Lire",
+    pause: "Pause"
   },
   ՀԱՅ: {
     title: "Wave Switch & App",
@@ -30,7 +34,9 @@ const translations = {
     paragraph1:
     "WaveSwitch-ը շարժումներով ակտիվացվող անհպում անջատիչ է։ Նախագծված ապագայի համար՝ 2080 թվականին, երբ մարդիկ ապրում են բժշկական եւ գեղագիտական մաշկային սնկերի հետ, որոնք ծնվել են համաշխարհային փոփոխություններից, այն ապավինում է արհեստական բանականությանը՝ շարժումը գործողության վերածելու համար։ Առարկայից դուրս դրա իմաստը ընկած է վեբ եւ շարժական ինտերֆեյսում՝ ժեստերի անհատականացում, իրական ժամանակի տեսողական հետադարձ կապ եւ փոխազդեցության հետագծում։",
     paragraph2:
-    "Այս նախագիծը ուսումնասիրում է նյութական առարկաների եւ ինտերակտիվ համակարգերի միջեւ սահմանը, որտեղ դիզայնը գոյություն ունի ոչ միայն ֆիզիկական ձեւով, այլեւ մարդու եւ մեքենայի միջեւ հարաբերություններում։ Անջատիչը դառնում է միջոց՝ հարցականի տակ դնելու մեր կապը ժեստի, տեխնոլոգիական միջնորդության եւ տնային կամ աշխատանքային միջավայրի զարգացման հետ։"
+    "Այս նախագիծը ուսումնասիրում է նյութական առարկաների եւ ինտերակտիվ համակարգերի միջեւ սահմանը, որտեղ դիզայնը գոյություն ունի ոչ միայն ֆիզիկական ձեւով, այլեւ մարդու եւ մեքենայի միջեւ հարաբերություններում։ Անջատիչը դառնում է միջոց՝ հարցականի տակ դնելու մեր կապը ժեստի, տեխնոլոգիական միջնորդության եւ տնային կամ աշխատանքային միջավայրի զարգացման հետ։",
+    play: "Նվագարկել",
+    pause: "Դադարեցնել"
   }
 };
 
