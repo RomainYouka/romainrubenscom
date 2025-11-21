@@ -219,7 +219,8 @@ export default function ProjectCarousel() {
                     userSelect: "none",
                     position: "relative",
                     backgroundColor: index === 2 || (index === 0 && currentIndex === 0) || (index === extendedImages.length - 1 && currentIndex === extendedImages.length - 1) ? "#F5F5F7" : "transparent",
-                    cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default"
+                    cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default",
+                    overflow: "hidden"
                   }}
                   onClick={() => {
                     if (isLeft && !isTransitioning) {
@@ -234,13 +235,14 @@ export default function ProjectCarousel() {
                     src={image}
                     alt={`Image ${index}`}
                     fill
-                    className="object-contain select-none"
+                    className="object-cover select-none"
                     draggable={false}
                     priority={true}
                     loading="eager"
                     sizes="50vw"
                     style={{
-                      pointerEvents: (isLeft || isRight) ? "none" : "none"
+                      pointerEvents: (isLeft || isRight) ? "none" : "none",
+                      objectPosition: "center center"
                     }}
                     quality={100} />
 
@@ -250,7 +252,7 @@ export default function ProjectCarousel() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-2 relative">
+        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-0 relative">
           <div className="flex-1" />
           
           <div className="flex justify-center gap-2">
