@@ -41,10 +41,10 @@ export function FramaspaceToolbarSection() {
   }, []);
 
   return (
-    <section className="w-full bg-black py-40 md:py-56 overflow-hidden flex items-center">
+    <section className="w-full bg-black py-16 md:py-20 overflow-hidden">
       <div 
         ref={containerRef}
-        className="flex gap-6 md:gap-12 px-8 md:px-16"
+        className="flex gap-2 md:gap-3 px-4 md:px-8"
         style={{
           width: 'fit-content',
         }}
