@@ -164,8 +164,8 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
         </div>
       </div>
 
-      {/* Context Section */}
-      <div className="max-w-[1200px] mx-auto px-5 md:px-6 lg:px-10 py-16 md:py-20">
+      {/* Context Section - Desktop only */}
+      <div className="hidden md:block max-w-[1200px] mx-auto px-5 md:px-6 lg:px-10 py-16 md:py-20">
         <div
           style={{
             fontFamily: "var(--font-body)",
