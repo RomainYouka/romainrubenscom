@@ -138,7 +138,7 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
       </div>
 
       {/* Spacing divider */}
-      <div className="h-32 md:h-48 bg-[#F5F5F7]" />
+      <div className="h-16 md:h-24 bg-[#F5F5F7]" />
 
       {/* Responsive Mockups Section */}
       <div className="w-full bg-[#F5F5F7]">
