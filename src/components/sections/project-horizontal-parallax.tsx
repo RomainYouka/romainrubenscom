@@ -98,11 +98,11 @@ export default function ProjectHorizontalParallax() {
         const imageWidth = band.width;
         const maxScroll = Math.max(0, imageWidth - viewportWidth);
         
-        // Les impairs (index 0, 2, 4, 6) vont à droite (positif)
-        // Les pairs (index 1, 3, 5) vont à gauche (négatif)
+        // Les impairs (index 0, 2, 4, 6) vont à gauche (négatif)
+        // Les pairs (index 1, 3, 5) vont à droite (positif)
         const isEven = (index + 1) % 2 === 0;
         
-        return isEven ? -progress * maxScroll : progress * maxScroll;
+        return isEven ? progress * maxScroll : -progress * maxScroll;
       });
 
       setScrollProgress(newProgress);
