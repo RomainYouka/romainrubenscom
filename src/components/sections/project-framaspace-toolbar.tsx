@@ -41,10 +41,10 @@ export function FramaspaceToolbarSection() {
   }, []);
 
   return (
-    <section className="w-full bg-black py-16 md:py-20 overflow-hidden">
+    <section className="w-full bg-black py-40 md:py-56 overflow-hidden flex items-center">
       <div 
         ref={containerRef}
-        className="flex gap-2 md:gap-3 px-4 md:px-8"
+        className="flex gap-6 md:gap-12 px-8 md:px-16"
         style={{
           width: 'fit-content',
         }}
@@ -52,16 +52,26 @@ export function FramaspaceToolbarSection() {
         {/* Affiche les images 2 fois pour créer un carrousel infini */}
         {[...Array(2)].map((_, repetition) =>
           toolbarImages.map((image) => (
-            <img
+            <div
               key={`${repetition}-${image.id}`}
-              src={image.src}
-              alt={image.alt}
-              className="flex-shrink-0 h-auto rounded-lg"
+              className="flex-shrink-0 rounded-lg p-3 md:p-4"
               style={{
-                width: 'clamp(6000px, 500vw, 8000px)',
+                width: 'clamp(800px, 85vw, 1200px)',
                 display: 'block',
+                border: '3px solid rgba(255, 255, 255, 0.2)',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
               }}
-            />
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-auto rounded-md"
+                style={{
+                  display: 'block',
+                  minHeight: '200px',
+                }}
+              />
+            </div>
           ))
         )}
       </div>
