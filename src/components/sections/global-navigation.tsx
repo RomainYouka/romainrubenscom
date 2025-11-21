@@ -283,17 +283,22 @@ const ResumeButton = ({ selectedLanguage }: { selectedLanguage: "FR" | "EN" | "�
     
     // Map language codes to PDF file names
     const pdfFiles = {
-      FR: "/resumes/RUBENS-Romain-curriculum-vitae.pdf",
+      FR: "/resumes/RUBENS-Romain-CV.pdf",
       EN: "/resumes/RUBENS-Romain-Resume.pdf",
-      ՀԱՅ: "/resumes/resume-hy.pdf"
+      ՀԱՅ: "/resumes/RUBENS-Romain-Resume.pdf"
     };
     
     const pdfUrl = pdfFiles[selectedLanguage];
+    const pdfFileNames = {
+      FR: "RUBENS-Romain-CV.pdf",
+      EN: "RUBENS-Romain-Resume.pdf",
+      ՀԱՅ: "RUBENS-Romain-Resume.pdf"
+    };
     
     // Create a temporary link and trigger download
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = `resume-${selectedLanguage.toLowerCase()}.pdf`;
+    link.download = pdfFileNames[selectedLanguage];
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
