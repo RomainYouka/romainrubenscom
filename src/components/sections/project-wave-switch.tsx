@@ -287,10 +287,14 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           </div>
         </div>
 
-        {/* Section 2: Mockup video on the right with text on the left */}
+        {/* Section 2: Mockup video on the right with text on the left - aligned with Section 1 */}
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24 mt-12 md:mt-16">
-          {/* Texte à gauche - aligné à gauche et centré verticalement */}
-          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start justify-center">
+          {/* Texte à gauche - flex-shrink-0 avec même largeur que mockup section 1 */}
+          <div
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 flex flex-col items-center md:items-start justify-center"
+            style={{
+              maxWidth: "min(85vw, 400px)"
+            }}>
             <div
               style={{
                 fontFamily: "var(--font-body)",
@@ -306,10 +310,10 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             </div>
           </div>
 
-          {/* Vidéo à droite avec boutons */}
+          {/* Vidéo à droite avec boutons - flex-1 comme texte section 1 */}
           <div
             ref={videoContainer2}
-            className="w-full md:w-2/3 flex flex-col items-center"
+            className="w-full md:flex-1 flex flex-col items-center"
             style={{
               maxWidth: "100%"
             }}>
@@ -317,14 +321,14 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             <div
               style={{
                 width: "100%",
-                maxWidth: "380px",
+                maxWidth: "100%",
                 overflow: "hidden",
                 backgroundColor: "transparent"
               }}>
 
               <video
                 ref={videoRef2}
-                src="/waveswitch/mockup waveswitch.mp4"
+                src="/waveswitch/mockup waveswitch_2.mp4"
                 loop
                 muted
                 playsInline
