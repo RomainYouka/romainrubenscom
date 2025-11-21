@@ -52,26 +52,16 @@ export function FramaspaceToolbarSection() {
         {/* Affiche les images 2 fois pour créer un carrousel infini */}
         {[...Array(2)].map((_, repetition) =>
           toolbarImages.map((image) => (
-            <div
+            <img
               key={`${repetition}-${image.id}`}
-              className="flex-shrink-0 rounded-lg p-3 md:p-4"
+              src={image.src}
+              alt={image.alt}
+              className="flex-shrink-0 h-auto rounded-lg"
               style={{
-                width: 'clamp(800px, 85vw, 1200px)',
+                width: 'clamp(1200px, 100vw, 1600px)',
                 display: 'block',
-                border: '3px solid rgba(255, 255, 255, 0.2)',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
               }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-auto rounded-md"
-                style={{
-                  display: 'block',
-                  minHeight: '200px',
-                }}
-              />
-            </div>
+            />
           ))
         )}
       </div>
