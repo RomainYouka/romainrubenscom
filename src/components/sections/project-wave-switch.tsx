@@ -318,14 +318,16 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               maxWidth: "100%"
             }}>
 
+            {/* Video sur desktop, image responsive sur mobile */}
             <div
               style={{
                 width: "100%",
-                maxWidth: "100%",
+                maxWidth: "min(100%, 450px)",
                 overflow: "hidden",
                 backgroundColor: "transparent"
               }}>
 
+              {/* Desktop: Video */}
               <video
                 ref={videoRef2}
                 src="/waveswitch/mockup waveswitch_2.mp4"
@@ -333,12 +335,23 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 muted
                 playsInline
                 preload="auto"
-                aria-label="Wave Switch mockup demonstration" className="!w-full !h-full !max-w-full" />
+                aria-label="Wave Switch mockup demonstration" 
+                className="!w-full !h-full !max-w-full hidden md:block" />
 
+              {/* Mobile/Tablet: Image de remplacement */}
+              <img
+                src="/waveswitch/tablet_mockup.png"
+                alt="Wave Switch mockup features"
+                className="!w-full !h-full !max-w-full md:hidden"
+                style={{
+                  display: "block",
+                  objectFit: "cover"
+                }}
+              />
             </div>
 
-            {/* Boutons d'actions alignés au centre du mockup */}
-            <div className="flex items-center justify-center gap-3 mt-5">
+            {/* Boutons d'actions alignés au centre du mockup - visible seulement sur desktop */}
+            <div className="hidden md:flex items-center justify-center gap-3 mt-5">
               <button
                 onClick={togglePlayPause2}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
