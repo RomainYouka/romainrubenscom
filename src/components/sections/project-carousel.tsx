@@ -250,7 +250,7 @@ export default function ProjectCarousel() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-6 relative">
+        <div className="flex items-center justify-between max-w-[1200px] mx-auto px-8 mt-12 relative">
           <div className="flex-1" />
           
           <div className="flex justify-center gap-2">
