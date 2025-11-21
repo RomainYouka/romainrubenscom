@@ -43,11 +43,9 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
   }, []);
 
   return (
-    <>
-      <div className="w-full bg-white h-32 md:h-48" />
-      <section
-        id="namequest"
-        className="w-full bg-[#F5F5F7]"
+    <section
+      id="namequest"
+      className="w-full bg-[#F5F5F7]"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
@@ -140,7 +138,7 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
       </div>
 
       {/* Spacing divider */}
-      <div className="h-16 md:h-24 bg-[#F5F5F7]" />
+      <div className="h-32 md:h-48 bg-[#F5F5F7]" />
 
       {/* Responsive Mockups Section */}
       <div className="w-full bg-[#F5F5F7]">
@@ -165,6 +163,5 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
         </div>
       </div>
     </section>
-    </>
   );
 }
