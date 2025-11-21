@@ -259,7 +259,7 @@ export default function ProjectCarousel() {
               key={index}
               onClick={() => goToIndex(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === getRealIndex() ? "bg-[#1d1d1f] w-6" : "bg-[#86868b]"}`
+              index === getRealIndex() ? "bg-[#1d1d1f] w-6" : "bg-[#D3D3D4]"}`
               }
               aria-label={`Go to image ${index + 1}`} />
 
@@ -269,13 +269,13 @@ export default function ProjectCarousel() {
           <div className="flex-1 flex justify-end">
             <button
               onClick={togglePlayPause}
-              className="w-10 h-10 rounded-full bg-[#424245] flex items-center justify-center transition-all duration-300 hover:bg-[#515151] hover:scale-110"
+              className="w-10 h-10 rounded-full bg-[#D3D3D4] flex items-center justify-center transition-all duration-300 hover:bg-[#E8E8ED] hover:scale-110"
               aria-label={isPlaying ? "Pause" : "Play"}>
 
               {isPlaying ?
-              <Pause className="w-4 h-4 text-white fill-white" /> :
+              <Pause className="w-4 h-4 text-[#1d1d1f] fill-[#1d1d1f]" /> :
 
-              <Play className="w-4 h-4 text-white fill-white" />
+              <Play className="w-4 h-4 text-[#1d1d1f] fill-[#1d1d1f]" />
               }
             </button>
           </div>
