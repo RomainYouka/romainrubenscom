@@ -195,8 +195,8 @@ export default function ProjectCarousel() {
             className="flex items-center"
             style={{
               transform: isMobile 
-                ? `translateX(calc(-${currentIndex * 210}vw - ${currentIndex * 60}px + 50vw - 35vw))`
-                : `translateX(calc(-${currentIndex * 150}vw - ${currentIndex * 90}px + 25vw))`,
+                ? `translateX(calc(-${currentIndex * 70}vw - ${currentIndex * 20}px + 50vw - 35vw))`
+                : `translateX(calc(-${currentIndex * 50}vw - ${currentIndex * 30}px + 25vw))`,
               transition: isTransitioning ? "transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",
               willChange: "transform"
             }}>
@@ -211,8 +211,8 @@ export default function ProjectCarousel() {
                   key={`${image}-${index}`}
                   className="flex-shrink-0"
                   style={{
-                    width: isMobile ? "210vw" : "150vw",
-                    height: isMobile ? "105vw" : "75vw",
+                    width: isMobile ? "70vw" : "50vw",
+                    height: isMobile ? "35vw" : "25vw",
                     opacity: isCenter ? 1 : 0.4,
                     transition: "opacity 300ms ease",
                     marginRight: index < extendedImages.length - 1 ? (isMobile ? "2px" : "3px") : "0",
