@@ -126,8 +126,8 @@ export default function ProjectHorizontalParallax() {
         fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
       }}>
 
-      <div className="w-full">
-        <div className="flex flex-col gap-3 md:gap-4">
+      <div className="w-full -mx-5 md:-mx-10">
+        <div className="flex flex-col gap-0">
           {bands.map((band, index) => {
             const isEven = (index + 1) % 2 === 0;
             const translateX = scrollProgress[index] || 0;
@@ -135,7 +135,7 @@ export default function ProjectHorizontalParallax() {
             return (
               <div
                 key={band.id}
-                className="w-full overflow-hidden relative h-[120px] md:h-[140px] lg:h-[160px]">
+                className="w-screen overflow-hidden relative h-[200px] md:h-[280px] lg:h-[320px]">
                 <div
                   ref={(el) => {
                     bandRefs.current[index] = el;
@@ -152,8 +152,8 @@ export default function ProjectHorizontalParallax() {
                     alt={`Framaspace concept ${band.id}`}
                     width={band.width}
                     height={band.height}
-                    className="h-full w-auto object-contain"
-                    style={{ display: 'block' }}
+                    className="h-full w-auto object-cover"
+                    style={{ display: 'block', minHeight: '100%' }}
                     quality={100}
                     priority={index < 3}
                     unoptimized />
