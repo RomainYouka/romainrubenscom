@@ -4,49 +4,49 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const bands = [
-{
-  id: 1,
-  src: "/framaspace/A1.png",
-  width: 2400,
-  height: 140
-},
-{
-  id: 2,
-  src: "/framaspace/A2.png",
-  width: 2400,
-  height: 140
-},
-{
-  id: 3,
-  src: "/framaspace/A3.png",
-  width: 2400,
-  height: 140
-},
-{
-  id: 4,
-  src: "/framaspace/A4.png",
-  width: 2400,
-  height: 140
-},
-{
-  id: 5,
-  src: "/framaspace/A5.png",
-  width: 2400,
-  height: 140
-},
-{
-  id: 6,
-  src: "/framaspace/A6.png",
-  width: 2400,
-  height: 140
-},
-{
-  id: 7,
-  src: "/framaspace/A7.png",
-  width: 2400,
-  height: 140
-}];
-
+  {
+    id: 1,
+    src: "/framaspace/A1.png",
+    width: 2400,
+    height: 140
+  },
+  {
+    id: 2,
+    src: "/framaspace/A2.png",
+    width: 2400,
+    height: 140
+  },
+  {
+    id: 3,
+    src: "/framaspace/A3.png",
+    width: 2400,
+    height: 140
+  },
+  {
+    id: 4,
+    src: "/framaspace/A4.png",
+    width: 2400,
+    height: 140
+  },
+  {
+    id: 5,
+    src: "/framaspace/A5.png",
+    width: 2400,
+    height: 140
+  },
+  {
+    id: 6,
+    src: "/framaspace/A6.png",
+    width: 2400,
+    height: 140
+  },
+  {
+    id: 7,
+    src: "/framaspace/A7.png",
+    width: 2400,
+    height: 140
+  }
+];
 
 export default function ProjectHorizontalParallax() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -121,7 +121,7 @@ export default function ProjectHorizontalParallax() {
     <section
       id="project4-horizontal-parallax"
       ref={sectionRef}
-      className="bg-black overflow-hidden py-12 md:py-16 lg:py-20 !w-full !h-full"
+      className="bg-white overflow-hidden py-12 md:py-16 lg:py-20 !w-full"
       style={{
         fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
       }}>
@@ -143,13 +143,13 @@ export default function ProjectHorizontalParallax() {
                   className="absolute h-full"
                   style={{
                     transform: prefersReducedMotion ? 'none' : `translateX(${translateX}px)`,
-                    transition: prefersReducedMotion ? 'none' : 'transform 0.1s linear',
+                    transition: prefersReducedMotion ? 'none' : 'transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     willChange: prefersReducedMotion ? 'auto' : 'transform',
                     [isEven ? 'right' : 'left']: 0
                   }}>
                   <Image
                     src={band.src}
-                    alt={`Framaspace ${band.id}`}
+                    alt={`Framaspace concept ${band.id}`}
                     width={band.width}
                     height={band.height}
                     className="h-full w-auto object-contain"
