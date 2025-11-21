@@ -152,8 +152,8 @@ export default function ProjectHorizontalParallax() {
                     alt={`Framaspace concept ${band.id}`}
                     width={band.width}
                     height={band.height}
-                    className="h-full w-auto object-cover"
-                    style={{ display: 'block', minHeight: '100%' }}
+                    className="h-full object-cover"
+                    style={{ display: 'block', minHeight: '100%', minWidth: '150vw', width: '150vw' }}
                     quality={100}
                     priority={index < 3}
                     unoptimized />
