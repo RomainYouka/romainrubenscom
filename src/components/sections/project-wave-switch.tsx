@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Play, Pause, SkipForward } from "lucide-react";
 import Image from "next/image";
 
 interface ProjectWaveSwitchProps {
@@ -36,6 +37,10 @@ const translations = {
 
 export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying1, setIsPlaying1] = useState(false);
+  const videoRef1 = useRef<HTMLVideoElement>(null);
+  const videoContainer1 = useRef<HTMLDivElement>(null);
+
   const t = translations[language];
 
   useEffect(() => {
@@ -44,6 +49,67 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const videoElement1 = videoRef1.current;
+    const container1 = videoContainer1.current;
+
+    if (!videoElement1 || !container1) return;
+
+    // Observer pour la première vidéo
+    const observer1 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            videoElement1.play().catch(() => {});
+            setIsPlaying1(true);
+          } else {
+            videoElement1.pause();
+            setIsPlaying1(false);
+          }
+        });
+      },
+      {
+        threshold: [0, 0.3, 0.5, 0.7, 1],
+        rootMargin: "-10% 0px -10% 0px"
+      }
+    );
+
+    observer1.observe(container1);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        videoElement1.pause();
+        setIsPlaying1(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      observer1.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  const togglePlayPause1 = () => {
+    const videoElement = videoRef1.current;
+    if (!videoElement) return;
+    
+    if (isPlaying1) {
+      videoElement.pause();
+      setIsPlaying1(false);
+    } else {
+      videoElement.play().catch(() => {});
+      setIsPlaying1(true);
+    }
+  };
+
+  const skipForward1 = () => {
+    const videoElement = videoRef1.current;
+    if (!videoElement) return;
+    videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
 
   return (
     <section
@@ -59,82 +125,155 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
       }}>
 
       <div className="container max-w-[1200px] mx-auto px-5 md:px-10">
-        {/* Header Section */}
-        <div className="mb-8 md:mb-12 text-center">
+        {/* Section 1: iPhone mockup à gauche + texte à droite */}
+        <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24">
+          {/* Vidéo iPhone à gauche */}
           <div
+            ref={videoContainer1}
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(12px, 1.2vw, 14px)",
-              fontWeight: 600,
-              color: "#86868b",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              marginBottom: "clamp(8px, 1vw, 12px)"
+              maxWidth: "min(85vw, 400px)"
             }}>
-            {t.year}
+
+            <div
+              style={{
+                width: "100%",
+                overflow: "hidden"
+              }}>
+
+              <video
+                ref={videoRef1}
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/4730AC9B-6273-4BD0-A10F-373F327D9B3B-1762106663715.mp4"
+                loop
+                muted
+                playsInline
+                preload="auto"
+                aria-label="Wave Switch app interface demonstration" className="!w-full !h-full !max-w-full" />
+
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-5">
+              <button
+                onClick={togglePlayPause1}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying1 ? "Pause" : "Play"}
+              >
+                {isPlaying1 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying1 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward1}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
+            </div>
           </div>
 
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(28px, 4vw, 48px)",
-              fontWeight: 600,
-              color: "#1d1d1f",
-              letterSpacing: "-0.03em",
-              marginBottom: "clamp(16px, 2vw, 24px)",
-              lineHeight: 1.1
-            }}>
-            {t.title}
-          </h2>
+          {/* Contenu texte à droite */}
+          <div className="flex-1" style={{ textAlign: "left" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(12px, 1.2vw, 14px)",
+                fontWeight: 600,
+                color: "#86868b",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                marginBottom: "clamp(8px, 1vw, 12px)"
+              }}>
 
-          <div
-            className="max-w-[800px] mx-auto"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(15px, 1.6vw, 17px)",
-              fontWeight: 400,
-              color: "#1D1D1F",
-              lineHeight: 1.5,
-              letterSpacing: "-0.022em"
-            }}>
-            {t.paragraph1}
+              {t.year}
+            </div>
+
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(32px, 4.5vw, 48px)",
+                fontWeight: 600,
+                color: "#1D1D1F",
+                lineHeight: 1.1,
+                letterSpacing: "-0.015em",
+                marginBottom: "clamp(20px, 2.5vw, 32px)"
+              }}>
+
+              {t.title}
+            </h2>
+
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                marginBottom: "clamp(24px, 3vw, 32px)"
+              }}>
+
+              {t.paragraph1}
+            </div>
           </div>
         </div>
 
-        {/* Responsive Feature Image */}
-        <div className="mb-8 md:mb-12">
-          <picture>
-            <source 
-              media="(max-width: 768px)" 
-              srcSet="/waveswitch/features-tablet.png" 
-            />
-            <Image
-              src="/waveswitch/features-desktop.png"
-              alt="WaveSwitch Features Overview"
-              width={1400}
-              height={800}
-              className="w-full h-auto rounded-2xl"
-              quality={100}
-              priority
-            />
-          </picture>
-        </div>
+        {/* Section 2: Feature Grid - Apple-style information bubbles */}
+        <div className="mb-16 md:mb-24 mt-12 md:mt-16">
+          {/* Introduction text for features */}
+          <div className="mb-8 md:mb-12 max-w-[800px] mx-auto">
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                textAlign: "center"
+              }}>
+              {t.paragraph2}
+            </div>
+          </div>
 
-        {/* Bottom Paragraph */}
-        <div className="max-w-[800px] mx-auto text-center">
-          <div
+          <div 
+            className="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6 
+                       grid-cols-1 
+                       sm:grid-cols-2 
+                       lg:grid-cols-3 
+                       xl:grid-cols-4"
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(15px, 1.6vw, 17px)",
-              fontWeight: 400,
-              color: "#1D1D1F",
-              lineHeight: 1.5,
-              letterSpacing: "-0.022em"
+              maxWidth: "1400px",
+              margin: "0 auto"
             }}>
-            {t.paragraph2}
+            {Array.from({ length: 17 }, (_, i) => i + 1).map((num) => (
+              <div
+                key={num}
+                className="relative w-full overflow-hidden rounded-3xl bg-[#F5F5F7] transition-transform duration-300 hover:scale-[1.02]"
+                style={{
+                  aspectRatio: num === 5 || num === 7 || num === 10 || num === 15 ? "3/4" : "16/9"
+                }}>
+                <Image
+                  src={`/waveswitch/feature-${String(num).padStart(2, '0')}.png`}
+                  alt={`WaveSwitch Feature ${num}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="object-contain p-4 sm:p-6 md:p-8"
+                  quality={100}
+                  priority={num <= 6}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
