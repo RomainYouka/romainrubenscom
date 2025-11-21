@@ -192,7 +192,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           {/* Vidéo iPhone à gauche */}
           <div
             ref={videoContainer1}
-            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 relative"
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
             style={{
               maxWidth: "min(85vw, 400px)"
             }}>
@@ -200,8 +200,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             <div
               style={{
                 width: "100%",
-                overflow: "hidden",
-                position: "relative"
+                overflow: "hidden"
               }}>
 
               <video
@@ -213,36 +212,32 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 preload="auto"
                 aria-label="Wave Switch app interface demonstration" className="!w-full !h-full !max-w-full" />
 
-              <div 
-                className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-3 pb-4 px-3"
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-5">
+              <button
+                onClick={togglePlayPause1}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0))",
-                  backdropFilter: "blur(4px)"
-                }}>
-                <button
-                  onClick={togglePlayPause1}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/90 text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
-                  style={{
-                    fontFamily: "var(--font-body)"
-                  }}
-                  aria-label={isPlaying1 ? "Pause" : "Play"}
-                >
-                  {isPlaying1 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                  {isPlaying1 ? "Pause" : "Play"}
-                </button>
-                
-                <button
-                  onClick={skipForward1}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/90 text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
-                  style={{
-                    fontFamily: "var(--font-body)"
-                  }}
-                  aria-label="Skip forward 5 seconds"
-                >
-                  <SkipForward className="w-4 h-4" />
-                  +5s
-                </button>
-              </div>
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying1 ? "Pause" : "Play"}
+              >
+                {isPlaying1 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying1 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward1}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
             </div>
           </div>
 
@@ -318,7 +313,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
           {/* Vidéo à droite avec boutons - largeur fixe */}
           <div
             ref={videoContainer2}
-            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 relative"
+            className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0 flex flex-col items-center"
             style={{
               maxWidth: "100%"
             }}>
@@ -328,8 +323,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 width: "100%",
                 maxWidth: "400px",
                 overflow: "hidden",
-                backgroundColor: "transparent",
-                position: "relative"
+                backgroundColor: "transparent"
               }}>
 
               <video
@@ -341,37 +335,33 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 preload="auto"
                 aria-label="Wave Switch mockup demonstration" className="!w-full !h-full !max-w-full" />
 
-              {/* Boutons d'actions overlay sur le bas de la vidéo */}
-              <div 
-                className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-3 pb-4 px-3"
+            </div>
+
+            {/* Boutons d'actions alignés au centre du mockup */}
+            <div className="flex items-center justify-center gap-3 mt-5">
+              <button
+                onClick={togglePlayPause2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0))",
-                  backdropFilter: "blur(4px)"
-                }}>
-                <button
-                  onClick={togglePlayPause2}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/90 text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
-                  style={{
-                    fontFamily: "var(--font-body)"
-                  }}
-                  aria-label={isPlaying2 ? "Pause" : "Play"}
-                >
-                  {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                  {isPlaying2 ? "Pause" : "Play"}
-                </button>
-                
-                <button
-                  onClick={skipForward2}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/90 text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
-                  style={{
-                    fontFamily: "var(--font-body)"
-                  }}
-                  aria-label="Skip forward 5 seconds"
-                >
-                  <SkipForward className="w-4 h-4" />
-                  +5s
-                </button>
-              </div>
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying2 ? "Pause" : "Play"}
+              >
+                {isPlaying2 ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying2 ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward2}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
             </div>
           </div>
         </div>
