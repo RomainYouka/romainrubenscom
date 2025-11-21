@@ -41,7 +41,7 @@ export function FramaspaceToolbarSection() {
   }, []);
 
   return (
-    <section className="w-full bg-black py-40 md:py-48 overflow-hidden">
+    <section className="w-full bg-black py-96 overflow-hidden" style={{ paddingTop: '40rem', paddingBottom: '40rem' }}>
       <div 
         ref={containerRef}
         className="flex gap-2 md:gap-3 px-4 md:px-8"
@@ -58,7 +58,7 @@ export function FramaspaceToolbarSection() {
               alt={image.alt}
               className="flex-shrink-0 h-auto rounded-lg"
               style={{
-                width: 'clamp(2400px, 360vw, 4800px)',
+                width: 'clamp(9600px, 1440vw, 19200px)',
                 display: 'block',
               }}
             />
