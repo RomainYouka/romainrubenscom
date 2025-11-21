@@ -138,7 +138,7 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
       </div>
 
       {/* Responsive Mockups Section */}
-      <div className="mt-16 md:mt-24 w-full">
+      <div className="mt-24 md:mt-32 w-full">
         {/* Desktop view - ordinateur.png */}
         <div className="hidden md:block">
           <img
