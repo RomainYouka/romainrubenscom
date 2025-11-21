@@ -288,7 +288,8 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
         </div>
 
         {/* Section 2: Mockup video on the right with text on the left - aligned with Section 1 */}
-        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24 mt-12 md:mt-16">
+        {/* Desktop version with video and text */}
+        <div className="hidden md:flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-16 md:mb-24 mt-12 md:mt-16">
           {/* Texte à gauche - agrandi avec flex-1 comme section 1 */}
           <div
             className="w-full md:flex-1 mx-auto md:mx-0 flex flex-col items-center md:items-start justify-center"
@@ -364,6 +365,19 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
               </button>
             </div>
           </div>
+        </div>
+
+        {/* Mobile/Tablet version with specs image */}
+        <div className="flex md:hidden w-full mb-16 mt-12">
+          <img
+            src="/waveswitch/tablet_specs.png"
+            alt="WaveSwitch specifications"
+            className="w-full h-auto"
+            style={{
+              maxWidth: "100%",
+              display: "block"
+            }}
+          />
         </div>
 
       </div>
