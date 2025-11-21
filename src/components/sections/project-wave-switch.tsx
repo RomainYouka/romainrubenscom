@@ -321,6 +321,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
             <div
               style={{
                 width: "100%",
+                maxWidth: "400px",
                 overflow: "hidden",
                 backgroundColor: "#FFFFFF"
               }}>
