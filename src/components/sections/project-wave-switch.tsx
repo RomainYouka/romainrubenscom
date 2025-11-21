@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, SkipForward } from "lucide-react";
+import Image from "next/image";
 
 interface ProjectWaveSwitchProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -356,6 +357,41 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
               {t.paragraph2}
             </div>
+          </div>
+        </div>
+
+        {/* Section 3: Feature Grid - Apple-style information bubbles */}
+        <div className="mb-16 md:mb-24 mt-12 md:mt-16">
+          <div 
+            className="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6 
+                       grid-cols-1 
+                       sm:grid-cols-2 
+                       lg:grid-cols-3 
+                       xl:grid-cols-4"
+            style={{
+              maxWidth: "1400px",
+              margin: "0 auto",
+              paddingLeft: "clamp(20px, 5vw, 40px)",
+              paddingRight: "clamp(20px, 5vw, 40px)"
+            }}>
+            {Array.from({ length: 17 }, (_, i) => i + 1).map((num) => (
+              <div
+                key={num}
+                className="relative w-full overflow-hidden rounded-3xl bg-[#F5F5F7] transition-transform duration-300 hover:scale-[1.02]"
+                style={{
+                  aspectRatio: num === 5 || num === 7 || num === 10 || num === 15 ? "3/4" : "16/9"
+                }}>
+                <Image
+                  src={`/waveswitch/feature-${String(num).padStart(2, '0')}.png`}
+                  alt={`WaveSwitch Feature ${num}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="object-contain p-4 sm:p-6 md:p-8"
+                  quality={100}
+                  priority={num <= 6}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
