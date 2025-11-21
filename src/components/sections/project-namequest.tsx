@@ -133,6 +133,21 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
             >
               {t.description}
             </div>
+
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                whiteSpace: "pre-line",
+                marginBottom: "clamp(24px, 3vw, 40px)"
+              }}
+            >
+              {t.contextText}
+            </div>
           </div>
         </div>
       </div>
