@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import styles from './project-framaspace-toolbar.module.css';
 
 interface ToolbarItem {
   id: number;
@@ -116,20 +117,16 @@ export function FramaspaceToolbarSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-black py-12 md:py-20 overflow-hidden flex items-center justify-center min-h-32 md:min-h-40"
+      className={styles['horizontal-scroll-section']}
     >
-      <div className="w-full px-4 md:px-8 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
         {/* Container avec overflow hidden pour le scroll horizontal */}
-        <div className="w-full overflow-hidden">
+        <div style={{ width: '100%', overflow: 'hidden' }}>
           <div
             ref={containerRef}
-            className="flex items-center"
+            className={styles['horizontal-track']}
             style={{
-              gap: 'clamp(12px, 2.5vw, 18px)',
               transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              willChange: 'transform',
-              paddingLeft: '2rem',
-              paddingRight: '2rem',
             }}
           >
             {/* Affiche les items 2 fois pour créer un carrousel fluide */}
@@ -137,20 +134,14 @@ export function FramaspaceToolbarSection() {
               TOOLBAR_ITEMS.map((item) => (
                 <div
                   key={`${repetition}-${item.id}`}
-                  className="flex-shrink-0 flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 md:py-3 rounded-full transition-all hover:scale-110 backdrop-blur-sm border border-white/10 hover:border-white/30 cursor-pointer group"
-                  style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                    height: 'clamp(48px, 12vw, 60px)',
-                    minWidth: '80px',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
-                  }}
+                  className={styles['toolbar-item']}
                 >
                   {/* Icon */}
-                  <span className="text-base md:text-lg text-white/80 group-hover:text-white transition-colors flex-shrink-0">
+                  <span className={styles['toolbar-icon']}>
                     {item.icon}
                   </span>
-                  {/* Label - hidden on mobile pour économiser l'espace */}
-                  <span className="hidden sm:inline text-xs md:text-sm text-white/70 group-hover:text-white transition-colors whitespace-nowrap">
+                  {/* Label */}
+                  <span className={styles['toolbar-label']}>
                     {item.label}
                   </span>
                   {/* Accessible label */}
@@ -161,8 +152,8 @@ export function FramaspaceToolbarSection() {
           </div>
         </div>
 
-        {/* Hint texte pour mobile */}
-        <p className="text-center text-white/40 text-xs mt-6">
+        {/* Hint texte */}
+        <p className={styles['hint-text']}>
           Scroll to explore
         </p>
       </div>

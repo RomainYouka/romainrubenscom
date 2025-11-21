@@ -1,0 +1,90 @@
+.horizontal-scroll-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+  background: #000;
+}
+
+.horizontal-track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  will-change: transform;
+  padding: 0 2rem;
+}
+
+.toolbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 60px;
+  padding: 0 18px;
+  min-width: 180px;
+  border-radius: 9999px;
+  background: rgba(20, 20, 22, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  color: white;
+  flex: 0 0 auto;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolbar-item:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transform: scale(1.08);
+}
+
+.toolbar-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.toolbar-label {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+.hint-text {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+/* Responsive iPhone */
+@media (max-width: 768px) {
+  .horizontal-scroll-section {
+    padding: 24px 0;
+  }
+
+  .horizontal-track {
+    gap: 10px;
+    padding: 0 1rem;
+  }
+
+  .toolbar-item {
+    height: 52px;
+    padding: 0 14px;
+    min-width: 150px;
+    font-size: 14px;
+  }
+
+  .toolbar-icon {
+    font-size: 16px;
+  }
+
+  .toolbar-label {
+    display: none;
+  }
+
+  .hint-text {
+    font-size: 11px;
+    margin-top: 12px;
+  }
+}
