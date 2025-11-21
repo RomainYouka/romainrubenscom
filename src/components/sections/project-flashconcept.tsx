@@ -298,7 +298,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
         ref={concept02Ref}
         className="opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300"
       >
-        <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20 border-t border-[#D3D3D4]">
+        <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20">
           {/* Text Content */}
           <div className="mb-8 md:mb-12">
             <div
