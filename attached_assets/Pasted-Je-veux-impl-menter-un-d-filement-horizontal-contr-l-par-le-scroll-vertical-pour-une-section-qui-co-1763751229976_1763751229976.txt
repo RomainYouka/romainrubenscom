@@ -1,0 +1,34 @@
+Je veux implémenter un défilement horizontal contrôlé par le scroll vertical pour une section qui contient 7 éléments (barres d’outils / items).
+Objectif UX : quand l’utilisateur scroll verticalement et que cette section devient visible à l’écran, le scroll vertical doit se traduire par un déplacement horizontal fluide des 7 éléments. Dès que la section n’est plus visible, l’effet s’arrête et le scroll redevient normal.
+
+Contraintes fonctionnelles :
+	1.	La section doit s’animer uniquement quand elle est dans le viewport.
+	•	Le comportement doit démarrer dès que la section entre dans l’écran.
+	•	Il doit s’arrêter dès qu’elle sort de l’écran (haut ou bas).
+	•	Utiliser IntersectionObserver pour activer/désactiver proprement.
+	2.	Le scroll horizontal doit être ultra fluide.
+	•	Pas de saccades, pas de jump.
+	•	Utiliser requestAnimationFrame et une interpolation (lerp / easing léger).
+	•	Éviter les recalculs lourds.
+	3.	Les 7 éléments sont alignés horizontalement avec un petit gap.
+	•	Espacement léger, genre 12px à 20px max selon la taille d’écran.
+	•	Pas d’espace abusé.
+	4.	Responsive iPhone :
+	•	Sur mobile, le layout doit rester lisible et ne pas déborder bizarrement.
+	•	Le scroll horizontal contrôlé par le scroll vertical doit rester fonctionnel mais adapté (ex : vitesse ajustée, hauteur de section correcte).
+	•	Prévoir une fallback si nécessaire (ex : horizontal scroll natif si perf mobile trop faible), mais priorité à l’effet.
+
+Livrables attendus :
+	•	Modifier le composant/section concerné(e) (probablement un fichier TSX/React dans src/components/sections/…).
+	•	Ajouter le CSS nécessaire (flex horizontal, gap, overflow hidden, etc.).
+	•	Ajouter le JS/TS pour synchroniser scroll vertical → translateX.
+	•	Tout doit être propre, lisible, commenté, sans casser le reste du site.
+
+Critères de validation :
+	•	Quand je scroll et que la section apparaît, les 7 items se déplacent horizontalement.
+	•	Quand je sors de la section, le scroll horizontal s’arrête net.
+	•	Animation très smooth.
+	•	Gap discret entre items.
+	•	Responsive OK sur iPhone (aucun overflow moche, tailles adaptées).
+
+Tu peux faire l’implémentation complète maintenant.
