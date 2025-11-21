@@ -136,6 +136,29 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
           </div>
         </div>
       </div>
+
+      {/* Responsive Mockups Section */}
+      <div className="mt-16 md:mt-24 w-full">
+        {/* Desktop view - ordinateur.png */}
+        <div className="hidden md:block">
+          <img
+            src="/namequest/ordinateur.png"
+            alt="NameQuest specifications for desktop"
+            className="w-full h-auto"
+            style={{ display: 'block' }}
+          />
+        </div>
+
+        {/* Mobile/Tablet view - mobile.png */}
+        <div className="md:hidden">
+          <img
+            src="/namequest/mobile.png"
+            alt="NameQuest specifications for mobile"
+            className="w-full h-auto"
+            style={{ display: 'block' }}
+          />
+        </div>
+      </div>
     </section>
   );
 }
