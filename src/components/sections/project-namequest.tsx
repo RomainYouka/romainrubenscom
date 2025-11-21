@@ -53,26 +53,6 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
         scrollMarginTop: "80px"
       }}
     >
-      <div className="max-w-[1200px] mx-auto px-5 md:px-6 lg:px-10 py-16 md:py-20">
-        <div
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "clamp(15px, 1.6vw, 17px)",
-            fontWeight: 400,
-            color: "#1D1D1F",
-            lineHeight: 1.6,
-            letterSpacing: "-0.022em",
-            textAlign: "left",
-            maxWidth: "900px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "clamp(40px, 5vw, 60px)"
-          }}
-        >
-          {t.contextText}
-        </div>
-      </div>
-
       <div className="max-w-[1200px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-stretch gap-0 md:gap-0">
           {/* Image PNG à gauche avec effet de débordement */}
@@ -154,6 +134,25 @@ export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
               {t.description}
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-5 md:px-6 lg:px-10 py-16 md:py-20">
+        <div
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "clamp(15px, 1.6vw, 17px)",
+            fontWeight: 400,
+            color: "#1D1D1F",
+            lineHeight: 1.6,
+            letterSpacing: "-0.022em",
+            textAlign: "left",
+            maxWidth: "900px",
+            marginLeft: "auto",
+            marginRight: "auto"
+          }}
+        >
+          {t.contextText}
         </div>
       </div>
     </section>
