@@ -5,18 +5,16 @@ import styles from './project-framaspace-toolbar.module.css';
 
 interface ToolbarItem {
   id: number;
-  icon: string;
-  label: string;
+  bgColor: string;
 }
 
 const TOOLBAR_ITEMS: ToolbarItem[] = [
-  { id: 1, icon: '●', label: 'Tool 1' },
-  { id: 2, icon: '◆', label: 'Tool 2' },
-  { id: 3, icon: '▲', label: 'Tool 3' },
-  { id: 4, icon: '■', label: 'Tool 4' },
-  { id: 5, icon: '○', label: 'Tool 5' },
-  { id: 6, icon: '⬢', label: 'Tool 6' },
-  { id: 7, icon: '✕', label: 'Tool 7' },
+  { id: 1, bgColor: '#6BA3FF' },
+  { id: 2, bgColor: '#FFD700' },
+  { id: 3, bgColor: '#FF7F33' },
+  { id: 4, bgColor: '#52B788' },
+  { id: 5, bgColor: '#5DADE2' },
+  { id: 6, bgColor: '#A9A9A9' },
 ];
 
 export function FramaspaceToolbarSection() {
@@ -28,28 +26,43 @@ export function FramaspaceToolbarSection() {
       ref={sectionRef}
       className={styles['horizontal-scroll-section']}
     >
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-full">
         {/* Container avec les items empilés verticalement */}
         <div
           ref={containerRef}
           className={styles['horizontal-track']}
         >
-          {/* Affiche les 7 items empilés verticalement */}
+          {/* Affiche les 6 barres empilées verticalement */}
           {TOOLBAR_ITEMS.map((item) => (
             <div
               key={item.id}
-              className={styles['toolbar-item']}
+              className="w-full flex items-center px-4 md:px-6 py-3 md:py-4 relative group cursor-pointer transition-all hover:shadow-lg"
+              style={{
+                backgroundColor: item.bgColor,
+                height: '60px',
+                borderRadius: '8px',
+              }}
             >
-              {/* Icon */}
-              <span className={styles['toolbar-icon']}>
-                {item.icon}
-              </span>
-              {/* Label */}
-              <span className={styles['toolbar-label']}>
-                {item.label}
-              </span>
-              {/* Accessible label */}
-              <span className="sr-only">{item.label}</span>
+              {/* Section gauche - Icônes */}
+              <div className="flex gap-2 items-center">
+                <div className="w-4 h-4 rounded-full bg-white/60 hover:bg-white transition" />
+                <div className="w-4 h-4 rounded-full bg-white/40 hover:bg-white transition" />
+                <div className="w-4 h-4 rounded-full bg-white/20 hover:bg-white transition" />
+              </div>
+
+              {/* Section milieu - Slider/Barre */}
+              <div className="flex-1 mx-4 md:mx-6 h-2 bg-white/30 rounded-full relative">
+                <div 
+                  className="h-full bg-white rounded-full transition-all"
+                  style={{ width: `${40 + (item.id * 8)}%` }}
+                />
+              </div>
+
+              {/* Section droite - Contrôles */}
+              <div className="flex gap-2 items-center">
+                <div className="w-3 h-3 rounded-sm bg-white/60 hover:bg-white transition" />
+                <div className="w-3 h-3 rounded-sm bg-white/40 hover:bg-white transition" />
+              </div>
             </div>
           ))}
         </div>
