@@ -365,6 +365,7 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
   const [logoAnimating, setLogoAnimating] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
@@ -445,6 +446,17 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
     window.dispatchEvent(new CustomEvent("menuStateChange", { detail: isMenuOpen }));
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleLightboxStateChange = (event: CustomEvent<boolean>) => {
+      setIsLightboxOpen(event.detail);
+    };
+
+    window.addEventListener("flashconceptLightboxStateChange", handleLightboxStateChange as EventListener);
+    return () => {
+      window.removeEventListener("flashconceptLightboxStateChange", handleLightboxStateChange as EventListener);
+    };
+  }, []);
+
   const currentTranslations = translations[selectedLanguage];
 
   const navLinks = [
@@ -459,7 +471,9 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ease-in-out"
+        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ease-in-out ${
+          isLightboxOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
         style={{ 
           fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
           paddingTop: isScrolled ? "12px" : "0",

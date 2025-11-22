@@ -104,8 +104,19 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     : concept02Images.slice(0, initialImageCount);
   
   const flashConcept01Images = showAllConcept01 
-    ? [1, 2, 3, 1, 4, 5, 1, 6, 7]
+    ? [1, 2, 3, 4, 5, 6, 7]
     : [1, 2, 3];
+  
+  const currentImageIndex = lightboxImage 
+    ? (lightboxConcept === "01" 
+        ? flashConcept01Images.indexOf(lightboxImage)
+        : visibleConcept02Images.indexOf(lightboxImage))
+    : -1;
+  
+  const canGoPrevious = currentImageIndex > 0;
+  const canGoNext = currentImageIndex >= 0 && (lightboxConcept === "01"
+    ? currentImageIndex < flashConcept01Images.length - 1
+    : currentImageIndex < visibleConcept02Images.length - 1);
   
   const handleToggleConcept01 = () => {
     if (showAllConcept01) {
@@ -498,7 +509,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   e.stopPropagation();
                   goToPreviousImage();
                 }}
-                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
+                disabled={!canGoPrevious}
+                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
+                  canGoPrevious
+                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
+                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
+                }`}
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -507,7 +523,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   e.stopPropagation();
                   goToNextImage();
                 }}
-                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
+                disabled={!canGoNext}
+                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
+                  canGoNext
+                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
+                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
+                }`}
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
