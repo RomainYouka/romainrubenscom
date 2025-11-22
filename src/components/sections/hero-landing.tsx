@@ -126,19 +126,20 @@ export default function HeroLanding() {
               minWidth: "200px",
               opacity: splashDone ? 1 : 0,
               transition: "opacity 0.6s ease",
+              whiteSpace: "nowrap"
             }}
           >
             {displayedText}
-            {isTyping && (
-              <span
-                style={{
-                  animation: "blink 0.7s infinite",
-                  marginLeft: "8px"
-                }}
-              >
-                |
-              </span>
-            )}
+            <span
+              style={{
+                marginLeft: "8px",
+                animation: isTyping ? "blink 0.7s infinite" : "none",
+                opacity: isTyping ? 1 : 0,
+                transition: "opacity 0.3s ease"
+              }}
+            >
+              |
+            </span>
           </h1>
         </div>
 
