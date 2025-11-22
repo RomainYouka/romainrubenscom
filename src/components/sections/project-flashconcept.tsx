@@ -492,11 +492,14 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             onClick={(e) => e.stopPropagation()}
           >
             <Image
+              key={`${lightboxConcept}-${lightboxImage}`}
               src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
               alt="Lightbox"
               width={600}
               height={1200}
-              className="max-h-[90vh] w-auto object-contain pointer-events-none"
+              priority
+              unoptimized
+              className="max-h-[90vh] w-auto object-contain pointer-events-none !transition-none"
             />
 
             {/* Navigation Buttons */}
