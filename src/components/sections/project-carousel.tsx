@@ -215,9 +215,12 @@ export default function ProjectCarousel() {
                     height: isMobile ? "35vw" : "25vw",
                     opacity: isCenter ? 1 : 0.4,
                     transition: "opacity 300ms ease",
-                    marginRight: index < extendedImages.length - 1 ? (isMobile ? "0.2px" : "0.3px") : "0",
+                    marginRight: index < extendedImages.length - 1 ? (isMobile ? "2px" : "3px") : "0",
+                    padding: "0",
+                    margin: "0",
                     userSelect: "none",
                     position: "relative",
+                    overflow: "hidden",
                     backgroundColor: index === 2 || (index === 0 && currentIndex === 0) || (index === extendedImages.length - 1 && currentIndex === extendedImages.length - 1) ? "#F5F5F7" : "transparent",
                     cursor: (isLeft || isRight) && !isTransitioning ? "pointer" : "default"
                   }}
