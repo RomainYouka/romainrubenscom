@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 interface ProjectFlashConceptProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -77,6 +77,8 @@ const flashConcept02Translations = {
 export default function ProjectFlashConcept({ language }: ProjectFlashConceptProps) {
   const [showAllConcept01, setShowAllConcept01] = useState(false);
   const [showAllImages, setShowAllImages] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<number | null>(null);
+  const [lightboxConcept, setLightboxConcept] = useState<"01" | "02" | null>(null);
   
   const concept01ButtonRef = useRef<HTMLDivElement>(null);
   const concept02ButtonRef = useRef<HTMLDivElement>(null);
@@ -132,6 +134,38 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     }
   };
 
+  const handleImageClick = (imageNum: number, concept: "01" | "02") => {
+    setLightboxImage(imageNum);
+    setLightboxConcept(concept);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    setLightboxImage(null);
+    setLightboxConcept(null);
+    document.body.style.overflow = "";
+  };
+
+  const goToPreviousImage = () => {
+    if (lightboxConcept === "01") {
+      const index = flashConcept01Images.indexOf(lightboxImage!);
+      if (index > 0) setLightboxImage(flashConcept01Images[index - 1]);
+    } else if (lightboxConcept === "02") {
+      const index = visibleConcept02Images.indexOf(lightboxImage!);
+      if (index > 0) setLightboxImage(visibleConcept02Images[index - 1]);
+    }
+  };
+
+  const goToNextImage = () => {
+    if (lightboxConcept === "01") {
+      const index = flashConcept01Images.indexOf(lightboxImage!);
+      if (index < flashConcept01Images.length - 1) setLightboxImage(flashConcept01Images[index + 1]);
+    } else if (lightboxConcept === "02") {
+      const index = visibleConcept02Images.indexOf(lightboxImage!);
+      if (index < visibleConcept02Images.length - 1) setLightboxImage(visibleConcept02Images[index + 1]);
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -150,6 +184,17 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxImage) return;
+      if (e.key === "ArrowLeft") goToPreviousImage();
+      if (e.key === "ArrowRight") goToNextImage();
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxImage, lightboxConcept]);
 
   return (
     <section
@@ -233,7 +278,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 return (
                   <div 
                     key={`${num}-${index}`}
-                    className="relative w-full overflow-hidden rounded-lg md:rounded-xl transition-all duration-500 ease-out"
+                    className="relative w-full overflow-hidden rounded-lg md:rounded-xl transition-all duration-500 ease-out cursor-pointer"
                     style={{
                       aspectRatio: "9/19.5",
                       opacity: isInitial ? 1 : (showAllConcept01 ? 1 : 0),
@@ -241,6 +286,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                       transitionDelay: showAllConcept01 ? `${(index - 3) * 50}ms` : '0ms',
                       maxHeight: isInitial ? 'none' : (showAllConcept01 ? '100%' : '0'),
                     }}
+                    onClick={() => handleImageClick(num, "01")}
                   >
                     <Image
                       src={`/${num}.png`}
@@ -351,7 +397,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 return (
                   <div
                     key={num}
-                    className="relative w-full overflow-hidden rounded-lg md:rounded-xl shadow-sm bg-[#F5F5F7] transition-all duration-500 ease-out"
+                    className="relative w-full overflow-hidden rounded-lg md:rounded-xl shadow-sm bg-[#F5F5F7] transition-all duration-500 ease-out cursor-pointer"
                     style={{
                       aspectRatio: "9/19.5",
                       opacity: isInitial ? 1 : (showAllImages ? 1 : 0),
@@ -359,6 +405,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                       transitionDelay: showAllImages ? `${(index - initialImageCount) * 30}ms` : '0ms',
                       maxHeight: isInitial ? 'none' : (showAllImages ? '100%' : '0'),
                     }}
+                    onClick={() => handleImageClick(num, "02")}
                   >
                     <Image
                       src={`/${num}.jpg`}
@@ -405,6 +452,51 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxImage && lightboxConcept && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeLightbox();
+          }}
+        >
+          {/* Image Container */}
+          <div className="relative w-full h-full flex items-center justify-center px-4 py-8">
+            <Image
+              src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
+              alt="Lightbox"
+              width={600}
+              height={1200}
+              className="max-h-[90vh] w-auto object-contain"
+            />
+
+            {/* Navigation Buttons */}
+            <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
+              <button
+                onClick={goToPreviousImage}
+                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={goToNextImage}
+                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Close Button */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
