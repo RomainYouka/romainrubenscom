@@ -79,6 +79,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const [showAllImages, setShowAllImages] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<number | null>(null);
   const [lightboxConcept, setLightboxConcept] = useState<"01" | "02" | null>(null);
+  const [isImageTransitioning, setIsImageTransitioning] = useState(false);
   
   const concept01ButtonRef = useRef<HTMLDivElement>(null);
   const concept02ButtonRef = useRef<HTMLDivElement>(null);
@@ -184,6 +185,14 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (lightboxImage) {
+      setIsImageTransitioning(true);
+      const timer = setTimeout(() => setIsImageTransitioning(false), 150);
+      return () => clearTimeout(timer);
+    }
+  }, [lightboxImage]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -469,7 +478,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
               alt="Lightbox"
               width={600}
               height={1200}
-              className="max-h-[90vh] w-auto object-contain pointer-events-none"
+              className={`max-h-[90vh] w-auto object-contain pointer-events-none transition-opacity duration-300 ${
+                isImageTransitioning ? "opacity-0" : "opacity-100"
+              }`}
             />
 
             {/* Navigation Buttons */}
