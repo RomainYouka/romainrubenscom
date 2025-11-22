@@ -4,15 +4,15 @@ import { useState, useEffect } from "react";
 
 const translations = {
   FR: {
-    title: "Salut, je suis Romain",
+    title: "À propos de moi",
     text: "Je suis étudiant en troisième année de design industriel, spécialisé en UX/UI et design d'interaction.\nJ'explore la relation entre l'humain, la technologie et les objets qu'il utilise.\nMon approche consiste à transformer la complexité en clarté et le design en expérience.\nPour en savoir plus sur mon parcours, vous pouvez me retrouver sur LinkedIn ou télécharger mon CV.",
   },
   EN: {
-    title: "Hi, I'm Romain",
+    title: "About me",
     text: "I'm a third-year industrial design student specializing in UX/UI and interaction design.\nI explore the relationship between humans, technology, and the objects they use.\nMy approach is to turn complexity into clarity and design into experience.\nTo learn more about my background, you can find me on LinkedIn or download my resume.",
   },
   ՀԱՅ: {
-    title: "Բարև, ես Ռոմեն եմ",
+    title: "Իմ մասին՝",
     text: "Ես երրորդ կուրսի ուսանող եմ արդյունաբերական դիզայնի ոլորտում, մասնագիտացած UX/UI և ինտերակտիվ դիզայնի մեջ։\nԵս ուսումնասիրում եմ մարդու, տեխնոլոգիայի և օգտագործվող օբյեկտների միջև հարաբերությունները։\nԻմ մոտեցումը բարդությունը պարզության և դիզայնը փորձառության վերածելն է։\nԻմ ֆոնի մասին ավելին իմանալու համար կարող եք գտնել ինձ LinkedIn-ում կամ ներբեռնել իմ ռեզյումեն։",
   },
 };
