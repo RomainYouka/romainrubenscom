@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 
 const translations = {
   FR: { text: "Bienvenue", button: "Descendre" },
-  EN: { text: "Welcome", button: "Scroll Down" },
+  EN: { text: "Hello, mois c'est Romain Rubens", button: "Scroll Down" },
   ՀԱՅ: { text: "Բարի գալուստ", button: "Լողալ" }
 };
 
