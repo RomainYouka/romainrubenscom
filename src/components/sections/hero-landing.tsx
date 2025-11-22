@@ -130,16 +130,16 @@ export default function HeroLanding() {
             }}
           >
             {displayedText}
-            <span
-              style={{
-                marginLeft: "8px",
-                animation: isTyping ? "blink 0.7s infinite" : "none",
-                opacity: isTyping ? 1 : 0,
-                transition: "opacity 0.3s ease"
-              }}
-            >
-              |
-            </span>
+            {isTyping && (
+              <span
+                style={{
+                  marginLeft: "8px",
+                  animation: "blink 0.7s infinite"
+                }}
+              >
+                |
+              </span>
+            )}
           </h1>
         </div>
 
