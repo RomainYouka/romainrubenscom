@@ -104,7 +104,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     : concept02Images.slice(0, initialImageCount);
   
   const flashConcept01Images = showAllConcept01 
-    ? [1, 2, 3, 4, 5, 6, 7]
+    ? [1, 2, 3, 1, 4, 5, 1, 6, 7]
     : [1, 2, 3];
   
   const currentImageIndex = lightboxImage 
