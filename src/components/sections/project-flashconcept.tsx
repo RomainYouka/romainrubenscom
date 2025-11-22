@@ -103,7 +103,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     : concept02Images.slice(0, initialImageCount);
   
   const flashConcept01Images = showAllConcept01 
-    ? ["1a", 2, 3, "1.2", 3, 4, "1.3", 5, 6]
+    ? ["1a", 2, 3, "1.2", 4, 5, "1.3", 6, 7]
     : ["1a", 2, 3];
   
   const currentImageIndex = lightboxImage 
@@ -221,7 +221,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxImage, lightboxConcept, flashConcept01Images, visibleConcept02Images]);
+  }, [lightboxImage, lightboxConcept, showAllConcept01, showAllImages]);
 
   return (
     <section
