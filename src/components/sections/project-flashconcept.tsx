@@ -149,6 +149,12 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
   };
 
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeLightbox();
+    }
+  };
+
   const goToPreviousImage = () => {
     if (lightboxConcept === "01") {
       const index = flashConcept01Images.indexOf(lightboxImage!);
@@ -191,7 +197,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   useEffect(() => {
     if (lightboxImage) {
       setIsImageTransitioning(true);
-      const timer = setTimeout(() => setIsImageTransitioning(false), 150);
+      const timer = setTimeout(() => setIsImageTransitioning(false), 80);
       return () => clearTimeout(timer);
     }
   }, [lightboxImage]);
@@ -468,7 +474,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
       {lightboxImage && lightboxConcept && (
         <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
-          onClick={closeLightbox}
+          onClick={handleBackdropClick}
         >
           {/* Image Container - stops click propagation */}
           <div 
@@ -480,7 +486,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
               alt="Lightbox"
               width={600}
               height={1200}
-              className={`max-h-[90vh] w-auto object-contain pointer-events-none transition-opacity duration-300 ${
+              className={`max-h-[90vh] w-auto object-contain pointer-events-none transition-opacity duration-150 ${
                 isImageTransitioning ? "opacity-0" : "opacity-100"
               }`}
             />
@@ -492,7 +498,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   e.stopPropagation();
                   goToPreviousImage();
                 }}
-                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
+                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -501,7 +507,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                   e.stopPropagation();
                   goToNextImage();
                 }}
-                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
+                className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -513,7 +519,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 e.stopPropagation();
                 closeLightbox();
               }}
-              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
             >
               <X className="w-5 h-5" />
             </button>
