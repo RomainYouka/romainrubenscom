@@ -144,35 +144,15 @@ export default function HeroLanding() {
               minWidth: "max-content"
             }}
           >
-            <span style={{ visibility: "hidden", display: "inline", position: "absolute" }}>
-              {fullText}
-            </span>
             {showInitialCursor && !displayedText ? (
-              <span
-                style={{
-                  animation: "blink 0.7s infinite",
-                  display: "inline"
-                }}
-              >
-                |
-              </span>
-            ) : (
+              <span style={{ animation: "blink 0.7s infinite" }}>|</span>
+            ) : displayedText ? (
               <>
-                <span style={{ display: "inline", visibility: displayedText ? "visible" : "hidden" }}>
-                  {displayedText || fullText}
-                </span>
-                {isTyping && (
-                  <span
-                    style={{
-                      animation: "blink 0.7s infinite",
-                      marginLeft: "8px",
-                      display: "inline"
-                    }}
-                  >
-                    |
-                  </span>
-                )}
+                {displayedText}
+                {isTyping && <span style={{ animation: "blink 0.7s infinite", marginLeft: "8px" }}>|</span>}
               </>
+            ) : (
+              <span style={{ visibility: "hidden" }}>{fullText}</span>
             )}
           </h1>
         </div>
