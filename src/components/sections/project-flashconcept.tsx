@@ -79,6 +79,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const [showAllImages, setShowAllImages] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | number | null>(null);
   const [lightboxConcept, setLightboxConcept] = useState<"01" | "02" | null>(null);
+  const [displayedImage, setDisplayedImage] = useState<string | number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   const concept01ButtonRef = useRef<HTMLDivElement>(null);
   const concept02ButtonRef = useRef<HTMLDivElement>(null);
@@ -153,6 +155,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
       setShowAllImages(true);
     }
     
+    setDisplayedImage(imageNum);
     setLightboxImage(imageNum);
     setLightboxConcept(concept);
     document.body.style.overflow = "hidden";
@@ -162,6 +165,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const closeLightbox = () => {
     setLightboxImage(null);
     setLightboxConcept(null);
+    setDisplayedImage(null);
+    setIsTransitioning(false);
     document.body.style.overflow = "";
     window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
   };
@@ -173,23 +178,47 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   };
 
   const goToPreviousImage = () => {
-    if (lightboxConcept === "01") {
-      const index = flashConcept01Images.indexOf(lightboxImage!);
-      if (index > 0) setLightboxImage(flashConcept01Images[index - 1]);
-    } else if (lightboxConcept === "02") {
-      const index = visibleConcept02Images.indexOf(lightboxImage!);
-      if (index > 0) setLightboxImage(visibleConcept02Images[index - 1]);
-    }
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (lightboxConcept === "01") {
+        const index = flashConcept01Images.indexOf(lightboxImage!);
+        if (index > 0) {
+          const prevImage = flashConcept01Images[index - 1];
+          setDisplayedImage(prevImage);
+          setLightboxImage(prevImage);
+        }
+      } else if (lightboxConcept === "02") {
+        const index = visibleConcept02Images.indexOf(lightboxImage!);
+        if (index > 0) {
+          const prevImage = visibleConcept02Images[index - 1];
+          setDisplayedImage(prevImage);
+          setLightboxImage(prevImage);
+        }
+      }
+      setIsTransitioning(false);
+    }, 150);
   };
 
   const goToNextImage = () => {
-    if (lightboxConcept === "01") {
-      const index = flashConcept01Images.indexOf(lightboxImage!);
-      if (index < flashConcept01Images.length - 1) setLightboxImage(flashConcept01Images[index + 1]);
-    } else if (lightboxConcept === "02") {
-      const index = visibleConcept02Images.indexOf(lightboxImage!);
-      if (index < visibleConcept02Images.length - 1) setLightboxImage(visibleConcept02Images[index + 1]);
-    }
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (lightboxConcept === "01") {
+        const index = flashConcept01Images.indexOf(lightboxImage!);
+        if (index < flashConcept01Images.length - 1) {
+          const nextImage = flashConcept01Images[index + 1];
+          setDisplayedImage(nextImage);
+          setLightboxImage(nextImage);
+        }
+      } else if (lightboxConcept === "02") {
+        const index = visibleConcept02Images.indexOf(lightboxImage!);
+        if (index < visibleConcept02Images.length - 1) {
+          const nextImage = visibleConcept02Images[index + 1];
+          setDisplayedImage(nextImage);
+          setLightboxImage(nextImage);
+        }
+      }
+      setIsTransitioning(false);
+    }, 150);
   };
 
   useEffect(() => {
@@ -491,16 +520,33 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             className="relative w-full h-full flex items-center justify-center px-4 py-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              key={`${lightboxConcept}-${lightboxImage}`}
-              src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
-              alt="Lightbox"
-              width={600}
-              height={1200}
-              priority
-              unoptimized
-              className="max-h-[90vh] w-auto object-contain pointer-events-none !transition-none"
-            />
+            {/* Current Image (Base) */}
+            {displayedImage && (
+              <Image
+                src={lightboxConcept === "01" ? `/${displayedImage}.png` : `/${displayedImage}.jpg`}
+                alt="Lightbox Current"
+                width={600}
+                height={1200}
+                priority
+                unoptimized
+                className={`max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-150 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}
+              />
+            )}
+            
+            {/* Next Image (Overlay during transition) */}
+            {isTransitioning && lightboxImage && (
+              <Image
+                src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
+                alt="Lightbox Next"
+                width={600}
+                height={1200}
+                priority
+                unoptimized
+                className="max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-150 opacity-100"
+              />
+            )}
 
             {/* Navigation Buttons */}
             <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
