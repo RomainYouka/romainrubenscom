@@ -142,7 +142,21 @@ export default function HeroLanding() {
               whiteSpace: "nowrap"
             }}
           >
-            {showInitialCursor && !isTyping ? (
+            {displayedText ? (
+              <>
+                {displayedText}
+                {isTyping && (
+                  <span
+                    style={{
+                      animation: "blink 0.7s infinite",
+                      marginLeft: "8px"
+                    }}
+                  >
+                    |
+                  </span>
+                )}
+              </>
+            ) : showInitialCursor ? (
               <span
                 style={{
                   animation: "blink 0.7s infinite"
@@ -150,7 +164,7 @@ export default function HeroLanding() {
               >
                 |
               </span>
-            ) : displayedText || (
+            ) : (
               <span style={{ visibility: "hidden" }}>
                 {fullText}
               </span>
