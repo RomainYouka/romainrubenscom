@@ -16,6 +16,7 @@ export default function HeroLanding() {
   const [isTyping, setIsTyping] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [splashDone, setSplashDone] = useState(false);
+  const [showInitialCursor, setShowInitialCursor] = useState(false);
 
   const fullText = translations[selectedLanguage].text;
   const buttonText = translations[selectedLanguage].button;
@@ -33,7 +34,7 @@ export default function HeroLanding() {
       const introSeen = sessionStorage.getItem("introSeen");
       if (introSeen === "true") {
         setSplashDone(true);
-        setIsTyping(true);
+        setShowInitialCursor(true);
       }
     };
 
@@ -47,7 +48,7 @@ export default function HeroLanding() {
       // Force start après 5 secondes max
       if (!splashDone) {
         setSplashDone(true);
-        setIsTyping(true);
+        setShowInitialCursor(true);
       }
     }, 5000);
 
@@ -56,6 +57,18 @@ export default function HeroLanding() {
       clearTimeout(timeout);
     };
   }, [splashDone]);
+
+  // Après 1 seconde du curseur initial, commencer le typage
+  useEffect(() => {
+    if (!showInitialCursor) return;
+    
+    const timer = setTimeout(() => {
+      setShowInitialCursor(false);
+      setIsTyping(true);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, [showInitialCursor]);
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent<"FR" | "EN" | "ՀԱՅ">) => {
@@ -123,21 +136,23 @@ export default function HeroLanding() {
               letterSpacing: "-0.02em",
               lineHeight: 1.1,
               textAlign: "center",
-              minWidth: "200px",
+              minHeight: "1.2em",
               opacity: splashDone ? 1 : 0,
               transition: "opacity 0.6s ease",
               whiteSpace: "nowrap"
             }}
           >
-            {displayedText}
-            {isTyping && (
+            {showInitialCursor && !isTyping ? (
               <span
                 style={{
-                  marginLeft: "8px",
                   animation: "blink 0.7s infinite"
                 }}
               >
                 |
+              </span>
+            ) : displayedText || (
+              <span style={{ visibility: "hidden" }}>
+                {fullText}
               </span>
             )}
           </h1>
