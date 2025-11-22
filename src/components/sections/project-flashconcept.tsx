@@ -196,7 +196,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
         }
       }
       setIsTransitioning(false);
-    }, 150);
+    }, 100);
   };
 
   const goToNextImage = () => {
@@ -218,7 +218,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
         }
       }
       setIsTransitioning(false);
-    }, 150);
+    }, 100);
   };
 
   useEffect(() => {
@@ -507,31 +507,18 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             className="relative w-full h-full flex items-center justify-center px-4 py-8"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Current Image (Base) */}
+            {/* Single Image with fade transition */}
             {displayedImage && (
               <Image
                 src={lightboxConcept === "01" ? `/${displayedImage}.png` : `/${displayedImage}.jpg`}
-                alt="Lightbox Current"
+                alt="Lightbox"
                 width={600}
                 height={1200}
                 priority
                 unoptimized
-                className={`max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-150 ${
+                className={`max-h-[90vh] w-auto object-contain pointer-events-none transition-opacity duration-100 ${
                   isTransitioning ? "opacity-0" : "opacity-100"
                 }`}
-              />
-            )}
-            
-            {/* Next Image (Overlay during transition) */}
-            {isTransitioning && lightboxImage && (
-              <Image
-                src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
-                alt="Lightbox Next"
-                width={600}
-                height={1200}
-                priority
-                unoptimized
-                className="max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-150 opacity-100"
               />
             )}
 
