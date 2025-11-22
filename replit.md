@@ -75,3 +75,11 @@ Preferred communication style: Simple, everyday language.
 - **Supabase Storage** - CDN for images and static assets
 - Script integration for route change messaging in iframe contexts
 - Custom error reporting system with parent frame communication
+
+# Video Button Positioning Memory
+
+## Play/Pause and +5s Buttons Overlay Positioning (iOS 26 & WaveSwitch Section 1)
+- **Current position**: `pb-6` (padding-bottom: 1.5rem) - TOO HIGH, overlaps video content
+- **Previous position**: `pb-12` (padding-bottom: 3rem) - TOO LOW, too far from content due to invisible borders
+- **Target**: Find optimal position between pb-6 and pb-12 where buttons sit on invisible bottom border of video
+- **Note**: These two projects have invisible top/bottom borders in their video mockups that create spacing. The buttons need to sit in that invisible bottom border area.
