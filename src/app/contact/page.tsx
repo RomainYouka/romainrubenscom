@@ -200,14 +200,14 @@ export default function ContactPage() {
               }}
             >
               {/* Left Arrow to Email Button */}
-              <svg width="60" height="80" viewBox="0 0 60 80" className="hidden md:block">
+              <svg width="80" height="120" viewBox="0 0 80 120" className="hidden md:block">
                 <defs>
                   <style>{`
                     @keyframes drawArrowLeft {
                       0% {
-                        stroke-dashoffset: 200;
+                        stroke-dashoffset: 300;
                       }
-                      70% {
+                      75% {
                         stroke-dashoffset: 0;
                       }
                       100% {
@@ -215,13 +215,13 @@ export default function ContactPage() {
                       }
                     }
                     .arrow-left {
-                      animation: drawArrowLeft 2s ease-in-out infinite;
-                      stroke-dasharray: 200;
+                      animation: drawArrowLeft 2.5s ease-in-out infinite;
+                      stroke-dasharray: 300;
                     }
                   `}</style>
                 </defs>
                 <path
-                  d="M 30 0 Q 10 20, 5 40 Q 0 50, 10 60 L 5 70 L 15 65 L 12 75"
+                  d="M 40 0 L 40 20 Q 20 25, 10 35 Q 0 45, 10 55 Q 20 65, 40 65 L 40 85 L 25 100 L 40 85 L 55 100"
                   className="arrow-left"
                   stroke="#515151"
                   strokeWidth="2"
@@ -232,14 +232,14 @@ export default function ContactPage() {
               </svg>
 
               {/* Right Arrow to LinkedIn Button */}
-              <svg width="60" height="80" viewBox="0 0 60 80" className="hidden md:block">
+              <svg width="80" height="120" viewBox="0 0 80 120" className="hidden md:block">
                 <defs>
                   <style>{`
                     @keyframes drawArrowRight {
                       0% {
-                        stroke-dashoffset: 200;
+                        stroke-dashoffset: 300;
                       }
-                      70% {
+                      75% {
                         stroke-dashoffset: 0;
                       }
                       100% {
@@ -247,13 +247,13 @@ export default function ContactPage() {
                       }
                     }
                     .arrow-right {
-                      animation: drawArrowRight 2s ease-in-out infinite;
-                      stroke-dasharray: 200;
+                      animation: drawArrowRight 2.5s ease-in-out infinite;
+                      stroke-dasharray: 300;
                     }
                   `}</style>
                 </defs>
                 <path
-                  d="M 30 0 Q 50 20, 55 40 Q 60 50, 50 60 L 55 70 L 45 65 L 48 75"
+                  d="M 40 0 L 40 20 Q 60 25, 70 35 Q 80 45, 70 55 Q 60 65, 40 65 L 40 85 L 55 100 L 40 85 L 25 100"
                   className="arrow-right"
                   stroke="#515151"
                   strokeWidth="2"
