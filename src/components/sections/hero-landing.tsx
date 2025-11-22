@@ -7,7 +7,7 @@ import { ChevronDown } from "lucide-react";
 const translations = {
   FR: { text: "Hello, moi c'est Romain Rubens", button: "Descendre" },
   EN: { text: "Hello, I'm Romain Rubens", button: "Scroll Down" },
-  ՀԱՅ: { text: "Ողջույն, ես Ռոման Ռուբենս եմ", button: "Լողալ" }
+  ՀԱՅ: { text: "Ողջույն, ես Ռոման Ռուբենս եմ", button: "ԻՋՆԵԼ" }
 };
 
 export default function HeroLanding() {
