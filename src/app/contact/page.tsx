@@ -28,7 +28,7 @@ const contactTranslations = {
     heading: "Միացեք ինձ։",
     subheading: "",
     button1: "Իմ էլ.փոստը",
-    button2: "Ստուգել իմ LinkedIn",
+    button2: "Բացել իմ LinkedIn",
     emailAriaLabel: "Ուղարկել էլ․փոստ Ռոմեն Ռուբենսին",
     linkedinAriaLabel: "Բացել Ռոմեն Ռուբենսի LinkedIn պրոֆիլը",
     emailTooltip: "Ուղարկել նամակ Ռոմեն Ռուբենսին",
