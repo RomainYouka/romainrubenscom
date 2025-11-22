@@ -145,7 +145,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     }
   };
 
-  const handleImageClick = (imageNum: number, concept: "01" | "02") => {
+  const handleImageClick = (imageNum: string | number, concept: "01" | "02") => {
     // Afficher toutes les images si elles ne sont pas déjà affichées
     if (concept === "01" && !showAllConcept01) {
       setShowAllConcept01(true);
@@ -221,7 +221,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxImage, lightboxConcept]);
+  }, [lightboxImage, lightboxConcept, flashConcept01Images, visibleConcept02Images]);
 
   return (
     <section
