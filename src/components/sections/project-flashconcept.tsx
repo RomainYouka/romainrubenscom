@@ -222,22 +222,9 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (headerRef.current) observer.observe(headerRef.current);
-    if (concept01Ref.current) observer.observe(concept01Ref.current);
-    if (concept02Ref.current) observer.observe(concept02Ref.current);
-
-    return () => observer.disconnect();
+    if (headerRef.current) headerRef.current.classList.add('animate-in');
+    if (concept01Ref.current) concept01Ref.current.classList.add('animate-in');
+    if (concept02Ref.current) concept02Ref.current.classList.add('animate-in');
   }, []);
 
 
@@ -263,7 +250,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
       {/* FlashConcept_01 */}
       <div
         ref={concept01Ref}
-        className="opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200"
+        className="opacity-100 translate-y-0"
       >
         <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20">
           {/* Text Content */}
@@ -396,7 +383,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
       {/* FlashConcept_02 */}
       <div
         ref={concept02Ref}
-        className="opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300"
+        className="opacity-100 translate-y-0"
       >
         <div className="max-w-[1600px] mx-auto px-5 md:px-10 py-12 md:py-20">
           {/* Text Content */}
