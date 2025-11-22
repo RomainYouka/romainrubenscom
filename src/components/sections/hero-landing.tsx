@@ -136,15 +136,25 @@ export default function HeroLanding() {
               letterSpacing: "-0.02em",
               lineHeight: 1.1,
               textAlign: "center",
-              minHeight: "1.2em",
               opacity: splashDone ? 1 : 0,
               transition: "opacity 0.6s ease",
-              whiteSpace: "nowrap"
+              whiteSpace: "nowrap",
+              height: "1.2em"
             }}
           >
-            {displayedText ? (
+            {showInitialCursor && !displayedText ? (
+              <span
+                style={{
+                  animation: "blink 0.7s infinite"
+                }}
+              >
+                |
+              </span>
+            ) : (
               <>
-                {displayedText}
+                <span style={{ visibility: displayedText ? "visible" : "hidden" }}>
+                  {displayedText || fullText}
+                </span>
                 {isTyping && (
                   <span
                     style={{
@@ -156,18 +166,6 @@ export default function HeroLanding() {
                   </span>
                 )}
               </>
-            ) : showInitialCursor ? (
-              <span
-                style={{
-                  animation: "blink 0.7s infinite"
-                }}
-              >
-                |
-              </span>
-            ) : (
-              <span style={{ visibility: "hidden" }}>
-                {fullText}
-              </span>
             )}
           </h1>
         </div>
