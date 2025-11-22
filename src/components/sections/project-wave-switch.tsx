@@ -219,7 +219,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 preload="auto"
                 aria-label="Wave Switch app interface demonstration" className="!w-full !h-full !max-w-full" />
 
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 pb-6">
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 pb-10">
                 <button
                   onClick={togglePlayPause1}
                   className="flex items-center justify-center gap-2 px-4 py-2 rounded-full text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.95]"
