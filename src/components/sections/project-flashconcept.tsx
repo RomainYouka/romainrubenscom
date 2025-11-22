@@ -260,11 +260,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             {!showAllConcept01 ? (
               <button
                 onClick={handleToggleConcept01}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full border border-transparent text-[#1D1D1F] transition-all duration-200 ease-out hover:border-[#1D1D1F] hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] font-medium transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "15px",
-                  fontWeight: 500,
                   letterSpacing: "-0.01em"
                 }}
               >
@@ -274,11 +273,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             ) : (
               <button
                 onClick={handleToggleConcept01}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full border border-transparent text-[#1D1D1F] transition-all duration-200 ease-out hover:border-[#1D1D1F] hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] font-medium transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "15px",
-                  fontWeight: 500,
                   letterSpacing: "-0.01em"
                 }}
               >
@@ -380,11 +378,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             {!showAllImages ? (
               <button
                 onClick={handleToggleConcept02}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full border border-transparent text-[#1D1D1F] transition-all duration-200 ease-out hover:border-[#1D1D1F] hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] font-medium transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "15px",
-                  fontWeight: 500,
                   letterSpacing: "-0.01em"
                 }}
               >
@@ -394,11 +391,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             ) : (
               <button
                 onClick={handleToggleConcept02}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full border border-transparent text-[#1D1D1F] transition-all duration-200 ease-out hover:border-[#1D1D1F] hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] font-medium transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   fontFamily: "var(--font-body)",
                   fontSize: "15px",
-                  fontWeight: 500,
                   letterSpacing: "-0.01em"
                 }}
               >
