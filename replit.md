@@ -79,8 +79,6 @@ Preferred communication style: Simple, everyday language.
 # Video Button Positioning Memory
 
 ## Play/Pause and +5s Buttons Overlay Positioning (iOS 26 & WaveSwitch Section 1)
-- **Current position**: `pb-12` (padding-bottom: 3rem)
-- **Previous position tested**: `pb-10` (padding-bottom: 2.5rem) - TOO HIGH, approaching upward
-- **Previous position tested**: `pb-6` (padding-bottom: 1.5rem) - TOO HIGH, overlaps video content
-- **Target**: Find optimal position where buttons sit on invisible bottom border of video (descending downward)
-- **Note**: These two projects have invisible top/bottom borders in their video mockups that create spacing. The buttons need to sit in that invisible bottom border area.
+- **Current position**: `pb-3` (padding-bottom: 0.75rem) - INITIAL POSITION, restarting
+- **Target**: Find optimal position by incrementally increasing from pb-3 upward where buttons sit on invisible bottom border
+- **Note**: These two projects have invisible top/bottom borders in their video mockups. Increase pb values gradually: pb-3 → pb-4 → pb-5 → pb-6 etc. to find the sweet spot.
