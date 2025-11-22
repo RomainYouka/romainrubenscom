@@ -76,6 +76,19 @@ Preferred communication style: Simple, everyday language.
 - Script integration for route change messaging in iframe contexts
 - Custom error reporting system with parent frame communication
 
+# Home Page Hero Landing Animation
+
+## Welcome/Bienvenue Typing Animation
+- **Location**: `src/components/sections/hero-landing.tsx`
+- **Feature**: Typing animation that displays "Welcome" (EN), "Bienvenue" (FR), or "Բարի գալուստ" (ՀԱՅ)
+- **Trigger**: Animation starts AFTER intro splash screen disappears (when sessionStorage.introSeen = "true")
+- **Language Support**: 
+  - EN: "Welcome" with button "Scroll Down"
+  - FR: "Bienvenue" with button "Descendre"
+  - ՀԱՅ: "Բարի գալուստ" with button "Լողալ"
+- **Button Position**: Bottom of the hero section with bounce animation
+- **Implementation**: Waits for splash screen to complete, then starts typing animation with blinking cursor
+
 # Video Button Positioning Memory
 
 ## Play/Pause and +5s Buttons Overlay Positioning (iOS 26 & WaveSwitch Section 1)
