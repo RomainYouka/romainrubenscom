@@ -139,12 +139,14 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     setLightboxImage(imageNum);
     setLightboxConcept(concept);
     document.body.style.overflow = "hidden";
+    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: true }));
   };
 
   const closeLightbox = () => {
     setLightboxImage(null);
     setLightboxConcept(null);
     document.body.style.overflow = "";
+    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
   };
 
   const goToPreviousImage = () => {
