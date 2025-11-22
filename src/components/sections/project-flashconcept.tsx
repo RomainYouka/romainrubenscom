@@ -457,30 +457,37 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
       {lightboxImage && lightboxConcept && (
         <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) closeLightbox();
-          }}
+          onClick={closeLightbox}
         >
-          {/* Image Container */}
-          <div className="relative w-full h-full flex items-center justify-center px-4 py-8">
+          {/* Image Container - stops click propagation */}
+          <div 
+            className="relative w-full h-full flex items-center justify-center px-4 py-8"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image
               src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
               alt="Lightbox"
               width={600}
               height={1200}
-              className="max-h-[90vh] w-auto object-contain"
+              className="max-h-[90vh] w-auto object-contain pointer-events-none"
             />
 
             {/* Navigation Buttons */}
             <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
               <button
-                onClick={goToPreviousImage}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPreviousImage();
+                }}
                 className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
-                onClick={goToNextImage}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNextImage();
+                }}
                 className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -489,7 +496,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
 
             {/* Close Button */}
             <button
-              onClick={closeLightbox}
+              onClick={(e) => {
+                e.stopPropagation();
+                closeLightbox();
+              }}
               className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.95]"
             >
               <X className="w-5 h-5" />
