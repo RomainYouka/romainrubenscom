@@ -6,7 +6,7 @@ import { Check } from "lucide-react";
 const contactTranslations = {
   FR: {
     heading: "Contactez-moi facilement.",
-    subheading: "Si vous souhaitez échanger, la conversation est ouverte.",
+    subheading: "",
     button1: "Mon e-mail",
     button2: "Voir mon LinkedIn",
     emailAriaLabel: "Envoyer un e-mail à Romain Rubens",
@@ -16,7 +16,7 @@ const contactTranslations = {
   },
   EN: {
     heading: "Get in touch with me easily.",
-    subheading: "If you'd like to connect, communication is open.",
+    subheading: "",
     button1: "My Email",
     button2: "View my LinkedIn",
     emailAriaLabel: "Send an email to Romain Rubens",
@@ -26,7 +26,7 @@ const contactTranslations = {
   },
   ՀԱՅ: {
     heading: "Միացեք ինձ։",
-    subheading: "Հաղորդակցությունը բաց է։",
+    subheading: "",
     button1: "Իմ էլ.փոստը",
     button2: "Ստուգել իմ LinkedIn",
     emailAriaLabel: "Ուղարկել էլ․փոստ Ռոմեն Ռուբենսին",
