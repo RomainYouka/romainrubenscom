@@ -79,7 +79,7 @@ Preferred communication style: Simple, everyday language.
 # Video Button Positioning Memory
 
 ## Play/Pause and +5s Buttons Overlay Positioning (iOS 26 & WaveSwitch Section 1)
-- **iOS 26**: `marginTop: -100px` - buttons positioned 100px down on invisible border
-- **WaveSwitch Section 1**: `marginTop: -60px` - buttons positioned 60px down on invisible border
-- **Implementation**: Buttons placed below video with negative margin-top to pull them up onto the invisible border area
-- **Note**: These two projects have invisible top/bottom borders in their video mockups. The negative margin creates the visual overlap without making the container taller.
+- **iOS 26**: `marginTop: 60px` - buttons positioned 100px lower than initial -40px (descended by 100px)
+- **WaveSwitch Section 1**: `marginTop: 20px` - buttons positioned 60px lower than initial -40px (descended by 60px)
+- **Implementation**: Buttons placed below video with margin-top to position them on the invisible border area
+- **Note**: These two projects have invisible top/bottom borders in their video mockups. Positive marginTop pushes buttons down.
