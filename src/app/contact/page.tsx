@@ -25,7 +25,7 @@ const contactTranslations = {
     toastMessage: "Action started.",
   },
   ՀԱՅ: {
-    heading: "Կապ հաստատել հեշտ է։",
+    heading: "Միացեք ինձ։",
     subheading: "Հաղորդակցությունը բաց է։",
     button1: "Իմ էլ.փոստը",
     button2: "Ստուգել իմ LinkedIn",
