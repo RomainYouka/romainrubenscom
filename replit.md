@@ -79,6 +79,7 @@ Preferred communication style: Simple, everyday language.
 # Video Button Positioning Memory
 
 ## Play/Pause and +5s Buttons Overlay Positioning (iOS 26 & WaveSwitch Section 1)
-- **Current position**: `pb-3` (padding-bottom: 0.75rem) - INITIAL POSITION, restarting
-- **Target**: Find optimal position by incrementally increasing from pb-3 upward where buttons sit on invisible bottom border
-- **Note**: These two projects have invisible top/bottom borders in their video mockups. Increase pb values gradually: pb-3 → pb-4 → pb-5 → pb-6 etc. to find the sweet spot.
+- **Current position**: Outside video container with `marginTop: -40px`
+- **Implementation**: Buttons placed below video with negative margin-top to pull them up onto the invisible border area
+- **Adjustment method**: Modify the `marginTop` value in the button container (currently -40px, can adjust to -30px, -45px, -50px, etc.)
+- **Note**: These two projects have invisible top/bottom borders in their video mockups. The negative margin creates the visual overlap without making the container taller.

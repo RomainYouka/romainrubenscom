@@ -122,7 +122,6 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
 
             <div
               style={{
-                position: "relative",
                 width: "100%",
                 borderRadius: "clamp(18px, 2.5vw, 32px)",
                 overflow: "hidden",
@@ -143,35 +142,32 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 }}
                 aria-label="iOS 26 Update Vision interface demonstration" />
 
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 pb-3">
-                <button
-                  onClick={togglePlayPause}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-full text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.95]"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    background: "rgba(245, 245, 247, 0.85)",
-                    backdropFilter: "blur(10px)"
-                  }}
-                  aria-label={isPlaying ? "Pause" : "Play"}
-                >
-                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                  {isPlaying ? "Pause" : "Play"}
-                </button>
-                
-                <button
-                  onClick={skipForward}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-full text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.95]"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    background: "rgba(245, 245, 247, 0.85)",
-                    backdropFilter: "blur(10px)"
-                  }}
-                  aria-label="Skip forward 5 seconds"
-                >
-                  <SkipForward className="w-4 h-4" />
-                  +5s
-                </button>
-              </div>
+            </div>
+
+            <div className="flex items-center justify-center gap-3" style={{ marginTop: "-40px", position: "relative", zIndex: 10 }}>
+              <button
+                onClick={togglePlayPause}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label={isPlaying ? "Pause" : "Play"}
+              >
+                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying ? "Pause" : "Play"}
+              </button>
+              
+              <button
+                onClick={skipForward}
+                className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "var(--font-body)"
+                }}
+                aria-label="Skip forward 5 seconds"
+              >
+                <SkipForward className="w-4 h-4" />
+                +5s
+              </button>
             </div>
           </div>
 
