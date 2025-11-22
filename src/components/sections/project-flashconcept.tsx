@@ -77,7 +77,7 @@ const flashConcept02Translations = {
 export default function ProjectFlashConcept({ language }: ProjectFlashConceptProps) {
   const [showAllConcept01, setShowAllConcept01] = useState(false);
   const [showAllImages, setShowAllImages] = useState(false);
-  const [lightboxImage, setLightboxImage] = useState<number | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<string | number | null>(null);
   const [lightboxConcept, setLightboxConcept] = useState<"01" | "02" | null>(null);
   
   const concept01ButtonRef = useRef<HTMLDivElement>(null);
@@ -103,8 +103,8 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
     : concept02Images.slice(0, initialImageCount);
   
   const flashConcept01Images = showAllConcept01 
-    ? [1, 2, 3, 1, 4, 5, 1, 6, 7]
-    : [1, 2, 3];
+    ? ["1a", 2, 3, 1, 4, 5, 1, 6, 7]
+    : ["1a", 2, 3];
   
   const currentImageIndex = lightboxImage 
     ? (lightboxConcept === "01" 
