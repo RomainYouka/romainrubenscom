@@ -28,7 +28,6 @@ export default function HeroLanding() {
     }
   }, []);
 
-  // Attendre que la splash screen disparaisse
   useEffect(() => {
     const checkSplashDone = () => {
       const introSeen = sessionStorage.getItem("introSeen");
@@ -38,14 +37,10 @@ export default function HeroLanding() {
       }
     };
 
-    // Vérifier immédiatement
     checkSplashDone();
-
-    // Vérifier périodiquement pendant les premiers 5 secondes
     const interval = setInterval(checkSplashDone, 100);
     const timeout = setTimeout(() => {
       clearInterval(interval);
-      // Force start après 5 secondes max
       if (!splashDone) {
         setSplashDone(true);
         setShowInitialCursor(true);
@@ -58,7 +53,6 @@ export default function HeroLanding() {
     };
   }, [splashDone]);
 
-  // Après 1 seconde du curseur initial, commencer le typage
   useEffect(() => {
     if (!showInitialCursor) return;
     
@@ -76,6 +70,7 @@ export default function HeroLanding() {
       setDisplayedText("");
       setIsTyping(true);
       setShowScrollButton(false);
+      setShowInitialCursor(true);
     };
 
     window.addEventListener("languageChange", handleLanguageChange as EventListener);
@@ -84,7 +79,6 @@ export default function HeroLanding() {
     };
   }, []);
 
-  // Animation de typage
   useEffect(() => {
     if (!splashDone || !isTyping) return;
 
@@ -156,36 +150,37 @@ export default function HeroLanding() {
             )}
           </h1>
         </div>
-
-        {/* Scroll Down Button - Bottom */}
-        {showScrollButton && (
-          <button
-            onClick={handleScroll}
-            className="flex flex-col items-center justify-center gap-2 mb-8 md:mb-12 cursor-pointer transition-all duration-300 hover:scale-110"
-            style={{
-              animation: "fadeInAndBounce 0.6s ease-in forwards",
-              background: "none",
-              border: "none",
-              padding: "16px"
-            }}
-            aria-label="Scroll down to continue"
-          >
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "12px",
-                fontWeight: 500,
-                color: "rgba(255, 255, 255, 0.7)",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase"
-              }}
-            >
-              {buttonText}
-            </span>
-            <ChevronDown className="w-5 h-5 animate-bounce" style={{ color: "rgba(255, 255, 255, 0.7)" }} />
-          </button>
-        )}
       </div>
+
+      {/* Scroll Down Button - Bottom */}
+      {showScrollButton && (
+        <button
+          onClick={handleScroll}
+          className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:scale-110"
+          style={{
+            animation: "fadeInAndBounce 0.6s ease-in forwards",
+            background: "none",
+            border: "none",
+            padding: "16px",
+            zIndex: 20
+          }}
+          aria-label="Scroll down to continue"
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "rgba(255, 255, 255, 0.7)",
+              letterSpacing: "0.05em",
+              textTransform: "uppercase"
+            }}
+          >
+            {buttonText}
+          </span>
+          <ChevronDown className="w-5 h-5 animate-bounce" style={{ color: "rgba(255, 255, 255, 0.7)" }} />
+        </button>
+      )}
 
       {/* CSS Animations */}
       <style>{`
