@@ -145,7 +145,7 @@ export default function HeroLanding() {
             ) : displayedText ? (
               <>
                 <span style={{ display: "inline" }}>{displayedText}</span>
-                {isTyping && <span style={{ animation: "blink 0.7s infinite", display: "inline" }}>|</span>}
+                <span style={{ animation: isTyping ? "blink 0.7s infinite" : "none", display: "inline", width: "0.6em", textAlign: "center", visibility: isTyping ? "visible" : "hidden" }}>|</span>
               </>
             ) : (
               <span style={{ visibility: "hidden", display: "inline" }}>{fullText}</span>
