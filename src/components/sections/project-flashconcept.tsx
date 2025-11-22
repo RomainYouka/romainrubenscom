@@ -79,6 +79,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const [showAllImages, setShowAllImages] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<number | null>(null);
   const [lightboxConcept, setLightboxConcept] = useState<"01" | "02" | null>(null);
+  const [displayedImage, setDisplayedImage] = useState<number | null>(null);
   const [isImageTransitioning, setIsImageTransitioning] = useState(false);
   
   const concept01ButtonRef = useRef<HTMLDivElement>(null);
@@ -163,6 +164,7 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   const closeLightbox = () => {
     setLightboxImage(null);
     setLightboxConcept(null);
+    setDisplayedImage(null);
     document.body.style.overflow = "";
     window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
   };
@@ -213,12 +215,19 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   }, []);
 
   useEffect(() => {
-    if (lightboxImage) {
+    if (lightboxImage && displayedImage === null) {
+      // Première image affichée au démarrage
+      setDisplayedImage(lightboxImage);
+    } else if (lightboxImage && displayedImage !== lightboxImage) {
+      // Changement d'image - déclencher la transition
       setIsImageTransitioning(true);
-      const timer = setTimeout(() => setIsImageTransitioning(false), 80);
+      const timer = setTimeout(() => {
+        setDisplayedImage(lightboxImage);
+        setIsImageTransitioning(false);
+      }, 120);
       return () => clearTimeout(timer);
     }
-  }, [lightboxImage]);
+  }, [lightboxImage, displayedImage]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -499,15 +508,27 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             className="relative w-full h-full flex items-center justify-center px-4 py-8"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Displaying Image (base layer) */}
             <Image
-              src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
+              src={lightboxConcept === "01" ? `/${displayedImage}.png` : `/${displayedImage}.jpg`}
               alt="Lightbox"
               width={600}
               height={1200}
-              className={`max-h-[90vh] w-auto object-contain pointer-events-none transition-opacity duration-150 ${
+              className={`max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-120 ${
                 isImageTransitioning ? "opacity-0" : "opacity-100"
               }`}
             />
+            
+            {/* Next Image (appears during transition) */}
+            {isImageTransitioning && lightboxImage && (
+              <Image
+                src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
+                alt="Lightbox Next"
+                width={600}
+                height={1200}
+                className="max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-120 opacity-100"
+              />
+            )}
 
             {/* Navigation Buttons */}
             <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
