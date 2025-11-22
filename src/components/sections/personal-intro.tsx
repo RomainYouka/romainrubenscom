@@ -64,7 +64,8 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
 
   // Split text to find LinkedIn word and make it a link
   const renderTextWithLinkedInLink = (text: string) => {
-    const linkedInPattern = /LinkedIn/i;
+    // Match both "LinkedIn" and Armenian format «LinkedIn»–ը
+    const linkedInPattern = /«?LinkedIn»?–?ը?/i;
     const parts = text.split(linkedInPattern);
     
     if (parts.length === 1) {
