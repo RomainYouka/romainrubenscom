@@ -147,6 +147,13 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   };
 
   const handleImageClick = (imageNum: number, concept: "01" | "02") => {
+    // Afficher toutes les images si elles ne sont pas déjà affichées
+    if (concept === "01" && !showAllConcept01) {
+      setShowAllConcept01(true);
+    } else if (concept === "02" && !showAllImages) {
+      setShowAllImages(true);
+    }
+    
     setLightboxImage(imageNum);
     setLightboxConcept(concept);
     document.body.style.overflow = "hidden";
