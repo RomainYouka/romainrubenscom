@@ -133,10 +133,9 @@ export default function HeroLanding() {
               opacity: splashDone ? 1 : 0,
               transition: "opacity 0.6s ease",
               whiteSpace: "nowrap",
-              overflow: "hidden",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
+              overflow: "visible",
+              display: "inline-block",
+              position: "relative",
               minWidth: "max-content"
             }}
           >
@@ -145,7 +144,7 @@ export default function HeroLanding() {
             ) : displayedText ? (
               <>
                 <span style={{ display: "inline" }}>{displayedText}</span>
-                {isTyping && <span style={{ animation: "blink 0.7s infinite", display: "inline" }}>|</span>}
+                {isTyping && <span style={{ animation: "blink 0.7s infinite", display: "inline-block", position: "absolute", width: "0.4em", marginLeft: "-0.4em" }}>|</span>}
               </>
             ) : (
               <span style={{ visibility: "hidden", display: "inline" }}>{fullText}</span>
