@@ -17,7 +17,7 @@ const translations = {
   },
 };
 
-export default function PersonalIntro() {
+export default function PersonalIntro({ id = "personal-intro" }: { id?: string }) {
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
@@ -115,6 +115,7 @@ export default function PersonalIntro() {
 
   return (
     <section
+      id={id}
       className="w-full bg-white"
       style={{
         paddingTop: "clamp(160px, 15vw, 200px)",
