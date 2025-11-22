@@ -178,47 +178,39 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   };
 
   const goToPreviousImage = () => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      if (lightboxConcept === "01") {
-        const index = flashConcept01Images.indexOf(lightboxImage!);
-        if (index > 0) {
-          const prevImage = flashConcept01Images[index - 1];
-          setDisplayedImage(prevImage);
-          setLightboxImage(prevImage);
-        }
-      } else if (lightboxConcept === "02") {
-        const index = visibleConcept02Images.indexOf(lightboxImage!);
-        if (index > 0) {
-          const prevImage = visibleConcept02Images[index - 1];
-          setDisplayedImage(prevImage);
-          setLightboxImage(prevImage);
-        }
+    if (lightboxConcept === "01") {
+      const index = flashConcept01Images.indexOf(lightboxImage!);
+      if (index > 0) {
+        const prevImage = flashConcept01Images[index - 1];
+        setDisplayedImage(prevImage);
+        setLightboxImage(prevImage);
       }
-      setIsTransitioning(false);
-    }, 100);
+    } else if (lightboxConcept === "02") {
+      const index = visibleConcept02Images.indexOf(lightboxImage!);
+      if (index > 0) {
+        const prevImage = visibleConcept02Images[index - 1];
+        setDisplayedImage(prevImage);
+        setLightboxImage(prevImage);
+      }
+    }
   };
 
   const goToNextImage = () => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      if (lightboxConcept === "01") {
-        const index = flashConcept01Images.indexOf(lightboxImage!);
-        if (index < flashConcept01Images.length - 1) {
-          const nextImage = flashConcept01Images[index + 1];
-          setDisplayedImage(nextImage);
-          setLightboxImage(nextImage);
-        }
-      } else if (lightboxConcept === "02") {
-        const index = visibleConcept02Images.indexOf(lightboxImage!);
-        if (index < visibleConcept02Images.length - 1) {
-          const nextImage = visibleConcept02Images[index + 1];
-          setDisplayedImage(nextImage);
-          setLightboxImage(nextImage);
-        }
+    if (lightboxConcept === "01") {
+      const index = flashConcept01Images.indexOf(lightboxImage!);
+      if (index < flashConcept01Images.length - 1) {
+        const nextImage = flashConcept01Images[index + 1];
+        setDisplayedImage(nextImage);
+        setLightboxImage(nextImage);
       }
-      setIsTransitioning(false);
-    }, 100);
+    } else if (lightboxConcept === "02") {
+      const index = visibleConcept02Images.indexOf(lightboxImage!);
+      if (index < visibleConcept02Images.length - 1) {
+        const nextImage = visibleConcept02Images[index + 1];
+        setDisplayedImage(nextImage);
+        setLightboxImage(nextImage);
+      }
+    }
   };
 
   useEffect(() => {
@@ -510,15 +502,14 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             {/* Single Image with fade transition */}
             {displayedImage && (
               <Image
+                key={`${lightboxConcept}-${displayedImage}`}
                 src={lightboxConcept === "01" ? `/${displayedImage}.png` : `/${displayedImage}.jpg`}
                 alt="Lightbox"
                 width={600}
                 height={1200}
                 priority
                 unoptimized
-                className={`max-h-[90vh] w-auto object-contain pointer-events-none transition-opacity duration-100 ${
-                  isTransitioning ? "opacity-0" : "opacity-100"
-                }`}
+                className="max-h-[90vh] w-auto object-contain pointer-events-none"
               />
             )}
 
