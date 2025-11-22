@@ -220,7 +220,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
 
             </div>
 
-            <div className="flex items-center justify-center gap-3" style={{ marginTop: "20px", position: "relative", zIndex: 10 }}>
+            <div className="flex items-center justify-center gap-3" style={{ marginTop: "-10px", position: "relative", zIndex: 10 }}>
               <button
                 onClick={togglePlayPause1}
                 className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
