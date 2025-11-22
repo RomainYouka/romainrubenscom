@@ -189,6 +189,81 @@ export default function ContactPage() {
               {currentTranslations.subheading}
             </p>
 
+            {/* Animated Arrows */}
+            <div
+              className={`w-full flex justify-center items-end gap-8 md:gap-12 h-[80px] mb-6 transition-all duration-[360ms] ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+              style={{
+                transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)",
+                transitionDelay: "240ms",
+              }}
+            >
+              {/* Left Arrow to Email Button */}
+              <svg width="60" height="80" viewBox="0 0 60 80" className="hidden md:block">
+                <defs>
+                  <style>{`
+                    @keyframes drawArrowLeft {
+                      0% {
+                        stroke-dashoffset: 200;
+                      }
+                      70% {
+                        stroke-dashoffset: 0;
+                      }
+                      100% {
+                        stroke-dashoffset: 0;
+                      }
+                    }
+                    .arrow-left {
+                      animation: drawArrowLeft 2s ease-in-out infinite;
+                      stroke-dasharray: 200;
+                    }
+                  `}</style>
+                </defs>
+                <path
+                  d="M 30 0 Q 10 20, 5 40 Q 0 50, 10 60 L 5 70 L 15 65 L 12 75"
+                  className="arrow-left"
+                  stroke="#515151"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              {/* Right Arrow to LinkedIn Button */}
+              <svg width="60" height="80" viewBox="0 0 60 80" className="hidden md:block">
+                <defs>
+                  <style>{`
+                    @keyframes drawArrowRight {
+                      0% {
+                        stroke-dashoffset: 200;
+                      }
+                      70% {
+                        stroke-dashoffset: 0;
+                      }
+                      100% {
+                        stroke-dashoffset: 0;
+                      }
+                    }
+                    .arrow-right {
+                      animation: drawArrowRight 2s ease-in-out infinite;
+                      stroke-dasharray: 200;
+                    }
+                  `}</style>
+                </defs>
+                <path
+                  d="M 30 0 Q 50 20, 55 40 Q 60 50, 50 60 L 55 70 L 45 65 L 48 75"
+                  className="arrow-right"
+                  stroke="#515151"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+
             <div
               className={`flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto transition-all duration-[280ms] ${
                 isVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
