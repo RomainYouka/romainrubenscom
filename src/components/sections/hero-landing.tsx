@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
 const translations = {
-  FR: { text: "Bienvenue", button: "Descendre" },
-  EN: { text: "Hello, mois c'est Romain Rubens", button: "Scroll Down" },
+  FR: { text: "Hello, moi c'est Romain Rubens", button: "Descendre" },
+  EN: { text: "Hello, I'm Romain Rubens", button: "Scroll Down" },
   ՀԱՅ: { text: "Բարի գալուստ", button: "Լողալ" }
 };
 
