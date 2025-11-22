@@ -178,37 +178,51 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   };
 
   const goToPreviousImage = () => {
+    setIsTransitioning(true);
     if (lightboxConcept === "01") {
       const index = flashConcept01Images.indexOf(lightboxImage!);
       if (index > 0) {
         const prevImage = flashConcept01Images[index - 1];
-        setDisplayedImage(prevImage);
         setLightboxImage(prevImage);
+        setTimeout(() => {
+          setDisplayedImage(prevImage);
+          setIsTransitioning(false);
+        }, 50);
       }
     } else if (lightboxConcept === "02") {
       const index = visibleConcept02Images.indexOf(lightboxImage!);
       if (index > 0) {
         const prevImage = visibleConcept02Images[index - 1];
-        setDisplayedImage(prevImage);
         setLightboxImage(prevImage);
+        setTimeout(() => {
+          setDisplayedImage(prevImage);
+          setIsTransitioning(false);
+        }, 50);
       }
     }
   };
 
   const goToNextImage = () => {
+    setIsTransitioning(true);
     if (lightboxConcept === "01") {
       const index = flashConcept01Images.indexOf(lightboxImage!);
       if (index < flashConcept01Images.length - 1) {
         const nextImage = flashConcept01Images[index + 1];
-        setDisplayedImage(nextImage);
         setLightboxImage(nextImage);
+        setTimeout(() => {
+          setDisplayedImage(nextImage);
+          setIsTransitioning(false);
+        }, 50);
       }
     } else if (lightboxConcept === "02") {
       const index = visibleConcept02Images.indexOf(lightboxImage!);
       if (index < visibleConcept02Images.length - 1) {
         const nextImage = visibleConcept02Images[index + 1];
-        setDisplayedImage(nextImage);
         setLightboxImage(nextImage);
+        setTimeout(() => {
+          setDisplayedImage(nextImage);
+          setIsTransitioning(false);
+        }, 50);
       }
     }
   };
@@ -499,17 +513,31 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
             className="relative w-full h-full flex items-center justify-center px-4 py-8"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Single Image with fade transition */}
+            {/* Current Image (Base) */}
             {displayedImage && (
               <Image
-                key={`${lightboxConcept}-${displayedImage}`}
                 src={lightboxConcept === "01" ? `/${displayedImage}.png` : `/${displayedImage}.jpg`}
-                alt="Lightbox"
+                alt="Lightbox Current"
                 width={600}
                 height={1200}
                 priority
                 unoptimized
-                className="max-h-[90vh] w-auto object-contain pointer-events-none"
+                className={`max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-100 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}
+              />
+            )}
+            
+            {/* Next Image (Overlay during transition) */}
+            {isTransitioning && lightboxImage && (
+              <Image
+                src={lightboxConcept === "01" ? `/${lightboxImage}.png` : `/${lightboxImage}.jpg`}
+                alt="Lightbox Next"
+                width={600}
+                height={1200}
+                priority
+                unoptimized
+                className="max-h-[90vh] w-auto object-contain pointer-events-none absolute transition-opacity duration-100 opacity-100"
               />
             )}
 
