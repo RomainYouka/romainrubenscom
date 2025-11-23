@@ -58,7 +58,7 @@ export default function ProjectsPage() {
         return saved as "FR" | "EN" | "ՀԱՅ";
       }
     }
-    return "EN";
+    return "FR";
   });
   const [isVisible, setIsVisible] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);

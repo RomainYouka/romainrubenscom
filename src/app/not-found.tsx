@@ -25,7 +25,7 @@ const translations = {
 
 export default function NotFound() {
   const [displayedText, setDisplayedText] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
+  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("FR");
   const [isTyping, setIsTyping] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [showInitialCursor, setShowInitialCursor] = useState(false);
