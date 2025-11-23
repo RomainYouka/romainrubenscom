@@ -53,13 +53,12 @@ const SLIDES: Slide[] = [
     bodyLines: [
       "Everything must be shaped for the people who interact,",
       "who use, and who grow with what we design.",
-      "The goal is not to create something \"beautiful\",",
-      "but to create something right."
+      "The goal is not to create something \"beautiful\", but to create something right."
     ],
     accentColor: "#FAC0CC",
     strikeDesigner: true,
     strikeText: "I am a designer.",
-    forceLines: 4
+    forceLines: 3
   },
   {
     id: "violet-hy",
