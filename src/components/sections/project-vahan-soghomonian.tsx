@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface ProjectVahanProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -46,13 +45,11 @@ const vahanImages = [
 
 export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps) {
   const [showAllImages, setShowAllImages] = useState(false);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
 
   const t = translations[language];
   const visibleImages = showAllImages ? vahanImages : vahanImages.slice(0, 1);
-  const currentImageIndex = lightboxImage ? vahanImages.findIndex(img => img.id === lightboxImage) : -1;
 
   const handleToggleImages = () => {
     if (showAllImages) {
@@ -75,48 +72,6 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     return () => clearTimeout(timer);
   }, []);
 
-  const handleImageClick = (imageId: string) => {
-    if (!showAllImages) {
-      setShowAllImages(true);
-    }
-    setLightboxImage(imageId);
-    document.body.style.overflow = "hidden";
-    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: true }));
-  };
-
-  const closeLightbox = () => {
-    setLightboxImage(null);
-    document.body.style.overflow = "";
-    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
-  };
-
-  const goToPreviousImage = () => {
-    if (currentImageIndex > 0) {
-      setLightboxImage(vahanImages[currentImageIndex - 1].id);
-    }
-  };
-
-  const goToNextImage = () => {
-    if (currentImageIndex >= 0 && currentImageIndex < vahanImages.length - 1) {
-      setLightboxImage(vahanImages[currentImageIndex + 1].id);
-    }
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!lightboxImage) return;
-      if (e.key === "ArrowLeft") goToPreviousImage();
-      if (e.key === "ArrowRight") goToNextImage();
-      if (e.key === "Escape") closeLightbox();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxImage, currentImageIndex]);
-
-  const canGoPrevious = currentImageIndex > 0;
-  const canGoNext = currentImageIndex >= 0 && currentImageIndex < vahanImages.length - 1;
-  const currentImage = lightboxImage ? vahanImages.find(img => img.id === lightboxImage) : null;
-
   return (
     <section
       id="vahan-soghomonian"
@@ -137,8 +92,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
               {visibleImages.map((image, idx) => (
                 <div
                   key={image.id}
-                  className="cursor-pointer overflow-hidden rounded-lg bg-gray-100 hover:opacity-80 transition-opacity"
-                  onClick={() => handleImageClick(image.id)}
+                  className="overflow-hidden rounded-lg bg-gray-100"
                   style={{
                     aspectRatio: image.id === "1" ? "9/12" : "2/1",
                     opacity: isVisible ? 1 : 0,
@@ -250,76 +204,6 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {lightboxImage && (
-        <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
-          onClick={(e) => e.target === e.currentTarget && closeLightbox()}
-        >
-          {/* Image Container - stops click propagation */}
-          <div 
-            className="relative w-full h-full flex items-center justify-center px-4 py-8"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Single Image - changes instantly */}
-            {currentImage && (
-              <Image
-                key={`vahan-${currentImage.id}`}
-                src={currentImage.src}
-                alt={`Article page ${currentImage.id}`}
-                width={600}
-                height={1200}
-                priority
-                unoptimized
-                className="max-h-[90vh] w-auto object-contain pointer-events-none"
-              />
-            )}
-
-            {/* Navigation Buttons */}
-            <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPreviousImage();
-                }}
-                disabled={!canGoPrevious}
-                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
-                  canGoPrevious
-                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
-                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
-                }`}
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNextImage();
-                }}
-                disabled={!canGoNext}
-                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
-                  canGoNext
-                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
-                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
-                }`}
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-
-            {/* Close Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                closeLightbox();
-              }}
-              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
