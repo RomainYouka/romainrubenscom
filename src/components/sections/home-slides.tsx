@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ---------------------- DATA ---------------------- */
 
-type SlideId = "orange-hy" | "orange" | "orange-en" | "violet-hy" | "violet" | "green-hy" | "green";
+type SlideId = "orange-hy" | "orange" | "orange-en" | "violet-hy" | "violet" | "violet-en" | "green-hy" | "green";
 
 type Slide = {
   id: SlideId;
@@ -85,6 +85,18 @@ const SLIDES: Slide[] = [
     forceLines: 4
   },
   {
+    id: "violet-en",
+    gradient: "linear-gradient(90deg, #583396 0%, #705CD9 100%)",
+    title: "My dream is to create, to innovate, and to revolutionize.",
+    bodyLines: [
+      "When something works, there is no need to change it.",
+      "When something does not work, the need to innovate appears.",
+      "And when something no longer works at all, the need to revolutionize becomes essential."
+    ],
+    accentColor: "#BEB8D9",
+    forceLines: 4
+  },
+  {
     id: "green-hy",
     gradient: "linear-gradient(90deg, #00C05D 0%, #0FDFAB 100%)",
     title: "Չեմ ստեղծագործում Երևալու համար։",
@@ -138,11 +150,11 @@ export default function HomeSlides() {
   // Filter slides by language
   const filteredSlides = useMemo(() => {
     if (selectedLanguage === "FR") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en" && s.id !== "violet-hy" && s.id !== "green-hy");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en" && s.id !== "violet-hy" && s.id !== "violet-en" && s.id !== "green-hy");
     } else if (selectedLanguage === "EN") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange" && s.id !== "violet-hy" && s.id !== "green-hy");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange" && s.id !== "violet-hy" && s.id !== "violet" && s.id !== "green-hy");
     } else { // ՀԱՅ
-      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en" && s.id !== "violet" && s.id !== "green");
+      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en" && s.id !== "violet" && s.id !== "violet-en" && s.id !== "green");
     }
   }, [selectedLanguage]);
 
@@ -189,14 +201,14 @@ export default function HomeSlides() {
   const textBase = 18;
 
   const perSlideK = (current.id === "orange" || current.id === "orange-hy" || current.id === "orange-en") ? 0.90
-                  : (current.id === "violet" || current.id === "violet-hy") ? 0.96
+                  : (current.id === "violet" || current.id === "violet-hy" || current.id === "violet-en") ? 0.96
                   : 1.00;
 
   const titleSize = Math.round(titleBase * baseScale * perSlideK);
   const textSize  = Math.round(textBase  * baseScale * perSlideK);
 
   const titleLH = 1.22;              // compact, Apple-like
-  const textLH  = current.id === "violet" ? 1.32 : 1.36;
+  const textLH  = (current.id === "violet" || current.id === "violet-en") ? 1.32 : 1.36;
 
   const gapTitleToBody = Math.max(10, Math.round(14 * baseScale));
   const gapLines = Math.max(4, Math.round(6 * baseScale));
