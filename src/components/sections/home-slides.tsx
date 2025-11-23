@@ -173,11 +173,13 @@ export default function HomeSlides() {
 
   // Reset index when language changes
   useEffect(() => {
-    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
-    if (saved && ["FR", "EN", "ՀԱՅ"].includes(saved)) {
-      setSelectedLanguage(saved);
-      setIndex(0);
+    let saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ" | null;
+    if (!saved || !["FR", "EN", "ՀԱՅ"].includes(saved)) {
+      saved = "FR";
+      localStorage.setItem("preferredLanguage", "FR");
     }
+    setSelectedLanguage(saved);
+    setIndex(0);
   }, []);
 
   useEffect(() => {

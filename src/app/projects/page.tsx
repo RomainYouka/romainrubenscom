@@ -53,10 +53,11 @@ const footerTranslations = {
 export default function ProjectsPage() {
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("preferredLanguage");
+      let saved = localStorage.getItem("preferredLanguage");
       if (saved && (saved === "FR" || saved === "EN" || saved === "ՀԱՅ")) {
         return saved as "FR" | "EN" | "ՀԱՅ";
       }
+      localStorage.setItem("preferredLanguage", "FR");
     }
     return "FR";
   });
