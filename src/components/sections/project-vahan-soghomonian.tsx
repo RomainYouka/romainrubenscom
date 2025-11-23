@@ -80,11 +80,13 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     }
     setLightboxImage(imageId);
     document.body.style.overflow = "hidden";
+    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: true }));
   };
 
   const closeLightbox = () => {
     setLightboxImage(null);
     document.body.style.overflow = "";
+    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
   };
 
   const goToPreviousImage = () => {
