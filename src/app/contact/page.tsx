@@ -181,7 +181,7 @@ export default function ContactPage() {
                 transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)",
                 transitionDelay: "120ms",
                 marginTop: "clamp(12px, 2vw, 16px)",
-                marginBottom: "clamp(32px, 5vw, 48px)",
+                marginBottom: "clamp(16px, 2.5vw, 24px)",
                 textAlign: "center",
                 textWrap: "balance",
               }}
