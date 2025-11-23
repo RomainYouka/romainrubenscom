@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ---------------------- DATA ---------------------- */
 
-type SlideId = "orange-hy" | "orange" | "orange-en" | "violet-hy" | "violet" | "violet-en" | "green-hy" | "green";
+type SlideId = "orange-hy" | "orange" | "orange-en" | "violet-hy" | "violet" | "violet-en" | "green-hy" | "green" | "green-en";
 
 type Slide = {
   id: SlideId;
@@ -117,6 +117,17 @@ const SLIDES: Slide[] = [
     ],
     accentColor: "#ADE7C2",
     forceLines: 3
+  },
+  {
+    id: "green-en",
+    gradient: "linear-gradient(90deg, #00C05D 0%, #0FDFAB 100%)",
+    title: "I do not create to be seen.",
+    bodyLines: [
+      "I create so that people can find their way without having to look for it.",
+      "What I make is not meant to draw attention. It is meant to guide it, gently."
+    ],
+    accentColor: "#ADE7C2",
+    forceLines: 3
   }
 ];
 
@@ -150,11 +161,11 @@ export default function HomeSlides() {
   // Filter slides by language
   const filteredSlides = useMemo(() => {
     if (selectedLanguage === "FR") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en" && s.id !== "violet-hy" && s.id !== "violet-en" && s.id !== "green-hy");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en" && s.id !== "violet-hy" && s.id !== "violet-en" && s.id !== "green-hy" && s.id !== "green-en");
     } else if (selectedLanguage === "EN") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange" && s.id !== "violet-hy" && s.id !== "violet" && s.id !== "green-hy");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange" && s.id !== "violet-hy" && s.id !== "violet" && s.id !== "green-hy" && s.id !== "green");
     } else { // ՀԱՅ
-      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en" && s.id !== "violet" && s.id !== "violet-en" && s.id !== "green");
+      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en" && s.id !== "violet" && s.id !== "violet-en" && s.id !== "green" && s.id !== "green-en");
     }
   }, [selectedLanguage]);
 
