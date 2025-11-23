@@ -303,6 +303,7 @@ export default function HomeSlides() {
                   color: "#FFFFFF",
                   maxWidth: "min(95%, 1100px)",
                   marginInline: "auto",
+                  whiteSpace: !isTablet && !isMobile ? "nowrap" : "normal",
                   wordWrap: "break-word",
                   overflowWrap: "break-word"
                 }}
