@@ -15,7 +15,7 @@ const contactTranslations = {
     toastMessage: "Action lancée.",
   },
   EN: {
-    heading: "Get in touch with me easily.",
+    heading: "Get in touch",
     subheading: "",
     button1: "My Email",
     button2: "View my LinkedIn",
