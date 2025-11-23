@@ -215,7 +215,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
                 aria-label="Wave Switch app interface demonstration" className="!w-full !h-full !max-w-full" />
 
             </div>
@@ -338,7 +338,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
                 aria-label="Wave Switch mockup demonstration" className="!w-full !h-full !max-w-full" />
 
             </div>
