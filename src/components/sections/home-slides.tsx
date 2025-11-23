@@ -181,11 +181,12 @@ export default function HomeSlides() {
   }, [w]);
 
   /* ---- échelle continue pour la typo ----
-     Base de référence : 1440 (42/15). On compresse un peu l'orange
-     pour garantir 1 ligne + 3 lignes. Le violet vise 4 lignes. */
-  const baseScale = Math.max(0.32, Math.min(1, w / 1440));
-  const titleBase = 42;
-  const textBase = 15;
+     Base de référence : 1440 (48/18). On compresse un peu l'orange
+     pour garantir 1 ligne + 3 lignes. Le violet vise 4 lignes.
+     Minimum 0.50 pour assurer lisibilité sur mobile. */
+  const baseScale = Math.max(0.50, Math.min(1, w / 1440));
+  const titleBase = 48;
+  const textBase = 18;
 
   const perSlideK = (current.id === "orange" || current.id === "orange-hy" || current.id === "orange-en") ? 0.90
                   : (current.id === "violet" || current.id === "violet-hy") ? 0.96
