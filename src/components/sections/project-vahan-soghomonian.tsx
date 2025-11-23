@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface ProjectVahanProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -46,7 +46,6 @@ const vahanImages = [
 export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps) {
   const [showAllImages, setShowAllImages] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [zoomedImageId, setZoomedImageId] = useState<string | null>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
 
   const handleToggleImages = () => {
@@ -73,24 +72,6 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     return () => clearTimeout(timer);
   }, []);
 
-  const handleImageClick = (imageId: string) => {
-    setZoomedImageId(imageId);
-  };
-
-  const closeZoom = () => {
-    setZoomedImageId(null);
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && zoomedImageId) {
-        closeZoom();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [zoomedImageId]);
-
   return (
     <section
       id="vahan-soghomonian"
@@ -111,8 +92,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
               {visibleImages.map((image, idx) => (
                 <div
                   key={image.id}
-                  className="cursor-pointer overflow-hidden rounded-lg bg-gray-100 hover:opacity-80 transition-opacity"
-                  onClick={() => handleImageClick(image.id)}
+                  className="overflow-hidden rounded-lg bg-gray-100"
                   style={{
                     aspectRatio: image.id === "1" ? "9/12" : "2/1",
                     opacity: isVisible ? 1 : 0,
@@ -224,32 +204,6 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         </div>
       </div>
 
-      {/* Zoom Modal - Simple zoomed view */}
-      {zoomedImageId && (
-        <div
-          className="fixed inset-0 bg-white/95 z-40 flex items-center justify-center backdrop-blur-sm"
-          onClick={closeZoom}
-        >
-          <div
-            className="relative w-full h-full flex items-center justify-center p-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={vahanImages.find(img => img.id === zoomedImageId)?.src || ""}
-              alt="Zoomed view"
-              className="max-w-[95vw] max-h-[95vh] w-auto h-auto object-contain"
-            />
-            
-            {/* Close Button */}
-            <button
-              onClick={closeZoom}
-              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#1D1D1F] text-white hover:scale-[1.05] active:scale-[0.95] transition-all duration-100 ease-out"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
