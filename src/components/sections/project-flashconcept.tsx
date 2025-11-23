@@ -36,7 +36,7 @@ const flashConcept01Translations = {
     title: "FlashConcept_01",
     year: "Designed in 2025",
     collaboration: "Collaboration: Eubin Bark & Erwan Hodonou",
-    description: "This concept is a website accessible via a QR code on the garment's label. It gathers key manufacturing data: water consumption, electricity usage, CO₂ emissions, materials used, working conditions, and recyclability potential. The site also features an interactive map tracing the product's complete journey, from fiber origin to final assembly, with details about production locations and conditions. The goal is to bring greater transparency to what garment manufacturing truly represents.",
+    description: "The concept is a website accessible through a QR code printed on the clothing label. It brings together the key data related to the production of the garment: water and electricity consumption, CO₂ emissions, materials used, working conditions and recyclability potential.\nThe site also includes a map showing the full journey of the product, from the origin of the fibers to the final assembly, with details about locations and production conditions.\n\nThe goal is to offer greater transparency about what the making of a garment truly represents.",
     showMoreButton: "View all screens",
     showLessButton: "Show less"
   },
