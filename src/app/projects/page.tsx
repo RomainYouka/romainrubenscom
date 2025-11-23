@@ -273,6 +273,8 @@ export default function ProjectsPage() {
         <ProjectFlashConcept language={selectedLanguage} />
       </div>
 
+      <div className="border-t border-[#D3D3D4]"></div>
+
       <div id="vahan-soghomonian">
         <ProjectVahanSoghomonian language={selectedLanguage} />
       </div>

@@ -154,7 +154,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
             </div>
 
             {vahanImages.length > 1 && (
-              <div ref={buttonRef} className="flex justify-center md:justify-start mt-8 md:mt-12">
+              <div ref={buttonRef} className="flex justify-center mt-8 md:mt-12">
                 {!showAllImages ? (
                   <button
                     onClick={handleToggleImages}
