@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 const translations = {
@@ -36,10 +36,12 @@ const pdfFileNames = {
 
 export default function PersonalIntro({ id = "personal-intro" }: { id?: string }) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
 
   const prefersReducedMotion =
     typeof window !== "undefined"
@@ -317,9 +319,14 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
               {renderTextWithLinks(content.text)}
             </div>
 
-            {/* CTA Button - Apple/Google style */}
+            {/* CTA Button - Apple/Google style with animation */}
             <button
-              onClick={() => router.push("/projects")}
+              onClick={() => {
+                startTransition(() => {
+                  router.push("/projects");
+                });
+              }}
+              disabled={isPending}
               style={{
                 fontFamily: "var(--font-body)",
                 fontSize: "clamp(14px, 1.2vw, 16px)",
@@ -329,17 +336,20 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
                 border: "1px solid #d5d5d7",
                 borderRadius: "980px",
                 padding: "10px 24px",
-                cursor: "pointer",
+                cursor: isPending ? "wait" : "pointer",
                 transition: "all 200ms ease-in-out",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
+                opacity: isPending ? 0.7 : 1,
               }}
               onMouseEnter={(e) => {
+                setIsButtonHovered(true);
                 e.currentTarget.style.backgroundColor = "#e8e8eb";
                 e.currentTarget.style.borderColor = "#a0a0a3";
               }}
               onMouseLeave={(e) => {
+                setIsButtonHovered(false);
                 e.currentTarget.style.backgroundColor = "#f5f5f7";
                 e.currentTarget.style.borderColor = "#d5d5d7";
               }}
@@ -351,7 +361,16 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
               }}
             >
               {content.cta}
-              <span style={{ fontSize: "1.1em" }}>→</span>
+              <span
+                style={{
+                  fontSize: "1.1em",
+                  display: "inline-block",
+                  transition: "transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  transform: isButtonHovered ? "translateX(4px)" : "translateX(0)",
+                }}
+              >
+                →
+              </span>
             </button>
           </div>
         </div>
