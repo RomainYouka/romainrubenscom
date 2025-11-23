@@ -35,7 +35,12 @@ const translations = {
 };
 
 const vahanImages = [
-  "1", "2", "3", "4", "5", "6"
+  { id: "1", src: "/assets/vahan/R1_1763887052895.png" },
+  { id: "2", src: "/assets/vahan/R2_1763887050325.png" },
+  { id: "3", src: "/assets/vahan/R3_1763887050325.png" },
+  { id: "4", src: "/assets/vahan/R4_1763887050325.png" },
+  { id: "5", src: "/assets/vahan/R5_1763887050325.png" },
+  { id: "6", src: "/assets/vahan/R6_1763887050325.png" }
 ];
 
 export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps) {
@@ -45,6 +50,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
 
   const t = translations[language];
   const visibleImages = showAllImages ? vahanImages : vahanImages.slice(0, 1);
+  const currentImageIndex = lightboxImage ? vahanImages.findIndex(img => img.id === lightboxImage) : -1;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,11 +59,11 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     return () => clearTimeout(timer);
   }, []);
 
-  const handleImageClick = (imageNum: string) => {
+  const handleImageClick = (imageId: string) => {
     if (!showAllImages) {
       setShowAllImages(true);
     }
-    setLightboxImage(imageNum);
+    setLightboxImage(imageId);
     document.body.style.overflow = "hidden";
   };
 
@@ -67,18 +73,14 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
   };
 
   const goToPreviousImage = () => {
-    if (!lightboxImage) return;
-    const currentIndex = vahanImages.indexOf(lightboxImage);
-    if (currentIndex > 0) {
-      setLightboxImage(vahanImages[currentIndex - 1]);
+    if (currentImageIndex > 0) {
+      setLightboxImage(vahanImages[currentImageIndex - 1].id);
     }
   };
 
   const goToNextImage = () => {
-    if (!lightboxImage) return;
-    const currentIndex = vahanImages.indexOf(lightboxImage);
-    if (currentIndex < vahanImages.length - 1) {
-      setLightboxImage(vahanImages[currentIndex + 1]);
+    if (currentImageIndex >= 0 && currentImageIndex < vahanImages.length - 1) {
+      setLightboxImage(vahanImages[currentImageIndex + 1].id);
     }
   };
 
@@ -91,11 +93,11 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxImage]);
+  }, [lightboxImage, currentImageIndex]);
 
-  const currentImageIndex = lightboxImage ? vahanImages.indexOf(lightboxImage) : -1;
   const canGoPrevious = currentImageIndex > 0;
   const canGoNext = currentImageIndex >= 0 && currentImageIndex < vahanImages.length - 1;
+  const currentImage = lightboxImage ? vahanImages.find(img => img.id === lightboxImage) : null;
 
   return (
     <section
@@ -114,22 +116,24 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16">
           <div className="w-full md:w-[45%] lg:w-[50%]">
             <div className="space-y-4">
-              {visibleImages.map((imageNum, idx) => (
+              {visibleImages.map((image, idx) => (
                 <div
-                  key={imageNum}
+                  key={image.id}
                   className="cursor-pointer overflow-hidden rounded-lg bg-gray-100 hover:opacity-80 transition-opacity"
-                  onClick={() => handleImageClick(imageNum)}
+                  onClick={() => handleImageClick(image.id)}
                   style={{
-                    aspectRatio: imageNum === "1" ? "9/12" : "2/1",
+                    aspectRatio: image.id === "1" ? "9/12" : "2/1",
                     opacity: isVisible ? 1 : 0,
                     transform: isVisible ? "translateY(0)" : "translateY(20px)",
                     transition: `opacity 0.6s ease, transform 0.6s ease`,
                     transitionDelay: `${(idx + 1) * 50}ms`
                   }}
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <span className="text-gray-400 text-sm">Image {imageNum}</span>
-                  </div>
+                  <img
+                    src={image.src}
+                    alt={`Article page ${image.id}`}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               ))}
             </div>
@@ -238,16 +242,13 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
             )}
 
             <div className="flex-1 flex items-center justify-center max-h-[85vh]">
-              <div className="bg-gradient-to-br from-gray-400 to-gray-500 rounded-lg flex items-center justify-center p-4"
-                style={{
-                  width: lightboxImage === "1" ? "auto" : "80vw",
-                  height: lightboxImage === "1" ? "auto" : "auto",
-                  maxWidth: "90vw",
-                  maxHeight: "80vh",
-                  aspectRatio: lightboxImage === "1" ? "9/12" : "2/1"
-                }}>
-                <span className="text-gray-200 text-lg">Image {lightboxImage}</span>
-              </div>
+              {currentImage && (
+                <img
+                  src={currentImage.src}
+                  alt={`Article page ${currentImage.id}`}
+                  className="rounded-lg max-w-full max-h-full object-contain"
+                />
+              )}
             </div>
 
             {canGoNext && (
