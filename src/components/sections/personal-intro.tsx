@@ -6,14 +6,17 @@ const translations = {
   FR: {
     title: "À propos de moi",
     text: "Je suis étudiant en troisième année de design industriel, spécialisé en UX/UI et design d'interaction.\nJ'explore la relation entre l'humain, la technologie et les objets qu'il utilise.\nMon approche consiste à transformer la complexité en clarté et le design en expérience.\nPour en savoir plus sur mon parcours, vous pouvez me retrouver sur LinkedIn ou télécharger mon CV.",
+    cta: "Voir mes réalisations",
   },
   EN: {
     title: "About me",
     text: "I'm a third-year industrial design student specializing in UX/UI and interaction design.\nI explore the relationship between humans, technology, and the objects they use.\nMy approach is to turn complexity into clarity and design into experience.\nTo learn more about my background, you can find me on LinkedIn or download my resume.",
+    cta: "View my work",
   },
   ՀԱՅ: {
     title: "Իմ մասին՝",
     text: "Ես արդյունաբերական դիզայնի երրորդ կուրսի ուսանող եմ՝ մասնագիտացված UX/UI և ինտերակտիվ դիզայնի ոլորտում։\nՈւսումնասիրում եմ մարդու, տեխնոլոգիայի և առօրյա օգտագործվող առարկաների փոխհարաբերությունները՝ դիտարկելով դրանց ազդեցությունը մարդու փորձառության վրա։\n\nԻմ մոտեցումն ուղղված է բարդ գործընթացների պարզեցմանը՝ դիզայնը վերածելով իրական, զգայական հարուստ փորձառության։\nԵթե ցանկանում եք ավելի խորը ծանոթանալ իմ անցած ուղղուն, կարող եք այցելել իմ «LinkedIn»–ը կամ ներբեռնել իմ ռեզյումեն։",
+    cta: "Տեսեք իմ աշխատանքները",
   },
 };
 
@@ -256,60 +259,102 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
   };
 
   return (
-    <section
-      id={id}
-      className="w-full bg-white"
-      style={{
-        paddingTop: "clamp(160px, 15vw, 200px)",
-        paddingBottom: "clamp(160px, 15vw, 200px)",
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.6s ease, transform 0.6s ease",
-      }}
-    >
-      <div className="container max-w-[1200px] mx-auto px-5 md:px-10">
-        <div
-          style={{
-            maxWidth: "70ch",
-            marginLeft: "auto",
-            marginRight: "auto",
-            textAlign: "left",
-            opacity: isFading ? 0 : 1,
-            transition: `opacity ${transitionDuration} ease-in-out`,
-          }}
-        >
-          {/* Title */}
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(32px, 4.5vw, 48px)",
-              fontWeight: 600,
-              color: "#1d1d1f",
-              lineHeight: 1.1,
-              letterSpacing: "-0.015em",
-              marginBottom: "clamp(20px, 2.5vw, 32px)",
-            }}
-          >
-            {content.title}
-          </h2>
-
-          {/* Text with LinkedIn and CV links */}
+    <>
+      {/* Main section - fullscreen */}
+      <section
+        id={id}
+        className="w-full bg-white"
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          paddingTop: "clamp(80px, 10vw, 120px)",
+          paddingBottom: "clamp(80px, 10vw, 120px)",
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+        }}
+      >
+        <div className="container max-w-[1200px] mx-auto px-5 md:px-10 w-full">
           <div
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(15px, 1.6vw, 17px)",
-              fontWeight: 400,
-              color: "#1d1d1f",
-              lineHeight: 1.5,
-              letterSpacing: "-0.022em",
-              whiteSpace: "pre-line",
-              textWrap: "pretty",
+              maxWidth: "70ch",
+              marginLeft: "auto",
+              marginRight: "auto",
+              textAlign: "left",
+              opacity: isFading ? 0 : 1,
+              transition: `opacity ${transitionDuration} ease-in-out`,
             }}
           >
-            {renderTextWithLinks(content.text)}
+            {/* Title */}
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(32px, 4.5vw, 48px)",
+                fontWeight: 600,
+                color: "#1d1d1f",
+                lineHeight: 1.1,
+                letterSpacing: "-0.015em",
+                marginBottom: "clamp(20px, 2.5vw, 32px)",
+              }}
+            >
+              {content.title}
+            </h2>
+
+            {/* Text with LinkedIn and CV links */}
+            <div
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1d1d1f",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                whiteSpace: "pre-line",
+                textWrap: "pretty",
+              }}
+            >
+              {renderTextWithLinks(content.text)}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* CTA Section - fullscreen with animation */}
+      <section
+        className="w-full bg-white"
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingTop: "80px",
+          paddingBottom: "80px",
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "scale(1)" : "scale(0.95)",
+            transition: "opacity 1s ease 0.3s, transform 1s ease 0.3s",
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(40px, 8vw, 100px)",
+              fontWeight: 700,
+              color: "#1d1d1f",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+              margin: 0,
+            }}
+          >
+            {content.cta}
+          </h3>
+        </div>
+      </section>
+    </>
   );
 }
