@@ -49,16 +49,17 @@ const SLIDES: Slide[] = [
   {
     id: "orange-en",
     gradient: "linear-gradient(90deg, #D72E3E 0%, #EB6037 100%)",
-    title: "I'm a designer. I create experiences for people.",
+    title: "I am a designer. I am a user experience creator.",
     bodyLines: [
-      "Everything must be designed for those who interact with it,",
-      "who use it, and who grow with it.",
-      "It's not about designing something beautiful, but about designing something good."
+      "Everything must be shaped for the people who interact,",
+      "who use, and who grow with what we design.",
+      "The goal is not to create something \"beautiful\",",
+      "but to create something right."
     ],
     accentColor: "#FAC0CC",
     strikeDesigner: true,
-    strikeText: "I'm a designer.",
-    forceLines: 3
+    strikeText: "I am a designer.",
+    forceLines: 4
   },
   {
     id: "violet-hy",
