@@ -29,21 +29,23 @@ export default function NotFound() {
   const [isTyping, setIsTyping] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [showInitialCursor, setShowInitialCursor] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const fullText = translations[selectedLanguage].text;
   const buttonText = translations[selectedLanguage].button;
+  const subtextStr = translations[selectedLanguage].subtext;
 
   useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
+    setIsMounted(true);
+    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ" | null;
     if (saved && translations[saved]) {
       setSelectedLanguage(saved);
     }
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!isMounted) return;
+    
     setShowInitialCursor(true);
     const timer = setTimeout(() => {
       setShowInitialCursor(false);
@@ -51,20 +53,21 @@ export default function NotFound() {
     }, 800);
     
     return () => clearTimeout(timer);
-  }, [mounted]);
+  }, [isMounted]);
 
   useEffect(() => {
-    const handleLanguageChange = (event: CustomEvent<"FR" | "EN" | "ՀԱՅ">) => {
-      setSelectedLanguage(event.detail);
+    const handleLanguageChange = (event: Event) => {
+      const customEvent = event as CustomEvent<"FR" | "EN" | "ՀԱՅ">;
+      setSelectedLanguage(customEvent.detail);
       setDisplayedText("");
       setIsTyping(true);
       setShowButton(false);
       setShowInitialCursor(true);
     };
 
-    window.addEventListener("languageChange", handleLanguageChange as EventListener);
+    window.addEventListener("languageChange", handleLanguageChange);
     return () => {
-      window.removeEventListener("languageChange", handleLanguageChange as EventListener);
+      window.removeEventListener("languageChange", handleLanguageChange);
     };
   }, []);
 
@@ -85,8 +88,30 @@ export default function NotFound() {
     }
   }, [displayedText, isTyping, fullText]);
 
+  if (!isMounted) {
+    return (
+      <section className="relative w-full h-screen overflow-hidden bg-white">
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/fond-romain-rubens-1762169393726.png?width=8000&height=8000&resize=contain"
+            alt="Background"
+            fill
+            className="object-cover"
+            priority
+            quality={100}
+          />
+        </div>
+        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+          <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(32px, 7vw, 80px)", fontWeight: 600, color: "#ffffff", letterSpacing: "-0.02em", lineHeight: 1.3, textAlign: "center" }}>
+            {fullText}
+          </h1>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="relative w-full h-screen overflow-hidden" suppressHydrationWarning>
+    <section className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
@@ -123,9 +148,9 @@ export default function NotFound() {
               maxWidth: "95vw"
             }}
           >
-            {mounted && showInitialCursor && !displayedText ? (
+            {showInitialCursor && !displayedText ? (
               <span style={{ animation: "blink 0.7s infinite", display: "inline", lineHeight: "inherit" }}>|</span>
-            ) : mounted && displayedText ? (
+            ) : displayedText ? (
               <span style={{ display: "inline", lineHeight: "inherit" }}>
                 {displayedText}
                 <span style={{ animation: isTyping ? "blink 0.7s infinite" : "none", opacity: isTyping ? 1 : 0, display: "inline", lineHeight: "inherit", transition: "opacity 0.1s ease", marginLeft: "-0.05em", whiteSpace: "nowrap" }}>|</span>
@@ -136,7 +161,7 @@ export default function NotFound() {
           </h1>
 
           {/* Subtext - appears after typing animation */}
-          {mounted && !isTyping && displayedText && (
+          {!isTyping && displayedText && (
             <p
               style={{
                 fontFamily: "var(--font-body)",
@@ -151,14 +176,14 @@ export default function NotFound() {
                 animation: "fadeInAndBounce 0.6s ease-in forwards"
               }}
             >
-              {translations[selectedLanguage].subtext}
+              {subtextStr}
             </p>
           )}
         </div>
       </div>
 
       {/* Back to Home Button - Bottom */}
-      {mounted && showButton && (
+      {showButton && (
         <Link
           href="/"
           className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:scale-110 group"
