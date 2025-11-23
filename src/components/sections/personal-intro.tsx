@@ -322,9 +322,7 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
             {/* CTA Button - Apple/Google style with animation */}
             <button
               onClick={() => {
-                startTransition(() => {
-                  router.push("/projects");
-                });
+                router.push("/projects");
               }}
               disabled={isPending}
               style={{
@@ -337,7 +335,7 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
                 borderRadius: "980px",
                 padding: "10px 24px",
                 cursor: isPending ? "wait" : "pointer",
-                transition: "all 200ms ease-in-out",
+                transition: "opacity 100ms ease-in-out, transform 100ms ease-in-out",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
@@ -363,7 +361,7 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
                 style={{
                   fontSize: "1.1em",
                   display: "inline-block",
-                  transition: "transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  transition: "transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1)",
                   transform: isButtonHovered ? "translateX(4px)" : "translateX(0)",
                 }}
               >
