@@ -7,17 +7,17 @@ const translations = {
   FR: {
     title: "À propos de moi",
     text: "Je suis étudiant en troisième année de design industriel, spécialisé en UX/UI et design d'interaction.\nJ'explore la relation entre l'humain, la technologie et les objets qu'il utilise.\nMon approche consiste à transformer la complexité en clarté et le design en expérience.\nPour en savoir plus sur mon parcours, vous pouvez me retrouver sur LinkedIn ou télécharger mon CV.",
-    cta: "Voir mes réalisations",
+    cta: "Voir mes projets",
   },
   EN: {
     title: "About me",
     text: "I'm a third-year industrial design student specializing in UX/UI and interaction design.\nI explore the relationship between humans, technology, and the objects they use.\nMy approach is to turn complexity into clarity and design into experience.\nTo learn more about my background, you can find me on LinkedIn or download my resume.",
-    cta: "View my work",
+    cta: "View my projects",
   },
   ՀԱՅ: {
     title: "Իմ մասին՝",
     text: "Ես արդյունաբերական դիզայնի երրորդ կուրսի ուսանող եմ՝ մասնագիտացված UX/UI և ինտերակտիվ դիզայնի ոլորտում։\nՈւսումնասիրում եմ մարդու, տեխնոլոգիայի և առօրյա օգտագործվող առարկաների փոխհարաբերությունները՝ դիտարկելով դրանց ազդեցությունը մարդու փորձառության վրա։\n\nԻմ մոտեցումն ուղղված է բարդ գործընթացների պարզեցմանը՝ դիզայնը վերածելով իրական, զգայական հարուստ փորձառության։\nԵթե ցանկանում եք ավելի խորը ծանոթանալ իմ անցած ուղղուն, կարող եք այցելել իմ «LinkedIn»–ը կամ ներբեռնել իմ ռեզյումեն։",
-    cta: "Տեսեք իմ աշխատանքները",
+    cta: "Տեսեք իմ նախագծերը",
   },
 };
 
@@ -324,14 +324,16 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
                 fontFamily: "var(--font-body)",
                 fontSize: "clamp(14px, 1.2vw, 16px)",
                 fontWeight: 500,
-                color: "#1d1d1f",
+                color: "#3C3C3C",
                 backgroundColor: "#f5f5f7",
                 border: "1px solid #d5d5d7",
                 borderRadius: "980px",
                 padding: "10px 24px",
                 cursor: "pointer",
                 transition: "all 200ms ease-in-out",
-                display: "inline-block",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "#e8e8eb";
@@ -349,6 +351,7 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
               }}
             >
               {content.cta}
+              <span style={{ fontSize: "1.1em" }}>→</span>
             </button>
           </div>
         </div>
