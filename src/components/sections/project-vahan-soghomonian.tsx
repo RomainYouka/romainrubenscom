@@ -275,19 +275,15 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         >
           {/* Image Container - stops click propagation */}
           <div 
-            className="relative w-full h-full flex items-center justify-center px-4"
+            className="relative flex items-center justify-center px-4 w-full"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Single Image - changes instantly */}
             {displayedImage && (
-              <Image
+              <img
                 key={`vahan-${displayedImage}`}
                 src={vahanImages.find(img => img.id === displayedImage)?.src || ""}
                 alt="Lightbox"
-                width={600}
-                height={1200}
-                priority
-                unoptimized
                 className="max-h-[90vh] w-auto object-contain pointer-events-none"
               />
             )}
