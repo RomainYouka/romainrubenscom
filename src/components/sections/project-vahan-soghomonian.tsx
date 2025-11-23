@@ -275,7 +275,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         >
           {/* Image Container - stops click propagation */}
           <div 
-            className="relative flex items-center justify-center px-4 w-full"
+            className="relative flex items-center justify-center px-4 w-full h-full"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Single Image - changes instantly */}
