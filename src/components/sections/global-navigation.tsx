@@ -283,14 +283,14 @@ const ResumeButton = ({ selectedLanguage }: { selectedLanguage: "FR" | "EN" | "�
     
     // Map language codes to PDF file names
     const pdfFiles = {
-      FR: "/resumes/RUBENS-Romain-CV.pdf",
+      FR: "/resumes/RUBENS-Romain-curriculum-vitae.pdf",
       EN: "/resumes/RUBENS-Romain-Resume.pdf",
       ՀԱՅ: "/resumes/RUBENS_Romain_ռեզյումե.pdf"
     };
     
     const pdfUrl = pdfFiles[selectedLanguage];
     const pdfFileNames = {
-      FR: "RUBENS-Romain-CV.pdf",
+      FR: "RUBENS-Romain-curriculum-vitae.pdf",
       EN: "RUBENS-Romain-Resume.pdf",
       ՀԱՅ: "RUBENS_Romain_ռեզյումե.pdf"
     };
