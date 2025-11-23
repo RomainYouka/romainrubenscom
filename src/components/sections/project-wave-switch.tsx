@@ -14,7 +14,7 @@ const translations = {
     paragraph1:
     "WaveSwitch is a touchless, gesture-activated switch. It is designed for a speculative future in 2080, where humans live with medical and aesthetic skin fungi shaped by global transformations. The device uses artificial intelligence to translate movement into action.\n\nBeyond the object itself, the project finds its meaning in the web and mobile interfaces. Users can customize their gestures, see real-time visual feedback and track their interactions as they use the system.",
     paragraph2:
-    "This project explores the boundary between tangible objects and interactive systems, where design exists not only in physical form but in the relationship between human and machine. The switch becomes a way to question our connection to gesture, technological mediation, and the evolving domestic or work environment.",
+    "This project explores the boundary between tangible objects and interactive systems, where design exists not only as a physical form but also in the relationship between humans and machines.\nThe switch becomes a way to question our connection to gesture, technological mediation and the changing nature of domestic or professional environments.",
     play: "Play",
     pause: "Pause"
   },
@@ -34,7 +34,7 @@ const translations = {
     paragraph1:
     "WaveSwitch-ը շփում չպահանջող, ժեստով ակտիվացվող անջատիչ է։ Ստեղծված է 2080 թվականի սպեկուլատիվ ապագայի համար, որտեղ մարդիկ ապրում են բժշկական ու գեղագիտական նշանակություն ունեցող մաշկային սնկերի հետ՝ գլոբալ փոփոխությունների հետևանքով առաջացած նոր իրականության մեջ։\nՍարքը հիմնված է արհեստական բանականության վրա, որը շարժումը վերածում է գործողության։\n\nՍակայն WaveSwitch-ի իմաստը միայն առարկայում չէ․ նախագծի էությունը իրեն ընդգրկում է նաև վեբ և շարժական միջերեսները՝ ժեստերի անհատականացում, իրական ժամանակում տեսողական հետադարձ կապ և օգտագործման պատմության հետևում։",
     paragraph2:
-    "Այս նախագիծը ուսումնասիրում է նյութական առարկաների եւ ինտերակտիվ համակարգերի միջեւ սահմանը, որտեղ դիզայնը գոյություն ունի ոչ միայն ֆիզիկական ձեւով, այլեւ մարդու եւ մեքենայի միջեւ հարաբերություններում։ Անջատիչը դառնում է միջոց՝ հարցականի տակ դնելու մեր կապը ժեստի, տեխնոլոգիական միջնորդության եւ տնային կամ աշխատանքային միջավայրի զարգացման հետ։",
+    "Այս նախագիծը ուսումնասիրում է շոշափելի առարկաների և ինտերակտիվ համակարգերի սահմանը, որտեղ դիզայնը գոյություն ունի ոչ միայն ֆիզիկական ձևով, այլև մարդու և մեքենայի փոխհարաբերության մեջ։\nԱնջատիչը վերածվում է մի միջոցի, որը հանդես է գալիս որպես հարցադրում՝ մեր կապի մասին ժեստի, տեխնոլոգիական միջնորդման և կենցաղային կամ աշխատանքային միջավայրի զարգացող բնույթի հետ։",
     play: "Նվագարկել",
     pause: "Դադարեցնել"
   }
