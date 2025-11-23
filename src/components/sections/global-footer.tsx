@@ -56,7 +56,7 @@ const GlobalFooter = () => {
       }}
     >
       <div className="mx-auto max-w-[1200px] px-6 py-6 md:py-6">
-        <div className="flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between md:min-h-[80px] md:gap-4">
+        <div className="flex flex-col-reverse items-start gap-3 md:flex-row md:items-center md:justify-between md:min-h-[80px] md:gap-4">
           <p className="text-[10px] md:text-xs text-[#3C3C3C] font-normal leading-relaxed">
             {currentTranslations.copyright}
           </p>
