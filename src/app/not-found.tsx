@@ -7,18 +7,18 @@ import { ChevronRight } from "lucide-react";
 
 const translations = {
   FR: { 
-    text: "Page non trouvée",
-    subtitle: "404",
+    text: "404 — Cette page a disparu.",
+    subtext: "Probablement partie faire un café.",
     button: "Retourner à l'accueil"
   },
   EN: { 
-    text: "Page not found",
-    subtitle: "404",
+    text: "404 — This page has disappeared.",
+    subtext: "Probably went to get a coffee.",
     button: "Back to home"
   },
   ՀԱՅ: { 
-    text: "Էջը չի գտնվել",
-    subtitle: "404",
+    text: "404 — Այս էջը անհետացել է։",
+    subtext: "Հավանաբար գնացել է սուրճ խմել։",
     button: "Վերադառնալ տուն"
   }
 };
@@ -101,21 +101,8 @@ export default function NotFound() {
 
       {/* Content Overlay */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-        {/* 404 Code - Top */}
-        <div style={{
-          position: "absolute",
-          top: "clamp(32px, 8vw, 80px)",
-          fontSize: "clamp(14px, 2vw, 18px)",
-          fontFamily: "var(--font-body)",
-          color: "rgba(255, 255, 255, 0.5)",
-          letterSpacing: "0.05em",
-          textTransform: "uppercase"
-        }}>
-          {translations[selectedLanguage].subtitle}
-        </div>
-
         {/* Typing Animation Text - Center */}
-        <div className="flex items-center justify-center flex-1">
+        <div className="flex flex-col items-center justify-center flex-1 gap-6">
           <h1
             style={{
               fontFamily: "var(--font-display)",
@@ -147,6 +134,26 @@ export default function NotFound() {
               <span style={{ visibility: "hidden", display: "inline", lineHeight: "inherit" }}>{fullText}</span>
             )}
           </h1>
+
+          {/* Subtext - appears after typing animation */}
+          {mounted && !isTyping && displayedText && (
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(13px, 1.5vw, 18px)",
+                fontWeight: 400,
+                color: "rgba(255, 255, 255, 0.6)",
+                letterSpacing: "-0.01em",
+                textAlign: "center",
+                paddingLeft: "clamp(16px, 5vw, 48px)",
+                paddingRight: "clamp(16px, 5vw, 48px)",
+                maxWidth: "95vw",
+                animation: "fadeInAndBounce 0.6s ease-in forwards"
+              }}
+            >
+              {translations[selectedLanguage].subtext}
+            </p>
+          )}
         </div>
       </div>
 
