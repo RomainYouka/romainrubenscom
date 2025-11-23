@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight, X, ChevronDown } from "lucide-react";
 
 interface ProjectVahanProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -47,10 +47,25 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
   const [showAllImages, setShowAllImages] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   const t = translations[language];
   const visibleImages = showAllImages ? vahanImages : vahanImages.slice(0, 1);
   const currentImageIndex = lightboxImage ? vahanImages.findIndex(img => img.id === lightboxImage) : -1;
+
+  const handleToggleImages = () => {
+    if (showAllImages) {
+      setShowAllImages(false);
+      setTimeout(() => {
+        buttonRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 100);
+    } else {
+      setShowAllImages(true);
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -139,26 +154,35 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
             </div>
 
             {vahanImages.length > 1 && (
-              <button
-                onClick={() => setShowAllImages(!showAllImages)}
-                ref={el => el?.style.setProperty('margin-top', 'clamp(20px, 2.5vw, 32px)')}
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "clamp(14px, 1.1vw, 15px)",
-                  fontWeight: 500,
-                  color: "#1D1D1F",
-                  backgroundColor: "#F5F5F7",
-                  padding: "clamp(12px, 1.2vw, 16px) clamp(20px, 2vw, 28px)",
-                  border: "1px solid #E8E8ED",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  width: "100%",
-                  marginTop: "clamp(20px, 2.5vw, 32px)"
-                }}
-              >
-                {showAllImages ? t.viewLess : t.viewAllScreens}
-              </button>
+              <div ref={buttonRef} className="flex justify-center md:justify-start mt-8 md:mt-12">
+                {!showAllImages ? (
+                  <button
+                    onClick={handleToggleImages}
+                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] font-medium transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "15px",
+                      letterSpacing: "-0.01em"
+                    }}
+                  >
+                    {t.viewAllScreens}
+                    <ChevronDown className="w-4 h-4 transition-none" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleToggleImages}
+                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1D1D1F] font-medium transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "15px",
+                      letterSpacing: "-0.01em"
+                    }}
+                  >
+                    {t.viewLess}
+                    <ChevronDown className="w-4 h-4 rotate-180 transition-none" />
+                  </button>
+                )}
+              </div>
             )}
           </div>
 
@@ -185,7 +209,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
                 color: "#1D1D1F",
                 lineHeight: 1.1,
                 letterSpacing: "-0.015em",
-                marginBottom: "clamp(20px, 2.5vw, 32px)"
+                marginBottom: "clamp(16px, 2vw, 24px)"
               }}
             >
               {t.title}
@@ -194,26 +218,30 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
             <div
               style={{
                 fontFamily: "var(--font-body)",
-                fontSize: "clamp(15px, 1.6vw, 17px)",
-                color: "#424245",
-                lineHeight: 1.6,
-                marginBottom: "clamp(32px, 4vw, 48px)",
+                fontSize: "clamp(13px, 1.3vw, 15px)",
+                fontWeight: 500,
+                color: "#86868b",
+                lineHeight: 1.4,
+                letterSpacing: "-0.01em",
+                marginBottom: "clamp(16px, 2vw, 20px)",
                 whiteSpace: "pre-wrap"
               }}
             >
-              {t.description}
+              {t.collaboration}
             </div>
 
             <div
               style={{
                 fontFamily: "var(--font-body)",
-                fontSize: "clamp(13px, 1.3vw, 15px)",
-                color: "#86868b",
-                lineHeight: 1.8,
-                whiteSpace: "pre-wrap"
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: 400,
+                color: "#1D1D1F",
+                lineHeight: 1.5,
+                letterSpacing: "-0.022em",
+                whiteSpace: "pre-line"
               }}
             >
-              {t.collaboration}
+              {t.description}
             </div>
           </div>
         </div>
