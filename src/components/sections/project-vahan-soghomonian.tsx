@@ -89,8 +89,6 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     }
     setDisplayedImage(imageId);
     setLightboxImage(imageId);
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
     window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: true }));
   };
 
@@ -98,8 +96,6 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     setLightboxImage(null);
     setDisplayedImage(null);
     setIsTransitioning(false);
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
     window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
   };
 
