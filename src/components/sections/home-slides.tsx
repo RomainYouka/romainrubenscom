@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ---------------------- DATA ---------------------- */
 
-type SlideId = "orange-hy" | "orange" | "orange-en" | "violet-hy" | "violet" | "green";
+type SlideId = "orange-hy" | "orange" | "orange-en" | "violet-hy" | "violet" | "green-hy" | "green";
 
 type Slide = {
   id: SlideId;
@@ -85,6 +85,17 @@ const SLIDES: Slide[] = [
     forceLines: 4
   },
   {
+    id: "green-hy",
+    gradient: "linear-gradient(90deg, #00C05D 0%, #0FDFAB 100%)",
+    title: "Չեմ ստեղծագործում Երևալու համար։",
+    bodyLines: [
+      "Ստեղծում եմ, որպեսզի գտնեն՝ առանց փնտրելու։",
+      "Այն, ինչ անում եմ, չպետք է գրավի ուշադրությունը․ այն պարզապես պետք է ուղղորդի այն։"
+    ],
+    accentColor: "#ADE7C2",
+    forceLines: 3
+  },
+  {
     id: "green",
     gradient: "linear-gradient(90deg, #00C05D 0%, #0FDFAB 100%)",
     title: "Je ne crée pas pour être vu.",
@@ -127,11 +138,11 @@ export default function HomeSlides() {
   // Filter slides by language
   const filteredSlides = useMemo(() => {
     if (selectedLanguage === "FR") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en" && s.id !== "violet-hy");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en" && s.id !== "violet-hy" && s.id !== "green-hy");
     } else if (selectedLanguage === "EN") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange" && s.id !== "violet-hy");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange" && s.id !== "violet-hy" && s.id !== "green-hy");
     } else { // ՀԱՅ
-      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en" && s.id !== "violet");
+      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en" && s.id !== "violet" && s.id !== "green");
     }
   }, [selectedLanguage]);
 
