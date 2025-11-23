@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
-import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 import GlobalFooter from "@/components/sections/global-footer";
 import IntroSplash from "@/components/intro-splash";
@@ -25,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-white">
-        <ErrorReporter />
         <IntroSplash />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
@@ -39,7 +36,6 @@ export default function RootLayout({
         />
         <ClientLayout>{children}</ClientLayout>
         <GlobalFooter />
-        <VisualEditsMessenger />
       </body>
     </html>
   );
