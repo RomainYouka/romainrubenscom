@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, ChevronDown } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 
 interface ProjectVahanProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -47,20 +46,8 @@ const vahanImages = [
 export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps) {
   const [showAllImages, setShowAllImages] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-  const [displayedImage, setDisplayedImage] = useState<string | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [zoomedImageId, setZoomedImageId] = useState<string | null>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
-
-  const t = translations[language];
-  const visibleImages = showAllImages ? vahanImages : vahanImages.slice(0, 1);
-  
-  const currentImageIndex = lightboxImage 
-    ? vahanImages.findIndex(img => img.id === lightboxImage)
-    : -1;
-  
-  const canGoPrevious = currentImageIndex > 0;
-  const canGoNext = currentImageIndex >= 0 && currentImageIndex < vahanImages.length - 1;
 
   const handleToggleImages = () => {
     if (showAllImages) {
@@ -76,6 +63,9 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     }
   };
 
+  const t = translations[language];
+  const visibleImages = showAllImages ? vahanImages : vahanImages.slice(0, 1);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -84,57 +74,22 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
   }, []);
 
   const handleImageClick = (imageId: string) => {
-    if (!showAllImages) {
-      setShowAllImages(true);
-    }
-    setDisplayedImage(imageId);
-    setLightboxImage(imageId);
-    document.body.style.overflow = "hidden";
-    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: true }));
+    setZoomedImageId(imageId);
   };
 
-  const closeLightbox = () => {
-    setLightboxImage(null);
-    setDisplayedImage(null);
-    setIsTransitioning(false);
-    document.body.style.overflow = "";
-    window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
-  };
-
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      closeLightbox();
-    }
-  };
-
-  const goToPreviousImage = () => {
-    const index = vahanImages.findIndex(img => img.id === lightboxImage);
-    if (index > 0) {
-      const prevId = vahanImages[index - 1].id;
-      setDisplayedImage(prevId);
-      setLightboxImage(prevId);
-    }
-  };
-
-  const goToNextImage = () => {
-    const index = vahanImages.findIndex(img => img.id === lightboxImage);
-    if (index >= 0 && index < vahanImages.length - 1) {
-      const nextId = vahanImages[index + 1].id;
-      setDisplayedImage(nextId);
-      setLightboxImage(nextId);
-    }
+  const closeZoom = () => {
+    setZoomedImageId(null);
   };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!lightboxImage) return;
-      if (e.key === "ArrowLeft") goToPreviousImage();
-      if (e.key === "ArrowRight") goToNextImage();
-      if (e.key === "Escape") closeLightbox();
+      if (e.key === "Escape" && zoomedImageId) {
+        closeZoom();
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxImage]);
+  }, [zoomedImageId]);
 
   return (
     <section
@@ -269,70 +224,26 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {lightboxImage && (
+      {/* Zoom Modal - Simple zoomed view */}
+      {zoomedImageId && (
         <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
-          onClick={handleBackdropClick}
+          className="fixed inset-0 bg-white/95 z-40 flex items-center justify-center backdrop-blur-sm"
+          onClick={closeZoom}
         >
-          {/* Image Container - stops click propagation */}
-          <div 
-            className="relative w-full h-full flex items-center justify-center px-4 py-8"
+          <div
+            className="relative w-full h-full flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Single Image - changes instantly */}
-            {lightboxImage && (
-              <Image
-                key={`vahan-${lightboxImage}`}
-                src={vahanImages.find(img => img.id === lightboxImage)?.src || ""}
-                alt="Lightbox"
-                width={600}
-                height={1200}
-                priority
-                unoptimized
-                className="max-h-[90vh] w-auto object-contain pointer-events-none"
-              />
-            )}
-
-            {/* Navigation Buttons */}
-            <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPreviousImage();
-                }}
-                disabled={!canGoPrevious}
-                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
-                  canGoPrevious
-                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
-                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
-                }`}
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNextImage();
-                }}
-                disabled={!canGoNext}
-                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
-                  canGoNext
-                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
-                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
-                }`}
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-
+            <img
+              src={vahanImages.find(img => img.id === zoomedImageId)?.src || ""}
+              alt="Zoomed view"
+              className="max-w-[95vw] max-h-[95vh] w-auto h-auto object-contain"
+            />
+            
             {/* Close Button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                closeLightbox();
-              }}
-              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
+              onClick={closeZoom}
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#1D1D1F] text-white hover:scale-[1.05] active:scale-[0.95] transition-all duration-100 ease-out"
             >
               <X className="w-5 h-5" />
             </button>
