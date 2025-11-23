@@ -285,14 +285,14 @@ const ResumeButton = ({ selectedLanguage }: { selectedLanguage: "FR" | "EN" | "�
     const pdfFiles = {
       FR: "/resumes/RUBENS-Romain-CV.pdf",
       EN: "/resumes/RUBENS-Romain-Resume.pdf",
-      ՀԱՅ: "/resumes/RUBENS-Romain-Resume.pdf"
+      ՀԱՅ: "/resumes/RUBENS_Romain_ռեզյումե.pdf"
     };
     
     const pdfUrl = pdfFiles[selectedLanguage];
     const pdfFileNames = {
       FR: "RUBENS-Romain-CV.pdf",
       EN: "RUBENS-Romain-Resume.pdf",
-      ՀԱՅ: "RUBENS-Romain-Resume.pdf"
+      ՀԱՅ: "RUBENS_Romain_ռեզյումե.pdf"
     };
     
     // Create a temporary link and trigger download
