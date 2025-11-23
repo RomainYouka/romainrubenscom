@@ -124,13 +124,13 @@ export default function HomeSlides() {
   }, [w]);
 
   /* ---- échelle continue pour la typo ----
-     Base de référence : 1440 (40/20). On compresse un peu l'orange
+     Base de référence : 1440 (34/17). On compresse un peu l'orange
      pour garantir 1 ligne + 3 lignes. Le violet vise 4 lignes. */
   const baseScale = Math.max(0.32, Math.min(1, w / 1440));
-  const titleBase = 40;
-  const textBase = 20;
+  const titleBase = 34;
+  const textBase = 17;
 
-  const perSlideK = current.id === "orange" ? 0.90
+  const perSlideK = (current.id === "orange" || current.id === "orange-hy" || current.id === "orange-en") ? 0.90
                   : current.id === "violet" ? 0.96
                   : 1.00;
 
