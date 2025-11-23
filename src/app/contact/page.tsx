@@ -77,10 +77,12 @@ export default function ContactPage() {
   const [linkedInValidating, setLinkedInValidating] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
-    if (saved && contactTranslations[saved]) {
-      setSelectedLanguage(saved);
+    let saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ" | null;
+    if (!saved || !contactTranslations[saved]) {
+      saved = "FR";
+      localStorage.setItem("preferredLanguage", "FR");
     }
+    setSelectedLanguage(saved);
   }, []);
 
   useEffect(() => {

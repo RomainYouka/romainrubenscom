@@ -368,10 +368,12 @@ const GlobalNavigation = ({ onShowQuotes }: { onShowQuotes?: () => void }) => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
-    if (saved && translations[saved]) {
-      setSelectedLanguage(saved);
+    let saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ" | null;
+    if (!saved || !translations[saved]) {
+      saved = "FR";
+      localStorage.setItem("preferredLanguage", "FR");
     }
+    setSelectedLanguage(saved);
   }, []);
 
   const handleLanguageChange = (lang: string) => {
