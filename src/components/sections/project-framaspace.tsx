@@ -11,7 +11,7 @@ const translations = {
     title: "Framaspace : Refonte visuelle axée sur l'essentiel",
     year: "La Conception : 2024",
     description:
-      "Framaspace est un service open source de collaboration et de stockage en ligne. Nous avons revu l'esthétique de cet interface afin de le rendre plus interatif et plus compréhensible par ses utilisateurs. Objectif : moderniser l'interface tout en respectant l'éthique libre du projet.\n\nTravail mené sur la typographie, la palette de couleurs, la lisibilité, et la cohérence visuelle. Ce projet avait pour ambition de redonner à Framaspace une identité plus fluide et expressive, sans trahir l'esprit libre du projet.\n\nJ'ai travaillé une narration visuelle sobre mais marquante, où chaque phrase d'accroche guide l'utilisateur avec complicité. L'esthétique vient soutenir l'usage, dans une interface pensée pour être à la fois lisible, cohérente et engageante.",
+      "Framaspace est un service open source de collaboration et de stockage en ligne. Nous avons revu l'esthétique de cet interface afin de le rendre plus interatif et plus compréhensible par ses utilisateurs. L'objectif était de moderniser l'interface tout en respectant l'éthique libre du projet. Un travail a été mené sur la typographie, la palette de couleurs, la lisibilité, et la cohérence visuelle.\n\nNous avons élaboré une narration visuelle sobre mais marquante, où chaque phrase d'accroche guide l'utilisateur avec complicité. L'esthétique vient soutenir l'usage, dans une interface pensée pour être à la fois lisible, cohérente et engageante.",
     collaboration: "Collaboration : Thalia Mehio"
   },
   EN: {
