@@ -195,6 +195,7 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
       <button
         onClick={handleCVDownload}
         disabled={isDownloading}
+        className="group relative inline-block"
         style={{
           color: "#1d1d1f",
           textDecoration: "none",
@@ -208,14 +209,14 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
           fontWeight: "inherit",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.color = "#0A66C2";
+          e.currentTarget.style.color = "#3C3C3C";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.color = "#1d1d1f";
         }}
         onFocus={(e) => {
-          e.currentTarget.style.color = "#0A66C2";
-          e.currentTarget.style.outline = "2px solid #0A66C2";
+          e.currentTarget.style.color = "#3C3C3C";
+          e.currentTarget.style.outline = "2px solid #3C3C3C";
           e.currentTarget.style.outlineOffset = "2px";
         }}
         onBlur={(e) => {
@@ -223,7 +224,13 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
           e.currentTarget.style.outline = "none";
         }}
       >
-        <u>{cvParts[1] || ""}</u>
+        {cvParts[1] || ""}
+        <span
+          className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#3C3C3C] group-hover:w-full"
+          style={{
+            transition: `width ${transitionDuration} ease-in-out`,
+          }}
+        />
       </button>
     );
 
