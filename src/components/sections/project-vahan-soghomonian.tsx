@@ -110,14 +110,18 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
   const goToPreviousImage = () => {
     const index = vahanImages.findIndex(img => img.id === lightboxImage);
     if (index > 0) {
-      setLightboxImage(vahanImages[index - 1].id);
+      const prevId = vahanImages[index - 1].id;
+      setDisplayedImage(prevId);
+      setLightboxImage(prevId);
     }
   };
 
   const goToNextImage = () => {
     const index = vahanImages.findIndex(img => img.id === lightboxImage);
     if (index >= 0 && index < vahanImages.length - 1) {
-      setLightboxImage(vahanImages[index + 1].id);
+      const nextId = vahanImages[index + 1].id;
+      setDisplayedImage(nextId);
+      setLightboxImage(nextId);
     }
   };
 
@@ -277,10 +281,10 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
             onClick={(e) => e.stopPropagation()}
           >
             {/* Single Image - changes instantly */}
-            {displayedImage && (
+            {lightboxImage && (
               <Image
-                key={`vahan-${displayedImage}`}
-                src={vahanImages.find(img => img.id === displayedImage)?.src || ""}
+                key={`vahan-${lightboxImage}`}
+                src={vahanImages.find(img => img.id === lightboxImage)?.src || ""}
                 alt="Lightbox"
                 width={600}
                 height={1200}
