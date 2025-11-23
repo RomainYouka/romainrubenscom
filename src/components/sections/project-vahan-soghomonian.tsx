@@ -137,7 +137,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
                   className="cursor-pointer overflow-hidden rounded-lg bg-gray-100 hover:opacity-80 transition-opacity"
                   onClick={() => handleImageClick(image.id)}
                   style={{
-                    aspectRatio: image.id === "1" ? "9/12" : "2/1",
+                    aspectRatio: "2/1",
                     opacity: isVisible ? 1 : 0,
                     transform: isVisible ? "translateY(0)" : "translateY(20px)",
                     transition: `opacity 0.6s ease, transform 0.6s ease`,
@@ -275,6 +275,9 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
                   src={currentImage.src}
                   alt={`Article page ${currentImage.id}`}
                   className="rounded-lg max-w-full max-h-full object-contain"
+                  style={{
+                    aspectRatio: "2/1"
+                  }}
                 />
               )}
             </div>
