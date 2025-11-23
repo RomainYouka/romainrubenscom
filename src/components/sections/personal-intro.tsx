@@ -319,12 +319,15 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
         </div>
       </section>
 
-      {/* CTA Section - same as home page with animation */}
+      {/* CTA Section - same dimensions as first section */}
       <section
         className="w-full bg-white"
         style={{
           paddingTop: "clamp(160px, 15vw, 200px)",
           paddingBottom: "clamp(160px, 15vw, 200px)",
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
