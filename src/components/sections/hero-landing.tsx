@@ -124,20 +124,23 @@ export default function HeroLanding() {
           <h1
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(48px, 8vw, 80px)",
+              fontSize: "clamp(32px, 7vw, 80px)",
               fontWeight: 600,
               color: "#ffffff",
               letterSpacing: "-0.02em",
-              lineHeight: 1.2,
+              lineHeight: 1.3,
               textAlign: "center",
               opacity: splashDone ? 1 : 0,
               transition: "opacity 0.6s ease",
-              whiteSpace: "nowrap",
+              whiteSpace: "normal",
               overflow: "visible",
-              display: "inline-flex",
+              display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              minWidth: "max-content"
+              flexWrap: "wrap",
+              paddingLeft: "clamp(16px, 5vw, 48px)",
+              paddingRight: "clamp(16px, 5vw, 48px)",
+              maxWidth: "95vw"
             }}
           >
             {showInitialCursor && !displayedText ? (
