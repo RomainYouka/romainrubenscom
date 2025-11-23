@@ -260,16 +260,13 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
 
   return (
     <>
-      {/* Main section - fullscreen */}
+      {/* Main section - same as home page */}
       <section
         id={id}
         className="w-full bg-white"
         style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          paddingTop: "clamp(80px, 10vw, 120px)",
-          paddingBottom: "clamp(80px, 10vw, 120px)",
+          paddingTop: "clamp(160px, 15vw, 200px)",
+          paddingBottom: "clamp(160px, 15vw, 200px)",
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? "translateY(0)" : "translateY(20px)",
           transition: "opacity 0.6s ease, transform 0.6s ease",
@@ -320,16 +317,15 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
         </div>
       </section>
 
-      {/* CTA Section - fullscreen with animation */}
+      {/* CTA Section - same as home page with animation */}
       <section
         className="w-full bg-white"
         style={{
-          minHeight: "100vh",
+          paddingTop: "clamp(160px, 15vw, 200px)",
+          paddingBottom: "clamp(160px, 15vw, 200px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          paddingTop: "80px",
-          paddingBottom: "80px",
         }}
       >
         <div
