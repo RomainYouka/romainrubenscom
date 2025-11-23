@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ---------------------- DATA ---------------------- */
 
-type SlideId = "orange-hy" | "orange" | "orange-en" | "violet" | "green";
+type SlideId = "orange-hy" | "orange" | "orange-en" | "violet-hy" | "violet" | "green";
 
 type Slide = {
   id: SlideId;
@@ -59,6 +59,18 @@ const SLIDES: Slide[] = [
     strikeDesigner: true,
     strikeText: "I'm a designer.",
     forceLines: 3
+  },
+  {
+    id: "violet-hy",
+    gradient: "linear-gradient(90deg, #583396 0%, #705CD9 100%)",
+    title: "Իմ երազանքը ստեղծելն է, նորարարելը և հեղափոխելը։",
+    bodyLines: [
+      "Երբ ինչ–որ բան գործում է՝ փոփոխելու կարիք չկա։",
+      "Երբ ինչ–որ բան չի գործում՝ նորարարելու պահանջ է առաջանում։",
+      "Երբ ինչ–որ բան այլևս չի գործում՝ հեղափոխելու անհրաժեշտությունն է ծնվում։"
+    ],
+    accentColor: "#BEB8D9",
+    forceLines: 4
   },
   {
     id: "violet",
@@ -115,11 +127,11 @@ export default function HomeSlides() {
   // Filter slides by language
   const filteredSlides = useMemo(() => {
     if (selectedLanguage === "FR") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en" && s.id !== "violet-hy");
     } else if (selectedLanguage === "EN") {
-      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange");
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange" && s.id !== "violet-hy");
     } else { // ՀԱՅ
-      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en");
+      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en" && s.id !== "violet");
     }
   }, [selectedLanguage]);
 
@@ -158,14 +170,14 @@ export default function HomeSlides() {
   }, [w]);
 
   /* ---- échelle continue pour la typo ----
-     Base de référence : 1440 (34/17). On compresse un peu l'orange
+     Base de référence : 1440 (42/15). On compresse un peu l'orange
      pour garantir 1 ligne + 3 lignes. Le violet vise 4 lignes. */
   const baseScale = Math.max(0.32, Math.min(1, w / 1440));
-  const titleBase = 34;
-  const textBase = 17;
+  const titleBase = 42;
+  const textBase = 15;
 
   const perSlideK = (current.id === "orange" || current.id === "orange-hy" || current.id === "orange-en") ? 0.90
-                  : current.id === "violet" ? 0.96
+                  : (current.id === "violet" || current.id === "violet-hy") ? 0.96
                   : 1.00;
 
   const titleSize = Math.round(titleBase * baseScale * perSlideK);
