@@ -61,7 +61,7 @@ const flashConcept02Translations = {
   EN: {
     title: "FlashConcept_02",
     year: "Designed in 2025",
-    description: "A mobile app that makes discovering cultural and social events in Lyon effortless. The interface offers intuitive navigation between nearby venues, group discussions, and saved events. The design emphasizes readability and simplicity, featuring a discovery card system inspired by dating apps but tailored for cultural outings. Features include group messaging, venue geolocation, and comprehensive accessibility settings with light/dark modes and colorblind-friendly options.",
+    description: "A mobile app that makes it easier to discover cultural and social events in Lyon. The interface offers intuitive navigation between nearby places, group discussions and saved events.\nThe design focuses on clarity and simplicity, using a discovery card system inspired by dating apps but adapted to cultural outings.\n\nFeatures include group messaging, location-based place browsing and a full accessibility system, with light and dark modes and options for color-blind users.",
     showMoreButton: "View all screens",
     showLessButton: "Show less"
   },
