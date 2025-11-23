@@ -106,13 +106,16 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
       style={{
         paddingTop: 0,
         paddingBottom: 0,
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.6s ease, transform 0.6s ease",
         scrollMarginTop: "80px"
       }}>
 
-      <div className="container max-w-[1200px] mx-auto px-5 md:px-10" style={{ paddingTop: "clamp(48px, 6vw, 80px)", paddingBottom: "clamp(48px, 6vw, 80px)" }}>
+      <div className="container max-w-[1200px] mx-auto px-5 md:px-10" style={{
+        paddingTop: "clamp(48px, 6vw, 80px)",
+        paddingBottom: "clamp(48px, 6vw, 80px)",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease, transform 0.6s ease"
+      }}>
         <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16 mb-12 md:mb-0">
           <div
             className="w-full md:w-auto md:flex-shrink-0 mx-auto md:mx-0"
