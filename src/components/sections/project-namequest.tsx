@@ -11,7 +11,7 @@ const translations = {
     title: "Name Quest - Educational Board Game on Last Names",
     year: "Designed in 2025",
     description:
-      "NameQuest is an educational and inclusive board game that addresses discrimination linked to last names through a 55-square journey across different countries. Made up of individual, collective, and trap cards, the game blends anecdotes, general knowledge questions, and real-life situations.\n\nDesigned for 2 to 6 players, it encourages reflection and dialogue in a playful, accessible setting, featuring a colorful design, laser-cut tokens, and a strong cultural dimension.",
+      "NameQuest is an educational and inclusive board game that explores family-name discrimination through a 55-space path representing different countries.\nMade up of individual, collective and trap cards, the game mixes anecdotes, general-knowledge questions and real-life situations.\n\nDesigned for 2 to 6 players, it encourages reflection and conversation in a playful and accessible environment. The visual design is colorful, with laser-cut tokens and a strong cultural dimension.",
     contextText: "The project stems from a simple observation: a family name is never neutral. It reveals a history, an origin, and a heritage. It can be a source of pride but also of prejudice. Today, many people still experience discrimination linked to their name, whether in administrative procedures, school environments, or everyday interactions. Faced with these realities, the goal is to imagine an inclusive educational tool, capable of fostering an honest, playful, and accessible conversation around identity."
   },
   FR: {
