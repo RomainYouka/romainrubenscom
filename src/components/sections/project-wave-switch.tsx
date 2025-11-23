@@ -12,7 +12,7 @@ const translations = {
     title: "Wave Switch & App",
     year: "Designed in 2025",
     paragraph1:
-    "WaveSwitch is a contactless switch activated by gesture. Designed for a speculative future in 2080, where humans live with medical and aesthetic skin fungi born from global transformations, it relies on artificial intelligence to translate movement into action. Beyond the object itself, its meaning lies in the web and mobile interface: gesture customization, real-time visual feedback, and interaction tracking.",
+    "WaveSwitch is a touchless, gesture-activated switch. It is designed for a speculative future in 2080, where humans live with medical and aesthetic skin fungi shaped by global transformations. The device uses artificial intelligence to translate movement into action.\n\nBeyond the object itself, the project finds its meaning in the web and mobile interfaces. Users can customize their gestures, see real-time visual feedback and track their interactions as they use the system.",
     paragraph2:
     "This project explores the boundary between tangible objects and interactive systems, where design exists not only in physical form but in the relationship between human and machine. The switch becomes a way to question our connection to gesture, technological mediation, and the evolving domestic or work environment.",
     play: "Play",
