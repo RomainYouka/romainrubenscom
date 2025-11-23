@@ -14,7 +14,7 @@ const footerTranslations = {
   },
   ՀԱՅ: {
     copyright: "© 2025 Ռոման Ռուբենս. Բոլոր իրավունքները պաշտպանված են.",
-    reportProblem: "Տեղեկացնել խնդրի\u00A0մասին",
+    reportProblem: "Տեղեկացնել խնդրի վերաբերյալ",
   },
 };
 
