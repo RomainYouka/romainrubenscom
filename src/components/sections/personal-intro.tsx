@@ -17,10 +17,24 @@ const translations = {
   },
 };
 
+// PDF file mapping for downloads
+const pdfFiles = {
+  FR: "/resumes/RUBENS-Romain-CV.pdf",
+  EN: "/resumes/RUBENS-Romain-Resume.pdf",
+  ՀԱՅ: "/resumes/RUBENS-Romain-Resume.pdf"
+};
+
+const pdfFileNames = {
+  FR: "RUBENS-Romain-CV.pdf",
+  EN: "RUBENS-Romain-Resume.pdf",
+  ՀԱՅ: "RUBENS-Romain-Resume.pdf"
+};
+
 export default function PersonalIntro({ id = "personal-intro" }: { id?: string }) {
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const prefersReducedMotion =
     typeof window !== "undefined"
@@ -28,6 +42,23 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
       : false;
 
   const transitionDuration = prefersReducedMotion ? "1ms" : "200ms";
+
+  const handleCVDownload = () => {
+    setIsDownloading(true);
+    setTimeout(() => {
+      setIsDownloading(false);
+    }, 2200);
+
+    const pdfUrl = pdfFiles[selectedLanguage];
+    const fileName = pdfFileNames[selectedLanguage];
+
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
@@ -62,54 +93,157 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
 
   const content = translations[selectedLanguage];
 
-  // Split text to find LinkedIn word and make it a link
-  const renderTextWithLinkedInLink = (text: string) => {
-    // Match both "LinkedIn" and Armenian format «LinkedIn»–ը
+  // Split text to find LinkedIn and CV/Resume links and make them clickable
+  const renderTextWithLinks = (text: string) => {
+    // Match LinkedIn (both "LinkedIn" and Armenian «LinkedIn»–ը)
     const linkedInPattern = /«?LinkedIn»?–?ը?/i;
-    const parts = text.split(linkedInPattern);
+    // Match CV/Resume (télécharger mon CV, download my resume, ներբեռնել իմ ռեզյումեն)
+    const cvPattern = /(télécharger mon CV|download my resume|ներբեռնել իմ ռեզյումեն)/i;
     
-    if (parts.length === 1) {
-      return text;
+    // Split by LinkedIn first
+    const linkedInParts = text.split(linkedInPattern);
+    
+    if (linkedInParts.length === 1) {
+      // No LinkedIn found, just look for CV/Resume
+      const cvParts = text.split(cvPattern);
+      if (cvParts.length === 1) {
+        return text;
+      }
+      return (
+        <>
+          {cvParts[0]}
+          <button
+            onClick={handleCVDownload}
+            disabled={isDownloading}
+            style={{
+              color: "#1d1d1f",
+              textDecoration: "none",
+              background: "none",
+              border: "none",
+              padding: "0",
+              cursor: "pointer",
+              transition: `color ${transitionDuration} ease-in-out`,
+              fontFamily: "inherit",
+              fontSize: "inherit",
+              fontWeight: "inherit",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#0A66C2";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "#1d1d1f";
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.color = "#0A66C2";
+              e.currentTarget.style.outline = "2px solid #0A66C2";
+              e.currentTarget.style.outlineOffset = "2px";
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.color = "#1d1d1f";
+              e.currentTarget.style.outline = "none";
+            }}
+          >
+            <u>{cvParts[1]}</u>
+          </button>
+          {cvParts[2]}
+        </>
+      );
+    }
+
+    // LinkedIn found, now check for CV in the last part
+    const lastPart = linkedInParts[linkedInParts.length - 1];
+    const cvParts = lastPart.split(cvPattern);
+    
+    const linkedInLink = (
+      <a
+        href="https://www.linkedin.com/in/romain-rubens-ba660323b/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative inline-block"
+        style={{
+          color: "#1d1d1f",
+          textDecoration: "none",
+          transition: `color ${transitionDuration} ease-in-out`,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = "#0A66C2";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = "#1d1d1f";
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.color = "#0A66C2";
+          e.currentTarget.style.outline = "2px solid #0A66C2";
+          e.currentTarget.style.outlineOffset = "2px";
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.color = "#1d1d1f";
+          e.currentTarget.style.outline = "none";
+        }}
+      >
+        LinkedIn
+        <span
+          className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#0A66C2] group-hover:w-full"
+          style={{
+            transition: `width ${transitionDuration} ease-in-out`,
+          }}
+        />
+      </a>
+    );
+
+    const cvButton = (
+      <button
+        onClick={handleCVDownload}
+        disabled={isDownloading}
+        style={{
+          color: "#1d1d1f",
+          textDecoration: "none",
+          background: "none",
+          border: "none",
+          padding: "0",
+          cursor: "pointer",
+          transition: `color ${transitionDuration} ease-in-out`,
+          fontFamily: "inherit",
+          fontSize: "inherit",
+          fontWeight: "inherit",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = "#0A66C2";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = "#1d1d1f";
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.color = "#0A66C2";
+          e.currentTarget.style.outline = "2px solid #0A66C2";
+          e.currentTarget.style.outlineOffset = "2px";
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.color = "#1d1d1f";
+          e.currentTarget.style.outline = "none";
+        }}
+      >
+        <u>{cvParts[1] || ""}</u>
+      </button>
+    );
+
+    if (cvParts.length === 1) {
+      return (
+        <>
+          {linkedInParts[0]}
+          {linkedInLink}
+          {linkedInParts[1]}
+        </>
+      );
     }
 
     return (
       <>
-        {parts[0]}
-        <a
-          href="https://www.linkedin.com/in/romain-rubens-ba660323b/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative inline-block"
-          style={{
-            color: "#1d1d1f",
-            textDecoration: "none",
-            transition: `color ${transitionDuration} ease-in-out`,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#0A66C2";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = "#1d1d1f";
-          }}
-          onFocus={(e) => {
-            e.currentTarget.style.color = "#0A66C2";
-            e.currentTarget.style.outline = "2px solid #0A66C2";
-            e.currentTarget.style.outlineOffset = "2px";
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.color = "#1d1d1f";
-            e.currentTarget.style.outline = "none";
-          }}
-        >
-          LinkedIn
-          <span
-            className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#0A66C2] group-hover:w-full"
-            style={{
-              transition: `width ${transitionDuration} ease-in-out`,
-            }}
-          />
-        </a>
-        {parts[1]}
+        {linkedInParts[0]}
+        {linkedInLink}
+        {cvParts[0]}
+        {cvButton}
+        {cvParts[2]}
       </>
     );
   };
@@ -152,7 +286,7 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
             {content.title}
           </h2>
 
-          {/* Text with LinkedIn link */}
+          {/* Text with LinkedIn and CV links */}
           <div
             style={{
               fontFamily: "var(--font-body)",
@@ -165,7 +299,7 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
               textWrap: "pretty",
             }}
           >
-            {renderTextWithLinkedInLink(content.text)}
+            {renderTextWithLinks(content.text)}
           </div>
         </div>
       </div>
