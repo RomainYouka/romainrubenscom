@@ -18,7 +18,7 @@ const translations = {
     title: "Framaspace: Visual Redesign Focused on Essentials",
     year: "Designed in 2024",
     description:
-      "Framaspace is an open-source online collaboration and storage service. We have redesigned the aesthetics of this interface to make it more interactive and understandable for its users. Objective: modernize the interface while respecting the free ethics of the project.\n\nWork carried out on typography, color palette, readability, and visual consistency. This project aimed to give Framaspace a more fluid and expressive identity, without betraying the free spirit of the project.\n\nI worked on a sober but striking visual narrative, where each tagline guides the user with complicity. Aesthetics support usage, in an interface designed to be readable, consistent and engaging.",
+      "Framaspace is an open-source platform for online collaboration and file storage. We redesigned its visual identity to make the interface more interactive and easier for users to understand. The goal was to modernize the experience while staying true to the project's open-source values.\nWe worked on typography, color palette, readability and overall visual consistency.\n\nWe developed a visual narrative that is simple yet striking, where every headline guides the user with clarity and intention. The aesthetic supports the functionality, resulting in an interface designed to be readable, coherent and engaging.",
     collaboration: "Collaboration: Thalia Mehio"
   },
   ՀԱՅ: {
