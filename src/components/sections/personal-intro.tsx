@@ -331,9 +331,9 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
                 fontFamily: "var(--font-body)",
                 fontSize: "clamp(14px, 1.2vw, 16px)",
                 fontWeight: 500,
-                color: "#3C3C3C",
-                backgroundColor: "#f5f5f7",
-                border: "1px solid #d5d5d7",
+                color: "white",
+                backgroundColor: "#3C3C3C",
+                border: "none",
                 borderRadius: "980px",
                 padding: "10px 24px",
                 cursor: isPending ? "wait" : "pointer",
@@ -345,13 +345,11 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
               }}
               onMouseEnter={(e) => {
                 setIsButtonHovered(true);
-                e.currentTarget.style.backgroundColor = "#e8e8eb";
-                e.currentTarget.style.borderColor = "#a0a0a3";
+                e.currentTarget.style.opacity = "0.85";
               }}
               onMouseLeave={(e) => {
                 setIsButtonHovered(false);
-                e.currentTarget.style.backgroundColor = "#f5f5f7";
-                e.currentTarget.style.borderColor = "#d5d5d7";
+                e.currentTarget.style.opacity = "1";
               }}
               onMouseDown={(e) => {
                 e.currentTarget.style.transform = "scale(0.98)";
