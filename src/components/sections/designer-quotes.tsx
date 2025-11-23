@@ -117,7 +117,7 @@ const getRandomQuote = (recentIds: number[]): Quote => {
 export default function DesignerQuotes({ isVisible, onClose }: { isVisible: boolean; onClose: () => void }) {
   const router = useRouter();
   const [currentQuote, setCurrentQuote] = useState<Quote | null>(null);
-  const [language, setLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
+  const [language, setLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("FR");
   const [geniePhase, setGeniePhase] = useState<"opening" | "visible" | "closing">("opening");
 
   useEffect(() => {

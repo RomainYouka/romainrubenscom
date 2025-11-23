@@ -195,7 +195,7 @@ const translations = {
 };
 
 export default function ProjectBeforeAfter() {
-  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
+  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("FR");
 
   useEffect(() => {
     const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
