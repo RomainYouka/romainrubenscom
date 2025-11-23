@@ -249,47 +249,65 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
 
       {lightboxImage && (
         <div
-          className="fixed inset-0 bg-black/90 z-[1000] flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
           onClick={(e) => e.target === e.currentTarget && closeLightbox()}
         >
-          <button
-            onClick={closeLightbox}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-[1001]"
+          <div 
+            className="relative w-full h-full flex items-center justify-center px-4 py-8"
+            onClick={(e) => e.stopPropagation()}
           >
-            <X size={32} />
-          </button>
-
-          <div className="flex items-center justify-between w-full max-h-[90vh]">
-            {canGoPrevious && (
-              <button
-                onClick={goToPreviousImage}
-                className="text-white hover:text-gray-300 transition-colors ml-4"
-              >
-                <ChevronLeft size={40} />
-              </button>
+            {currentImage && (
+              <img
+                key={`vahan-${currentImage.id}`}
+                src={currentImage.src}
+                alt={`Article page ${currentImage.id}`}
+                className="max-h-[90vh] w-auto object-contain pointer-events-none"
+                style={{
+                  aspectRatio: "2/1"
+                }}
+              />
             )}
 
-            <div className="flex-1 flex items-center justify-center max-h-[85vh]">
-              {currentImage && (
-                <img
-                  src={currentImage.src}
-                  alt={`Article page ${currentImage.id}`}
-                  className="rounded-lg max-w-full max-h-full object-contain"
-                  style={{
-                    aspectRatio: "2/1"
-                  }}
-                />
-              )}
+            <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPreviousImage();
+                }}
+                disabled={!canGoPrevious}
+                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
+                  canGoPrevious
+                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
+                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
+                }`}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNextImage();
+                }}
+                disabled={!canGoNext}
+                className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
+                  canGoNext
+                    ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
+                    : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
+                }`}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
             </div>
 
-            {canGoNext && (
-              <button
-                onClick={goToNextImage}
-                className="text-white hover:text-gray-300 transition-colors mr-4"
-              >
-                <ChevronRight size={40} />
-              </button>
-            )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                closeLightbox();
+              }}
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
         </div>
       )}
