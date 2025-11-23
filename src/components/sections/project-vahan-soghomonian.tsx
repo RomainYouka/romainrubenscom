@@ -87,7 +87,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
       }}
     >
       <div className="container max-w-[1200px] mx-auto px-5 md:px-10">
-        <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16">
+        <div className="flex flex-col-reverse md:flex-row md:items-start gap-12 md:gap-16">
           <div className="w-full md:w-[45%] lg:w-[50%]">
             <div className="space-y-4">
               {visibleImages.map((image, idx) => {
