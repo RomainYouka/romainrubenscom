@@ -137,7 +137,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
                   className="cursor-pointer overflow-hidden rounded-lg bg-gray-100 hover:opacity-80 transition-opacity"
                   onClick={() => handleImageClick(image.id)}
                   style={{
-                    aspectRatio: "2/1",
+                    aspectRatio: image.id === "1" ? "9/12" : "2/1",
                     opacity: isVisible ? 1 : 0,
                     transform: isVisible ? "translateY(0)" : "translateY(20px)",
                     transition: `opacity 0.6s ease, transform 0.6s ease`,
