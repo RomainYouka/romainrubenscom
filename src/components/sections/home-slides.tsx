@@ -108,9 +108,43 @@ function useContainerWidth() {
 
 export default function HomeSlides() {
   const [index, setIndex] = useState(0);
-  const current = SLIDES[index];
+  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
 
   const { ref, w } = useContainerWidth();
+
+  // Filter slides by language
+  const filteredSlides = useMemo(() => {
+    if (selectedLanguage === "FR") {
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange-en");
+    } else if (selectedLanguage === "EN") {
+      return SLIDES.filter(s => s.id !== "orange-hy" && s.id !== "orange");
+    } else { // ՀԱՅ
+      return SLIDES.filter(s => s.id !== "orange" && s.id !== "orange-en");
+    }
+  }, [selectedLanguage]);
+
+  const current = filteredSlides[index] || filteredSlides[0];
+
+  // Reset index when language changes
+  useEffect(() => {
+    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
+    if (saved && ["FR", "EN", "ՀԱՅ"].includes(saved)) {
+      setSelectedLanguage(saved);
+      setIndex(0);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleLanguageChange = (event: CustomEvent<"FR" | "EN" | "ՀԱՅ">) => {
+      setSelectedLanguage(event.detail);
+      setIndex(0);
+    };
+
+    window.addEventListener("languageChange", handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener("languageChange", handleLanguageChange as EventListener);
+    };
+  }, []);
 
   /* ---- tailles d'écran ---- */
   const isMobile = w <= 480;
@@ -180,7 +214,7 @@ export default function HomeSlides() {
     if (dx >=  threshold) prev();
   };
 
-  const next = () => setIndex((v) => Math.min(v + 1, SLIDES.length - 1));
+  const next = () => setIndex((v) => Math.min(v + 1, filteredSlides.length - 1));
   const prev = () => setIndex((v) => Math.max(v - 1, 0));
 
   return (
@@ -212,7 +246,7 @@ export default function HomeSlides() {
           willChange: "transform"
         }}
       >
-        {SLIDES.map((s) => (
+        {filteredSlides.map((s) => (
           <div
             key={s.id}
             style={{
@@ -321,7 +355,7 @@ export default function HomeSlides() {
         </button>
       )}
 
-      {index < SLIDES.length - 1 && (
+      {index < filteredSlides.length - 1 && (
         <button
           onClick={next}
           aria-label="Slide suivant"
