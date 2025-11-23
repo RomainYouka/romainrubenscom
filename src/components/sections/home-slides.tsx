@@ -154,7 +154,7 @@ function useContainerWidth() {
 
 export default function HomeSlides() {
   const [index, setIndex] = useState(0);
-  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
+  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("FR");
 
   const { ref, w } = useContainerWidth();
 
