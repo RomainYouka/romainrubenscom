@@ -50,19 +50,20 @@ const footerTranslations = {
 };
 
 export default function ProjectsPage() {
-  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
+  const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("preferredLanguage");
+      if (saved && (saved === "FR" || saved === "EN" || saved === "ՀԱՅ")) {
+        return saved as "FR" | "EN" | "ՀԱՅ";
+      }
+    }
+    return "EN";
+  });
   const [isVisible, setIsVisible] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const firstProjectRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("preferredLanguage") as "FR" | "EN" | "ՀԱՅ";
-    if (saved && projectsTranslations[saved]) {
-      setSelectedLanguage(saved);
-    }
-  }, []);
 
   useEffect(() => {
     const handleLanguageChange = (event: CustomEvent<"FR" | "EN" | "ՀԱՅ">) => {
