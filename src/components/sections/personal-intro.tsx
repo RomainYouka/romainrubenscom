@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const translations = {
   FR: {
@@ -34,6 +35,7 @@ const pdfFileNames = {
 };
 
 export default function PersonalIntro({ id = "personal-intro" }: { id?: string }) {
+  const router = useRouter();
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("EN");
   const [isVisible, setIsVisible] = useState(false);
   const [isFading, setIsFading] = useState(false);
@@ -328,28 +330,42 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
           justifyContent: "center",
         }}
       >
-        <div
+        <button
+          onClick={() => router.push("/projects")}
           style={{
             textAlign: "center",
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "scale(1)" : "scale(0.95)",
-            transition: "opacity 1s ease 0.3s, transform 1s ease 0.3s",
+            transition: "opacity 1s ease 0.3s, transform 1s ease 0.3s, all 200ms ease-in-out",
+            background: "none",
+            border: "none",
+            padding: "0",
+            cursor: "pointer",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(40px, 8vw, 100px)",
+            fontWeight: 700,
+            color: "#1d1d1f",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            margin: 0,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "#3C3C3C";
+            e.currentTarget.style.transform = "scale(0.98)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "#1d1d1f";
+            e.currentTarget.style.transform = isVisible ? "scale(1)" : "scale(0.95)";
+          }}
+          onMouseDown={(e) => {
+            e.currentTarget.style.transform = "scale(0.95)";
+          }}
+          onMouseUp={(e) => {
+            e.currentTarget.style.transform = "scale(1)";
           }}
         >
-          <h3
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(40px, 8vw, 100px)",
-              fontWeight: 700,
-              color: "#1d1d1f",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              margin: 0,
-            }}
-          >
-            {content.cta}
-          </h3>
-        </div>
+          {content.cta}
+        </button>
       </section>
     </>
   );
