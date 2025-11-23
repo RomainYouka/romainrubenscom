@@ -89,6 +89,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     }
     setDisplayedImage(imageId);
     setLightboxImage(imageId);
+    document.body.style.overflow = "hidden";
     window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: true }));
   };
 
@@ -96,6 +97,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     setLightboxImage(null);
     setDisplayedImage(null);
     setIsTransitioning(false);
+    document.body.style.overflow = "";
     window.dispatchEvent(new CustomEvent("flashconceptLightboxStateChange", { detail: false }));
   };
 
@@ -271,16 +273,20 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         >
           {/* Image Container - stops click propagation */}
           <div 
-            className="relative flex items-center justify-center px-4 w-full h-full"
+            className="relative w-full h-full flex items-center justify-center px-4 py-8"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Single Image - changes instantly */}
             {displayedImage && (
-              <img
+              <Image
                 key={`vahan-${displayedImage}`}
                 src={vahanImages.find(img => img.id === displayedImage)?.src || ""}
                 alt="Lightbox"
-                className="max-h-[75vh] w-auto object-contain pointer-events-none"
+                width={600}
+                height={1200}
+                priority
+                unoptimized
+                className="max-h-[90vh] w-auto object-contain pointer-events-none"
               />
             )}
 
@@ -322,9 +328,9 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
                 e.stopPropagation();
                 closeLightbox();
               }}
-              className="absolute top-6 right-6 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
           </div>
         </div>
