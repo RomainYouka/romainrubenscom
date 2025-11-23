@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, ChevronDown } from "lucide-react";
 
 interface ProjectVahanProps {
@@ -249,27 +250,32 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         </div>
       </div>
 
+      {/* Lightbox Modal */}
       {lightboxImage && (
         <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
           onClick={(e) => e.target === e.currentTarget && closeLightbox()}
         >
+          {/* Image Container - stops click propagation */}
           <div 
             className="relative w-full h-full flex items-center justify-center px-4 py-8"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Single Image - changes instantly */}
             {currentImage && (
-              <img
+              <Image
                 key={`vahan-${currentImage.id}`}
                 src={currentImage.src}
                 alt={`Article page ${currentImage.id}`}
+                width={600}
+                height={1200}
+                priority
+                unoptimized
                 className="max-h-[90vh] w-auto object-contain pointer-events-none"
-                style={{
-                  aspectRatio: "2/1"
-                }}
               />
             )}
 
+            {/* Navigation Buttons */}
             <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
               <button
                 onClick={(e) => {
@@ -301,6 +307,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
               </button>
             </div>
 
+            {/* Close Button */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
