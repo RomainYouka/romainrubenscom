@@ -319,8 +319,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                       src={`/${num}.png`}
                       alt={`FlashConcept 01 - iPhone ${num}`}
                       fill
-                      sizes="(max-width: 768px) 50vw, 300px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                       className="object-contain"
+                      priority={isInitial}
+                      loading={isInitial ? "eager" : "lazy"}
                     />
                   </div>
                 );
@@ -438,8 +440,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                       src={`/${num}.jpg`}
                       alt={`FlashConcept 02 - Screen ${num}`}
                       fill
-                      sizes="(max-width: 768px) 50vw, 250px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 250px"
                       className="object-contain"
+                      priority={isInitial}
+                      loading={isInitial ? "eager" : "lazy"}
                     />
                   </div>
                 );
@@ -500,7 +504,6 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
                 width={600}
                 height={1200}
                 priority
-                unoptimized
                 className="max-h-[90vh] w-auto object-contain pointer-events-none"
               />
             )}
