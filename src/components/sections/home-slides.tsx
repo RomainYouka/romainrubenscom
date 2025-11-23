@@ -301,9 +301,8 @@ export default function HomeSlides() {
                   lineHeight: titleLH,
                   fontSize: `${titleSize}px`,
                   color: "#FFFFFF",
-                  maxWidth: "min(95%, 1100px)",
+                  maxWidth: !isTablet && !isMobile ? "100%" : "min(95%, 1100px)",
                   marginInline: "auto",
-                  whiteSpace: !isTablet && !isMobile ? "nowrap" : "normal",
                   wordWrap: "break-word",
                   overflowWrap: "break-word"
                 }}
