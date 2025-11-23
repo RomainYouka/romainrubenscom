@@ -12,7 +12,7 @@ const translations = {
   FR: {
     year: "Conception en 2025",
     title: "iOS 26 Vision de la MàJ",
-    description: "iOS 26 Update est une interface fictive intégrée à la mise à jour iOS 26, conçue pour transformer l'attente en un moment introspectif et poétique, accessible uniquement lors des mises à jour. L'expérience est facultative : l'utilisateur peut choisir d'y participer ou de passer directement à l'écran classique, découvrant ainsi un espace inattendu à chaque mise à jour.\n\nGrâce à Apple Intelligence, il peut rédiger un message à son « soi du futur », libre ou guidé par un court échange. Le texte est unique, modifiable, et le message précédent peut être relu, créant un lien entre passé et présent. L'interface affiche la progression de la mise à jour en bas, sobre et optimisée pour la batterie, humanisant un instant souvent perçu comme contraint."
+    description: "iOS 26 Update est une interface fictive intégrée à la mise à jour iOS 26, conçue pour transformer l'attente en un moment introspectif et poétique, accessible uniquement lors des mises à jour. L'expérience est facultative : l'utilisateur peut choisir d'y participer ou de passer directement à l'écran classique, découvrant ainsi un espace inattendu à chaque mise à jour.\n\nGrâce à Apple Intelligence, l'utilisateur peut généré un texte en répondant à un questionnaire personnalisé. Le texte généré est unique et modifiable. L'utilisateur aussi relire son message laissé durant la précédente mise à jour. En parralèle, l'interface affiche la progression de la mise à jour en bas, sobre et optimisée pour la batterie, humanisant un instant souvent perçu comme contraint."
   },
   ՀԱՅ: {
     year: "Նախագծված 2025-ին",
