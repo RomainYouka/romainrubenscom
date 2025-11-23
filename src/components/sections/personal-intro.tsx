@@ -311,64 +311,47 @@ export default function PersonalIntro({ id = "personal-intro" }: { id?: string }
                 letterSpacing: "-0.022em",
                 whiteSpace: "pre-line",
                 textWrap: "pretty",
+                marginBottom: "clamp(60px, 8vw, 80px)",
               }}
             >
               {renderTextWithLinks(content.text)}
             </div>
+
+            {/* CTA Button - Apple/Google style */}
+            <button
+              onClick={() => router.push("/projects")}
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(14px, 1.2vw, 16px)",
+                fontWeight: 500,
+                color: "#1d1d1f",
+                backgroundColor: "#f5f5f7",
+                border: "1px solid #d5d5d7",
+                borderRadius: "980px",
+                padding: "10px 24px",
+                cursor: "pointer",
+                transition: "all 200ms ease-in-out",
+                display: "inline-block",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#e8e8eb";
+                e.currentTarget.style.borderColor = "#a0a0a3";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#f5f5f7";
+                e.currentTarget.style.borderColor = "#d5d5d7";
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = "scale(0.98)";
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            >
+              {content.cta}
+            </button>
           </div>
         </div>
-      </section>
-
-      {/* CTA Section - same dimensions as first section */}
-      <section
-        className="w-full bg-white"
-        style={{
-          paddingTop: "clamp(160px, 15vw, 200px)",
-          paddingBottom: "clamp(160px, 15vw, 200px)",
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <button
-          onClick={() => router.push("/projects")}
-          style={{
-            textAlign: "center",
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "scale(1)" : "scale(0.95)",
-            transition: "opacity 1s ease 0.3s, transform 1s ease 0.3s, all 200ms ease-in-out",
-            background: "none",
-            border: "none",
-            padding: "0",
-            cursor: "pointer",
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(40px, 8vw, 100px)",
-            fontWeight: 700,
-            color: "#1d1d1f",
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-            margin: 0,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#3C3C3C";
-            e.currentTarget.style.transform = "scale(0.98)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = "#1d1d1f";
-            e.currentTarget.style.transform = isVisible ? "scale(1)" : "scale(0.95)";
-          }}
-          onMouseDown={(e) => {
-            e.currentTarget.style.transform = "scale(0.95)";
-          }}
-          onMouseUp={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
-          {content.cta}
-        </button>
       </section>
     </>
   );
