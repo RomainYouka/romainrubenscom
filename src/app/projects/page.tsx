@@ -10,6 +10,7 @@ import ProjectNameQuest from "@/components/sections/project-namequest";
 import ProjectMacStudio from "@/components/sections/project-macstudio";
 import ProjectCarousel from "@/components/sections/project-carousel";
 import ProjectFlashConcept from "@/components/sections/project-flashconcept";
+import ProjectVahanSoghomonian from "@/components/sections/project-vahan-soghomonian";
 import Image from "next/image";
 import { ChevronDown, ArrowUp } from "lucide-react";
 
@@ -270,6 +271,10 @@ export default function ProjectsPage() {
 
       <div id="flashconcept">
         <ProjectFlashConcept language={selectedLanguage} />
+      </div>
+
+      <div id="vahan-soghomonian">
+        <ProjectVahanSoghomonian language={selectedLanguage} />
       </div>
 
       <button
