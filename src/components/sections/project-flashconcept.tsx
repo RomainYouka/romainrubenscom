@@ -129,6 +129,14 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
         });
       }, 100);
     } else {
+      // Preload hidden images before expanding
+      flashConcept01Images.slice(3).forEach(num => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = `/${num}.png`;
+        document.head.appendChild(link);
+      });
       setShowAllConcept01(true);
     }
   };
@@ -143,6 +151,14 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
         });
       }, 100);
     } else {
+      // Preload hidden images before expanding
+      concept02Images.slice(initialImageCount).forEach(num => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = `/${num}.jpg`;
+        document.head.appendChild(link);
+      });
       setShowAllImages(true);
     }
   };

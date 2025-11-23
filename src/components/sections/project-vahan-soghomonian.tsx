@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
 interface ProjectVahanProps {
@@ -89,25 +90,33 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16">
           <div className="w-full md:w-[45%] lg:w-[50%]">
             <div className="space-y-4">
-              {visibleImages.map((image, idx) => (
-                <div
-                  key={image.id}
-                  className="overflow-hidden rounded-lg bg-gray-100"
-                  style={{
-                    aspectRatio: image.id === "1" ? "9/12" : "2/1",
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                    transition: `opacity 0.6s ease, transform 0.6s ease`,
-                    transitionDelay: `${(idx + 1) * 50}ms`
-                  }}
-                >
-                  <img
-                    src={image.src}
-                    alt={`Article page ${image.id}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
+              {visibleImages.map((image, idx) => {
+                const isInitial = idx === 0;
+                return (
+                  <div
+                    key={image.id}
+                    className="relative overflow-hidden rounded-lg bg-gray-100"
+                    style={{
+                      aspectRatio: image.id === "1" ? "9/12" : "2/1",
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                      transition: `opacity 0.6s ease, transform 0.6s ease`,
+                      transitionDelay: `${(idx + 1) * 50}ms`
+                    }}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={`Article page ${image.id}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 400px"
+                      className="object-cover"
+                      priority={isInitial}
+                      loading={isInitial ? "eager" : "lazy"}
+                      quality={85}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
             {vahanImages.length > 1 && (
