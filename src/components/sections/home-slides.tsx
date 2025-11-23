@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* ---------------------- DATA ---------------------- */
 
-type SlideId = "orange" | "violet" | "green";
+type SlideId = "orange-hy" | "orange" | "orange-en" | "violet" | "green";
 
 type Slide = {
   id: SlideId;
@@ -14,10 +14,24 @@ type Slide = {
   bodyLines: string[];       // lignes de corps (sans la signature)
   accentColor: string;       // couleur du corps + signature
   strikeDesigner?: boolean;  // barre « Je suis designer. »
+  strikeText?: string;       // texte à barrer (défaut: "Je suis designer.")
   forceLines?: number;       // nombre de lignes visé pour le bloc texte (3 ou 4)
 };
 
 const SLIDES: Slide[] = [
+  {
+    id: "orange-hy",
+    gradient: "linear-gradient(90deg, #D72E3E 0%, #EB6037 100%)",
+    title: "Ես դիզայներ եմ։ Ես ստեղծագործում եմ փորձություններ մարդկանց համար։",
+    bodyLines: [
+      "Ամեն ինչ պետք է մտածված լինի այն մարդկանց համար, ովքեր շփվում են, օգտագործում են և մեծանում են դրա հետ։",
+      "Խոսքը պարզապես «գեղեցիկ» ինչ–որ բան ստեղծելու մասին չէ, այլ՝ լավը ստեղծելու մասին է։"
+    ],
+    accentColor: "#FAC0CC",
+    strikeDesigner: true,
+    strikeText: "Ես դիզայներ եմ։",
+    forceLines: 3
+  },
   {
     id: "orange",
     gradient: "linear-gradient(90deg, #D72E3E 0%, #EB6037 100%)",
@@ -29,6 +43,21 @@ const SLIDES: Slide[] = [
     ],
     accentColor: "#FAC0CC",
     strikeDesigner: true,
+    strikeText: "Je suis designer.",
+    forceLines: 3
+  },
+  {
+    id: "orange-en",
+    gradient: "linear-gradient(90deg, #D72E3E 0%, #EB6037 100%)",
+    title: "I'm a designer. I create experiences for people.",
+    bodyLines: [
+      "Everything must be designed for those who interact with it,",
+      "who use it, and who grow with it.",
+      "It's not about designing something beautiful, but about designing something good."
+    ],
+    accentColor: "#FAC0CC",
+    strikeDesigner: true,
+    strikeText: "I'm a designer.",
     forceLines: 3
   },
   {
@@ -214,12 +243,13 @@ export default function HomeSlides() {
                   lineHeight: titleLH,
                   fontSize: `${titleSize}px`,
                   color: "#FFFFFF",
-                  // limite la largeur pour favoriser 1 seule ligne
                   maxWidth: "min(95%, 1100px)",
-                  marginInline: "auto"
+                  marginInline: "auto",
+                  wordWrap: "break-word",
+                  overflowWrap: "break-word"
                 }}
               >
-                {s.strikeDesigner ? (
+                {s.strikeDesigner && s.strikeText ? (
                   <>
                     <span
                       style={{
@@ -229,9 +259,9 @@ export default function HomeSlides() {
                         opacity: 0.85
                       }}
                     >
-                      Je suis designer.
+                      {s.strikeText}
                     </span>{" "}
-                    Je suis créateur d'expérience utilisateur.
+                    {s.title.replace(s.strikeText + " ", "")}
                   </>
                 ) : (
                   s.title
