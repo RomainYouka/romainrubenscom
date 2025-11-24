@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProjectVahanProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -47,6 +47,8 @@ const vahanImages = [
 export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps) {
   const [showAllImages, setShowAllImages] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const buttonRef = useRef<HTMLDivElement>(null);
 
   const handleToggleImages = () => {
@@ -62,6 +64,40 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
       setShowAllImages(true);
     }
   };
+
+  const handleOpenLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxImage(vahanImages[index].src);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseLightbox = () => {
+    setLightboxImage(null);
+    document.body.style.overflow = 'unset';
+  };
+
+  const handleNextImage = () => {
+    const nextIndex = (lightboxIndex + 1) % vahanImages.length;
+    setLightboxIndex(nextIndex);
+    setLightboxImage(vahanImages[nextIndex].src);
+  };
+
+  const handlePrevImage = () => {
+    const prevIndex = (lightboxIndex - 1 + vahanImages.length) % vahanImages.length;
+    setLightboxIndex(prevIndex);
+    setLightboxImage(vahanImages[prevIndex].src);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxImage) return;
+      if (e.key === 'Escape') handleCloseLightbox();
+      if (e.key === 'ArrowRight') handleNextImage();
+      if (e.key === 'ArrowLeft') handlePrevImage();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxImage, lightboxIndex]);
 
   const t = translations[language];
   const visibleImages = showAllImages ? vahanImages : vahanImages.slice(0, 1);
@@ -92,16 +128,21 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
             <div className="space-y-4">
               {visibleImages.map((image, idx) => {
                 const isInitial = idx === 0;
+                const imageIndex = vahanImages.findIndex(img => img.id === image.id);
                 return (
-                  <div
+                  <button
                     key={image.id}
-                    className="relative overflow-hidden rounded-lg bg-gray-100"
+                    onClick={() => handleOpenLightbox(imageIndex)}
+                    className="relative overflow-hidden rounded-lg bg-gray-100 w-full cursor-pointer group hover:opacity-80 transition-opacity"
                     style={{
                       aspectRatio: image.id === "1" ? "9/12" : "2/1",
                       opacity: isVisible ? 1 : 0,
                       transform: isVisible ? "translateY(0)" : "translateY(20px)",
                       transition: `opacity 0.6s ease, transform 0.6s ease`,
-                      transitionDelay: `${(idx + 1) * 50}ms`
+                      transitionDelay: `${(idx + 1) * 50}ms`,
+                      border: 'none',
+                      padding: 0,
+                      background: 'transparent'
                     }}
                   >
                     <Image
@@ -114,7 +155,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
                       loading={isInitial ? "eager" : "lazy"}
                       quality={85}
                     />
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -213,6 +254,56 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
         </div>
       </div>
 
+      {/* Lightbox Modal */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4"
+          onClick={handleCloseLightbox}
+        >
+          <button
+            onClick={handleCloseLightbox}
+            className="absolute top-4 right-4 text-white hover:opacity-70 transition-opacity z-[10000]"
+            aria-label="Close lightbox"
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={lightboxImage}
+              alt={`Article page ${lightboxIndex + 1}`}
+              fill
+              className="object-contain"
+              sizes="100vw"
+              quality={95}
+              priority
+            />
+
+            {/* Navigation Buttons */}
+            {vahanImages.length > 1 && (
+              <>
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-[10001]"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-[10001]"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </button>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm font-medium">
+                  {lightboxIndex + 1} / {vahanImages.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
