@@ -40,7 +40,7 @@ export default function HeroLanding() {
     };
 
     checkSplashDone();
-    const interval = setInterval(checkSplashDone, 100);
+    const interval = setInterval(checkSplashDone, 300);
     const timeout = setTimeout(() => {
       clearInterval(interval);
       if (!splashDone) {

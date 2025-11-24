@@ -20,18 +20,25 @@ export function FramaspaceToolbarSection() {
 
     let animationFrameId: number;
     let position = 0;
-    const speed = 0.5;
+    const speed = 0.3;
+    let lastFrameTime = Date.now();
 
     const animate = () => {
-      position += speed;
+      const now = Date.now();
+      const deltaTime = now - lastFrameTime;
       
-      // Reset position when scrolled too far
-      const scrollWidth = container.scrollWidth / 2;
-      if (position >= scrollWidth) {
-        position = 0;
-      }
+      if (deltaTime >= 16) {
+        lastFrameTime = now;
+        position += speed;
+        
+        const scrollWidth = container.scrollWidth / 2;
+        if (position >= scrollWidth) {
+          position = 0;
+        }
 
-      container.style.transform = `translateX(-${position}px)`;
+        container.style.transform = `translateX(-${position}px)`;
+      }
+      
       animationFrameId = requestAnimationFrame(animate);
     };
 
