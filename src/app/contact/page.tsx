@@ -192,7 +192,7 @@ export default function ContactPage() {
             </p>
 
             <div
-              className={`flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto transition-all duration-[280ms] ${
+              className={`flex flex-col-reverse md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto transition-all duration-[280ms] ${
                 isVisible ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
               }`}
               style={{
