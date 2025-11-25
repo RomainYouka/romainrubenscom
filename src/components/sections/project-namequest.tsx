@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface ProjectNameQuestProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -31,25 +32,18 @@ const translations = {
 };
 
 export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const { ref: blurRef, isVisible } = useBlurAnimation();
 
   const t = translations[language];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <section
       id="namequest"
-      className="w-full bg-[#F5F5F7]"
+      ref={(node) => {
+        (blurRef as any).current = node;
+      }}
+      className={`w-full bg-[#F5F5F7] ${isVisible ? "blur-out" : "blur-in"}`}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.6s ease, transform 0.6s ease",
         scrollMarginTop: "80px"
       }}
     >

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface ProjectVahanProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -45,8 +46,8 @@ const vahanImages = [
 ];
 
 export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps) {
+  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [showAllImages, setShowAllImages] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -102,23 +103,16 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
   const t = translations[language];
   const visibleImages = showAllImages ? vahanImages : vahanImages.slice(0, 1);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section
       id="vahan-soghomonian"
-      className="w-full bg-white"
+      ref={(node) => {
+        (blurRef as any).current = node;
+      }}
+      className={`w-full bg-white ${isVisible ? "blur-out" : "blur-in"}`}
       style={{
         paddingTop: "clamp(48px, 6vw, 80px)",
         paddingBottom: "clamp(48px, 6vw, 80px)",
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.6s ease, transform 0.6s ease",
         scrollMarginTop: "80px"
       }}
     >

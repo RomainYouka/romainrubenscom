@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface ProjectFramaspaceProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -31,27 +32,20 @@ const translations = {
 };
 
 export default function ProjectFramaspace({ language }: ProjectFramaspaceProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const { ref: blurRef, isVisible } = useBlurAnimation();
 
   const t = translations[language];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <section
       id="framaspace"
-      className="w-full bg-black"
+      ref={(node) => {
+        (blurRef as any).current = node;
+      }}
+      className={`w-full bg-black ${isVisible ? "blur-out" : "blur-in"}`}
       style={{
         paddingTop: "clamp(48px, 6vw, 80px)",
         paddingBottom: "clamp(48px, 6vw, 80px)",
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.6s ease, transform 0.6s ease",
         scrollMarginTop: "80px"
       }}
     >
