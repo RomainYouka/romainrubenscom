@@ -7,13 +7,13 @@ export function useBlurAnimation() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.15) {
           setIsVisible(true);
         } else {
           setIsVisible(false);
         }
       },
-      { threshold: [0, 0.5, 1] }
+      { threshold: [0, 0.15, 1] }
     );
 
     if (ref.current) {

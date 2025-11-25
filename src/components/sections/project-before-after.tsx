@@ -223,7 +223,8 @@ export default function ProjectBeforeAfter() {
     <section
       className="bg-[#000000] py-8 md:py-12 !w-full !h-full"
       style={{
-        fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+        fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+        scrollMarginTop: "80px"
       }}>
 
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
