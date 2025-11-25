@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, SkipForward } from "lucide-react";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface ProjectWaveSwitchProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -42,7 +41,6 @@ const translations = {
 };
 
 export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
-  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [isPlaying1, setIsPlaying1] = useState(false);
   const [isPlaying2, setIsPlaying2] = useState(false);
   const videoRef1 = useRef<HTMLVideoElement>(null);
@@ -177,10 +175,7 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   return (
     <section
       id="waveswitch"
-      ref={(node) => {
-        (blurRef as any).current = node;
-      }}
-      className={`w-full bg-white ${isVisible ? "blur-out" : "blur-in"}`}
+      className="w-full bg-white"
       style={{
         paddingTop: "clamp(48px, 6vw, 80px)",
         paddingBottom: "clamp(48px, 6vw, 80px)",

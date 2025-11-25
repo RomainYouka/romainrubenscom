@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Play, Pause } from "lucide-react";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 const images = [
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/1-1762126572983.png?width=8000&height=8000&resize=contain",
@@ -14,7 +13,6 @@ const images = [
 
 
 export default function ProjectCarousel() {
-  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -180,11 +178,7 @@ export default function ProjectCarousel() {
   };
 
   return (
-    <section
-      ref={(node) => {
-        (blurRef as any).current = node;
-      }}
-      className={`bg-[#F5F5F7] relative overflow-hidden select-none pb-8 mb-12 ${isVisible ? "blur-out" : "blur-in"}`}>
+    <section className="bg-[#F5F5F7] relative overflow-hidden select-none pb-8 mb-12">
       <div className="w-full relative">
         <div 
           className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing"

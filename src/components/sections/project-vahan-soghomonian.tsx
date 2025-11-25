@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface ProjectVahanProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -46,7 +45,6 @@ const vahanImages = [
 ];
 
 export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps) {
-  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [showAllImages, setShowAllImages] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -106,10 +104,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
   return (
     <section
       id="vahan-soghomonian"
-      ref={(node) => {
-        (blurRef as any).current = node;
-      }}
-      className={`w-full bg-white ${isVisible ? "blur-out" : "blur-in"}`}
+      className="w-full bg-white"
       style={{
         paddingTop: "clamp(48px, 6vw, 80px)",
         paddingBottom: "clamp(48px, 6vw, 80px)",

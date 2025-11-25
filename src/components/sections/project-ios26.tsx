@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause, SkipForward } from "lucide-react";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 const translations = {
   EN: {
@@ -27,7 +26,6 @@ interface ProjectIOS26Props {
 }
 
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
-  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -97,11 +95,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   return (
     <section
       id="ios26"
-      ref={(node) => {
-        sectionRef.current = node;
-        (blurRef as any).current = node;
-      }}
-      className={`bg-black !w-full !h-full ${isVisible ? "blur-out" : "blur-in"}`}
+      ref={sectionRef}
+      className="bg-black !w-full !h-full"
       style={{
         paddingTop: 0,
         paddingBottom: 0,
