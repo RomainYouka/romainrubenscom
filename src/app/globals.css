@@ -236,6 +236,27 @@
     }
   }
 
+  @keyframes blurIn {
+    from {
+      filter: blur(0px);
+      opacity: 1;
+    }
+    to {
+      filter: blur(6px);
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes blurOut {
+    from {
+      filter: blur(6px);
+      opacity: 0.7;
+    }
+    to {
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
 }
 
 /*
@@ -259,6 +280,14 @@
 @layer utilities {
   body {
     font-family: var(--font-body);
+  }
+
+  .blur-in {
+    animation: blurIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+
+  .blur-out {
+    animation: blurOut 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
   }
   
   .animate-linkedin-pulse {
