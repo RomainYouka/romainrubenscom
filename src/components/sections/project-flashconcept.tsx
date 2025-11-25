@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface ProjectFlashConceptProps {
   language: "FR" | "EN" | "ՀԱՅ";

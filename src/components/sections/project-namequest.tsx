@@ -1,8 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
-
 interface ProjectNameQuestProps {
   language: "FR" | "EN" | "ՀԱՅ";
 }
@@ -32,17 +29,12 @@ const translations = {
 };
 
 export default function ProjectNameQuest({ language }: ProjectNameQuestProps) {
-  const { ref: blurRef, isVisible } = useBlurAnimation();
-
   const t = translations[language];
 
   return (
     <section
       id="namequest"
-      ref={(node) => {
-        (blurRef as any).current = node;
-      }}
-      className={`w-full bg-[#F5F5F7] ${isVisible ? "blur-out" : "blur-in"}`}
+      className="w-full bg-[#F5F5F7]"
       style={{
         scrollMarginTop: "80px"
       }}
