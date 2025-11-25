@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Play, Pause } from "lucide-react";
+import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 const images = [
 "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/1-1762126572983.png?width=8000&height=8000&resize=contain",
@@ -13,6 +14,7 @@ const images = [
 
 
 export default function ProjectCarousel() {
+  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
