@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -196,7 +195,6 @@ const translations = {
 };
 
 export default function ProjectBeforeAfter() {
-  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [selectedLanguage, setSelectedLanguage] = useState<"FR" | "EN" | "ՀԱՅ">("FR");
 
   useEffect(() => {
@@ -223,10 +221,7 @@ export default function ProjectBeforeAfter() {
 
   return (
     <section
-      ref={(node) => {
-        (blurRef as any).current = node;
-      }}
-      className={`bg-[#000000] py-8 md:py-12 !w-full !h-full ${isVisible ? "blur-out" : "blur-in"}`}
+      className="bg-[#000000] py-8 md:py-12 !w-full !h-full"
       style={{
         fontFamily: "SF Pro Display, SF Pro Text, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
       }}>

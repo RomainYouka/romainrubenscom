@@ -2,21 +2,15 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useBlurAnimation } from "@/hooks/useBlurAnimation";
 
 interface ProjectMacStudioProps {
   language: "FR" | "EN" | "ՀԱՅ";
 }
 
 export default function ProjectMacStudio({ language }: ProjectMacStudioProps) {
-  const { ref: blurRef, isVisible } = useBlurAnimation();
-
   return (
     <section
-      ref={(node) => {
-        (blurRef as any).current = node;
-      }}
-      className={`w-full bg-[#F5F5F7] overflow-hidden ${isVisible ? "blur-out" : "blur-in"}`}>
+      className="w-full bg-[#F5F5F7] overflow-hidden">
 
       <div className="container mx-auto px-5 md:px-10 py-16 md:py-20 w-full max-w-[1200px]">
         <div className="w-full flex justify-center">

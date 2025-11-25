@@ -130,10 +130,6 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
                     className="relative overflow-hidden rounded-lg bg-gray-100 w-full cursor-pointer group hover:opacity-80 transition-opacity"
                     style={{
                       aspectRatio: image.id === "1" ? "9/12" : "2/1",
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                      transition: `opacity 0.6s ease, transform 0.6s ease`,
-                      transitionDelay: `${(idx + 1) * 50}ms`,
                       border: 'none',
                       padding: 0,
                       background: 'transparent'
