@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, SkipForward } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface ProjectWaveSwitchProps {
   language: "FR" | "EN" | "ՀԱՅ";
@@ -42,7 +41,7 @@ const translations = {
 };
 
 export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
-  const { ref: animationRef, animationClass } = useScrollAnimation();
+  const [isVisible, setIsVisible] = useState(false);
   const [isPlaying1, setIsPlaying1] = useState(false);
   const [isPlaying2, setIsPlaying2] = useState(false);
   const videoRef1 = useRef<HTMLVideoElement>(null);
@@ -51,6 +50,13 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   const videoContainer2 = useRef<HTMLDivElement>(null);
 
   const t = translations[language];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
 
   useEffect(() => {
@@ -177,13 +183,13 @@ export const ProjectWaveSwitch = ({ language }: ProjectWaveSwitchProps) => {
   return (
     <section
       id="waveswitch"
-      ref={(node) => {
-        (animationRef as any).current = node;
-      }}
-      className={`w-full bg-white ${animationClass}`}
+      className="w-full bg-white"
       style={{
         paddingTop: "clamp(48px, 6vw, 80px)",
         paddingBottom: "clamp(48px, 6vw, 80px)",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease, transform 0.6s ease",
         scrollMarginTop: "80px"
       }}>
 

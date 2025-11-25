@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause, SkipForward } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const translations = {
   EN: {
@@ -27,12 +26,17 @@ interface ProjectIOS26Props {
 }
 
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
-  const { ref: animationRef, animationClass } = useScrollAnimation();
+  const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const content = translations[language];
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
 
   useEffect(() => {
@@ -98,11 +102,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   return (
     <section
       id="ios26"
-      ref={(node) => {
-        sectionRef.current = node;
-        (animationRef as any).current = node;
-      }}
-      className={`bg-black !w-full !h-full ${animationClass}`}
+      ref={sectionRef}
+      className="bg-black !w-full !h-full"
       style={{
         paddingTop: 0,
         paddingBottom: 0,
@@ -111,7 +112,10 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
 
       <div className="container max-w-[1200px] mx-auto px-5 md:px-10" style={{
         paddingTop: "clamp(48px, 6vw, 80px)",
-        paddingBottom: "clamp(48px, 6vw, 80px)"
+        paddingBottom: "clamp(48px, 6vw, 80px)",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease, transform 0.6s ease"
       }}>
         <div className="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-16 mb-12 md:mb-0">
           <div
