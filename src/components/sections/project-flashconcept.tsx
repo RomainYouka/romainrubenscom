@@ -76,6 +76,7 @@ const flashConcept02Translations = {
 };
 
 export default function ProjectFlashConcept({ language }: ProjectFlashConceptProps) {
+  const { ref: blurRef, isVisible } = useBlurAnimation();
   const [showAllConcept01, setShowAllConcept01] = useState(false);
   const [showAllImages, setShowAllImages] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | number | null>(null);
@@ -243,7 +244,10 @@ export default function ProjectFlashConcept({ language }: ProjectFlashConceptPro
   return (
     <section
       id="flashconcept"
-      className="w-full bg-white"
+      ref={(node) => {
+        (blurRef as any).current = node;
+      }}
+      className={`w-full bg-white ${isVisible ? "blur-out" : "blur-in"}`}
       style={{
         scrollMarginTop: "80px"
       }}
