@@ -11,7 +11,6 @@ import ProjectMacStudio from "@/components/sections/project-macstudio";
 import ProjectCarousel from "@/components/sections/project-carousel";
 import ProjectFlashConcept from "@/components/sections/project-flashconcept";
 import ProjectVahanSoghomonian from "@/components/sections/project-vahan-soghomonian";
-import { ProjectTransitionSlide } from "@/components/sections/project-transition-slide";
 import Image from "next/image";
 import { ChevronDown, ArrowUp } from "lucide-react";
 
@@ -228,8 +227,6 @@ export default function ProjectsPage() {
       <div id="ios26" ref={firstProjectRef}>
         <ProjectIOS26 language={selectedLanguage} />
       </div>
-
-      <ProjectTransitionSlide />
 
       <div id="waveswitch">
         <ProjectWaveSwitch language={selectedLanguage} />
