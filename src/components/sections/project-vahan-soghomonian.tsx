@@ -71,7 +71,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     // Hide navigation and back-to-top button
     const nav = document.querySelector('header');
     if (nav) nav.style.display = 'none';
-    const backToTop = document.querySelector('[aria-label="Back to top"], button[class*="back-to-top"], button[class*="scroll-to-top"]');
+    const backToTop = document.querySelector('[aria-label="Scroll to top"]');
     if (backToTop) (backToTop as HTMLElement).style.display = 'none';
   };
 
@@ -81,7 +81,7 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     // Show navigation and back-to-top button
     const nav = document.querySelector('header');
     if (nav) nav.style.display = '';
-    const backToTop = document.querySelector('[aria-label="Back to top"], button[class*="back-to-top"], button[class*="scroll-to-top"]');
+    const backToTop = document.querySelector('[aria-label="Scroll to top"]');
     if (backToTop) (backToTop as HTMLElement).style.display = '';
   };
 
