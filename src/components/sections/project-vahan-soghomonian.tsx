@@ -68,11 +68,21 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
     setLightboxIndex(index);
     setLightboxImage(vahanImages[index].src);
     document.body.style.overflow = 'hidden';
+    // Hide navigation and back-to-top button
+    const nav = document.querySelector('header');
+    if (nav) nav.style.display = 'none';
+    const backToTop = document.querySelector('[aria-label="Back to top"], button[class*="back-to-top"], button[class*="scroll-to-top"]');
+    if (backToTop) (backToTop as HTMLElement).style.display = 'none';
   };
 
   const handleCloseLightbox = () => {
     setLightboxImage(null);
     document.body.style.overflow = 'unset';
+    // Show navigation and back-to-top button
+    const nav = document.querySelector('header');
+    if (nav) nav.style.display = '';
+    const backToTop = document.querySelector('[aria-label="Back to top"], button[class*="back-to-top"], button[class*="scroll-to-top"]');
+    if (backToTop) (backToTop as HTMLElement).style.display = '';
   };
 
   const handleNextImage = () => {
