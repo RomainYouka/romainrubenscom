@@ -242,18 +242,14 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
       {/* Lightbox Modal */}
       {lightboxImage && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
           onClick={handleCloseLightbox}
         >
-          <button
-            onClick={handleCloseLightbox}
-            className="absolute top-4 right-4 text-white hover:opacity-70 transition-opacity z-[10000]"
-            aria-label="Close lightbox"
+          {/* Image Container - stops click propagation */}
+          <div 
+            className="relative w-full h-full flex items-center justify-center px-4 py-8"
+            onClick={(e) => e.stopPropagation()}
           >
-            <X className="w-8 h-8" />
-          </button>
-
-          <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <Image
               src={lightboxImage}
               alt={`Article page ${lightboxIndex + 1}`}
@@ -266,26 +262,51 @@ export default function ProjectVahanSoghomonian({ language }: ProjectVahanProps)
 
             {/* Navigation Buttons */}
             {vahanImages.length > 1 && (
-              <>
+              <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
                 <button
-                  onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-[10001]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrevImage();
+                  }}
+                  disabled={lightboxIndex === 0}
+                  className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
+                    lightboxIndex > 0
+                      ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
+                      : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
+                  }`}
                   aria-label="Previous image"
                 >
-                  <ChevronLeft className="w-8 h-8" />
+                  <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
-                  onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-70 transition-opacity z-[10001]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextImage();
+                  }}
+                  disabled={lightboxIndex === vahanImages.length - 1}
+                  className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full transition-all duration-100 ease-out ${
+                    lightboxIndex < vahanImages.length - 1
+                      ? "bg-[#F5F5F7] text-[#1D1D1F] hover:scale-[1.05] active:scale-[0.95] cursor-pointer"
+                      : "bg-[#E5E5E7] text-[#A1A1A6] cursor-not-allowed"
+                  }`}
                   aria-label="Next image"
                 >
-                  <ChevronRight className="w-8 h-8" />
+                  <ChevronRight className="w-6 h-6" />
                 </button>
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm font-medium">
-                  {lightboxIndex + 1} / {vahanImages.length}
-                </div>
-              </>
+              </div>
             )}
+
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCloseLightbox();
+              }}
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1D1D1F] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-[10001]"
+              aria-label="Close lightbox"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
         </div>
       )}
