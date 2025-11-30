@@ -48,11 +48,6 @@ const GlobalFooter = () => {
 
   const currentTranslations = footerTranslations[selectedLanguage];
 
-  // Don't render footer on projects page - CHECK AFTER ALL HOOKS
-  if (pathname === "/projects") {
-    return null;
-  }
-
   return (
     <footer
       className="bg-[#FFFFFF] border-t border-[#D3D3D4]"
