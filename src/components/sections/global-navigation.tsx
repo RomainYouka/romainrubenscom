@@ -276,15 +276,15 @@ const ResumeButton = ({ selectedLanguage }: { selectedLanguage: "FR" | "EN" | "�
     
     // Map language codes to PDF file names
     const pdfFiles = {
-      FR: "/resumes/RUBENS_Romain_curriculum_vitae.pdf",
-      EN: "/resumes/RUBENS-Romain-Resume.pdf",
+      FR: "/resumes/RUBENS Romain (CV)_1764506453112.pdf",
+      EN: "/resumes/RUBENS Romain (Resume)_1764506453112.pdf",
       ՀԱՅ: "/resumes/RUBENS Romain (Կենսագրություն)_1764506453112.pdf"
     };
     
     const pdfUrl = pdfFiles[selectedLanguage];
     const pdfFileNames = {
-      FR: "RUBENS_Romain_curriculum_vitae.pdf",
-      EN: "RUBENS-Romain-Resume.pdf",
+      FR: "RUBENS Romain (CV)_1764506453112.pdf",
+      EN: "RUBENS Romain (Resume)_1764506453112.pdf",
       ՀԱՅ: "RUBENS Romain (Կենսագրություն)_1764506453112.pdf"
     };
     
