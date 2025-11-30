@@ -25,13 +25,13 @@ const translations = {
 const pdfFiles = {
   FR: "/resumes/RUBENS-Romain-CV.pdf",
   EN: "/resumes/RUBENS-Romain-Resume.pdf",
-  ՀԱՅ: "/resumes/RUBENS-Romain-Biography.pdf"
+  ՀԱՅ: "/resumes/RUBENS Romain (Կենսագրություն)_1764506453112.pdf"
 };
 
 const pdfFileNames = {
   FR: "RUBENS-Romain-CV.pdf",
   EN: "RUBENS-Romain-Resume.pdf",
-  ՀԱՅ: "RUBENS-Romain-Biography.pdf"
+  ՀԱՅ: "RUBENS Romain (Կենսագրություն)_1764506453112.pdf"
 };
 
 export default function PersonalIntro({ id = "personal-intro" }: { id?: string }) {

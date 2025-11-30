@@ -278,14 +278,14 @@ const ResumeButton = ({ selectedLanguage }: { selectedLanguage: "FR" | "EN" | "�
     const pdfFiles = {
       FR: "/resumes/RUBENS_Romain_curriculum_vitae.pdf",
       EN: "/resumes/RUBENS-Romain-Resume.pdf",
-      ՀԱՅ: "/resumes/RUBENS_Romain_ռեզյումե.pdf"
+      ՀԱՅ: "/resumes/RUBENS Romain (Կենսագրություն)_1764506453112.pdf"
     };
     
     const pdfUrl = pdfFiles[selectedLanguage];
     const pdfFileNames = {
       FR: "RUBENS_Romain_curriculum_vitae.pdf",
       EN: "RUBENS-Romain-Resume.pdf",
-      ՀԱՅ: "RUBENS_Romain_ռեզյումե.pdf"
+      ՀԱՅ: "RUBENS Romain (Կենսագրություն)_1764506453112.pdf"
     };
     
     // Create a temporary link and trigger download
