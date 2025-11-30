@@ -39,3 +39,6 @@ expertMode = true
 deploymentTarget = "autoscale"
 run = ["npm", "start"]
 build = ["npm", "run", "build"]
+
+[nix]
+packages = ["openssh"]
