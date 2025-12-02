@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Play, Pause, SkipForward, X } from "lucide-react";
 
 const translations = {
@@ -224,7 +225,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           </div>
         </div>
 
-        {/* User Journey PDF */}
+        {/* User Journey Image */}
         <div className="flex justify-center mt-12 md:mt-16" style={{
           paddingBottom: "clamp(48px, 6vw, 80px)"
         }}>
@@ -233,50 +234,42 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
             style={{
               maxHeight: "400px",
-              overflow: "hidden"
+              overflow: "hidden",
+              position: "relative"
             }}
           >
-            <object 
-              data="/iOS_26_Chemin_Utilisateur.pdf" 
-              type="application/pdf"
-              className="w-full h-full"
-              style={{ pointerEvents: "none", minHeight: "400px" }}
-            >
-              <embed 
-                src="/iOS_26_Chemin_Utilisateur.pdf" 
-                type="application/pdf"
-                className="w-full h-full"
-                style={{ pointerEvents: "none", minHeight: "400px" }}
-              />
-            </object>
+            <Image 
+              src="/iOS_26_Chemin_Utilisateur.jpg" 
+              alt="iOS 26 User Journey"
+              width={1600}
+              height={900}
+              style={{ pointerEvents: "none", width: "100%", height: "auto" }}
+              priority={false}
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
 
-      {/* PDF Zoom Lightbox Modal */}
+      {/* Image Zoom Lightbox Modal */}
       {showPDFLightbox && (
         <div
-          className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center"
+          className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-auto"
           onClick={closePDFLightbox}
         >
           <div 
-            className="relative w-full h-full flex items-center justify-center px-2 md:px-4"
+            className="relative w-full flex items-center justify-center px-2 md:px-4 py-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* PDF - Full Screen */}
-            <object 
-              data="/iOS_26_Chemin_Utilisateur.pdf" 
-              type="application/pdf"
-              className="w-full h-full"
-              style={{ maxWidth: "95%", maxHeight: "95%", borderRadius: "8px" }}
-            >
-              <embed 
-                src="/iOS_26_Chemin_Utilisateur.pdf" 
-                type="application/pdf"
-                className="w-full h-full"
-                style={{ maxWidth: "95%", maxHeight: "95%", borderRadius: "8px" }}
-              />
-            </object>
+            {/* Image - Full Screen */}
+            <Image 
+              src="/iOS_26_Chemin_Utilisateur.jpg" 
+              alt="iOS 26 User Journey - Full Screen"
+              width={1600}
+              height={900}
+              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
+              priority
+            />
 
             {/* Close Button */}
             <button
