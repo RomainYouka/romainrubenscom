@@ -96,13 +96,13 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const openPDFLightbox = () => {
     setShowPDFLightbox(true);
     document.body.style.overflow = "hidden";
-    window.dispatchEvent(new CustomEvent("ios26LightboxStateChange", { detail: true }));
+    window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: true }));
   };
 
   const closePDFLightbox = () => {
     setShowPDFLightbox(false);
     document.body.style.overflow = "";
-    window.dispatchEvent(new CustomEvent("ios26LightboxStateChange", { detail: false }));
+    window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: false }));
   };
 
   return (
@@ -224,40 +224,42 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           </div>
         </div>
 
-        {/* User Journey PDF Button */}
+        {/* User Journey PDF */}
         <div className="flex justify-center mt-12 md:mt-16" style={{
           paddingBottom: "clamp(48px, 6vw, 80px)"
         }}>
-          <button
+          <div
             onClick={openPDFLightbox}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01]"
             style={{
-              fontFamily: "var(--font-body)"
+              backgroundColor: "#f0f0f0",
+              aspectRatio: "16/9"
             }}
-            aria-label="View user journey PDF"
           >
-            {language === "EN" && "View User Journey"}
-            {language === "FR" && "Parcours Utilisateur"}
-            {language === "ՀԱՅ" && "Օգտատիրոջ Ճանապարհ"}
-          </button>
+            <iframe
+              src="/iOS_26_Chemin_Utilisateur.pdf"
+              className="w-full h-full pointer-events-none"
+              title="iOS 26 User Journey"
+            />
+          </div>
         </div>
       </div>
 
-      {/* PDF Lightbox Modal */}
+      {/* PDF Zoom Lightbox Modal */}
       {showPDFLightbox && (
         <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center"
           onClick={closePDFLightbox}
         >
           <div 
-            className="relative w-full h-full flex items-center justify-center px-4 py-8"
+            className="relative w-full h-full flex items-center justify-center px-2 md:px-4 py-2 md:py-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* PDF Iframe */}
+            {/* PDF Iframe - Full Screen */}
             <iframe
               src="/iOS_26_Chemin_Utilisateur.pdf"
-              className="w-full h-full max-w-4xl max-h-[90vh] rounded-lg"
-              title="iOS 26 User Journey"
+              className="w-full h-full"
+              title="iOS 26 User Journey - Zoomed"
             />
 
             {/* Close Button */}
@@ -266,7 +268,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 e.stopPropagation();
                 closePDFLightbox();
               }}
-              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-50"
             >
               <X className="w-5 h-5" />
             </button>
