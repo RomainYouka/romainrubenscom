@@ -230,17 +230,25 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         }}>
           <div
             onClick={openPDFLightbox}
-            className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01]"
+            className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
             style={{
-              backgroundColor: "#f0f0f0",
-              aspectRatio: "16/9"
+              maxHeight: "400px",
+              overflow: "hidden"
             }}
           >
-            <iframe
-              src="/iOS_26_Chemin_Utilisateur.pdf"
-              className="w-full h-full pointer-events-none"
-              title="iOS 26 User Journey"
-            />
+            <object 
+              data="/iOS_26_Chemin_Utilisateur.pdf" 
+              type="application/pdf"
+              className="w-full h-full"
+              style={{ pointerEvents: "none", minHeight: "400px" }}
+            >
+              <embed 
+                src="/iOS_26_Chemin_Utilisateur.pdf" 
+                type="application/pdf"
+                className="w-full h-full"
+                style={{ pointerEvents: "none", minHeight: "400px" }}
+              />
+            </object>
           </div>
         </div>
       </div>
@@ -252,15 +260,23 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           onClick={closePDFLightbox}
         >
           <div 
-            className="relative w-full h-full flex items-center justify-center px-2 md:px-4 py-2 md:py-4"
+            className="relative w-full h-full flex items-center justify-center px-2 md:px-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* PDF Iframe - Full Screen */}
-            <iframe
-              src="/iOS_26_Chemin_Utilisateur.pdf"
+            {/* PDF - Full Screen */}
+            <object 
+              data="/iOS_26_Chemin_Utilisateur.pdf" 
+              type="application/pdf"
               className="w-full h-full"
-              title="iOS 26 User Journey - Zoomed"
-            />
+              style={{ maxWidth: "95%", maxHeight: "95%", borderRadius: "8px" }}
+            >
+              <embed 
+                src="/iOS_26_Chemin_Utilisateur.pdf" 
+                type="application/pdf"
+                className="w-full h-full"
+                style={{ maxWidth: "95%", maxHeight: "95%", borderRadius: "8px" }}
+              />
+            </object>
 
             {/* Close Button */}
             <button
