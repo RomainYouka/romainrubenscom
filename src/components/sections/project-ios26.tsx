@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Play, Pause, SkipForward } from "lucide-react";
+import { Play, Pause, SkipForward, X } from "lucide-react";
 
 const translations = {
   EN: {
@@ -27,6 +27,7 @@ interface ProjectIOS26Props {
 
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showPDFLightbox, setShowPDFLightbox] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -90,6 +91,18 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
     const videoElement = videoRef.current;
     if (!videoElement) return;
     videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
+  };
+
+  const openPDFLightbox = () => {
+    setShowPDFLightbox(true);
+    document.body.style.overflow = "hidden";
+    window.dispatchEvent(new CustomEvent("ios26LightboxStateChange", { detail: true }));
+  };
+
+  const closePDFLightbox = () => {
+    setShowPDFLightbox(false);
+    document.body.style.overflow = "";
+    window.dispatchEvent(new CustomEvent("ios26LightboxStateChange", { detail: false }));
   };
 
   return (
@@ -210,7 +223,56 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             </div>
           </div>
         </div>
+
+        {/* User Journey PDF Button */}
+        <div className="flex justify-center mt-12 md:mt-16" style={{
+          paddingBottom: "clamp(48px, 6vw, 80px)"
+        }}>
+          <button
+            onClick={openPDFLightbox}
+            className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5F5F7] text-[#1d1d1f] font-medium text-sm transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+            style={{
+              fontFamily: "var(--font-body)"
+            }}
+            aria-label="View user journey PDF"
+          >
+            {language === "EN" && "View User Journey"}
+            {language === "FR" && "Parcours Utilisateur"}
+            {language === "ՀԱՅ" && "Օգտատիրոջ Ճանապարհ"}
+          </button>
+        </div>
       </div>
+
+      {/* PDF Lightbox Modal */}
+      {showPDFLightbox && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
+          onClick={closePDFLightbox}
+        >
+          <div 
+            className="relative w-full h-full flex items-center justify-center px-4 py-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* PDF Iframe */}
+            <iframe
+              src="/iOS_26_Chemin_Utilisateur.pdf"
+              className="w-full h-full max-w-4xl max-h-[90vh] rounded-lg"
+              title="iOS 26 User Journey"
+            />
+
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                closePDFLightbox();
+              }}
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95]"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
     </section>);
 
 }
