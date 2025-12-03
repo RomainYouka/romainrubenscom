@@ -535,41 +535,93 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
       )}
 
-      {/* Magnified View with Zoom & Drag */}
+      {/* Magnified View with Zoom Lens */}
       {showPNGMagnified && (
         <div
-          className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center p-4"
           onClick={() => setShowPNGMagnified(false)}
-          onMouseMove={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            setMagPosition({ x, y });
-          }}
         >
           <div 
-            className="relative w-full h-full flex items-center justify-center"
+            className="relative flex gap-6 items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            {/* Original Image with Zoom Rectangle */}
+            <div 
+              className="relative"
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                setMagPosition({ x, y });
+              }}
+              onMouseLeave={() => setMagPosition({ x: -9999, y: -9999 })}
+            >
               <Image 
                 src="/iOS_26_frustrations.png" 
-                alt="Frustrations Survey - Magnified"
-                width={2400}
-                height={1400}
+                alt="Frustrations Survey"
+                width={1200}
+                height={700}
                 style={{ 
-                  width: "300%", 
-                  height: "auto", 
-                  objectFit: "contain",
-                  cursor: "grab",
-                  transform: `translate(calc(-${magPosition.x * 2}px + 50vw), calc(-${magPosition.y * 2}px + 50vh))`,
-                  transition: "none"
+                  maxWidth: "450px",
+                  height: "auto",
+                  cursor: "crosshair",
+                  display: "block"
                 }}
                 priority
                 quality={100}
               />
+              
+              {/* Zoom Rectangle Overlay */}
+              {magPosition.x >= 0 && magPosition.y >= 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    left: `${Math.max(0, Math.min(magPosition.x - 60, 1200 - 120))}px`,
+                    top: `${Math.max(0, Math.min(magPosition.y - 60, 700 - 120))}px`,
+                    width: "120px",
+                    height: "120px",
+                    border: "2px solid #F5F5F7",
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    pointerEvents: "none",
+                    boxShadow: "0 0 0 1px #86868b"
+                  }}
+                />
+              )}
             </div>
 
+            {/* Zoomed View Window */}
+            {magPosition.x >= 0 && magPosition.y >= 0 && (
+              <div
+                style={{
+                  width: "300px",
+                  height: "300px",
+                  border: "2px solid #F5F5F7",
+                  borderRadius: "4px",
+                  overflow: "hidden",
+                  backgroundColor: "#1a1a1a",
+                  position: "relative"
+                }}
+              >
+                <Image 
+                  src="/iOS_26_frustrations.png" 
+                  alt="Frustrations Survey - Zoomed"
+                  width={3600}
+                  height={2100}
+                  style={{
+                    position: "absolute",
+                    width: "900px",
+                    height: "auto",
+                    left: `${-magPosition.x * 1.5 + 150}px`,
+                    top: `${-magPosition.y * 1.5 + 150}px`,
+                    pointerEvents: "none"
+                  }}
+                  priority
+                  quality={100}
+                />
+              </div>
+            )}
+
+            {/* Close Button */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -581,10 +633,6 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             >
               <X className="w-5 h-5" />
             </button>
-
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-[#86868b] text-sm">
-              Cliquez pour quitter la loupe
-            </div>
           </div>
         </div>
       )}
