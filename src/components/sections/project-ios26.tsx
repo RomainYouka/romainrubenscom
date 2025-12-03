@@ -154,12 +154,9 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showImageZoom, setShowImageZoom] = useState(false);
   const [showPNGZoom, setShowPNGZoom] = useState(false);
-  const [showPNGMagnified, setShowPNGMagnified] = useState(false);
-  const [magPosition, setMagPosition] = useState({ x: 0, y: 0 });
   const [openSections, setOpenSections] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const pngContainerRef = useRef<HTMLDivElement>(null);
 
   const content = translations[language];
   const accordionSections = language === "FR" ? accordionSectionsFR : language === "EN" ? accordionSectionsEN : accordionSectionsHY;
@@ -173,12 +170,12 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   };
 
   useEffect(() => {
-    if (showImageZoom || showPNGZoom || showPNGMagnified) {
+    if (showImageZoom || showPNGZoom) {
       window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: { isOpen: true } }));
     } else {
       window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: { isOpen: false } }));
     }
-  }, [showImageZoom, showPNGZoom, showPNGMagnified]);
+  }, [showImageZoom, showPNGZoom]);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -416,7 +413,6 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                     </p>
                     {section.id === "frustrations" && isOpen && (
                       <div 
-                        ref={pngContainerRef}
                         onClick={() => setShowPNGZoom(true)}
                         className="mt-6 rounded-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.01]"
                       >
