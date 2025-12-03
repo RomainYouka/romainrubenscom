@@ -457,7 +457,17 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           paddingBottom: "clamp(48px, 6vw, 80px)"
         }}>
           <div
-            onClick={() => setShowPDFModal(true)}
+            onClick={() => {
+              const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+              if (isMobile) {
+                const link = document.createElement("a");
+                link.href = "/RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf";
+                link.download = "RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf";
+                link.click();
+              } else {
+                setShowPDFModal(true);
+              }
+            }}
             className="w-full max-w-5xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
             style={{
               maxHeight: "400px",
