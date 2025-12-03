@@ -360,7 +360,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
 
         {/* Accordion Sections */}
-        <div className="mt-12 md:mt-16 space-y-4">
+        <div className="mt-12 md:mt-16 space-y-4" style={{ transitionDuration: "300ms" }}>
           {accordionSections.map((section) => {
             const isOpen = openSections.includes(section.id);
             return (
@@ -392,8 +392,9 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 </button>
                 
                 <div
-                  className="overflow-hidden transition-all duration-300 ease-in-out"
+                  className="overflow-hidden transition-all ease-out"
                   style={{
+                    transitionDuration: isOpen ? "400ms" : "250ms",
                     maxHeight: isOpen ? "2000px" : "0",
                     opacity: isOpen ? 1 : 0
                   }}
@@ -425,9 +426,9 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                           width={1200}
                           height={700}
                           style={{ width: "100%", height: "auto" }}
-                          priority={false}
                           loading="lazy"
-                          quality={100}
+                          quality={95}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
                         />
                       </div>
                     )}
@@ -457,8 +458,9 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               width={1600}
               height={900}
               style={{ width: "100%", height: "auto" }}
-              priority={false}
-              loading="lazy"
+              priority
+              quality={90}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
             />
           </div>
         </div>
@@ -483,6 +485,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               height={900}
               style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
               priority
+              quality={95}
+              sizes="(max-width: 768px) 100vw, 95vw"
             />
 
             <button
@@ -517,7 +521,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               height={700}
               style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
               priority
-              quality={100}
+              quality={95}
+              sizes="(max-width: 768px) 100vw, 95vw"
             />
 
             <button
