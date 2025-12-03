@@ -535,22 +535,23 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
       )}
 
-      {/* Magnified View with Zoom Lens */}
+      {/* Magnified View with Zoom Lens - Zalando Style */}
       {showPNGMagnified && (
         <div
           className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center p-4"
           onClick={() => setShowPNGMagnified(false)}
         >
           <div 
-            className="relative flex gap-12 items-center justify-center"
+            className="relative flex gap-8 items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Original Image Container */}
             <div 
               className="relative"
+              ref={pngContainerRef}
               onMouseMove={(e) => {
-                const rect = e.currentTarget.querySelector('img')?.getBoundingClientRect();
-                if (rect) {
+                if (pngContainerRef.current) {
+                  const rect = pngContainerRef.current.getBoundingClientRect();
                   const x = e.clientX - rect.left;
                   const y = e.clientY - rect.top;
                   setMagPosition({ x, y });
@@ -564,30 +565,38 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 width={1200}
                 height={700}
                 style={{ 
-                  width: "500px",
+                  width: "450px",
                   height: "auto",
-                  cursor: "crosshair",
                   display: "block"
                 }}
                 priority
                 quality={100}
               />
               
-              {/* Rectangle Zoom Lens - Follows cursor */}
+              {/* Zoom Lens Circle - Follows cursor */}
               {magPosition.x >= 0 && magPosition.y >= 0 && (
                 <div
                   style={{
                     position: "absolute",
-                    left: `${Math.max(0, Math.min(magPosition.x - 60, 500 - 120))}px`,
-                    top: `${Math.max(0, Math.min(magPosition.y - 60, 292 - 120))}px`,
-                    width: "120px",
-                    height: "120px",
+                    left: `${magPosition.x - 40}px`,
+                    top: `${magPosition.y - 40}px`,
+                    width: "80px",
+                    height: "80px",
+                    borderRadius: "50%",
                     border: "2px solid #F5F5F7",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    backgroundColor: "rgba(0, 0, 0, 0.1)",
                     pointerEvents: "none",
-                    boxShadow: "inset 0 0 0 1px #86868b"
+                    boxShadow: "0 0 0 3px rgba(245, 245, 247, 0.3), inset 0 0 0 1px #F5F5F7",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}
-                />
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                  </svg>
+                </div>
               )}
             </div>
 
@@ -595,13 +604,13 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             {magPosition.x >= 0 && magPosition.y >= 0 && (
               <div
                 style={{
-                  width: "280px",
-                  height: "280px",
-                  border: "2px solid #F5F5F7",
-                  borderRadius: "0px",
+                  width: "320px",
+                  height: "240px",
+                  border: "1px solid #F5F5F7",
                   overflow: "hidden",
-                  backgroundColor: "#0a0a0a",
-                  position: "relative"
+                  backgroundColor: "#000",
+                  position: "relative",
+                  flexShrink: 0
                 }}
               >
                 <Image 
@@ -611,10 +620,10 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                   height={700}
                   style={{
                     position: "absolute",
-                    width: "1500px",
+                    width: "900px",
                     height: "auto",
-                    left: `${-magPosition.x * 3 + 140}px`,
-                    top: `${-magPosition.y * 3 + 140}px`,
+                    left: `${-magPosition.x * 2 + 160}px`,
+                    top: `${-magPosition.y * 1.5 + 120}px`,
                     pointerEvents: "none"
                   }}
                   priority
