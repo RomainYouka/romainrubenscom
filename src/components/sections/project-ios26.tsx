@@ -152,7 +152,6 @@ interface ProjectIOS26Props {
 
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showImageZoom, setShowImageZoom] = useState(false);
   const [showPNGZoom, setShowPNGZoom] = useState(false);
   const [openSections, setOpenSections] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -170,7 +169,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   };
 
   useEffect(() => {
-    if (showImageZoom || showPNGZoom) {
+    if (showPNGZoom) {
       window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: { isOpen: true } }));
       document.body.style.overflow = 'hidden';
     } else {
@@ -180,7 +179,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [showImageZoom, showPNGZoom]);
+  }, [showPNGZoom]);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -444,13 +443,15 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         <div className="flex justify-center mt-12 md:mt-16" style={{
           paddingBottom: "clamp(48px, 6vw, 80px)"
         }}>
-          <div
-            onClick={() => setShowImageZoom(true)}
+          <a
+            href="/RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf"
+            download="RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf"
             className="w-full max-w-5xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
             style={{
               maxHeight: "400px",
               overflow: "hidden",
-              position: "relative"
+              position: "relative",
+              display: "block"
             }}
           >
             <Image 
@@ -463,47 +464,10 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               quality={90}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
             />
-          </div>
+          </a>
         </div>
       </div>
 
-      {/* JPEG Fullscreen Modal */}
-      {showImageZoom && (
-        <div
-          className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-hidden"
-          onClick={() => setShowImageZoom(false)}
-          style={{ touchAction: "manipulation" }}
-        >
-          <div 
-            className="relative w-full h-full flex items-center justify-center px-2 md:px-4 py-4"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-            style={{ userSelect: "none", WebkitUserSelect: "none" }}
-          >
-            <Image 
-              src="/iOS_26_Chemin_Utilisateur.jpg" 
-              alt="iOS 26 User Journey - Full Screen"
-              width={1600}
-              height={900}
-              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto", userSelect: "none" }}
-              priority
-              quality={95}
-              sizes="(max-width: 768px) 100vw, 95vw"
-            />
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowImageZoom(false);
-              }}
-              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-50"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* PNG Fullscreen Modal */}
       {showPNGZoom && (
