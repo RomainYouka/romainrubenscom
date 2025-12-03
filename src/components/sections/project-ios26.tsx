@@ -542,17 +542,19 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           onClick={() => setShowPNGMagnified(false)}
         >
           <div 
-            className="relative flex gap-6 items-center justify-center"
+            className="relative flex gap-12 items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Original Image with Zoom Rectangle */}
+            {/* Original Image Container */}
             <div 
               className="relative"
               onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                setMagPosition({ x, y });
+                const rect = e.currentTarget.querySelector('img')?.getBoundingClientRect();
+                if (rect) {
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  setMagPosition({ x, y });
+                }
               }}
               onMouseLeave={() => setMagPosition({ x: -9999, y: -9999 })}
             >
@@ -562,7 +564,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 width={1200}
                 height={700}
                 style={{ 
-                  maxWidth: "450px",
+                  width: "500px",
                   height: "auto",
                   cursor: "crosshair",
                   display: "block"
@@ -571,48 +573,48 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 quality={100}
               />
               
-              {/* Zoom Rectangle Overlay */}
+              {/* Rectangle Zoom Lens - Follows cursor */}
               {magPosition.x >= 0 && magPosition.y >= 0 && (
                 <div
                   style={{
                     position: "absolute",
-                    left: `${Math.max(0, Math.min(magPosition.x - 60, 1200 - 120))}px`,
-                    top: `${Math.max(0, Math.min(magPosition.y - 60, 700 - 120))}px`,
+                    left: `${Math.max(0, Math.min(magPosition.x - 60, 500 - 120))}px`,
+                    top: `${Math.max(0, Math.min(magPosition.y - 60, 292 - 120))}px`,
                     width: "120px",
                     height: "120px",
                     border: "2px solid #F5F5F7",
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    backgroundColor: "rgba(255, 255, 255, 0.05)",
                     pointerEvents: "none",
-                    boxShadow: "0 0 0 1px #86868b"
+                    boxShadow: "inset 0 0 0 1px #86868b"
                   }}
                 />
               )}
             </div>
 
-            {/* Zoomed View Window */}
+            {/* Zoomed Window - Shows magnified portion */}
             {magPosition.x >= 0 && magPosition.y >= 0 && (
               <div
                 style={{
-                  width: "300px",
-                  height: "300px",
+                  width: "280px",
+                  height: "280px",
                   border: "2px solid #F5F5F7",
-                  borderRadius: "4px",
+                  borderRadius: "0px",
                   overflow: "hidden",
-                  backgroundColor: "#1a1a1a",
+                  backgroundColor: "#0a0a0a",
                   position: "relative"
                 }}
               >
                 <Image 
                   src="/iOS_26_frustrations.png" 
                   alt="Frustrations Survey - Zoomed"
-                  width={3600}
-                  height={2100}
+                  width={1200}
+                  height={700}
                   style={{
                     position: "absolute",
-                    width: "900px",
+                    width: "1500px",
                     height: "auto",
-                    left: `${-magPosition.x * 1.5 + 150}px`,
-                    top: `${-magPosition.y * 1.5 + 150}px`,
+                    left: `${-magPosition.x * 3 + 140}px`,
+                    top: `${-magPosition.y * 3 + 140}px`,
                     pointerEvents: "none"
                   }}
                   priority
