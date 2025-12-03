@@ -16,8 +16,9 @@ const translations = {
     description: "iOS 26 Update est une interface fictive intégrée à la mise à jour iOS 26, conçue pour transformer l'attente en un moment introspectif et poétique, accessible uniquement lors des mises à jour. L'expérience est facultative : l'utilisateur peut choisir d'y participer ou de passer directement à l'écran classique, découvrant ainsi un espace inattendu à chaque mise à jour.\n\nGrâce à Apple Intelligence, l'utilisateur peut générer un texte en répondant à un questionnaire personnalisé. Le texte généré est unique et modifiable. L'utilisateur peut aussi relire son message laissé durant la précédente mise à jour. En parallèle, l'interface affiche la progression de la mise à jour en bas, sobre et optimisée pour la batterie, humanisant un instant souvent perçu comme contraint."
   },
   ՀԱՅ: {
-    year: "Նdelays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysակdelays delays delays2025-delays",
-    title: "iOS 26 Թdelays delays delays delaysար delays delaysdelays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delaysմdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delaysան Delays delay-Delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysլdelays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delaysdelays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delaysակdelays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delaysdelay"
+    year: "Նախագծված 2025-ին",
+    title: "iOS 26 Թարմացման Տեսլական",
+    description: "iOS 26 Update-ը պատկերային միջերես է, որը ներառված է iOS 26-ի թարմացման մեջ և ստեղծված է սպասման պահը վերածելու ներհայեցողական ու պոետիկ փորձառության։ Այն հասանելի է միայն թարմացման ընթացքում։ Փորձառությունը պարտադիր չէ․ օգտատերը կարող է ընտրել մասնակցել դրան կամ անմիջապես անցնել դասական էկրանին՝ յուրաքանչյուր թարմացման հետ բացահայտելով անսպասելի մի տարածք։\n\nApple Intelligence-ի շնորհիվ օգտատերը կարող է ստեղծել տեքստ՝ պատասխանելով իրեն հատուկ կազմված հարցաշարին։ Ստացված տեքստը եզակի է և փոփոխելի։ Օգտատերը կարող է նաև կրկին կարդալ այն հաղորդագրությունը, որը թողել էր նախորդ թարմացման ժամանակ։ Միևնույն ընթացքում միջերեսի ներքևում ցուցադրվում է թարմացման ընթացքը՝ պարզ, էներգախնայող և զուսպ ձևով, ինչը մարդկայնացնում է մի պահ, որը սովորաբար ընկալվում է որպես պարտադրող կամ սահմանափակող։"
   }
 };
 
@@ -80,71 +81,10 @@ const accordionSectionsFR = [
   }
 ];
 
-const accordionSectionsEN = [
-  {
-    id: "contexte",
-    title: "General Context",
-    content: "Waiting for an iOS update represents a suspended moment in the user experience: an imposed, silent time during which the user finds themselves immobilized, in a functional in-between before resuming their activity. This moment, often perceived as empty or constraining, nevertheless opens a unique space in the daily use of the phone."
-  },
-  {
-    id: "frustrations",
-    title: "Identified Frustrations",
-    content: "Users express a form of frustration related to loss of control, the perceived uselessness of this waiting time, and the sudden nature of the interruption of their ongoing actions. Waiting for the progress bar becomes a moment endured, with no function other than patience.",
-    hasImage: true
-  },
-  {
-    id: "lieux",
-    title: "Concerned Locations",
-    content: "Updates can occur at home, at the office, or in transit. In all cases, they intervene in a context where the user is engaged in an action, sometimes urgent, and where the update disrupts the continuity of the gesture."
-  },
-  {
-    id: "approche",
-    title: "Possible Interactional Approach",
-    content: "This suspended moment can become a space for introspection, a time for personal expression, an interstice where the user leaves a trace for their future self. By investing this imposed temporality, the experience offers a different relationship to waiting, less endured and more meaningful."
-  },
-  {
-    id: "pourquoi",
-    title: "Why did I choose this concept?",
-    content: "Because the update is an unavoidable, repetitive, and universal technical ritual. The idea is to transform a mundane gesture into a narrative, intimate, and subtly emotional moment. Where one usually waits without engagement, the experience offers a personal micro-parenthesis."
-  },
-  {
-    id: "points-forts",
-    title: "Concept Strengths",
-    content: "Minimal, discreet interface, aligned with iOS codes.\nEntirely optional experience.\nNatural integration into the update process.\nContinuity between two versions via the saved message.\nUse of Apple Intelligence to generate a unique and personal text."
-  },
-  {
-    id: "besoins",
-    title: "How does it meet identified needs?",
-    content: "The experience makes useful a moment that wasn't, gives meaning back to a forced pause, creates emotional continuity from one update to the next, respects the silence and temporality of this technical ritual, and offers an intimate space for expression without additional effort for the user."
-  },
-  {
-    id: "insights",
-    title: "Questionnaire Insights",
-    content: "Survey responses show that waiting is often perceived as empty, unengaging, or useless time.\nA majority of users express the desire to do something during this moment.\nSome feel frustration related to the imposed nature of the interruption.\nThe idea of leaving a personal, intimate, or introspective message during the update generates significant interest."
-  },
-  {
-    id: "problematique",
-    title: "iOS Waiting Problem",
-    content: "Waiting for an iOS update is perceived as useless time, a constrained period that blocks phone usage. A mockup was created with questionnaire responses to materialize this frustration and the opportunity for a personal expression moment."
-  },
-  {
-    id: "outcome",
-    title: "Outcome",
-    content: "The concept offers an introspective, personal, and optional experience at the heart of an imposed technical ritual. The generated message can be found during the next update, creating a discreet emotional continuity in the iOS ecosystem. System progress remains visible, bringing subtle humanization to the wait."
-  },
-  {
-    id: "appris",
-    title: "What I Learned",
-    content: "Exploring temporality as interaction material.\nWorking on daily micro-rituals.\nIntegrating Apple Intelligence into an introspective logic.\nDesigning a complex multi-path journey.\nArticulating silence, memory, waiting, and interaction."
-  }
-];
-
-const accordionSectionsHY = [
-  {
-    id: "contexte",
-    title: " Delays delaysdelays delays delays delays delays delaysdelays delays delays delaysdelays delays delaysdelays delaysGeneral Context"
-  }
-];
+const accordionSectionsEN = accordionSectionsFR.map(section => ({
+  ...section,
+  title: section.id === "contexte" ? "General Context" : section.id === "frustrations" ? "Identified Frustrations" : section.id === "lieux" ? "Concerned Locations" : section.id === "approche" ? "Possible Interactional Approach" : section.id === "pourquoi" ? "Why did I choose this concept?" : section.id === "points-forts" ? "Concept Strengths" : section.id === "besoins" ? "How does it meet identified needs?" : section.id === "insights" ? "Questionnaire Insights" : section.id === "problematique" ? "iOS Waiting Problem" : section.id === "outcome" ? "Outcome" : "What I Learned"
+}));
 
 interface ProjectIOS26Props {
   language?: "EN" | "FR" | "ՀԱՅ";
@@ -152,13 +92,13 @@ interface ProjectIOS26Props {
 
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showPDFLightbox, setShowPDFLightbox] = useState(false);
+  const [showImageZoom, setShowImageZoom] = useState(false);
   const [openSections, setOpenSections] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const content = translations[language];
-  const accordionSections = language === "FR" ? accordionSectionsFR : accordionSectionsEN;
+  const accordionSections = language === "FR" ? accordionSectionsFR : language === "EN" ? accordionSectionsEN : [];
 
   const toggleSection = (id: string) => {
     setOpenSections(prev => 
@@ -226,18 +166,6 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
     const videoElement = videoRef.current;
     if (!videoElement) return;
     videoElement.currentTime = Math.min(videoElement.duration, videoElement.currentTime + 5);
-  };
-
-  const openPDFLightbox = () => {
-    setShowPDFLightbox(true);
-    document.body.style.overflow = "hidden";
-    window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: true }));
-  };
-
-  const closePDFLightbox = () => {
-    setShowPDFLightbox(false);
-    document.body.style.overflow = "";
-    window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: false }));
   };
 
   return (
@@ -360,7 +288,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
 
         {/* Accordion Sections */}
-        <div className="mt-12 md:mt-16 space-y-2">
+        <div className="mt-12 md:mt-16 space-y-6">
           {accordionSections.map((section) => {
             const isOpen = openSections.includes(section.id);
             return (
@@ -387,18 +315,18 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                     {section.title}
                   </span>
                   <ChevronDown 
-                    className={`w-5 h-5 text-[#86868b] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    className={`w-5 h-5 text-[#86868b] transition-transform duration-300 flex-shrink-0 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
                 
                 <div
                   className="overflow-hidden transition-all duration-300 ease-in-out"
                   style={{
-                    maxHeight: isOpen ? "1000px" : "0",
+                    maxHeight: isOpen ? "2000px" : "0",
                     opacity: isOpen ? 1 : 0
                   }}
                 >
-                  <div className="px-5 pb-5">
+                  <div className="px-5 py-6">
                     <p
                       style={{
                         fontFamily: "var(--font-body)",
@@ -407,11 +335,25 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                         color: "#a1a1a6",
                         lineHeight: 1.6,
                         letterSpacing: "-0.01em",
-                        whiteSpace: "pre-line"
+                        whiteSpace: "pre-line",
+                        marginBottom: section.id === "frustrations" && isOpen ? "1.5rem" : "0"
                       }}
                     >
                       {section.content}
                     </p>
+                    {section.id === "frustrations" && isOpen && (
+                      <div className="mt-6 rounded-lg overflow-hidden">
+                        <Image 
+                          src="/iOS_26_frustrations.png" 
+                          alt="Frustrations Survey"
+                          width={1200}
+                          height={700}
+                          style={{ width: "100%", height: "auto" }}
+                          priority={false}
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -424,7 +366,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           paddingBottom: "clamp(48px, 6vw, 80px)"
         }}>
           <div
-            onClick={openPDFLightbox}
+            onClick={() => setShowImageZoom(true)}
             className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
             style={{
               maxHeight: "400px",
@@ -437,7 +379,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               alt="iOS 26 User Journey"
               width={1600}
               height={900}
-              style={{ pointerEvents: "none", width: "100%", height: "auto" }}
+              style={{ width: "100%", height: "auto" }}
               priority={false}
               loading="lazy"
             />
@@ -446,16 +388,15 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
       </div>
 
       {/* Image Zoom Lightbox Modal */}
-      {showPDFLightbox && (
+      {showImageZoom && (
         <div
           className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-auto"
-          onClick={closePDFLightbox}
+          onClick={() => setShowImageZoom(false)}
         >
           <div 
             className="relative w-full flex items-center justify-center px-2 md:px-4 py-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Image - Full Screen */}
             <Image 
               src="/iOS_26_Chemin_Utilisateur.jpg" 
               alt="iOS 26 User Journey - Full Screen"
@@ -465,11 +406,10 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               priority
             />
 
-            {/* Close Button */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                closePDFLightbox();
+                setShowImageZoom(false);
               }}
               className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-50"
             >
