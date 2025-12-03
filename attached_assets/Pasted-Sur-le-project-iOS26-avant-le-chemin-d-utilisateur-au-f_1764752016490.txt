@@ -1,0 +1,92 @@
+Sur le project iOS26, avant le chemin d’utilisateur au format JPEG que je t’ai fait crée, on va crée des blocs textes avec les titres qui sont affichés suivi de fleches (voir plus bas comment je t’explique) et quand on developpe, le texte correspondant s’affiche). Les titres doivent etre plus gras que les textes en courant, et un peu plus grand que les textes, mais pas aussi grand que les titres de projects.
+
+Contexte général
+L’attente d’une mise à jour iOS représente un moment suspendu dans l’expérience utilisateur : un temps imposé, silencieux, durant lequel l’usager se retrouve immobilisé, dans un entre-deux fonctionnel avant de pouvoir reprendre son activité. Ce moment, souvent perçu comme vide ou contraignant, ouvre pourtant un espace singulier dans l’usage quotidien du téléphone.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+⸻
+
+Frustrations identifiées
+Les utilisateurs expriment une forme de frustration liée à la perte de contrôle, à l’inutilité ressentie de ce temps d’attente et au caractère soudain de l’interruption de leurs actions en cours. L’attente de la barre de progression devient un moment subi, sans autre fonction que la patience.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+(Mettre le png que je viens de t’envoyer ici, il sera visible, uniquement si le texte est déployé)
+
+⸻
+
+Lieux concernés
+Les mises à jour peuvent survenir au domicile, au bureau ou dans les transports. Dans tous les cas, elles interviennent dans un contexte où l’utilisateur est engagé dans une action, parfois urgente, et où la mise à jour vient rompre la continuité du geste.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+⸻
+
+Approche interactionnelle possible
+Ce moment suspendu peut devenir un espace d’introspection, un temps d’expression personnelle, un interstice où l’utilisateur laisse une trace à son futur soi. En investissant cette temporalité imposée, l’expérience propose un rapport différent à l’attente, moins subi et plus porteur de sens.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+⸻
+
+Pourquoi ai-je choisi ce concept ?
+Parce que la mise à jour est un rituel technique incontournable, répétitif et universel. L’idée est de transformer un geste banal en un moment narratif, intime et subtilement émotionnel. Là où l’on attend habituellement sans engagement, l’expérience propose une micro-parenthèse personnelle.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+⸻
+
+Points forts du concept
+Interface minimale, discrète, alignée avec les codes d’iOS.
+Expérience entièrement facultative.
+Intégration naturelle dans le processus de mise à jour.
+Continuité entre deux versions via le message sauvegardé.
+Utilisation d’Apple Intelligence pour générer un texte unique et personnel.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+⸻
+
+En quoi répond-il aux besoins identifiés ?
+L’expérience rend utile un moment qui ne l’était pas, redonne du sens à une pause forcée, crée une continuité émotionnelle d’une mise à jour à l’autre, respecte le silence et la temporalité de ce rituel technique et propose un espace d’expression intime sans effort supplémentaire pour l’utilisateur.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+
+⸻
+
+Insights du questionnaire
+Les réponses au questionnaire montrent que l’attente est souvent perçue comme un temps vide, peu engageant ou inutile.
+Une majorité d’utilisateurs exprime l’envie de pouvoir faire quelque chose durant ce moment.
+Certains ressentent une frustration liée au caractère imposé de l’interruption.
+L’idée de laisser un message personnel, intime ou introspectif durant la mise à jour génère un intérêt important.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+
+⸻
+
+Problématique de l’attente iOS
+L’attente de la mise à jour iOS est un moment perçu comme inutile, un temps contraint qui bloque l’usage du téléphone. Un mockup a été réalisé avec les réponses du questionnaire pour matérialiser cette frustration et l’opportunité d’un moment d’expression personnelle.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+⸻
+
+Outcome
+Le concept propose une expérience introspective, personnelle et facultative au cœur d’un rituel technique imposé. Le message généré peut être retrouvé lors de la prochaine mise à jour, créant une continuité émotionnelle discrète dans l’écosystème iOS. La progression du système reste visible, apportant une humanisation subtile de l’attente.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
+⸻
+
+Ce que j’ai appris
+Explorer la temporalité comme matière d’interaction.
+Travailler sur les micro-rituels du quotidien.
+Intégrer Apple Intelligence dans une logique introspective.
+Concevoir un parcours complexe multi-chemins.
+Articuler silence, mémoire, attente et interaction.
+
+(Le titre ou il y a une fleche « développer » pour afficher le texte, donc quand le texte ne sont pas déployer on voit uniquement le titre. Quand le texte est déployé, la flèche qui est à côté du titre change de sens pour informer qu’on peut refermer le texte, et quand on clique dessus ça referme. L’animation de déploiement doit se faire en mode accordion, comme si elle se développe et se referme en suivant les indications des boutons.)
+
