@@ -172,9 +172,14 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   useEffect(() => {
     if (showImageZoom || showPNGZoom) {
       window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: { isOpen: true } }));
+      document.body.style.overflow = 'hidden';
     } else {
       window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: { isOpen: false } }));
+      document.body.style.overflow = 'auto';
     }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [showImageZoom, showPNGZoom]);
 
   useEffect(() => {
@@ -465,21 +470,23 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
       {/* JPEG Fullscreen Modal */}
       {showImageZoom && (
         <div
-          className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-auto"
+          className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-hidden"
           onClick={() => setShowImageZoom(false)}
+          style={{ touchAction: "manipulation" }}
         >
           <div 
-            className="relative w-full flex items-center justify-center px-2 md:px-4 py-4"
+            className="relative w-full h-full flex items-center justify-center px-2 md:px-4 py-4"
             onClick={(e) => {
               e.stopPropagation();
             }}
+            style={{ userSelect: "none", WebkitUserSelect: "none" }}
           >
             <Image 
               src="/iOS_26_Chemin_Utilisateur.jpg" 
               alt="iOS 26 User Journey - Full Screen"
               width={1600}
               height={900}
-              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
+              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto", userSelect: "none" }}
               priority
               quality={95}
               sizes="(max-width: 768px) 100vw, 95vw"
