@@ -153,9 +153,13 @@ interface ProjectIOS26Props {
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showImageZoom, setShowImageZoom] = useState(false);
+  const [showPNGZoom, setShowPNGZoom] = useState(false);
+  const [showPNGMagnified, setShowPNGMagnified] = useState(false);
+  const [magPosition, setMagPosition] = useState({ x: 0, y: 0 });
   const [openSections, setOpenSections] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const pngContainerRef = useRef<HTMLDivElement>(null);
 
   const content = translations[language];
   const accordionSections = language === "FR" ? accordionSectionsFR : language === "EN" ? accordionSectionsEN : accordionSectionsHY;
@@ -167,6 +171,14 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         : [...prev, id]
     );
   };
+
+  useEffect(() => {
+    if (showImageZoom || showPNGZoom || showPNGMagnified) {
+      window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: { isOpen: true } }));
+    } else {
+      window.dispatchEvent(new CustomEvent("pdfLightboxStateChange", { detail: { isOpen: false } }));
+    }
+  }, [showImageZoom, showPNGZoom, showPNGMagnified]);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -402,7 +414,11 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                       {section.content}
                     </p>
                     {section.id === "frustrations" && isOpen && (
-                      <div className="mt-6 rounded-lg overflow-hidden">
+                      <div 
+                        ref={pngContainerRef}
+                        onClick={() => setShowPNGZoom(true)}
+                        className="mt-6 rounded-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.01]"
+                      >
                         <Image 
                           src="/iOS_26_frustrations.png" 
                           alt="Frustrations Survey"
@@ -411,6 +427,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                           style={{ width: "100%", height: "auto" }}
                           priority={false}
                           loading="lazy"
+                          quality={100}
                         />
                       </div>
                     )}
@@ -447,23 +464,26 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
       </div>
 
-      {/* Image Zoom Lightbox Modal */}
-      {showImageZoom && (
+      {/* JPEG Zoom Lightbox Modal */}
+      {showImageZoom && !showPNGMagnified && (
         <div
           className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-auto"
           onClick={() => setShowImageZoom(false)}
         >
           <div 
             className="relative w-full flex items-center justify-center px-2 md:px-4 py-4"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           >
             <Image 
               src="/iOS_26_Chemin_Utilisateur.jpg" 
               alt="iOS 26 User Journey - Full Screen"
               width={1600}
               height={900}
-              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
+              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto", cursor: "pointer" }}
               priority
+              onClick={() => setShowPNGMagnified(true)}
             />
 
             <button
@@ -475,6 +495,96 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             >
               <X className="w-5 h-5" />
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* PNG Zoom Lightbox Modal */}
+      {showPNGZoom && !showPNGMagnified && (
+        <div
+          className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-auto"
+          onClick={() => setShowPNGZoom(false)}
+        >
+          <div 
+            className="relative w-full flex items-center justify-center px-2 md:px-4 py-4"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <Image 
+              src="/iOS_26_frustrations.png" 
+              alt="Frustrations Survey - Full Screen"
+              width={1200}
+              height={700}
+              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto", cursor: "pointer" }}
+              priority
+              quality={100}
+              onClick={() => setShowPNGMagnified(true)}
+            />
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowPNGZoom(false);
+              }}
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-50"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Magnified View with Zoom & Drag */}
+      {showPNGMagnified && (
+        <div
+          className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center overflow-hidden"
+          onClick={() => setShowPNGMagnified(false)}
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            setMagPosition({ x, y });
+          }}
+        >
+          <div 
+            className="relative w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+              <Image 
+                src="/iOS_26_frustrations.png" 
+                alt="Frustrations Survey - Magnified"
+                width={2400}
+                height={1400}
+                style={{ 
+                  width: "300%", 
+                  height: "auto", 
+                  objectFit: "contain",
+                  cursor: "grab",
+                  transform: `translate(calc(-${magPosition.x * 2}px + 50vw), calc(-${magPosition.y * 2}px + 50vh))`,
+                  transition: "none"
+                }}
+                priority
+                quality={100}
+              />
+            </div>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowPNGMagnified(false);
+                setShowPNGZoom(false);
+                setShowImageZoom(false);
+              }}
+              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-50"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-[#86868b] text-sm">
+              Cliquez pour quitter la loupe
+            </div>
           </div>
         </div>
       )}
