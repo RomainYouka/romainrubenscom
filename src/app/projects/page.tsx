@@ -156,7 +156,7 @@ export default function ProjectsPage() {
                 width={700}
                 height={100}
                 className="w-full"
-                style={{ height: 'auto' }}
+                style={{ height: 'auto', width: 'auto' }}
                 priority />
 
               </div> :

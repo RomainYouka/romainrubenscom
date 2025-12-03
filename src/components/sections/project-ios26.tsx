@@ -310,7 +310,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             </div>
           </div>
 
-          <div className="flex-1" style={{ textAlign: "left" }}>
+          <div className="flex-1" style={{ textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
             <div
               style={{
                 fontFamily: "var(--font-body)",
