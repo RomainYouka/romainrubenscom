@@ -8,17 +8,29 @@ const translations = {
   EN: {
     year: "Designed in 2025",
     title: "iOS 26 Update Vision",
-    description: "iOS 26 Update is a fictional interface built into the iOS 26 update, designed to turn waiting time into a quiet and introspective moment. It appears only during the update process.\nThe experience is optional: users can choose to try it or skip straight to the classic update screen, discovering a small and unexpected space each time the system updates.\n\nWith Apple Intelligence, users can generate a personal message by answering a short custom questionnaire. The text is unique and editable, and they can also read again the message they wrote during the previous update.\n\nAt the same time, the interface shows the update progress at the bottom of the screen. It stays simple, battery friendly and unobtrusive, giving a human touch to a moment that is usually seen as forced or purely functional."
+    description: "iOS 26 Update is a fictional interface built into the iOS 26 update, designed to turn waiting time into a quiet and introspective moment. It appears only during the update process.\nThe experience is optional: users can choose to try it or skip straight to the classic update screen, discovering a small and unexpected space each time the system updates.\n\nWith Apple Intelligence, users can generate a personal message by answering a short custom questionnaire. The text is unique and editable, and they can also read again the message they wrote during the previous update.\n\nAt the same time, the interface shows the update progress at the bottom of the screen. It stays simple, battery friendly and unobtrusive, giving a human touch to a moment that is usually seen as forced or purely functional.",
+    pdfTitle: "Download user flow",
+    pdfMessage: "Would you like to download the user flow to view it larger?",
+    pdfCancel: "Cancel",
+    pdfDownload: "Download"
   },
   FR: {
     year: "Conception en 2025",
     title: "iOS 26 Vision de la MàJ",
-    description: "iOS 26 Update est une interface fictive intégrée à la mise à jour iOS 26, conçue pour transformer l'attente en un moment introspectif et poétique, accessible uniquement lors des mises à jour. L'expérience est facultative : l'utilisateur peut choisir d'y participer ou de passer directement à l'écran classique, découvrant ainsi un espace inattendu à chaque mise à jour.\n\nGrâce à Apple Intelligence, l'utilisateur peut générer un texte en répondant à un questionnaire personnalisé. Le texte généré est unique et modifiable. L'utilisateur peut aussi relire son message laissé durant la précédente mise à jour. En parallèle, l'interface affiche la progression de la mise à jour en bas, sobre et optimisée pour la batterie, humanisant un instant souvent perçu comme contraint."
+    description: "iOS 26 Update est une interface fictive intégrée à la mise à jour iOS 26, conçue pour transformer l'attente en un moment introspectif et poétique, accessible uniquement lors des mises à jour. L'expérience est facultative : l'utilisateur peut choisir d'y participer ou de passer directement à l'écran classique, découvrant ainsi un espace inattendu à chaque mise à jour.\n\nGrâce à Apple Intelligence, l'utilisateur peut générer un texte en répondant à un questionnaire personnalisé. Le texte généré est unique et modifiable. L'utilisateur peut aussi relire son message laissé durant la précédente mise à jour. En parallèle, l'interface affiche la progression de la mise à jour en bas, sobre et optimisée pour la batterie, humanisant un instant souvent perçu comme contraint.",
+    pdfTitle: "Télécharger le chemin d'utilisateur",
+    pdfMessage: "Voulez-vous télécharger le flux utilisateur pour le consulter en plus grand ?",
+    pdfCancel: "Annuler",
+    pdfDownload: "Télécharger"
   },
   ՀԱՅ: {
     year: "Նախագծված 2025-ին",
     title: "iOS 26 Թարմացման Տեսլական",
-    description: "iOS 26 Update-ը պատկերային միջերես է, որը ներառված է iOS 26-ի թարմացման մեջ և ստեղծված է սպասման պահը վերածելու ներհայեցողական ու պոետիկ փորձառության։ Այն հասանելի է միայն թարմացման ընթացքում։ Փորձառությունը պարտադիր չէ․ օգտատերը կարող է ընտրել մասնակցել դրան կամ անմիջապես անցնել դասական էկրանին՝ յուրաքանչյուր թարմացման հետ բացահայտելով անսպասելի մի տարածք։\n\nApple Intelligence-ի շնորհիվ օգտատերը կարող է ստեղծել տեքստ՝ պատասխանելով իրեն հատուկ կազմված հարցաշարին։ Ստացված տեքստը եզակի է և փոփոխելի։ Օգտատերը կարող է նաև կրկին կարդալ այն հաղորդագրությունը, որը թողել էր նախորդ թարմացման ժամանակ։ Միևնույն ընթացքում միջերեսի ներքևում ցուցադրվում է թարմացման ընթացքը՝ պարզ, էներգախնայող և զուսպ ձևով, ինչը մարդկայնացնում է մի պահ, որը սովորաբար ընկալվում է որպես պարտադրող կամ սահմանափակող։"
+    description: "iOS 26 Update-ը պատկերային միջերես է, որը ներառված է iOS 26-ի թարմացման մեջ և ստեղծված է սպասման պահը վերածելու ներհայեցողական ու պոետիկ փորձառության։ Այն հասանելի է միայն թարմացման ընթացքում։ Փորձառությունը պարտադիր չէ․ օգտատերը կարող է ընտրել մասնակցել դրան կամ անմիջապես անցնել դասական էկրանին՝ յուրաքանչյուր թարմացման հետ բացահայտելով անսպասելի մի տարածք։\n\nApple Intelligence-ի շնորհիվ օգտատերը կարող է ստեղծել տեքստ՝ պատասխանելով իրեն հատուկ կազմված հարցաշարին։ Ստացված տեքստը եզակի է և փոփոխելի։ Օգտատերը կարող է նաև կրկին կարդալ այն հաղորդագրությունը, որը թողել էր նախորդ թարմացման ժամանակ։ Միևնույն ընթացքում միջերեսի ներքևում ցուցադրվում է թարմացման ընթացքը՝ պարզ, էներգախնայող և զուսպ ձևով, ինչը մարդկայնացնում է մի պահ, որը սովորաբար ընկալվում է որպես պարտադրող կամ սահմանափակող։",
+    pdfTitle: "Ներբեռնել օգտատիրոջ հոսքը",
+    pdfMessage: "Ցանկանու՞մ եք ներբեռնել օգտատիրոջ հոսքը այն ավելի մեծ տեսնելու համար:",
+    pdfCancel: "Չեղարկել",
+    pdfDownload: "Ներբեռնել"
   }
 };
 
@@ -525,7 +537,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 marginBottom: "12px"
               }}
             >
-              Télécharger le chemin d'utilisateur
+              {content.pdfTitle}
             </h3>
 
             <p
@@ -538,7 +550,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                 marginBottom: "24px"
               }}
             >
-              Voulez-vous télécharger le flux utilisateur pour le consulter en plus grand ?
+              {content.pdfMessage}
             </p>
 
             <div className="flex flex-col md:flex-row gap-3 md:gap-3">
@@ -550,7 +562,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                   fontSize: "14px"
                 }}
               >
-                Annuler
+                {content.pdfCancel}
               </button>
               
               <a
@@ -563,7 +575,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                   fontSize: "14px"
                 }}
               >
-                Télécharger
+                {content.pdfDownload}
               </a>
             </div>
           </div>
