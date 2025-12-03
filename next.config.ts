@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**" },
       { protocol: "http", hostname: "**" },
     ],
+    qualities: [85, 90, 95, 100],
   },
 
   // Chemin de sortie explicite et sûr
