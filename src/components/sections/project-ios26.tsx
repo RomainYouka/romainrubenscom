@@ -535,104 +535,26 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
       )}
 
-      {/* Magnified View with Zoom Lens - Zalando Style */}
+      {/* Full Screen View */}
       {showPNGMagnified && (
         <div
-          className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center overflow-auto"
           onClick={() => setShowPNGMagnified(false)}
         >
           <div 
-            className="relative flex gap-8 items-center justify-center"
+            className="relative w-full flex items-center justify-center px-2 md:px-4 py-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Original Image Container */}
-            <div 
-              className="relative"
-              ref={pngContainerRef}
-              onMouseMove={(e) => {
-                if (pngContainerRef.current) {
-                  const rect = pngContainerRef.current.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  setMagPosition({ x, y });
-                }
-              }}
-              onMouseLeave={() => setMagPosition({ x: -9999, y: -9999 })}
-            >
-              <Image 
-                src="/iOS_26_frustrations.png" 
-                alt="Frustrations Survey"
-                width={1200}
-                height={700}
-                style={{ 
-                  width: "450px",
-                  height: "auto",
-                  display: "block"
-                }}
-                priority
-                quality={100}
-              />
-              
-              {/* Zoom Lens Circle - Follows cursor */}
-              {magPosition.x >= 0 && magPosition.y >= 0 && (
-                <div
-                  style={{
-                    position: "absolute",
-                    left: `${magPosition.x - 40}px`,
-                    top: `${magPosition.y - 40}px`,
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "50%",
-                    border: "2px solid #F5F5F7",
-                    backgroundColor: "rgba(0, 0, 0, 0.1)",
-                    pointerEvents: "none",
-                    boxShadow: "0 0 0 3px rgba(245, 245, 247, 0.3), inset 0 0 0 1px #F5F5F7",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.35-4.35" />
-                  </svg>
-                </div>
-              )}
-            </div>
+            <Image 
+              src="/iOS_26_frustrations.png" 
+              alt="Frustrations Survey - Full Screen"
+              width={1200}
+              height={700}
+              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
+              priority
+              quality={100}
+            />
 
-            {/* Zoomed Window - Shows magnified portion */}
-            {magPosition.x >= 0 && magPosition.y >= 0 && (
-              <div
-                style={{
-                  width: "320px",
-                  height: "240px",
-                  border: "1px solid #F5F5F7",
-                  overflow: "hidden",
-                  backgroundColor: "#000",
-                  position: "relative",
-                  flexShrink: 0
-                }}
-              >
-                <Image 
-                  src="/iOS_26_frustrations.png" 
-                  alt="Frustrations Survey - Zoomed"
-                  width={1200}
-                  height={700}
-                  style={{
-                    position: "absolute",
-                    width: "900px",
-                    height: "auto",
-                    left: `${-magPosition.x * 2 + 160}px`,
-                    top: `${-magPosition.y * 1.5 + 120}px`,
-                    pointerEvents: "none"
-                  }}
-                  priority
-                  quality={100}
-                />
-              </div>
-            )}
-
-            {/* Close Button */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
