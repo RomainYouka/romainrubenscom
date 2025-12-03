@@ -153,6 +153,7 @@ interface ProjectIOS26Props {
 export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPNGZoom, setShowPNGZoom] = useState(false);
+  const [showPDFModal, setShowPDFModal] = useState(false);
   const [openSections, setOpenSections] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -443,15 +444,13 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         <div className="flex justify-center mt-12 md:mt-16" style={{
           paddingBottom: "clamp(48px, 6vw, 80px)"
         }}>
-          <a
-            href="/RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf"
-            download="RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf"
+          <div
+            onClick={() => setShowPDFModal(true)}
             className="w-full max-w-5xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
             style={{
               maxHeight: "400px",
               overflow: "hidden",
-              position: "relative",
-              display: "block"
+              position: "relative"
             }}
           >
             <Image 
@@ -464,7 +463,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               quality={90}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
             />
-          </a>
+          </div>
         </div>
       </div>
 
@@ -501,6 +500,72 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             >
               <X className="w-5 h-5" />
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* PDF Download Modal */}
+      {showPDFModal && (
+        <div
+          className="fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm"
+          onClick={() => setShowPDFModal(false)}
+        >
+          <div 
+            className="relative bg-white rounded-2xl p-8 md:p-10 max-w-md w-full shadow-2xl"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(18px, 2.5vw, 22px)",
+                fontWeight: 600,
+                color: "#1d1d1f",
+                marginBottom: "12px"
+              }}
+            >
+              Télécharger le chemin d'utilisateur
+            </h3>
+
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "clamp(14px, 1.2vw, 16px)",
+                fontWeight: 400,
+                color: "#86868b",
+                lineHeight: 1.6,
+                marginBottom: "24px"
+              }}
+            >
+              Voulez-vous télécharger le flux utilisateur pour le consulter en plus grand ?
+            </p>
+
+            <div className="flex flex-col md:flex-row gap-3 md:gap-3">
+              <button
+                onClick={() => setShowPDFModal(false)}
+                className="flex-1 px-4 py-3 rounded-lg text-center font-medium text-[#1d1d1f] border border-[#d3d3d4] transition-all duration-200 hover:bg-[#f5f5f7]"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "14px"
+                }}
+              >
+                Annuler
+              </button>
+              
+              <a
+                href="/RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf"
+                download="RUBENS_Romain_iOS26_Update_Vision_User_flow.pdf"
+                onClick={() => setShowPDFModal(false)}
+                className="flex-1 px-4 py-3 rounded-lg text-center font-medium text-white bg-[#1d1d1f] transition-all duration-200 hover:bg-[#424245]"
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "14px"
+                }}
+              >
+                Télécharger
+              </a>
+            </div>
           </div>
         </div>
       )}
