@@ -464,8 +464,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
       </div>
 
-      {/* JPEG Zoom Lightbox Modal */}
-      {showImageZoom && !showPNGMagnified && (
+      {/* JPEG Fullscreen Modal */}
+      {showImageZoom && (
         <div
           className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-auto"
           onClick={() => setShowImageZoom(false)}
@@ -481,9 +481,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               alt="iOS 26 User Journey - Full Screen"
               width={1600}
               height={900}
-              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto", cursor: "pointer" }}
+              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
               priority
-              onClick={() => setShowPNGMagnified(true)}
             />
 
             <button
@@ -499,8 +498,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
       )}
 
-      {/* PNG Zoom Lightbox Modal */}
-      {showPNGZoom && !showPNGMagnified && (
+      {/* PNG Fullscreen Modal */}
+      {showPNGZoom && (
         <div
           className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center overflow-auto"
           onClick={() => setShowPNGZoom(false)}
@@ -516,40 +515,6 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
               alt="Frustrations Survey - Full Screen"
               width={1200}
               height={700}
-              style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto", cursor: "pointer" }}
-              priority
-              quality={100}
-              onClick={() => setShowPNGMagnified(true)}
-            />
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowPNGZoom(false);
-              }}
-              className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-50"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Full Screen View */}
-      {showPNGMagnified && (
-        <div
-          className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center overflow-auto"
-          onClick={() => setShowPNGMagnified(false)}
-        >
-          <div 
-            className="relative w-full flex items-center justify-center px-2 md:px-4 py-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image 
-              src="/iOS_26_frustrations.png" 
-              alt="Frustrations Survey - Full Screen"
-              width={1200}
-              height={700}
               style={{ maxWidth: "95%", maxHeight: "90vh", width: "auto", height: "auto" }}
               priority
               quality={100}
@@ -558,9 +523,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                setShowPNGMagnified(false);
                 setShowPNGZoom(false);
-                setShowImageZoom(false);
               }}
               className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-[#F5F5F7] text-[#1d1d1f] transition-all duration-100 ease-out hover:scale-[1.05] active:scale-[0.95] z-50"
             >
@@ -569,6 +532,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
           </div>
         </div>
       )}
+
     </section>);
 
 }
