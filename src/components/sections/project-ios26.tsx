@@ -86,6 +86,66 @@ const accordionSectionsEN = accordionSectionsFR.map(section => ({
   title: section.id === "contexte" ? "General Context" : section.id === "frustrations" ? "Identified Frustrations" : section.id === "lieux" ? "Concerned Locations" : section.id === "approche" ? "Possible Interactional Approach" : section.id === "pourquoi" ? "Why did I choose this concept?" : section.id === "points-forts" ? "Concept Strengths" : section.id === "besoins" ? "How does it meet identified needs?" : section.id === "insights" ? "Questionnaire Insights" : section.id === "problematique" ? "iOS Waiting Problem" : section.id === "outcome" ? "Outcome" : "What I Learned"
 }));
 
+const accordionSectionsHY = [
+  {
+    id: "contexte",
+    title: "Ընդհանուր համատեքստ",
+    content: "iOS թարմացման սպասումը ներկայացնում է օգտատիրոջ փորձառության մեջ կասեցված պահ՝ պարտադիր, լուռ ժամանակ, որի ընթացքում օգտատերը գտնվում է անշարժ վիճակում, ֆունկցիոնալ միջջանկ վիճակում, իր գործունեությունը վերսկսելուց առաջ։ Այս պահը, որը հաճախ ընկալվում է դատարկ կամ սահմանափակ, բացակայում է հեռախոսի ամենօրյա օգտագործման մեջ յուրահատուկ տարածք։"
+  },
+  {
+    id: "frustrations",
+    title: "Հայտնաբերված հիասթափություններ",
+    content: "Օգտատերերը արտահայտում են հիասթափություն, որը կապված է վերահսկողության կորստի, այս սպասման ժամանակի ընկալվածի անօգտակարության և իրենց ընթացիկ գործողությունների ընդհատման հանկարծի բնույթի հետ։ Առաջընթացի սանդղակի համար սպասումը դառնում է ենթարկվածի պահ, առանց հետ կամ համբերության միայն հետ.",
+    hasImage: true
+  },
+  {
+    id: "lieux",
+    title: "Վերաբերվող վայրեր",
+    content: "Թարմացումները կարող են տեղի ունենալ տանը, գրասենյակում կամ տրանսպորտում։ Բոլոր դեպքերում նրանք ներգործում են համատեքստում, որտեղ օգտատերը ընդգրկված է գործողության մեջ, երբեմն հրատապ, և որտեղ թարմացումը խախտում է շարժման շարունակականությունը։"
+  },
+  {
+    id: "approche",
+    title: "Հնարավոր ինտերակցիոնային մոտեցում",
+    content: "Այս կասեցված պահը կարող է դառնալ ներհայեցողության տարածք, անձնական արտահայտման ժամանակ, միջանկ տարածք, որտեղ օգտատերը թողնում է հետք իր ապագա ինքն ինձ համար։ Ներդրումային այս պարտադիր ժամանակիկությունը, փորձառությունը առաջարկում է սպասման հանդեպ այլ հարաբերություն, ավելի քիչ ենթակա և ավելի իմաստալից։"
+  },
+  {
+    id: "pourquoi",
+    title: "Ինչու ընտրեցի այս հայեցակարգը:",
+    content: "Որովհետև թարմացումը անխուսափելի, կրկնվող և համընդհանուր տեխնիկական ծեսեր։ Գաղափարն է մի բանիմ շարժումը փոխակերպել պատմական, հետաքրքիր և նուրբ ինտենսիվ պահի։ Որտեղ սովորաբար մեկը սպասում է առանց նպատակի, փորձառությունը առաջարկում է անձնական միկրո-փակցի միջանկ।"
+  },
+  {
+    id: "points-forts",
+    title: "Հայեցակարգի ուժեղ կողմերը",
+    content: "Նվազագույն, մեջտեղ ինտերֆեյս, iOS կոդերի հետ հավասար։\nՀամբերում ամբողջական փորձառություն։\nՖունկցիոնալ ինտեգրում թարմացման գործընթացում։\nԲախում երկու տարբերակների միջև տնօրեն հաղորդագրության միջոցով։\nApple Intelligence-ի օգտագործումը եզակի և անձնական տեքստ ստեղծելու համար։"
+  },
+  {
+    id: "besoins",
+    title: "Ինչպե՞ս է այն հանդիսանում հայտնաբերված անհրաժեշտությունների:",
+    content: "Փորձառությունը բերում է օգտակար այն պահը, որ այն չէր, վերադարձնում մակածածի իմաստ, ստեղծում ինտենսիվ շարունակականություն մի թարմացումից մյուսը, հարգում ծուղ և այս տեխնիկական ծեսերի ժամանակիկությունը, և առաջարկ տրում հետաքրքիր արտահայտման տարածք կամ լրացուցիչ ջանքերի առանց որ օգտատերի համար։"
+  },
+  {
+    id: "insights",
+    title: "Հարցաշարի հայացք",
+    content: "Հարցաշարի պատասխանները ցույց են տալիս, որ սպասումը հաճախ դատվում է դատարկ, անհետաքրքիր կամ անօգտակար ժամանակ։\nԱրդարացման մեծամասնությունը ցանկանում եք կարողանալ ինչ-որ բան անել այս պահի ընթացքում։\nԱյդ նմանատիպ են ուսանում հիասյունք կապված հարմարման իրականի բնույթի հետ։\nԱյդ ձևում թողնել անձնական, հետաքրքիր կամ ներհայեցողական հաղորդագրություն թարմացման ընթացքում ստեղծել մեծ հետաքրքրություն։"
+  },
+  {
+    id: "problematique",
+    title: "iOS սպասման հարցադրում",
+    content: "iOS թարմացման համար սպասումը համարվում է անօգտակար ժամանակ, սահմանափակ ժամանակ, որը կասեցնում է հեռախոսի օգտագործումը։ Մոդել ստեղծվել է հարցաշարի պատասխաններից այս հիասթափությունն ինքնաբացահայտել և անձնական արտահայտման պահի հավանականությունը։"
+  },
+  {
+    id: "outcome",
+    title: "Ծրագիր",
+    content: "Հայեցակարգը առաջարկ է տրում ներհայեցողական, անձնական, և մեջտեղ փորձառություն պարտադիր տեխնիկական ծեսերի սրտում։ Ստեղծված հաղորդագրությունը կարող է հայտնաբերվել հաջորդ թարմացման ընթացքում, ստեղծել մեջտեղ ինտենսիվ շարունակականություն iOS էկոսիստեմում։ Համակարգի առաջընթացը մնում է տեսանելի, բերել նուրբ մարդկայնացման սպասման համար։"
+  },
+  {
+    id: "appris",
+    title: "Ինչ ես սովորել",
+    content: "Հետազոտել ժամանակիկությունը որպես ինտերակցիոնային նյութ։\nԱրդյուծել տանը միկրո-ծեսերից։\nApple Intelligence-ի ընդգրկում ներհայեցողական տրամաբանության մեջ։\nՀատկացնել բարդ ամբիկ մի շատ-ճանապարհ ճանապարհորդություն։\nՀամակցել լուռ, հետ, սպասում, և ինտերակցիա։"
+  }
+];
+
+
 interface ProjectIOS26Props {
   language?: "EN" | "FR" | "ՀԱՅ";
 }
@@ -98,7 +158,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const content = translations[language];
-  const accordionSections = language === "FR" ? accordionSectionsFR : language === "EN" ? accordionSectionsEN : [];
+  const accordionSections = language === "FR" ? accordionSectionsFR : language === "EN" ? accordionSectionsEN : accordionSectionsHY;
 
   const toggleSection = (id: string) => {
     setOpenSections(prev => 
@@ -288,7 +348,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         </div>
 
         {/* Accordion Sections */}
-        <div className="mt-12 md:mt-16 space-y-6">
+        <div className="mt-12 md:mt-16 space-y-4">
           {accordionSections.map((section) => {
             const isOpen = openSections.includes(section.id);
             return (
@@ -367,7 +427,7 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
         }}>
           <div
             onClick={() => setShowImageZoom(true)}
-            className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
+            className="w-full max-w-5xl rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-200 hover:scale-[1.01] bg-white"
             style={{
               maxHeight: "400px",
               overflow: "hidden",
