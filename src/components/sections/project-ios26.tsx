@@ -395,7 +395,8 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                       fontSize: "clamp(18px, 2vw, 22px)",
                       fontWeight: 600,
                       color: "#ffffff",
-                      letterSpacing: "-0.01em"
+                      letterSpacing: "-0.01em",
+                      textAlign: "left"
                     }}
                   >
                     {section.title}
@@ -423,19 +424,19 @@ export default function ProjectIOS26({ language = "EN" }: ProjectIOS26Props) {
                         lineHeight: 1.6,
                         letterSpacing: "-0.01em",
                         whiteSpace: "pre-line",
-                        marginBottom: section.id === "frustrations" && isOpen ? "1.5rem" : "0"
+                        marginBottom: section.id === "insights" && isOpen ? "1.5rem" : "0"
                       }}
                     >
                       {section.content}
                     </p>
-                    {section.id === "frustrations" && isOpen && (
+                    {section.id === "insights" && isOpen && (
                       <div 
                         onClick={() => setShowPNGZoom(true)}
                         className="mt-6 rounded-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.01]"
                       >
                         <Image 
                           src="/iOS_26_frustrations.png" 
-                          alt="Frustrations Survey"
+                          alt="Questionnaire Insights"
                           width={1200}
                           height={700}
                           style={{ width: "100%", height: "auto" }}
